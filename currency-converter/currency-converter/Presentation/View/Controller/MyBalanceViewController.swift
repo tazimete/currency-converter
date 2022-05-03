@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class SearchViewController: BaseViewController {
+class MyBalanceViewController: BaseViewController {
     // MARK: Non UI Proeprties
     public var searchViewModel: AbstractSearchViewModel!
     private let searchTrigger = PublishSubject<SearchViewModel.SearchInputModel>()

@@ -1,14 +1,14 @@
 //
 //  Movie.swift
-//  setScheduleTest
+//  currency-converter
 //
-//  Created by JMC on 31/10/21.
+//  Created by AGM Tazimon 31/10/21.
 //
 
 import Foundation
 
 /* Movie entity of search response */
-struct Movie: Codable {
+struct Currency: Codable {
     public let id: Int?
     public let originalTitle: String?
     public let overview: String?

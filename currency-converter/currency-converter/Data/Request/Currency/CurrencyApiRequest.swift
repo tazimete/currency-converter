@@ -1,34 +1,34 @@
 //
-//  MoviewRequestApi.swift
-//  setScheduleTest
+//  Network.swift
+//  currency-converter
 //
-//  Created by JMC on 1/11/21.
+//  Created by AGM Tazim on 03/05/22.
 //
 
 import Foundation
 
-enum MovieApiRequest {
-    case getMovie(params: Parameterizable)
+enum CurrencyApiRequest {
+    case convert(params: Parameterizable)
 }
 
-extension MovieApiRequest: APIRequest {
+extension CurrencyApiRequest: APIRequest {
     public var baseURL: URL {
         let url =  "\(AppConfig.shared.getServerConfig().getBaseUrl())/\(AppConfig.shared.getServerConfig().getApiVersion())/"
         return URL(string: url)!
     }
     
     public typealias ItemType = Movie
-    public typealias ResponseType = ItemType
+    public typealias ResponseType = SearchResponse<ItemType>
     
     public var method: RequestType {
         switch self {
-            case .getMovie: return .GET
+            case .convert: return .GET
         }
     }
     
     public var path: String {
         switch self {
-            case .getMovie: return "movie/\(parameters["movie_id"] as! Int)"
+            case .convert: return "search/movie"
         }
     }
     
@@ -36,7 +36,7 @@ extension MovieApiRequest: APIRequest {
         var parameter: [String: Any] = [:]
         
         switch self {
-            case .getMovie (let params):
+            case .convert (let params):
                 parameter = params.asRequestParam
         }
         

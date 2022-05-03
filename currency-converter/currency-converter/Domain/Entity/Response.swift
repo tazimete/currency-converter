@@ -1,14 +1,14 @@
 //
 //  Entity.swift
-//  setScheduleTest
+//  currency-converter
 //
-//  Created by JMC on 31/10/21.
+//  Created by AGM Tazimon 31/10/21.
 //
 
 import Foundation
 
 /* Wrapper response of search api, which has array of dynamic search content like - movie */
-public struct SearchResponse<T: Codable>: Codable {
+public struct Response<T: Codable>: Codable {
     public let page: Int?
     public let results: [T]?
     public let totalPages: Int?

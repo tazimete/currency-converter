@@ -1,8 +1,8 @@
 //
-//  SearchViewModel.swift
-//  setScheduleTest
+//  AbstractSearchViewModel.swift
+//  currency-converter
 //
-//  Created by JMC on 31/10/21.
+//  Created by AGM Tazimon 31/10/21.
 //
 
 
