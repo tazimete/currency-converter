@@ -2,7 +2,7 @@
 //  Codable+Extension.swift
 //  currency-converter
 //
-//  Created by JMC on 13/8/21.
+//  Created by AGM Tazimon 13/8/21.
 //
 
 import Foundation

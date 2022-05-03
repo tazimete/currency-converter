@@ -1,8 +1,8 @@
 //
 //  AppConfig.swift
-//  setScheduleTest
+//  currency-converter
 //
-//  Created by JMC on 1/11/21.
+//  Created by AGM Tazimon 1/11/21.
 //
 
 import Foundation

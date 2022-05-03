@@ -1,22 +1,22 @@
 //
-//  SearchRepository.swift
-//  setScheduleTest
+//  CurrencyRepository.swift
+//  currency-converter
 //
-//  Created by JMC on 30/10/21.
+//  Created by AGM Tazim on 30/10/21.
 //
 
 import Foundation
 import RxSwift
 
-/* This is Search repository class implementation from AbstractSearchRepository. Which will be used to get search related from api client/server response*/
-class SearchRepository: AbstractSearchRepository {
+/* This is Currency repository class implementation from AbstractCurrencyRepository. Which will be used to get currency related data from api client/server response*/
+class CurrencyRepository: AbstractCurrencyRepository {
     var apiClient: AbstractApiClient
     
     init(apiClient: AbstractApiClient = APIClient.shared) {
         self.apiClient = apiClient
     }
     
-    public func get(query: String, year: Int) -> Observable<SearchApiRequest.ResponseType> {
-        return apiClient.send(apiRequest: SearchApiRequest.searchMovie(params: MoviewSearchParams(query: query, year: year)), type: SearchApiRequest.ResponseType.self)
+    func convert(amount: String, currency: String) -> Observable<CurrencyApiRequest.ItemType> {
+        return apiClient.send(apiRequest: CurrencyApiRequest.convert(params: CurrencyConverterParams(amount: amount, currency: currency)), type: CurrencyApiRequest.ItemType.self)
     }
 }

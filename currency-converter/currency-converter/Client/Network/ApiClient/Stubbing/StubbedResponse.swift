@@ -1,8 +1,8 @@
 //
 //  StubbedResponse.swift
-//  setScheduleTest
+//  currency-converter
 //
-//  Created by JMC on 3/11/21.
+//  Created by AGM Tazimon 3/11/21.
 //
 
 import Foundation

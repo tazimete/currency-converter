@@ -16,7 +16,7 @@ class CurrencyUsecase: AbstractCurrencyUsecase {
         self.repository = repository
     }
     
-    func convert(amount: Int, currency: String) -> Observable<CurrencyApiRequest.ResponseType> {
+    func convert(amount: String, currency: String) -> Observable<CurrencyApiRequest.ItemType> {
         return (repository as! AbstractCurrencyRepository).convert(amount: amount, currency: currency)
     }
 }

@@ -1,5 +1,5 @@
 //
-//  Entity.swift
+//  Response.swift
 //  currency-converter
 //
 //  Created by AGM Tazimon 31/10/21.
@@ -7,24 +7,15 @@
 
 import Foundation
 
-/* Wrapper response of search api, which has array of dynamic search content like - movie */
+/* Wrapper response of  api, which has array of dynamic  content like - currency */
 public struct Response<T: Codable>: Codable {
-    public let page: Int?
-    public let results: [T]?
-    public let totalPages: Int?
-    public let totalResults: Int?
+    public let result: T?
     
-    public init(page: Int? = nil, results: [T]? = nil, totalPages: Int? = nil, totalResults: Int? = nil) {
-        self.page = page
-        self.results = results
-        self.totalPages = totalPages
-        self.totalResults = totalResults
+    public init(result: T? = nil) {
+        self.result = result
     }
     
     public enum CodingKeys: String, CodingKey {
-        case page = "page"
-        case results = "results"
-        case totalPages = "total_pages"
-        case totalResults = "total_results"
+        case result = "result"
     }
 }

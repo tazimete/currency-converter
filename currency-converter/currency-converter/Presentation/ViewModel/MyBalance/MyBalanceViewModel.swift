@@ -1,71 +1,68 @@
 //
-//  SerachViewModel.swift
+//  MyBalanceViewModel.swift
 //  currency-converter
 //
-//  Created by AGM Tazimon 30/10/21.
+//  Created by AGM Tazim on 30/10/21.
 //
 
 import Foundation
 import RxSwift
 import RxCocoa
 
-/* This is Search viewmodel class implementation of AbstractSearchViewModel. Which will be used to get search related data by search usecase*/
-class SearchViewModel: AbstractSearchViewModel {
+/* This is my balance viewmodel class implementation of AbstractMyBalanceViewModel. Which will be used to get my blalance related data by its usecase*/
+class MyBalanceViewModel: AbstractMyBalanceViewModel {
     
     // This struct will be used get input from viewcontroller
-    public struct SearchInputModel {
-        let query: String
-        let year: Int
+    public struct CurrencyConverterInput {
+        let amount: String
+        let currency: String
     }
     
     // This struct will be used get event with data from viewcontroller
-    public struct SearchInput {
-        let searchItemListTrigger: Observable<SearchInputModel>
+    public struct MyBalanceInput {
+        let currencyConverterTrigger: Observable<CurrencyConverterInput>
     }
     
-    // This struct will be used send event with observable data/response to viewcontroller 
-    public struct SearchOutput {
-        let searchItems: BehaviorRelay<[SearchApiRequest.ItemType]>
+    // This struct will be used to send event with observable data/response to viewcontroller
+    public struct MyBalanceOutput {
+        let currency: BehaviorRelay<CurrencyApiRequest.ItemType>
         let errorTracker: BehaviorRelay<NetworkError?>
     }
     
-    public var usecase: AbstractUsecase
+    private(set) var usecase: AbstractUsecase
     
-    public init(usecase: AbstractSearchUsecase) {
+    public init(usecase: AbstractCurrencyUsecase) {
         self.usecase = usecase
     }
     
-    public func getSearchOutput(input: SearchInput) -> SearchOutput {
-        let searchListResponse = BehaviorRelay<[SearchApiRequest.ItemType]>(value: [])
+    public func getMyBalanceOutput(input: MyBalanceInput) -> MyBalanceOutput {
+        let currencyResponse = BehaviorRelay<CurrencyApiRequest.ItemType>(value: CurrencyApiRequest.ItemType())
         let errorResponse = BehaviorRelay<NetworkError?>(value: nil) 
         
-        input.searchItemListTrigger.flatMapLatest({ [weak self] (inputModel) -> Observable<SearchApiRequest.ResponseType> in
+        input.currencyConverterTrigger.flatMapLatest({ [weak self] (inputModel) -> Observable<CurrencyApiRequest.ItemType> in
             guard let weakSelf = self else {
-                return Observable.just(SearchApiRequest.ResponseType())
+                return Observable.just(CurrencyApiRequest.ItemType())
             }
             
-            //show shimmer
-            searchListResponse.accept(Array<SearchApiRequest.ItemType>(repeating: SearchApiRequest.ItemType(), count: 9))
-            
             //fetch movie list
-            return weakSelf.searchData(query: inputModel.query, year: inputModel.year)
+            return weakSelf.convert(amount: inputModel.amount, currency: inputModel.currency)
                    .catch({ error in
                        errorResponse.accept(error as? NetworkError)
                     
-                       return Observable.just(SearchApiRequest.ResponseType())
+                       return Observable.just(CurrencyApiRequest.ItemType())
                     })
         }).subscribe(onNext: {
             response in
             
-            searchListResponse.accept(response.results ?? [])
+            currencyResponse.accept(response)
         }, onError: { [weak self] error in
             errorResponse.accept(error as? NetworkError)
         }, onCompleted: nil, onDisposed: nil)
         
-        return SearchOutput.init(searchItems: searchListResponse, errorTracker: errorResponse)
+        return MyBalanceOutput.init(currency: currencyResponse, errorTracker: errorResponse)
     }
     
-    public func searchData(query: String, year: Int) -> Observable<SearchApiRequest.ResponseType> {
-        return (usecase as! AbstractSearchUsecase).search(query: query, year: year)
+    func convert(amount: String, currency: String) -> Observable<CurrencyApiRequest.ItemType> {
+        return (usecase as! AbstractCurrencyUsecase).convert(amount: amount, currency: currency)
     }
 }

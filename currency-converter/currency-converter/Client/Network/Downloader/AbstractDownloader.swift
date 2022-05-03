@@ -2,7 +2,7 @@
 //  AbstractImageDownloader.swift
 //  currency-converter
 //
-//  Created by JMC on 15/8/21.
+//  Created by AGM Tazimon 15/8/21.
 //
 
 import UIKit

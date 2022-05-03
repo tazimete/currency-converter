@@ -1,8 +1,8 @@
 //
 //  AbstractViewModel.swift
-//  setScheduleTest
+//  currency-converter
 //
-//  Created by JMC on 30/10/21.
+//  Created by AGM Tazim on 30/10/21.
 //
 
 import Foundation

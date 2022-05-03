@@ -1,5 +1,5 @@
 //
-//  SearchMovieCoordinator.swift
+//  HomeCoordinator.swift
 //  currency-converter
 //
 //  Created by AGM Tazim on 3/26/22.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SearchMovieCoordinator: Coordinator {
+class HomeCoordinator: Coordinator {
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
 
@@ -16,10 +16,10 @@ class SearchMovieCoordinator: Coordinator {
     }
 
     public func start(window: UIWindow) {
-        let repository = SearchRepository(apiClient: APIClient.shared)
-        let usecase = SearchUsecase(repository: repository)
-        let viewModel = SearchViewModel(usecase: usecase)
-        let vc = SearchViewController(viewModel: viewModel)
+        let repository = CurrencyRepository(apiClient: APIClient.shared)
+        let usecase = CurrencyUsecase(repository: repository)
+        let viewModel = MyBalanceViewModel(usecase: usecase)
+        let vc = MyBalanceViewController(viewModel: viewModel)
         self.navigationController.pushViewController(vc, animated: true)
     }
 }

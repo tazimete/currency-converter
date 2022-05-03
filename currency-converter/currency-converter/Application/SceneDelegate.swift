@@ -10,7 +10,7 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    public var rootCoordinator: SearchMovieCoordinator!
+    public var rootCoordinator: HomeCoordinator!
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -60,7 +60,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         _window.windowScene = windowScene
 
         let navController = UINavigationController()
-        rootCoordinator = SearchMovieCoordinator(navigationController: navController)
+        rootCoordinator = HomeCoordinator(navigationController: navController)
         _window.rootViewController = rootCoordinator.navigationController
         _window.makeKeyAndVisible()
         

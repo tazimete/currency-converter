@@ -2,7 +2,7 @@
 //  ImageDownloaderClient.swift
 //  currency-converter
 //
-//  Created by JMC on 14/8/21.
+//  Created by AGM Tazimon 14/8/21.
 //
 
 import Foundation

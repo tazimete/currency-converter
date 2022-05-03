@@ -19,8 +19,7 @@
 		FAE7E78C282181B70019BCC2 /* AdaptiveLayoutExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E6C1282181B30019BCC2 /* AdaptiveLayoutExtension.swift */; };
 		FAE7E78D282181B70019BCC2 /* AdaptiveLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E6C2282181B30019BCC2 /* AdaptiveLayoutConstraint.swift */; };
 		FAE7E78E282181B70019BCC2 /* CGFloat+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E6C3282181B30019BCC2 /* CGFloat+Extension.swift */; };
-		FAE7E7A1282181B70019BCC2 /* SearchMovieCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E6DF282181B40019BCC2 /* SearchMovieCoordinator.swift */; };
-		FAE7E7A3282181B70019BCC2 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E6E1282181B40019BCC2 /* HomeCoordinator.swift */; };
+		FAE7E7A1282181B70019BCC2 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E6DF282181B40019BCC2 /* HomeCoordinator.swift */; };
 		FAE7E7A4282181B70019BCC2 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E6E3282181B40019BCC2 /* Coordinator.swift */; };
 		FAE7E7A5282181B70019BCC2 /* AbstractURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E6E8282181B40019BCC2 /* AbstractURLSession.swift */; };
 		FAE7E7A6282181B70019BCC2 /* AbstractApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E6E9282181B40019BCC2 /* AbstractApiClient.swift */; };
@@ -37,22 +36,15 @@
 		FAE7E7B1282181B70019BCC2 /* DownloaderClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E6F8282181B40019BCC2 /* DownloaderClient.swift */; };
 		FAE7E7B2282181B70019BCC2 /* AbstractDownloaderClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E6F9282181B40019BCC2 /* AbstractDownloaderClient.swift */; };
 		FAE7E7B3282181B70019BCC2 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E6FB282181B40019BCC2 /* ImageDownloader.swift */; };
-		FAE7E7B4282181B70019BCC2 /* MovieRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E6FF282181B40019BCC2 /* MovieRepository.swift */; };
-		FAE7E7B5282181B70019BCC2 /* SearchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E701282181B40019BCC2 /* SearchRepository.swift */; };
+		FAE7E7B5282181B70019BCC2 /* CurrencyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E701282181B40019BCC2 /* CurrencyRepository.swift */; };
 		FAE7E7B6282181B70019BCC2 /* AbstractDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E703282181B40019BCC2 /* AbstractDataModel.swift */; };
-		FAE7E7B7282181B70019BCC2 /* MovieDetailsParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E706282181B40019BCC2 /* MovieDetailsParameter.swift */; };
-		FAE7E7B8282181B70019BCC2 /* MovieApiRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E707282181B40019BCC2 /* MovieApiRequest.swift */; };
-		FAE7E7B9282181B70019BCC2 /* SearchApiRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E709282181B40019BCC2 /* SearchApiRequest.swift */; };
-		FAE7E7BA282181B70019BCC2 /* MoviewSearchParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E70A282181B40019BCC2 /* MoviewSearchParams.swift */; };
-		FAE7E7BB282181B70019BCC2 /* MovieUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E70D282181B40019BCC2 /* MovieUsecase.swift */; };
-		FAE7E7BC282181B70019BCC2 /* SearchUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E70F282181B40019BCC2 /* SearchUsecase.swift */; };
-		FAE7E7BD282181B70019BCC2 /* AbstractMovieRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E713282181B50019BCC2 /* AbstractMovieRepository.swift */; };
+		FAE7E7B9282181B70019BCC2 /* CurrencyApiRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E709282181B40019BCC2 /* CurrencyApiRequest.swift */; };
+		FAE7E7BA282181B70019BCC2 /* CurrencyConverterParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E70A282181B40019BCC2 /* CurrencyConverterParams.swift */; };
+		FAE7E7BC282181B70019BCC2 /* CurrencyUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E70F282181B40019BCC2 /* CurrencyUsecase.swift */; };
 		FAE7E7BE282181B70019BCC2 /* AbstractRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E714282181B50019BCC2 /* AbstractRepository.swift */; };
-		FAE7E7BF282181B70019BCC2 /* AbstractSearchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E716282181B50019BCC2 /* AbstractSearchRepository.swift */; };
-		FAE7E7C0282181B70019BCC2 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E719282181B50019BCC2 /* Movie.swift */; };
-		FAE7E7C1282181B70019BCC2 /* SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E71A282181B50019BCC2 /* SearchResponse.swift */; };
-		FAE7E7C2282181B70019BCC2 /* AbstractMovieUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E71D282181B50019BCC2 /* AbstractMovieUsecase.swift */; };
-		FAE7E7C3282181B70019BCC2 /* AbstractSearchUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E71F282181B50019BCC2 /* AbstractSearchUsecase.swift */; };
+		FAE7E7BF282181B70019BCC2 /* AbstractCurrencyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E716282181B50019BCC2 /* AbstractCurrencyRepository.swift */; };
+		FAE7E7C0282181B70019BCC2 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E719282181B50019BCC2 /* Currency.swift */; };
+		FAE7E7C1282181B70019BCC2 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E71A282181B50019BCC2 /* Response.swift */; };
 		FAE7E7C4282181B70019BCC2 /* AbstractUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E720282181B50019BCC2 /* AbstractUsecase.swift */; };
 		FAE7E7C5282181B70019BCC2 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E722282181B50019BCC2 /* UIImageView+Extension.swift */; };
 		FAE7E7C6282181B70019BCC2 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E723282181B50019BCC2 /* UIColor+Extension.swift */; };
@@ -61,16 +53,12 @@
 		FAE7E7C9282181B80019BCC2 /* UINavigationController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E726282181B50019BCC2 /* UINavigationController+Extension.swift */; };
 		FAE7E7CA282181B80019BCC2 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E727282181B50019BCC2 /* UIViewController+Extension.swift */; };
 		FAE7E7CB282181B80019BCC2 /* Codable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E728282181B50019BCC2 /* Codable+Extension.swift */; };
-		FAE7E7CC282181B80019BCC2 /* AbstractMovieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E72D282181B60019BCC2 /* AbstractMovieViewModel.swift */; };
-		FAE7E7CD282181B80019BCC2 /* AbstarctSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E72F282181B60019BCC2 /* AbstarctSearchViewModel.swift */; };
+		FAE7E7CD282181B80019BCC2 /* AbstractMyBalanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E72F282181B60019BCC2 /* AbstractMyBalanceViewModel.swift */; };
 		FAE7E7CE282181B80019BCC2 /* AbstractViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E730282181B60019BCC2 /* AbstractViewModel.swift */; };
-		FAE7E7CF282181B80019BCC2 /* MovieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E732282181B60019BCC2 /* MovieViewModel.swift */; };
-		FAE7E7D0282181B80019BCC2 /* SerachViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E734282181B60019BCC2 /* SerachViewModel.swift */; };
+		FAE7E7D0282181B80019BCC2 /* MyBalanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E734282181B60019BCC2 /* MyBalanceViewModel.swift */; };
 		FAE7E7D1282181B80019BCC2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAE7E736282181B60019BCC2 /* LaunchScreen.storyboard */; };
-		FAE7E7D2282181B80019BCC2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAE7E738282181B60019BCC2 /* Main.storyboard */; };
 		FAE7E7D3282181B80019BCC2 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E73C282181B60019BCC2 /* BaseViewController.swift */; };
-		FAE7E7D4282181B80019BCC2 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E73F282181B60019BCC2 /* SearchViewController.swift */; };
-		FAE7E7D5282181B80019BCC2 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E740282181B60019BCC2 /* DetailsViewController.swift */; };
+		FAE7E7D4282181B80019BCC2 /* MyBalanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E73F282181B60019BCC2 /* MyBalanceViewController.swift */; };
 		FAE7E7D8282181B80019BCC2 /* SearchCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E747282181B60019BCC2 /* SearchCellViewModel.swift */; };
 		FAE7E7D9282181B80019BCC2 /* SearchItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E749282181B60019BCC2 /* SearchItemCell.swift */; };
 		FAE7E7DA282181B80019BCC2 /* SearchShimmerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E74A282181B60019BCC2 /* SearchShimmerCell.swift */; };
@@ -124,6 +112,7 @@
 		FAE7E8A4282187900019BCC2 /* RecursiveProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E879282187900019BCC2 /* RecursiveProtocol.swift */; };
 		FAE7E8A5282187900019BCC2 /* SkeletonDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E87B282187900019BCC2 /* SkeletonDebug.swift */; };
 		FAE7E8A7282187DA0019BCC2 /* ShimmerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E8A6282187DA0019BCC2 /* ShimmerHelper.swift */; };
+		FAE7E8AB28219E120019BCC2 /* AbstractCurrencyUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E8AA28219E120019BCC2 /* AbstractCurrencyUsecase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -166,8 +155,7 @@
 		FAE7E6C1282181B30019BCC2 /* AdaptiveLayoutExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdaptiveLayoutExtension.swift; sourceTree = "<group>"; };
 		FAE7E6C2282181B30019BCC2 /* AdaptiveLayoutConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdaptiveLayoutConstraint.swift; sourceTree = "<group>"; };
 		FAE7E6C3282181B30019BCC2 /* CGFloat+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extension.swift"; sourceTree = "<group>"; };
-		FAE7E6DF282181B40019BCC2 /* SearchMovieCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchMovieCoordinator.swift; sourceTree = "<group>"; };
-		FAE7E6E1282181B40019BCC2 /* HomeCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
+		FAE7E6DF282181B40019BCC2 /* HomeCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		FAE7E6E3282181B40019BCC2 /* Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		FAE7E6E8282181B40019BCC2 /* AbstractURLSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractURLSession.swift; sourceTree = "<group>"; };
 		FAE7E6E9282181B40019BCC2 /* AbstractApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractApiClient.swift; sourceTree = "<group>"; };
@@ -184,22 +172,15 @@
 		FAE7E6F8282181B40019BCC2 /* DownloaderClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloaderClient.swift; sourceTree = "<group>"; };
 		FAE7E6F9282181B40019BCC2 /* AbstractDownloaderClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractDownloaderClient.swift; sourceTree = "<group>"; };
 		FAE7E6FB282181B40019BCC2 /* ImageDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
-		FAE7E6FF282181B40019BCC2 /* MovieRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieRepository.swift; sourceTree = "<group>"; };
-		FAE7E701282181B40019BCC2 /* SearchRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchRepository.swift; sourceTree = "<group>"; };
+		FAE7E701282181B40019BCC2 /* CurrencyRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyRepository.swift; sourceTree = "<group>"; };
 		FAE7E703282181B40019BCC2 /* AbstractDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractDataModel.swift; sourceTree = "<group>"; };
-		FAE7E706282181B40019BCC2 /* MovieDetailsParameter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailsParameter.swift; sourceTree = "<group>"; };
-		FAE7E707282181B40019BCC2 /* MovieApiRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieApiRequest.swift; sourceTree = "<group>"; };
-		FAE7E709282181B40019BCC2 /* SearchApiRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchApiRequest.swift; sourceTree = "<group>"; };
-		FAE7E70A282181B40019BCC2 /* MoviewSearchParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviewSearchParams.swift; sourceTree = "<group>"; };
-		FAE7E70D282181B40019BCC2 /* MovieUsecase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieUsecase.swift; sourceTree = "<group>"; };
-		FAE7E70F282181B40019BCC2 /* SearchUsecase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchUsecase.swift; sourceTree = "<group>"; };
-		FAE7E713282181B50019BCC2 /* AbstractMovieRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractMovieRepository.swift; sourceTree = "<group>"; };
+		FAE7E709282181B40019BCC2 /* CurrencyApiRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyApiRequest.swift; sourceTree = "<group>"; };
+		FAE7E70A282181B40019BCC2 /* CurrencyConverterParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyConverterParams.swift; sourceTree = "<group>"; };
+		FAE7E70F282181B40019BCC2 /* CurrencyUsecase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyUsecase.swift; sourceTree = "<group>"; };
 		FAE7E714282181B50019BCC2 /* AbstractRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractRepository.swift; sourceTree = "<group>"; };
-		FAE7E716282181B50019BCC2 /* AbstractSearchRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractSearchRepository.swift; sourceTree = "<group>"; };
-		FAE7E719282181B50019BCC2 /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
-		FAE7E71A282181B50019BCC2 /* SearchResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResponse.swift; sourceTree = "<group>"; };
-		FAE7E71D282181B50019BCC2 /* AbstractMovieUsecase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractMovieUsecase.swift; sourceTree = "<group>"; };
-		FAE7E71F282181B50019BCC2 /* AbstractSearchUsecase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractSearchUsecase.swift; sourceTree = "<group>"; };
+		FAE7E716282181B50019BCC2 /* AbstractCurrencyRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractCurrencyRepository.swift; sourceTree = "<group>"; };
+		FAE7E719282181B50019BCC2 /* Currency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
+		FAE7E71A282181B50019BCC2 /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		FAE7E720282181B50019BCC2 /* AbstractUsecase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractUsecase.swift; sourceTree = "<group>"; };
 		FAE7E722282181B50019BCC2 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		FAE7E723282181B50019BCC2 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
@@ -208,16 +189,12 @@
 		FAE7E726282181B50019BCC2 /* UINavigationController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extension.swift"; sourceTree = "<group>"; };
 		FAE7E727282181B50019BCC2 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		FAE7E728282181B50019BCC2 /* Codable+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Codable+Extension.swift"; sourceTree = "<group>"; };
-		FAE7E72D282181B60019BCC2 /* AbstractMovieViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractMovieViewModel.swift; sourceTree = "<group>"; };
-		FAE7E72F282181B60019BCC2 /* AbstarctSearchViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstarctSearchViewModel.swift; sourceTree = "<group>"; };
+		FAE7E72F282181B60019BCC2 /* AbstractMyBalanceViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractMyBalanceViewModel.swift; sourceTree = "<group>"; };
 		FAE7E730282181B60019BCC2 /* AbstractViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractViewModel.swift; sourceTree = "<group>"; };
-		FAE7E732282181B60019BCC2 /* MovieViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieViewModel.swift; sourceTree = "<group>"; };
-		FAE7E734282181B60019BCC2 /* SerachViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SerachViewModel.swift; sourceTree = "<group>"; };
+		FAE7E734282181B60019BCC2 /* MyBalanceViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyBalanceViewModel.swift; sourceTree = "<group>"; };
 		FAE7E737282181B60019BCC2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		FAE7E739282181B60019BCC2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FAE7E73C282181B60019BCC2 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
-		FAE7E73F282181B60019BCC2 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		FAE7E740282181B60019BCC2 /* DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		FAE7E73F282181B60019BCC2 /* MyBalanceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyBalanceViewController.swift; sourceTree = "<group>"; };
 		FAE7E747282181B60019BCC2 /* SearchCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCellViewModel.swift; sourceTree = "<group>"; };
 		FAE7E749282181B60019BCC2 /* SearchItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchItemCell.swift; sourceTree = "<group>"; };
 		FAE7E74A282181B60019BCC2 /* SearchShimmerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchShimmerCell.swift; sourceTree = "<group>"; };
@@ -271,6 +248,7 @@
 		FAE7E879282187900019BCC2 /* RecursiveProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecursiveProtocol.swift; sourceTree = "<group>"; };
 		FAE7E87B282187900019BCC2 /* SkeletonDebug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkeletonDebug.swift; sourceTree = "<group>"; };
 		FAE7E8A6282187DA0019BCC2 /* ShimmerHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShimmerHelper.swift; sourceTree = "<group>"; };
+		FAE7E8AA28219E120019BCC2 /* AbstractCurrencyUsecase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractCurrencyUsecase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -349,15 +327,15 @@
 		FAB726B12820F85C0061A22E /* currency-converter */ = {
 			isa = PBXGroup;
 			children = (
-				FAE7E8A8282188A80019BCC2 /* Assets */,
-				FAE7E750282181B60019BCC2 /* AppConfig */,
 				FAE7E74B282181B60019BCC2 /* Application */,
-				FAE7E6E4282181B40019BCC2 /* Client */,
-				FAE7E6FC282181B40019BCC2 /* Data */,
-				FAE7E710282181B50019BCC2 /* Domain */,
-				FAE7E721282181B50019BCC2 /* Extension */,
+				FAE7E750282181B60019BCC2 /* AppConfig */,
+				FAE7E8A8282188A80019BCC2 /* Assets */,
 				FAE7E74E282181B60019BCC2 /* Helper */,
 				FAE7E675282181B30019BCC2 /* Library */,
+				FAE7E721282181B50019BCC2 /* Extension */,
+				FAE7E6E4282181B40019BCC2 /* Client */,
+				FAE7E710282181B50019BCC2 /* Domain */,
+				FAE7E6FC282181B40019BCC2 /* Data */,
 				FAE7E729282181B60019BCC2 /* Presentation */,
 				FAE7E6DD282181B30019BCC2 /* Route */,
 				FAB726C02820F85E0061A22E /* Info.plist */,
@@ -432,8 +410,7 @@
 		FAE7E6DE282181B40019BCC2 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				FAE7E6DF282181B40019BCC2 /* SearchMovieCoordinator.swift */,
-				FAE7E6E1282181B40019BCC2 /* HomeCoordinator.swift */,
+				FAE7E6DF282181B40019BCC2 /* HomeCoordinator.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -546,26 +523,17 @@
 		FAE7E6FD282181B40019BCC2 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
-				FAE7E6FE282181B40019BCC2 /* Movie */,
-				FAE7E700282181B40019BCC2 /* Search */,
+				FAE7E700282181B40019BCC2 /* Currency */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
 		};
-		FAE7E6FE282181B40019BCC2 /* Movie */ = {
+		FAE7E700282181B40019BCC2 /* Currency */ = {
 			isa = PBXGroup;
 			children = (
-				FAE7E6FF282181B40019BCC2 /* MovieRepository.swift */,
+				FAE7E701282181B40019BCC2 /* CurrencyRepository.swift */,
 			);
-			path = Movie;
-			sourceTree = "<group>";
-		};
-		FAE7E700282181B40019BCC2 /* Search */ = {
-			isa = PBXGroup;
-			children = (
-				FAE7E701282181B40019BCC2 /* SearchRepository.swift */,
-			);
-			path = Search;
+			path = Currency;
 			sourceTree = "<group>";
 		};
 		FAE7E702282181B40019BCC2 /* Model */ = {
@@ -579,53 +547,34 @@
 		FAE7E704282181B40019BCC2 /* Request */ = {
 			isa = PBXGroup;
 			children = (
-				FAE7E705282181B40019BCC2 /* Movie */,
-				FAE7E708282181B40019BCC2 /* Search */,
+				FAE7E708282181B40019BCC2 /* Currency */,
 			);
 			path = Request;
 			sourceTree = "<group>";
 		};
-		FAE7E705282181B40019BCC2 /* Movie */ = {
+		FAE7E708282181B40019BCC2 /* Currency */ = {
 			isa = PBXGroup;
 			children = (
-				FAE7E706282181B40019BCC2 /* MovieDetailsParameter.swift */,
-				FAE7E707282181B40019BCC2 /* MovieApiRequest.swift */,
+				FAE7E709282181B40019BCC2 /* CurrencyApiRequest.swift */,
+				FAE7E70A282181B40019BCC2 /* CurrencyConverterParams.swift */,
 			);
-			path = Movie;
-			sourceTree = "<group>";
-		};
-		FAE7E708282181B40019BCC2 /* Search */ = {
-			isa = PBXGroup;
-			children = (
-				FAE7E709282181B40019BCC2 /* SearchApiRequest.swift */,
-				FAE7E70A282181B40019BCC2 /* MoviewSearchParams.swift */,
-			);
-			path = Search;
+			path = Currency;
 			sourceTree = "<group>";
 		};
 		FAE7E70B282181B40019BCC2 /* Usecase */ = {
 			isa = PBXGroup;
 			children = (
-				FAE7E70C282181B40019BCC2 /* Movie */,
-				FAE7E70E282181B40019BCC2 /* Search */,
+				FAE7E70E282181B40019BCC2 /* Currency */,
 			);
 			path = Usecase;
 			sourceTree = "<group>";
 		};
-		FAE7E70C282181B40019BCC2 /* Movie */ = {
+		FAE7E70E282181B40019BCC2 /* Currency */ = {
 			isa = PBXGroup;
 			children = (
-				FAE7E70D282181B40019BCC2 /* MovieUsecase.swift */,
+				FAE7E70F282181B40019BCC2 /* CurrencyUsecase.swift */,
 			);
-			path = Movie;
-			sourceTree = "<group>";
-		};
-		FAE7E70E282181B40019BCC2 /* Search */ = {
-			isa = PBXGroup;
-			children = (
-				FAE7E70F282181B40019BCC2 /* SearchUsecase.swift */,
-			);
-			path = Search;
+			path = Currency;
 			sourceTree = "<group>";
 		};
 		FAE7E710282181B50019BCC2 /* Domain */ = {
@@ -641,70 +590,44 @@
 		FAE7E711282181B50019BCC2 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
-				FAE7E712282181B50019BCC2 /* Movie */,
+				FAE7E715282181B50019BCC2 /* Currency */,
 				FAE7E714282181B50019BCC2 /* AbstractRepository.swift */,
-				FAE7E715282181B50019BCC2 /* Search */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
 		};
-		FAE7E712282181B50019BCC2 /* Movie */ = {
+		FAE7E715282181B50019BCC2 /* Currency */ = {
 			isa = PBXGroup;
 			children = (
-				FAE7E713282181B50019BCC2 /* AbstractMovieRepository.swift */,
+				FAE7E716282181B50019BCC2 /* AbstractCurrencyRepository.swift */,
 			);
-			path = Movie;
-			sourceTree = "<group>";
-		};
-		FAE7E715282181B50019BCC2 /* Search */ = {
-			isa = PBXGroup;
-			children = (
-				FAE7E716282181B50019BCC2 /* AbstractSearchRepository.swift */,
-			);
-			path = Search;
+			path = Currency;
 			sourceTree = "<group>";
 		};
 		FAE7E717282181B50019BCC2 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
-				FAE7E718282181B50019BCC2 /* Movie */,
-				FAE7E71A282181B50019BCC2 /* SearchResponse.swift */,
+				FAE7E718282181B50019BCC2 /* Currency */,
+				FAE7E71A282181B50019BCC2 /* Response.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
 		};
-		FAE7E718282181B50019BCC2 /* Movie */ = {
+		FAE7E718282181B50019BCC2 /* Currency */ = {
 			isa = PBXGroup;
 			children = (
-				FAE7E719282181B50019BCC2 /* Movie.swift */,
+				FAE7E719282181B50019BCC2 /* Currency.swift */,
 			);
-			path = Movie;
+			path = Currency;
 			sourceTree = "<group>";
 		};
 		FAE7E71B282181B50019BCC2 /* Usecase */ = {
 			isa = PBXGroup;
 			children = (
-				FAE7E71C282181B50019BCC2 /* Movie */,
-				FAE7E71E282181B50019BCC2 /* Search */,
+				FAE7E8A928219E120019BCC2 /* Currency */,
 				FAE7E720282181B50019BCC2 /* AbstractUsecase.swift */,
 			);
 			path = Usecase;
-			sourceTree = "<group>";
-		};
-		FAE7E71C282181B50019BCC2 /* Movie */ = {
-			isa = PBXGroup;
-			children = (
-				FAE7E71D282181B50019BCC2 /* AbstractMovieUsecase.swift */,
-			);
-			path = Movie;
-			sourceTree = "<group>";
-		};
-		FAE7E71E282181B50019BCC2 /* Search */ = {
-			isa = PBXGroup;
-			children = (
-				FAE7E71F282181B50019BCC2 /* AbstractSearchUsecase.swift */,
-			);
-			path = Search;
 			sourceTree = "<group>";
 		};
 		FAE7E721282181B50019BCC2 /* Extension */ = {
@@ -735,8 +658,7 @@
 			isa = PBXGroup;
 			children = (
 				FAE7E72B282181B60019BCC2 /* Abstraction */,
-				FAE7E731282181B60019BCC2 /* Movie */,
-				FAE7E733282181B60019BCC2 /* Search */,
+				FAE7E733282181B60019BCC2 /* MyBalance */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -744,50 +666,32 @@
 		FAE7E72B282181B60019BCC2 /* Abstraction */ = {
 			isa = PBXGroup;
 			children = (
-				FAE7E72C282181B60019BCC2 /* Movie */,
-				FAE7E72E282181B60019BCC2 /* Search */,
+				FAE7E72E282181B60019BCC2 /* MyBalance */,
 				FAE7E730282181B60019BCC2 /* AbstractViewModel.swift */,
 			);
 			path = Abstraction;
 			sourceTree = "<group>";
 		};
-		FAE7E72C282181B60019BCC2 /* Movie */ = {
+		FAE7E72E282181B60019BCC2 /* MyBalance */ = {
 			isa = PBXGroup;
 			children = (
-				FAE7E72D282181B60019BCC2 /* AbstractMovieViewModel.swift */,
+				FAE7E72F282181B60019BCC2 /* AbstractMyBalanceViewModel.swift */,
 			);
-			path = Movie;
+			path = MyBalance;
 			sourceTree = "<group>";
 		};
-		FAE7E72E282181B60019BCC2 /* Search */ = {
+		FAE7E733282181B60019BCC2 /* MyBalance */ = {
 			isa = PBXGroup;
 			children = (
-				FAE7E72F282181B60019BCC2 /* AbstarctSearchViewModel.swift */,
+				FAE7E734282181B60019BCC2 /* MyBalanceViewModel.swift */,
 			);
-			path = Search;
-			sourceTree = "<group>";
-		};
-		FAE7E731282181B60019BCC2 /* Movie */ = {
-			isa = PBXGroup;
-			children = (
-				FAE7E732282181B60019BCC2 /* MovieViewModel.swift */,
-			);
-			path = Movie;
-			sourceTree = "<group>";
-		};
-		FAE7E733282181B60019BCC2 /* Search */ = {
-			isa = PBXGroup;
-			children = (
-				FAE7E734282181B60019BCC2 /* SerachViewModel.swift */,
-			);
-			path = Search;
+			path = MyBalance;
 			sourceTree = "<group>";
 		};
 		FAE7E735282181B60019BCC2 /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
 				FAE7E736282181B60019BCC2 /* LaunchScreen.storyboard */,
-				FAE7E738282181B60019BCC2 /* Main.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -813,25 +717,16 @@
 		FAE7E73D282181B60019BCC2 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				FAE7E73E282181B60019BCC2 /* Test */,
+				FAE7E73F282181B60019BCC2 /* MyBalanceViewController.swift */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		FAE7E73E282181B60019BCC2 /* Test */ = {
-			isa = PBXGroup;
-			children = (
-				FAE7E73F282181B60019BCC2 /* SearchViewController.swift */,
-				FAE7E740282181B60019BCC2 /* DetailsViewController.swift */,
-			);
-			path = Test;
 			sourceTree = "<group>";
 		};
 		FAE7E745282181B60019BCC2 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
 				FAE7E746282181B60019BCC2 /* ViewModel */,
-				FAE7E748282181B60019BCC2 /* Search */,
+				FAE7E748282181B60019BCC2 /* MyBalance */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -844,13 +739,13 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		FAE7E748282181B60019BCC2 /* Search */ = {
+		FAE7E748282181B60019BCC2 /* MyBalance */ = {
 			isa = PBXGroup;
 			children = (
 				FAE7E749282181B60019BCC2 /* SearchItemCell.swift */,
 				FAE7E74A282181B60019BCC2 /* SearchShimmerCell.swift */,
 			);
-			path = Search;
+			path = MyBalance;
 			sourceTree = "<group>";
 		};
 		FAE7E74B282181B60019BCC2 /* Application */ = {
@@ -1034,6 +929,14 @@
 			path = Assets;
 			sourceTree = "<group>";
 		};
+		FAE7E8A928219E120019BCC2 /* Currency */ = {
+			isa = PBXGroup;
+			children = (
+				FAE7E8AA28219E120019BCC2 /* AbstractCurrencyUsecase.swift */,
+			);
+			path = Currency;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1143,7 +1046,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FAE7E7D2282181B80019BCC2 /* Main.storyboard in Resources */,
 				FAE7E7E3282182F30019BCC2 /* Assets.xcassets in Resources */,
 				FAE7E7D1282181B80019BCC2 /* LaunchScreen.storyboard in Resources */,
 			);
@@ -1273,8 +1175,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FAE7E7CD282181B80019BCC2 /* AbstarctSearchViewModel.swift in Sources */,
-				FAE7E7B7282181B70019BCC2 /* MovieDetailsParameter.swift in Sources */,
+				FAE7E7CD282181B80019BCC2 /* AbstractMyBalanceViewModel.swift in Sources */,
 				FAE7E7E0282181B80019BCC2 /* ConfigComponents.swift in Sources */,
 				FAE7E7DC282181B80019BCC2 /* SceneDelegate.swift in Sources */,
 				FAE7E889282187900019BCC2 /* ProcessInfo+XCTest.swift in Sources */,
@@ -1282,25 +1183,24 @@
 				FAE7E87D282187900019BCC2 /* SkeletonView.swift in Sources */,
 				FAE7E893282187900019BCC2 /* SkeletonAnimationBuilder.swift in Sources */,
 				FAE7E8A3282187900019BCC2 /* PrepareForSkeletonProtocol.swift in Sources */,
-				FAE7E7D4282181B80019BCC2 /* SearchViewController.swift in Sources */,
+				FAE7E7D4282181B80019BCC2 /* MyBalanceViewController.swift in Sources */,
 				FAE7E7CB282181B80019BCC2 /* Codable+Extension.swift in Sources */,
 				FAE7E78D282181B70019BCC2 /* AdaptiveLayoutConstraint.swift in Sources */,
 				FAE7E898282187900019BCC2 /* SkeletonCollectionDataSource.swift in Sources */,
 				FAE7E88F282187900019BCC2 /* UIView+IBInspectable.swift in Sources */,
 				FAE7E7DA282181B80019BCC2 /* SearchShimmerCell.swift in Sources */,
 				FAE7E7BE282181B70019BCC2 /* AbstractRepository.swift in Sources */,
-				FAE7E7BF282181B70019BCC2 /* AbstractSearchRepository.swift in Sources */,
+				FAE7E7BF282181B70019BCC2 /* AbstractCurrencyRepository.swift in Sources */,
 				FAE7E7C6282181B70019BCC2 /* UIColor+Extension.swift in Sources */,
 				FAE7E896282187900019BCC2 /* SkeletonReusableCell.swift in Sources */,
 				FAE7E7A9282181B70019BCC2 /* NetworkOperation.swift in Sources */,
 				FAE7E8A4282187900019BCC2 /* RecursiveProtocol.swift in Sources */,
-				FAE7E7BA282181B70019BCC2 /* MoviewSearchParams.swift in Sources */,
+				FAE7E7BA282181B70019BCC2 /* CurrencyConverterParams.swift in Sources */,
 				FAE7E78E282181B70019BCC2 /* CGFloat+Extension.swift in Sources */,
 				FAE7E78B282181B70019BCC2 /* CellConfiguratorFactory.swift in Sources */,
-				FAE7E7B5282181B70019BCC2 /* SearchRepository.swift in Sources */,
+				FAE7E7B5282181B70019BCC2 /* CurrencyRepository.swift in Sources */,
 				FAE7E7A4282181B70019BCC2 /* Coordinator.swift in Sources */,
 				FAE7E7AD282181B70019BCC2 /* ApiRequest.swift in Sources */,
-				FAE7E7BD282181B70019BCC2 /* AbstractMovieRepository.swift in Sources */,
 				FAE7E7E1282181B80019BCC2 /* AppConfig.swift in Sources */,
 				FAE7E895282187900019BCC2 /* UIView+Transitions.swift in Sources */,
 				FAE7E883282187900019BCC2 /* SkeletonConfig.swift in Sources */,
@@ -1312,43 +1212,38 @@
 				FAE7E7DB282181B80019BCC2 /* AppDelegate.swift in Sources */,
 				FAE7E8A1282187900019BCC2 /* Swizzling.swift in Sources */,
 				FAE7E892282187900019BCC2 /* UITextView+Multiline.swift in Sources */,
-				FAE7E7B8282181B70019BCC2 /* MovieApiRequest.swift in Sources */,
-				FAE7E7C1282181B70019BCC2 /* SearchResponse.swift in Sources */,
+				FAE7E7C1282181B70019BCC2 /* Response.swift in Sources */,
 				FAE7E7C8282181B80019BCC2 /* UIImage+Extension.swift in Sources */,
 				FAE7E7CA282181B80019BCC2 /* UIViewController+Extension.swift in Sources */,
 				FAE7E7DE282181B80019BCC2 /* ServerConfig.swift in Sources */,
 				FAE7E7C5282181B70019BCC2 /* UIImageView+Extension.swift in Sources */,
 				FAE7E7B3282181B70019BCC2 /* ImageDownloader.swift in Sources */,
 				FAE7E7AC282181B70019BCC2 /* StubbedResponse.swift in Sources */,
-				FAE7E7BC282181B70019BCC2 /* SearchUsecase.swift in Sources */,
+				FAE7E7BC282181B70019BCC2 /* CurrencyUsecase.swift in Sources */,
 				FAE7E78C282181B70019BCC2 /* AdaptiveLayoutExtension.swift in Sources */,
 				FAE7E894282187900019BCC2 /* SkeletonTransitionStyle.swift in Sources */,
 				FAE7E88D282187900019BCC2 /* CALayer+Extensions.swift in Sources */,
 				FAE7E7C7282181B70019BCC2 /* UIView+Extensions.swift in Sources */,
 				FAE7E7A6282181B70019BCC2 /* AbstractApiClient.swift in Sources */,
-				FAE7E7CC282181B80019BCC2 /* AbstractMovieViewModel.swift in Sources */,
-				FAE7E7CF282181B80019BCC2 /* MovieViewModel.swift in Sources */,
 				FAE7E886282187900019BCC2 /* Int+Whitespaces.swift in Sources */,
 				FAE7E7C9282181B80019BCC2 /* UINavigationController+Extension.swift in Sources */,
 				FAE7E882282187900019BCC2 /* SubviewsSkeletonables.swift in Sources */,
 				FAE7E8A7282187DA0019BCC2 /* ShimmerHelper.swift in Sources */,
-				FAE7E7A3282181B70019BCC2 /* HomeCoordinator.swift in Sources */,
 				FAE7E88C282187900019BCC2 /* UIView+UIApplicationDelegate.swift in Sources */,
 				FAE7E89F282187900019BCC2 /* SkeletonCollectionViewProtocols.swift in Sources */,
-				FAE7E7C0282181B70019BCC2 /* Movie.swift in Sources */,
+				FAE7E7C0282181B70019BCC2 /* Currency.swift in Sources */,
 				FAE7E897282187900019BCC2 /* GenericCollectionView.swift in Sources */,
 				FAE7E7B6282181B70019BCC2 /* AbstractDataModel.swift in Sources */,
+				FAE7E8AB28219E120019BCC2 /* AbstractCurrencyUsecase.swift in Sources */,
 				FAE7E8A2282187900019BCC2 /* AssociationPolicy.swift in Sources */,
-				FAE7E7C3282181B70019BCC2 /* AbstractSearchUsecase.swift in Sources */,
 				FAE7E891282187900019BCC2 /* ContainsMultilineText.swift in Sources */,
 				FAE7E88A282187900019BCC2 /* UIView+Frame.swift in Sources */,
 				FAE7E7DF282181B80019BCC2 /* AppTheme.swift in Sources */,
 				FAE7E87E282187900019BCC2 /* SkeletonMultilineLayerBuilder.swift in Sources */,
 				FAE7E8A5282187900019BCC2 /* SkeletonDebug.swift in Sources */,
 				FAE7E890282187900019BCC2 /* UILabel+Multiline.swift in Sources */,
-				FAE7E7D5282181B80019BCC2 /* DetailsViewController.swift in Sources */,
 				FAE7E7B2282181B70019BCC2 /* AbstractDownloaderClient.swift in Sources */,
-				FAE7E7B9282181B70019BCC2 /* SearchApiRequest.swift in Sources */,
+				FAE7E7B9282181B70019BCC2 /* CurrencyApiRequest.swift in Sources */,
 				FAE7E7C4282181B70019BCC2 /* AbstractUsecase.swift in Sources */,
 				FAE7E7B0282181B70019BCC2 /* AbstractDownloader.swift in Sources */,
 				FAE7E89A282187900019BCC2 /* SkeletonCollectionDelegate.swift in Sources */,
@@ -1361,22 +1256,19 @@
 				FAE7E87F282187900019BCC2 /* SkeletonLayerBuilder.swift in Sources */,
 				FAE7E88B282187900019BCC2 /* UIColor+Skeleton.swift in Sources */,
 				FAE7E89E282187900019BCC2 /* UICollectionView+CollectionSkeleton.swift in Sources */,
-				FAE7E7C2282181B70019BCC2 /* AbstractMovieUsecase.swift in Sources */,
 				FAE7E7A8282181B70019BCC2 /* Parameterizable.swift in Sources */,
 				FAE7E880282187900019BCC2 /* SkeletonFlow.swift in Sources */,
 				FAE7E7CE282181B80019BCC2 /* AbstractViewModel.swift in Sources */,
 				FAE7E7B1282181B70019BCC2 /* DownloaderClient.swift in Sources */,
 				FAE7E89B282187900019BCC2 /* UITableView+CollectionSkeleton.swift in Sources */,
-				FAE7E7A1282181B70019BCC2 /* SearchMovieCoordinator.swift in Sources */,
+				FAE7E7A1282181B70019BCC2 /* HomeCoordinator.swift in Sources */,
 				FAE7E7D3282181B80019BCC2 /* BaseViewController.swift in Sources */,
 				FAE7E887282187900019BCC2 /* UIView+Extension.swift in Sources */,
 				FAE7E87C282187900019BCC2 /* SkeletonGradient.swift in Sources */,
 				FAE7E7D8282181B80019BCC2 /* SearchCellViewModel.swift in Sources */,
-				FAE7E7D0282181B80019BCC2 /* SerachViewModel.swift in Sources */,
-				FAE7E7B4282181B70019BCC2 /* MovieRepository.swift in Sources */,
+				FAE7E7D0282181B80019BCC2 /* MyBalanceViewModel.swift in Sources */,
 				FAE7E7A5282181B70019BCC2 /* AbstractURLSession.swift in Sources */,
 				FAE7E7D9282181B80019BCC2 /* SearchItemCell.swift in Sources */,
-				FAE7E7BB282181B70019BCC2 /* MovieUsecase.swift in Sources */,
 				FAE7E899282187900019BCC2 /* CollectionSkeletonProtocol.swift in Sources */,
 				FAE7E7AE282181B70019BCC2 /* Downloader.swift in Sources */,
 				FAE7E884282187900019BCC2 /* Recoverable.swift in Sources */,
@@ -1423,14 +1315,6 @@
 				FAE7E737282181B60019BCC2 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		FAE7E738282181B60019BCC2 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FAE7E739282181B60019BCC2 /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

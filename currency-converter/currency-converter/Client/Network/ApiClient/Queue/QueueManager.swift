@@ -2,7 +2,7 @@
 //  QueueManager.swift
 //  currency-converter
 //
-//  Created by JMC on 25/7/21.
+//  Created by AGM Tazimon 25/7/21.
 //
 
 import Foundation

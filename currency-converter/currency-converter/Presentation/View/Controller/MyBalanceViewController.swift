@@ -1,8 +1,8 @@
 //
 //  ViewController.swift
-//  setScheduleTest
+//  currency-converter
 //
-//  Created by JMC on 29/10/21.
+//  Created by AGM Tazimon 29/10/21.
 //
 
 import UIKit
@@ -11,8 +11,8 @@ import RxCocoa
 
 class MyBalanceViewController: BaseViewController {
     // MARK: Non UI Proeprties
-    public var searchViewModel: AbstractSearchViewModel!
-    private let searchTrigger = PublishSubject<SearchViewModel.SearchInputModel>()
+    public var myBalanceViewModel: AbstractMyBalanceViewModel!
+    private let currencyConverterTrigger = PublishSubject<MyBalanceViewModel.CurrencyConverterInput>()
     
     // MARK: UI Proeprties
     private lazy var tableView: UITableView = {
@@ -43,7 +43,7 @@ class MyBalanceViewController: BaseViewController {
     }()
 
     // MARK: Constructors
-    init(viewModel: AbstractSearchViewModel) {
+    init(viewModel: AbstractMyBalanceViewModel) {
         super.init(viewModel: viewModel)
         self.viewModel = viewModel
     }
@@ -94,22 +94,22 @@ class MyBalanceViewController: BaseViewController {
     }
     
     override func bindViewModel() {
-        searchViewModel = (viewModel as! AbstractSearchViewModel)
-        let searchInput = SearchViewModel.SearchInput(searchItemListTrigger: searchTrigger)
-        let searchOutput = searchViewModel.getSearchOutput(input: searchInput)
+        myBalanceViewModel = (viewModel as! AbstractMyBalanceViewModel)
+        let currencyConverterInput = MyBalanceViewModel.MyBalanceInput(currencyConverterTrigger: currencyConverterTrigger)
+        let currencyConverterOutput = myBalanceViewModel.getMyBalanceOutput(input: currencyConverterInput)
         
         //populate table view
-        searchOutput.searchItems.observe(on: MainScheduler.instance)
-            .bind(to: tableView.rx.items) { [weak self] tableView, row, model in
-                guard let weakSelf = self else {
-                    return UITableViewCell()
-                }
-                
-                return weakSelf.populateTableViewCell(viewModel: model.asCellViewModel, indexPath: IndexPath(row: row, section: 0), tableView: tableView)
-            }.disposed(by: disposeBag)
+//        currencyConverterOutput.currency.observe(on: MainScheduler.instance)
+//            .bind(to: tableView.rx.items) { [weak self] tableView, row, model in
+//                guard let weakSelf = self else {
+//                    return UITableViewCell()
+//                }
+//
+//                return weakSelf.populateTableViewCell(viewModel: model.asCellViewModel, indexPath: IndexPath(row: row, section: 0), tableView: tableView)
+//            }.disposed(by: disposeBag)
         
         // detect error
-        searchOutput.errorTracker.observe(on: MainScheduler.instance)
+        currencyConverterOutput.errorTracker.observe(on: MainScheduler.instance)
             .subscribe(onNext: {
                 [weak self] error in
                 
@@ -117,26 +117,22 @@ class MyBalanceViewController: BaseViewController {
                     return
                 }
             
-                AppLogger.debug("\(String(describing: weakSelf.TAG)) -- bindViewModel() -- error  -- code = \(error.errorCode), message = \(error.errorMessage)")
+                AppLogger.debug(" error  -- code = \(error.errorCode), message = \(error.errorMessage)")
         }).disposed(by: disposeBag)
     }
     
-    public func searchMovie(name: String, year: Int) {
+    public func convertCurrency(amount: String, currency: String) {
         hideNoDataMessageView()
-        searchTrigger.onNext(SearchViewModel.SearchInputModel(query: name, year: year))
+        currencyConverterTrigger.onNext(MyBalanceViewModel.CurrencyConverterInput(amount: amount, currency: currency))
     }
     
     private func hideNoDataMessageView() {
         lblNoData.isHidden = true
     }
     
-    private func navigateToDetailsController(with movie: Movie) {
-        (view.window?.windowScene?.delegate as! SceneDelegate).rootCoordinator.showDetailsController(movie: movie)
-    }
-    
     //populate table view cell
     private func populateTableViewCell(viewModel: AbstractCellViewModel, indexPath: IndexPath, tableView: UITableView) -> UITableViewCell {
-        var item: CellConfigurator = ShimmerItemCellConfig.init(item: SearchCellViewModel())
+        var item: CellConfigurator = ShimmerItemCellConfig.init(item: CurrencyCellViewModel())
         
         // check actual data exists or not, to hide shimmer cell
         if viewModel.id != nil {
@@ -152,17 +148,14 @@ class MyBalanceViewController: BaseViewController {
     // MARK: Actions
     private func onTapTableviewCell() {
         Observable
-            .zip(tableView.rx.itemSelected, tableView.rx.modelSelected(Movie.self))
+            .zip(tableView.rx.itemSelected, tableView.rx.modelSelected(Currency.self))
             .bind { [weak self] indexPath, model in
                 guard let weakSelf = self else {
                     return
                 }
                 
                 weakSelf.tableView.deselectRow(at: indexPath, animated: true)
-                AppLogger.debug("\(weakSelf.TAG) -- onTapTableviewCell() -- Selected " + (model.originalTitle ?? "") + " at \(indexPath)")
-                
-                //navigate to profile view controller
-                weakSelf.navigateToDetailsController(with: model)
+                AppLogger.debug(" Selected " + (model.title ?? "") + " at \(indexPath)")
             }
             .disposed(by: disposeBag)
     }
@@ -187,7 +180,7 @@ class MyBalanceViewController: BaseViewController {
             let year = (alertController.textFields?[1])?.text ?? ""
             
             if !name.isEmpty && !year.isEmpty {
-                self?.searchMovie(name: name, year: Int(year) ?? 00)
+                self?.convertCurrency(amount: name, currency: year)
             }
         })
         

@@ -2,7 +2,7 @@
 //  UIView+Extension.swift
 //  currency-converter
 //
-//  Created by JMC on 26/7/21.
+//  Created by AGM Tazimon 26/7/21.
 //
 
 import UIKit

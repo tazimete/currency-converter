@@ -2,7 +2,7 @@
 //  Coordinator.swift
 //  currency-converter
 //
-//  Created by JMC on 31/7/21.
+//  Created by AGM Tazimon 31/7/21.
 //
 
 import UIKit

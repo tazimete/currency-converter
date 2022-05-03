@@ -1,14 +1,14 @@
 //
 //  SearchCellViewModel.swift
-//  setScheduleTest
+//  currency-converter
 //
-//  Created by JMC on 4/11/21.
+//  Created by AGM Tazimon 4/11/21.
 //
 
 import Foundation
 
 
-class SearchCellViewModel: AbstractCellViewModel {
+class CurrencyCellViewModel: AbstractCellViewModel {
     var id: Int?
     var thumbnail: String?
     var title: String?

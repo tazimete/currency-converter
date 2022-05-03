@@ -17,8 +17,8 @@ extension CurrencyApiRequest: APIRequest {
         return URL(string: url)!
     }
     
-    public typealias ItemType = Movie
-    public typealias ResponseType = SearchResponse<ItemType>
+    public typealias ItemType = Currency
+    public typealias ResponseType = Response<ItemType>
     
     public var method: RequestType {
         switch self {

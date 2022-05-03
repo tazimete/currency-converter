@@ -2,7 +2,7 @@
 //  ShimmerHelper.swift
 //  currency-converter
 //
-//  Created by JMC on 7/8/21.
+//  Created by AGM Tazimon 7/8/21.
 //
 
 import UIKit

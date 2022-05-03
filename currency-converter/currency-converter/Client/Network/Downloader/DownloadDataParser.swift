@@ -2,7 +2,7 @@
 //  DownloadDataParser.swift
 //  currency-converter
 //
-//  Created by JMC on 17/8/21.
+//  Created by AGM Tazimon 17/8/21.
 //
 
 import UIKit
