@@ -1,0 +1,24 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'currency-converter' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for currency-converter
+
+	#Reactive prgramming
+	pod 'RxSwift', '6.2.0'
+  	pod 'RxCocoa', '6.2.0'
+  	pod "RxGesture"
+
+  target 'currency-converterTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'currency-converterUITests' do
+    # Pods for testing
+  end
+
+end
