@@ -108,6 +108,15 @@ class MyBalanceViewController: BaseViewController {
 //                return weakSelf.populateTableViewCell(viewModel: model.asCellViewModel, indexPath: IndexPath(row: row, section: 0), tableView: tableView)
 //            }.disposed(by: disposeBag)
         
+        currencyConverterOutput.currency.observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] response in
+                AppLogger.info("\(response)")
+                guard let weakSelf = self else {
+                    return
+                }
+                
+            }).disposed(by: disposeBag)
+        
         // detect error
         currencyConverterOutput.errorTracker.observe(on: MainScheduler.instance)
             .subscribe(onNext: {
@@ -117,8 +126,10 @@ class MyBalanceViewController: BaseViewController {
                     return
                 }
             
-                AppLogger.debug(" error  -- code = \(error.errorCode), message = \(error.errorMessage)")
+                AppLogger.debug("code = \(error.errorCode), message = \(error.errorMessage)")
         }).disposed(by: disposeBag)
+        
+        convertCurrency(amount: "250", currency: "USD")
     }
     
     public func convertCurrency(amount: String, currency: String) {

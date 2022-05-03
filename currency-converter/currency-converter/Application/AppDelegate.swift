@@ -51,10 +51,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         //server/api config builder
         let serverConfig = ServerConfig.Builder()
-            .addBaseUrl(baseUrl: "https://api.themoviedb.org")
+            .addBaseUrl(baseUrl: "http://api.evp.lt")
             .addApiVersion(apiVersion: "3")
-            .addAuthCredential(credential: AuthCredential(apiKey: "feb6f0eeaa0a72662967d77079850353"))
-            .addMediaBaseUrl(mediaBaseUrl: "https://image.tmdb.org/t/p/w500")
+            .addAuthCredential(credential: AuthCredential(apiKey: ""))
+            .addMediaBaseUrl(mediaBaseUrl: "")
             .addBuildType(buildType: .DEVELOP)
             .build()
 

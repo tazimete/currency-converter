@@ -51,9 +51,7 @@ class MyBalanceViewModel: AbstractMyBalanceViewModel {
                     
                        return Observable.just(CurrencyApiRequest.ItemType())
                     })
-        }).subscribe(onNext: {
-            response in
-            
+        }).subscribe(onNext: { response in
             currencyResponse.accept(response)
         }, onError: { [weak self] error in
             errorResponse.accept(error as? NetworkError)

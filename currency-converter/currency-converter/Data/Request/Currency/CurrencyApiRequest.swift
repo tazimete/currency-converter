@@ -13,7 +13,7 @@ enum CurrencyApiRequest {
 
 extension CurrencyApiRequest: APIRequest {
     public var baseURL: URL {
-        let url =  "\(AppConfig.shared.getServerConfig().getBaseUrl())/\(AppConfig.shared.getServerConfig().getApiVersion())/"
+        let url =  "\(AppConfig.shared.getServerConfig().getBaseUrl())/"
         return URL(string: url)!
     }
     
@@ -28,7 +28,7 @@ extension CurrencyApiRequest: APIRequest {
     
     public var path: String {
         switch self {
-            case .convert: return "search/movie"
+        case .convert: return "currency/commercial/exchange/\(parameters["amount"] ?? "")-\(parameters["currency"] ?? "")/\(parameters["currency"] ?? "")/latest"
         }
     }
     
