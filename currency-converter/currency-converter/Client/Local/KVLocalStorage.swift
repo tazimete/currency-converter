@@ -7,14 +7,32 @@
 
 import Foundation
 
-
 @propertyWrapper
 struct KVLocalStorage<T: Codable> {
     private let key: String
     private let defaultValue: T
     private let kvContainer: AbstractKVLocalSorageIntereactor
 
-    init(key: String, defaultValue: T, kvContainer: AbstractKVLocalSorageIntereactor = UserDefaults.standard) {
+//        static subscript(
+//            _enclosingInstance instance: UserSessionData,
+//            wrapped wrappedKeyPath: ReferenceWritableKeyPath<UserSessionData, T>,
+//            storage storageKeyPath: ReferenceWritableKeyPath<UserSessionData, Self>
+//        ) -> T {
+//            get {
+//                let propertyWrapper = instance[keyPath: storageKeyPath]
+//                let key = propertyWrapper.key
+//                let defaultValue = propertyWrapper.defaultValue
+//                return instance.kvContainer.getDataValue(forKey: key) as? T ?? defaultValue
+//            }
+//            set {
+//                let propertyWrapper = instance[keyPath: storageKeyPath]
+//                let key = propertyWrapper.key
+//                instance.kvContainer.set(key: key, value: newValue)
+//            }
+//        }
+    
+
+    init(key: String, defaultValue: T, kvContainer: AbstractKVLocalSorageIntereactor) {
         self.key = key
         self.defaultValue = defaultValue
         self.kvContainer = kvContainer

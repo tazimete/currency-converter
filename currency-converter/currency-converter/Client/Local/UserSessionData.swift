@@ -11,12 +11,13 @@ import UIKit
 
 struct UserSessionData {
     static var shared = UserSessionData(kvContainer: UserDefaults.standard)
-    private let kvContainer: AbstractKVLocalSorageIntereactor
+    public let kvContainer: AbstractKVLocalSorageIntereactor
     
     init(kvContainer: AbstractKVLocalSorageIntereactor) {
         self.kvContainer = kvContainer
     }
     
-    @KVLocalStorage(key: "convertionCount", defaultValue: 0)
+    @KVLocalStorage(key: "conversionCount", defaultValue: 0, kvContainer: UserSessionData.shared.kvContainer)
     static var convertionCount: Int
+    
 }

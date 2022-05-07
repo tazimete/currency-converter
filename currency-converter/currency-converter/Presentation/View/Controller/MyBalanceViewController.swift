@@ -131,6 +131,9 @@ class MyBalanceViewController: BaseViewController {
         }).disposed(by: disposeBag)
         
         convertCurrency(amount: "250", currency: "USD")
+        
+//        UserSessionData.shared.convertionCount = 100
+        AppLogger.info("convertionCount == \(UserSessionData.convertionCount)")
     }
     
     public func convertCurrency(amount: String, currency: String) {
