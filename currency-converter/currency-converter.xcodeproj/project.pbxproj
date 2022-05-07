@@ -13,6 +13,7 @@
 		FA387B712826638800B83C23 /* KVLocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA387B702826638800B83C23 /* KVLocalStorage.swift */; };
 		FA387B732826792E00B83C23 /* AbstractKVLocalSorageIntereactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA387B722826792E00B83C23 /* AbstractKVLocalSorageIntereactor.swift */; };
 		FA387B7628267CA800B83C23 /* KVLocalSorageIntereactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA387B7528267CA800B83C23 /* KVLocalSorageIntereactor.swift */; };
+		FA387B78282689DC00B83C23 /* UserSessionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA387B77282689DC00B83C23 /* UserSessionData.swift */; };
 		FAB726CA2820F85F0061A22E /* currency_converterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB726C92820F85F0061A22E /* currency_converterTests.swift */; };
 		FAB726D42820F85F0061A22E /* currency_converterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB726D32820F85F0061A22E /* currency_converterUITests.swift */; };
 		FAB726D62820F85F0061A22E /* currency_converterUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB726D52820F85F0061A22E /* currency_converterUITestsLaunchTests.swift */; };
@@ -149,6 +150,7 @@
 		FA387B702826638800B83C23 /* KVLocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KVLocalStorage.swift; sourceTree = "<group>"; };
 		FA387B722826792E00B83C23 /* AbstractKVLocalSorageIntereactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractKVLocalSorageIntereactor.swift; sourceTree = "<group>"; };
 		FA387B7528267CA800B83C23 /* KVLocalSorageIntereactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KVLocalSorageIntereactor.swift; sourceTree = "<group>"; };
+		FA387B77282689DC00B83C23 /* UserSessionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSessionData.swift; sourceTree = "<group>"; };
 		FAB726AF2820F85C0061A22E /* currency-converter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "currency-converter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAB726C02820F85E0061A22E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FAB726C52820F85F0061A22E /* currency-converterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "currency-converterTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -324,6 +326,7 @@
 			children = (
 				FA387B7428267C8D00B83C23 /* Abstraction */,
 				FA387B702826638800B83C23 /* KVLocalStorage.swift */,
+				FA387B77282689DC00B83C23 /* UserSessionData.swift */,
 			);
 			path = Local;
 			sourceTree = "<group>";
@@ -1235,6 +1238,7 @@
 				FAE7E895282187900019BCC2 /* UIView+Transitions.swift in Sources */,
 				FAE7E883282187900019BCC2 /* SkeletonConfig.swift in Sources */,
 				FAE7E89C282187900019BCC2 /* SkeletonTableViewProtocols.swift in Sources */,
+				FA387B78282689DC00B83C23 /* UserSessionData.swift in Sources */,
 				FAE7E888282187900019BCC2 /* UIView+Autolayout.swift in Sources */,
 				FAE7E78A282181B70019BCC2 /* GenericCellComponents.swift in Sources */,
 				FAE7E75A282181B70019BCC2 /* AppLogger.swift in Sources */,

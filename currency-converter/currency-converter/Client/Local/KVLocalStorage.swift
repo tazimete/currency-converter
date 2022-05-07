@@ -12,17 +12,18 @@ import Foundation
 struct KVLocalStorage<T: Codable> {
     private let key: String
     private let defaultValue: T
-    private let kvContainer: AbstractKVLocalSorageIntereactor? = nil 
+    private let kvContainer: AbstractKVLocalSorageIntereactor
 
-    init(key: String, defaultValue: T) {
+    init(key: String, defaultValue: T, kvContainer: AbstractKVLocalSorageIntereactor = UserDefaults.standard) {
         self.key = key
         self.defaultValue = defaultValue
+        self.kvContainer = kvContainer
     }
 
     var wrappedValue: T {
         get {
             // Read value from UserDefaults
-            guard let data = UserDefaults.standard.object(forKey: key) as? Data else {
+            guard let data = self.kvContainer.getDataValue(forKey: key) else {
                 // Return defaultValue when no data in UserDefaults
                 return defaultValue
             }
@@ -36,7 +37,7 @@ struct KVLocalStorage<T: Codable> {
             let data = try? JSONEncoder().encode(newValue)
             
             // Set value to UserDefaults
-            UserDefaults.standard.set(data, forKey: key)
+            self.kvContainer.set(key: key, value: data)
         }
     }
 }
