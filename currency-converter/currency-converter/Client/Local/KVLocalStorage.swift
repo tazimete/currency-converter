@@ -22,9 +22,9 @@ struct KVLocalStorage<T: Codable> {
 
     var wrappedValue: T {
         get {
-            // Read value from UserDefaults
+            // Read value from storage
             guard let data = self.kvContainer.getDataValue(forKey: key) else {
-                // Return defaultValue when no data in UserDefaults
+                // Return defaultValue when no data in storgae
                 return defaultValue
             }
 
@@ -36,7 +36,7 @@ struct KVLocalStorage<T: Codable> {
             // Convert newValue to data
             let data = try? JSONEncoder().encode(newValue)
             
-            // Set value to UserDefaults
+            // Set value to stoarge
             self.kvContainer.set(key: key, value: data)
         }
     }
