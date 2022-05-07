@@ -87,10 +87,12 @@ class MyBalanceViewController: BaseViewController {
     }
     
     override func initNavigationBar() {
-        self.navigationItem.title = "Search"
-        let btnSearch = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(didTapSearchButton))
-        btnSearch.tintColor = .gray
-        self.navigationItem.rightBarButtonItem = btnSearch
+        super.initNavigationBar()
+        
+        self.navigationItem.title = "Currency Converter"
+        let btnAction = UIBarButtonItem(title: "Convert", style: .done, target: self, action: #selector(didTapConvertButton))
+        btnAction.tintColor = appColors.textColorLight
+        self.navigationItem.rightBarButtonItem = btnAction
     }
     
     override func bindViewModel() {
@@ -119,8 +121,7 @@ class MyBalanceViewController: BaseViewController {
         
         // detect error
         currencyConverterOutput.errorTracker.observe(on: MainScheduler.instance)
-            .subscribe(onNext: {
-                [weak self] error in
+            .subscribe(onNext: { [weak self] error in
                 
                 guard let weakSelf = self, let error = error else {
                     return
@@ -171,7 +172,7 @@ class MyBalanceViewController: BaseViewController {
             .disposed(by: disposeBag)
     }
     
-    @objc func didTapSearchButton(sender : AnyObject){
+    @objc func didTapConvertButton(sender : AnyObject){
         showSearchDialog()
     }
     

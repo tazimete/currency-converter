@@ -10,6 +10,7 @@
 		60C9E1AC6AD8ACD8A7F5E42B /* Pods_currency_converter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09A279B1BEE5DFEBBB92A82B /* Pods_currency_converter.framework */; };
 		C165EDCEDF187E76A1594B4B /* Pods_currency_converterTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72271F9BB5D2808B1709C605 /* Pods_currency_converterTests.framework */; };
 		F722BF911E7F3A66EFC232A7 /* Pods_currency_converter_currency_converterUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 177CD4595E55F0E4C62A2A65 /* Pods_currency_converter_currency_converterUITests.framework */; };
+		FA387B712826638800B83C23 /* KVLocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA387B702826638800B83C23 /* KVLocalStorage.swift */; };
 		FAB726CA2820F85F0061A22E /* currency_converterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB726C92820F85F0061A22E /* currency_converterTests.swift */; };
 		FAB726D42820F85F0061A22E /* currency_converterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB726D32820F85F0061A22E /* currency_converterUITests.swift */; };
 		FAB726D62820F85F0061A22E /* currency_converterUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB726D52820F85F0061A22E /* currency_converterUITestsLaunchTests.swift */; };
@@ -143,6 +144,7 @@
 		C6B7EC6F465824CE199AFE64 /* Pods-currency-converter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-currency-converter.release.xcconfig"; path = "Target Support Files/Pods-currency-converter/Pods-currency-converter.release.xcconfig"; sourceTree = "<group>"; };
 		D40E45D29F7C8E351A8F0ABE /* Pods-currency-converterTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-currency-converterTests.debug.xcconfig"; path = "Target Support Files/Pods-currency-converterTests/Pods-currency-converterTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F7B44F45BC65A91A9C0F84E7 /* Pods-currency-converter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-currency-converter.debug.xcconfig"; path = "Target Support Files/Pods-currency-converter/Pods-currency-converter.debug.xcconfig"; sourceTree = "<group>"; };
+		FA387B702826638800B83C23 /* KVLocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KVLocalStorage.swift; sourceTree = "<group>"; };
 		FAB726AF2820F85C0061A22E /* currency-converter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "currency-converter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAB726C02820F85E0061A22E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FAB726C52820F85F0061A22E /* currency-converterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "currency-converterTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -304,6 +306,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		FA479F022823B2CE002DFC01 /* Local */ = {
+			isa = PBXGroup;
+			children = (
+				FA387B702826638800B83C23 /* KVLocalStorage.swift */,
+			);
+			path = Local;
+			sourceTree = "<group>";
+		};
 		FAB726A62820F85B0061A22E = {
 			isa = PBXGroup;
 			children = (
@@ -429,6 +439,7 @@
 			isa = PBXGroup;
 			children = (
 				FAE7E6E5282181B40019BCC2 /* Network */,
+				FA479F022823B2CE002DFC01 /* Local */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -1179,6 +1190,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA387B712826638800B83C23 /* KVLocalStorage.swift in Sources */,
 				FAE7E7CD282181B80019BCC2 /* AbstractMyBalanceViewModel.swift in Sources */,
 				FAE7E7E0282181B80019BCC2 /* ConfigComponents.swift in Sources */,
 				FAE7E7DC282181B80019BCC2 /* SceneDelegate.swift in Sources */,

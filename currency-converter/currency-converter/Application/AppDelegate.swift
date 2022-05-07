@@ -40,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func buildAppConfig() -> Void {
-        let themeColors = Colors(primaryDark: .systemRed, primaryLight: .systemOrange, secondaryDark: .black, secondaryLight: .systemBlue, textColorDark: .darkGray, textColorLight: .white, primaryBackgroundColor: .white, secondaryBackgroundColor: .midnightBlue, disabledTextColor: .lightGray, whiteTransparentColor: .init(white: 1, alpha: 0.5))
+        let themeColors = Colors(primaryDark: .systemBlue, primaryLight: .systemOrange, secondaryDark: .black, secondaryLight: .systemBlue, textColorDark: .darkGray, textColorLight: .white, primaryBackgroundColor: .white, secondaryBackgroundColor: .midnightBlue, disabledTextColor: .lightGray, whiteTransparentColor: .init(white: 1, alpha: 0.5))
         
         let themeFonts = Fonts()
         
