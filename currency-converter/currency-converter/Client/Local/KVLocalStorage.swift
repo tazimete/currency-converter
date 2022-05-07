@@ -12,6 +12,7 @@ import Foundation
 struct KVLocalStorage<T: Codable> {
     private let key: String
     private let defaultValue: T
+    private let kvContainer: AbstractKVLocalSorageIntereactor? = nil 
 
     init(key: String, defaultValue: T) {
         self.key = key
