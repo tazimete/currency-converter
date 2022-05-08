@@ -13,6 +13,14 @@ struct KVLocalStorage<T: Codable> {
     private let defaultValue: T
     private let kvContainer: AbstractKVLocalSorageIntereactor
 
+//    @available(*, unavailable,
+//            message: "@Proxy can only be applied to classes"
+//        )
+//        var wrappedValue: T {
+//            get { fatalError() }
+//            set { fatalError() }
+//        }
+//
 //        static subscript(
 //            _enclosingInstance instance: UserSessionData,
 //            wrapped wrappedKeyPath: ReferenceWritableKeyPath<UserSessionData, T>,
@@ -53,7 +61,7 @@ struct KVLocalStorage<T: Codable> {
         set {
             // Convert newValue to data
             let data = try? JSONEncoder().encode(newValue)
-            
+
             // Set value to stoarge
             self.kvContainer.set(key: key, value: data)
         }
