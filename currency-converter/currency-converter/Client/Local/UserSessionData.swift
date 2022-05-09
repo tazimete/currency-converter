@@ -8,54 +8,16 @@
 import Foundation
 
 
-protocol AbstractSessionData{
-    associatedtype KVContainer: AbstractKVLocalSorageIntereactor
-//    static var shared: UserSessionData {get}
-}
-
-class UserSessionData: AbstractSessionData {
-    typealias KVContainer = UserDefaults
-    class var kvContainerType: AbstractKVLocalSorageIntereactor.Type {
-        return UserDefaults.self
+class UserSessionData {
+    public static let shared = UserSessionData(kvContainer: UserDefaults.standard)
+    public var kvContainer: AbstractKVLocalSorageIntereactor
+    
+    private init(kvContainer: AbstractKVLocalSorageIntereactor) {
+        self.kvContainer = kvContainer
     }
     
-    private static let instance = UserSessionData(kvContainer: kvContainerType.shared as! UserSessionData.KVContainer)
-    class var shared: UserSessionData {
-        return instance
-    }
-    public let kvContainer: AbstractKVLocalSorageIntereactor = getType().shared
-    
-    public init(kvContainer: AbstractKVLocalSorageIntereactor) {
-//        self.kvContainer = kvContainer
-    }
-    
-    class func getType() -> AbstractKVLocalSorageIntereactor.Type {
-        return UserDefaults.self
-    }
-    
-    @KVLocalStorage(key: "conversionCount", defaultValue: 0, kvContainer: getType().shared)
+    @KVLocalStorage(key: "conversionCount", defaultValue: 0, kvContainer: shared.kvContainer)
     static var conversionCount: Int
-}
-
-
-class KCdata: UserSessionData {
-    typealias KVContainer = Mock
-    override class var kvContainerType: AbstractKVLocalSorageIntereactor.Type {
-        return Mock.self
-    }
-    
-    private static let instance = KCdata()
-    override class var shared: UserSessionData {
-        return instance
-    }
-    
-    required init() {
-        super.init(kvContainer: UserDefaults.shared as! UserSessionData.KVContainer)
-    }
-    
-    override class func getType() -> AbstractKVLocalSorageIntereactor.Type {
-        return Mock.self
-    }
 }
 
 
