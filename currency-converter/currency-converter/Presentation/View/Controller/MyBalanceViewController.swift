@@ -132,8 +132,8 @@ class MyBalanceViewController: BaseViewController {
         
         convertCurrency(amount: "250", currency: "USD")
         
-//        UserSessionData.shared.convertionCount = 100
-        AppLogger.info("convertionCount == \(UserSessionData.shared.convertionCount)")
+//        UserSessionData.shared.conversionCount = 100
+        AppLogger.info("conversionCount == \(KCdata.conversionCount)")
     }
     
     public func convertCurrency(amount: String, currency: String) {
