@@ -64,3 +64,8 @@ class MyBalanceViewModel: AbstractMyBalanceViewModel {
         return (usecase as! AbstractCurrencyUsecase).convert(amount: amount, currency: currency)
     }
 }
+
+
+protocol ComissionPolicy {
+    func hasComission(conversionSerial: Int, conversionAmount: Double) -> Bool
+}
