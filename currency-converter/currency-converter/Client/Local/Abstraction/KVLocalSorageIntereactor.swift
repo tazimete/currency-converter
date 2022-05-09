@@ -8,6 +8,10 @@
 import Foundation
 
 extension UserDefaults: AbstractKVLocalSorageIntereactor {
+    static var shared: AbstractKVLocalSorageIntereactor {
+        return standard
+    }
+    
     func set(key: String, value: Int) {
         self.set(value, forKey: key)
     }

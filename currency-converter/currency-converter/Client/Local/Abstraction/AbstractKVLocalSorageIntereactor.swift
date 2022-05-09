@@ -9,6 +9,9 @@ import Foundation
 
 
 protocol AbstractKVLocalSorageIntereactor: AnyObject {
+    init()
+    static var shared: AbstractKVLocalSorageIntereactor {get}
+    
     func set(key: String, value: Int)
     func set(key: String, value: Float)
     func set(key: String, value: Double)

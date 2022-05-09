@@ -8,14 +8,28 @@
 import Foundation
 
 
+protocol AbstractSessionData{
+    associatedtype KVContainer: AbstractKVLocalSorageIntereactor
+    static var shared: UserSessionData {get}
+}
+
 class UserSessionData {
-    static public let shared = UserSessionData(kvContainer: UserDefaults.standard)
+    typealias KVContainer = UserDefaults
+    class var kvContainerType: AbstractKVLocalSorageIntereactor.Type {
+        return UserDefaults.self
+    }
+    static let shared = UserSessionData(kvContainer: kvContainerType.shared as! UserSessionData.KVContainer)
     public var kvContainer: AbstractKVLocalSorageIntereactor
     
-    private init(kvContainer: AbstractKVLocalSorageIntereactor) {
+    private init(kvContainer: KVContainer) {
         self.kvContainer = kvContainer
     }
     
-    @KVLocalStorage(key: "conversionCount", defaultValue: 0, kvContainer: UserSessionData.shared.kvContainer)
-     static var convertionCount: Int
+    @KVLocalStorage(key: "conversionCount", defaultValue: 0, kvContainer: KVContainer.shared)
+    var convertionCount: Int
+}
+
+
+class KCdata: UserSessionData {
+    typealias KVContainer = KCdata
 }
