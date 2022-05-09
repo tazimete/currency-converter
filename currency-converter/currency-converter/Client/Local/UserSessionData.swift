@@ -6,14 +6,13 @@
 //
 
 import Foundation
-import UIKit
 
 
 class UserSessionData {
     static public let shared = UserSessionData(kvContainer: UserDefaults.standard)
-    private let kvContainer: AbstractKVLocalSorageIntereactor
+    public var kvContainer: AbstractKVLocalSorageIntereactor
     
-    init(kvContainer: AbstractKVLocalSorageIntereactor) {
+    private init(kvContainer: AbstractKVLocalSorageIntereactor) {
         self.kvContainer = kvContainer
     }
     
