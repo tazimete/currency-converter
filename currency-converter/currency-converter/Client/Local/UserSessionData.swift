@@ -9,17 +9,16 @@ import Foundation
 
 
 class UserSessionData {
-    public static let shared = UserSessionData(kvContainer: UserDefaults.standard)
+    public static let shared = UserSessionData(kvContainer: UserDefaults.shared)
     public var kvContainer: AbstractKVLocalSorageIntereactor
     
     private init(kvContainer: AbstractKVLocalSorageIntereactor) {
         self.kvContainer = kvContainer
     }
     
-    @KVLocalStorage(key: "conversionCount", defaultValue: 0, kvContainer: shared.kvContainer)
-    static var conversionCount: Int
+    @KVLocalStorage(key: "conversionCount", defaultValue: 0)
+    var conversionCount: Int
 }
-
 
 class Mock: AbstractKVLocalSorageIntereactor {
     static var shared: AbstractKVLocalSorageIntereactor {
