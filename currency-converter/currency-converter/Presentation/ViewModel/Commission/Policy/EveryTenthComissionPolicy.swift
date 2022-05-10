@@ -9,6 +9,12 @@ import Foundation
 
 
 struct EveryTenthComissionPolicy: ComissionPolicy {
+    private(set) var commissionOptions: ComissionDependency
+    
+    init(commissionOptions: ComissionDependency) {
+        self.commissionOptions = commissionOptions
+    }
+    
     func hasComission(conversionSerial: Int, conversionAmount: Double) -> Bool {
         if (conversionSerial % 10) == 0 {
             return false

@@ -13,6 +13,10 @@ protocol ComissionApplicable {
 }
 
 protocol ComissionAmount {
+    var commissionOptions: ComissionDependency {get}
+    
+    init(commissionOptions: ComissionDependency)
+    
     func getComissionAmount(conversionSerial: Int, conversionAmount: Double) -> Double
     func getComissionPercent(conversionSerial: Int, conversionAmount: Double) -> Double
 }
