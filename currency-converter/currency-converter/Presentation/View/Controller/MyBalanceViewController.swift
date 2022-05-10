@@ -117,6 +117,8 @@ class MyBalanceViewController: BaseViewController {
                     return
                 }
                 
+                AppLogger.info("commission = \(weakSelf.myBalanceViewModel.commissionCalculator.calculateCommissionAmount(conversionSerial: UserSessionData.shared.conversionCount, conversionAmount: 250))")
+                UserSessionData.shared.conversionCount += 1 
             }).disposed(by: disposeBag)
         
         // detect error
@@ -132,7 +134,7 @@ class MyBalanceViewController: BaseViewController {
         
         convertCurrency(amount: "250", currency: "USD")
         
-//        UserSessionData.shared.conversionCount = 1122
+//        UserSessionData.shared.conversionCount = 0
 //        UserSessionData.shared.kvContainer = Mock()
         AppLogger.info("conversionCount == \(UserSessionData.shared.conversionCount)")
     }

@@ -11,6 +11,8 @@ import RxSwift
 
 /* This is AbstractMyBalanceViewModel abstraction extented from AbstractViewModel. Which will be used to get balance related data by its usecases*/
 protocol AbstractMyBalanceViewModel: AbstractViewModel {
+    var commissionCalculator: ComissionCalculator {get}
+    
     // Transform the my balance input to output observable
     func getMyBalanceOutput(input: MyBalanceViewModel.MyBalanceInput) -> MyBalanceViewModel.MyBalanceOutput
     

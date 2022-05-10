@@ -18,7 +18,8 @@ class HomeCoordinator: Coordinator {
     public func start(window: UIWindow) {
         let repository = CurrencyRepository(apiClient: APIClient.shared)
         let usecase = CurrencyUsecase(repository: repository)
-        let viewModel = MyBalanceViewModel(usecase: usecase)
+        let commissionCalculator = ComissionCalculator(commissionOptions: ComissionDependency.shared, policies: [FirstFiveConversionComissionPolicy(commissionOptions: ComissionDependency.shared), EveryTenthComissionPolicy(commissionOptions: ComissionDependency.shared), UpToTwoHundredPolicy(commissionOptions: ComissionDependency.shared)])
+        let viewModel = MyBalanceViewModel(usecase: usecase, commissionCalculator: commissionCalculator)
         let vc = MyBalanceViewController(viewModel: viewModel)
         self.navigationController.pushViewController(vc, animated: true)
     }

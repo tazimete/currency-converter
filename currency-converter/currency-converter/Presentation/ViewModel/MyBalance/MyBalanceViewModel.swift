@@ -29,10 +29,12 @@ class MyBalanceViewModel: AbstractMyBalanceViewModel {
         let errorTracker: BehaviorRelay<NetworkError?>
     }
     
-    private(set) var usecase: AbstractUsecase
+    let usecase: AbstractUsecase
+    let commissionCalculator: ComissionCalculator
     
-    public init(usecase: AbstractCurrencyUsecase) {
+    public init(usecase: AbstractCurrencyUsecase, commissionCalculator: ComissionCalculator) {
         self.usecase = usecase
+        self.commissionCalculator = commissionCalculator
     }
     
     public func getMyBalanceOutput(input: MyBalanceInput) -> MyBalanceOutput {

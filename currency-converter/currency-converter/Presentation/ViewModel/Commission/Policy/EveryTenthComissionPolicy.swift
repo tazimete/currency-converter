@@ -27,7 +27,7 @@ struct EveryTenthComissionPolicy: ComissionPolicy {
         var amount = 0.0
         
         if hasComission(conversionSerial: conversionSerial, conversionAmount: conversionAmount) {
-            amount = (conversionAmount * ComissionDependency.shared.comissionAmountInPercent)/100
+            amount = (conversionAmount * commissionOptions.comissionAmountInPercent)/100
         }
         
         return amount
@@ -37,7 +37,7 @@ struct EveryTenthComissionPolicy: ComissionPolicy {
         var percent = 0.0
         
         if hasComission(conversionSerial: conversionSerial, conversionAmount: conversionAmount) {
-            percent = ComissionDependency.shared.comissionAmountInPercent
+            percent = commissionOptions.comissionAmountInPercent
         }
         
         return percent
