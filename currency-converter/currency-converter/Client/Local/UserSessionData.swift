@@ -14,7 +14,7 @@ class UserSessionData {
     
     private init(kvContainer: AbstractKVLocalSorageIntereactor) {
         self.kvContainer = kvContainer
-    } 
+    }
     
     @KVLocalStorage(key: "conversionCount", defaultValue: 0)
     var conversionCount: Int

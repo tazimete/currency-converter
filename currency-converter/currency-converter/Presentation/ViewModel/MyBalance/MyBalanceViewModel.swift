@@ -65,7 +65,3 @@ class MyBalanceViewModel: AbstractMyBalanceViewModel {
     }
 }
 
-
-protocol ComissionPolicy {
-    func hasComission(conversionSerial: Int, conversionAmount: Double) -> Bool
-}
