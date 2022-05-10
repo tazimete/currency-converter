@@ -10,7 +10,7 @@ import RxSwift
 
 /* This is Currency usecase class implentation from AbstractCurrencyUsecase. Which will be used to get currency related data from currency repository*/
 class CurrencyUsecase: AbstractCurrencyUsecase {
-    var repository: AbstractRepository
+    let repository: AbstractRepository
     
     public init(repository: AbstractCurrencyRepository) {
         self.repository = repository

@@ -25,7 +25,7 @@ class MyBalanceViewModel: AbstractMyBalanceViewModel {
     
     // This struct will be used to send event with observable data/response to viewcontroller
     public struct MyBalanceOutput {
-        let currency: BehaviorRelay<CurrencyApiRequest.ItemType>
+        let currency: BehaviorRelay<CurrencyApiRequest.ItemType?>
         let errorTracker: BehaviorRelay<NetworkError?>
     }
     
@@ -38,7 +38,7 @@ class MyBalanceViewModel: AbstractMyBalanceViewModel {
     }
     
     public func getMyBalanceOutput(input: MyBalanceInput) -> MyBalanceOutput {
-        let currencyResponse = BehaviorRelay<CurrencyApiRequest.ItemType>(value: CurrencyApiRequest.ItemType())
+        let currencyResponse = BehaviorRelay<CurrencyApiRequest.ItemType?>(value: nil)
         let errorResponse = BehaviorRelay<NetworkError?>(value: nil) 
         
         input.currencyConverterTrigger.flatMapLatest({ [weak self] (inputModel) -> Observable<CurrencyApiRequest.ItemType> in

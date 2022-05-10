@@ -113,7 +113,7 @@ class MyBalanceViewController: BaseViewController {
         currencyConverterOutput.currency.observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] response in
                 AppLogger.info("\(response)")
-                guard let weakSelf = self else {
+                guard let weakSelf = self, let currencyRespone = response else {
                     return
                 }
                 

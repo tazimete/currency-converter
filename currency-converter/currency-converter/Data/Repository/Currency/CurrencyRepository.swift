@@ -10,7 +10,7 @@ import RxSwift
 
 /* This is Currency repository class implementation from AbstractCurrencyRepository. Which will be used to get currency related data from api client/server response*/
 class CurrencyRepository: AbstractCurrencyRepository {
-    var apiClient: AbstractApiClient
+    let apiClient: AbstractApiClient
     
     init(apiClient: AbstractApiClient = APIClient.shared) {
         self.apiClient = apiClient
