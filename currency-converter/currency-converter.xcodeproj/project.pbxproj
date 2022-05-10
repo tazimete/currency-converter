@@ -19,6 +19,7 @@
 		FAB2A49E282A9AC200F1F075 /* ComissionPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB2A49D282A9AC200F1F075 /* ComissionPolicy.swift */; };
 		FAB2A4A1282A9B9F00F1F075 /* EveryTenthComissionPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB2A4A0282A9B9F00F1F075 /* EveryTenthComissionPolicy.swift */; };
 		FAB2A4A3282A9BC100F1F075 /* UpToTwoHundredPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB2A4A2282A9BC100F1F075 /* UpToTwoHundredPolicy.swift */; };
+		FAB2A4A5282ABA3500F1F075 /* ComissionCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB2A4A4282ABA3500F1F075 /* ComissionCalculator.swift */; };
 		FAB726CA2820F85F0061A22E /* currency_converterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB726C92820F85F0061A22E /* currency_converterTests.swift */; };
 		FAB726D42820F85F0061A22E /* currency_converterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB726D32820F85F0061A22E /* currency_converterUITests.swift */; };
 		FAB726D62820F85F0061A22E /* currency_converterUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB726D52820F85F0061A22E /* currency_converterUITestsLaunchTests.swift */; };
@@ -161,6 +162,7 @@
 		FAB2A49D282A9AC200F1F075 /* ComissionPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComissionPolicy.swift; sourceTree = "<group>"; };
 		FAB2A4A0282A9B9F00F1F075 /* EveryTenthComissionPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EveryTenthComissionPolicy.swift; sourceTree = "<group>"; };
 		FAB2A4A2282A9BC100F1F075 /* UpToTwoHundredPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpToTwoHundredPolicy.swift; sourceTree = "<group>"; };
+		FAB2A4A4282ABA3500F1F075 /* ComissionCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComissionCalculator.swift; sourceTree = "<group>"; };
 		FAB726AF2820F85C0061A22E /* currency-converter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "currency-converter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAB726C02820F85E0061A22E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FAB726C52820F85F0061A22E /* currency-converterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "currency-converterTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -341,14 +343,15 @@
 			path = Local;
 			sourceTree = "<group>";
 		};
-		FAB2A498282A5D7800F1F075 /* Comission */ = {
+		FAB2A498282A5D7800F1F075 /* Commission */ = {
 			isa = PBXGroup;
 			children = (
-				FAB2A49F282A9B7400F1F075 /* Policy */,
-				FAB2A49B282A8D9600F1F075 /* ComissionDependency.swift */,
 				FAB2A49D282A9AC200F1F075 /* ComissionPolicy.swift */,
+				FAB2A49B282A8D9600F1F075 /* ComissionDependency.swift */,
+				FAB2A4A4282ABA3500F1F075 /* ComissionCalculator.swift */,
+				FAB2A49F282A9B7400F1F075 /* Policy */,
 			);
-			path = Comission;
+			path = Commission;
 			sourceTree = "<group>";
 		};
 		FAB2A49F282A9B7400F1F075 /* Policy */ = {
@@ -719,6 +722,7 @@
 			children = (
 				FAE7E72B282181B60019BCC2 /* Abstraction */,
 				FAE7E733282181B60019BCC2 /* MyBalance */,
+				FAB2A498282A5D7800F1F075 /* Commission */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -743,7 +747,6 @@
 		FAE7E733282181B60019BCC2 /* MyBalance */ = {
 			isa = PBXGroup;
 			children = (
-				FAB2A498282A5D7800F1F075 /* Comission */,
 				FAE7E734282181B60019BCC2 /* MyBalanceViewModel.swift */,
 			);
 			path = MyBalance;
@@ -1247,6 +1250,7 @@
 				FAE7E87D282187900019BCC2 /* SkeletonView.swift in Sources */,
 				FAE7E893282187900019BCC2 /* SkeletonAnimationBuilder.swift in Sources */,
 				FAE7E8A3282187900019BCC2 /* PrepareForSkeletonProtocol.swift in Sources */,
+				FAB2A4A5282ABA3500F1F075 /* ComissionCalculator.swift in Sources */,
 				FAE7E7D4282181B80019BCC2 /* MyBalanceViewController.swift in Sources */,
 				FAE7E7CB282181B80019BCC2 /* Codable+Extension.swift in Sources */,
 				FAE7E78D282181B70019BCC2 /* AdaptiveLayoutConstraint.swift in Sources */,
