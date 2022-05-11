@@ -8,6 +8,7 @@
 import Foundation
 
 
+// TODO: Change this class to make common local data source client for UserDefault, KeyChain, Database
 protocol AbstractKVLocalSorageIntereactor: AnyObject {
     init()
     static var shared: AbstractKVLocalSorageIntereactor {get}
