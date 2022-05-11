@@ -8,31 +8,35 @@
 import Foundation
 import RxSwift
 
-protocol AbstractDatabaseClient {
-    
-}
-
-protocol DatabaseOperation {
-    associatedtype Data
+protocol DatabaseRepresentable {
+    associatedtype T
     associatedtype ID
+    
+    var client: AbstractLocalSorageIntereactor {get}
+    
+    init(client: AbstractLocalSorageIntereactor)
 }
 
-protocol Creatable: DatabaseOperation {
-    func create(item: Data) -> Observable<Bool>
-    func createAll(items: [Data]) -> Observable<[Bool]>
+protocol DataCreatable: DatabaseRepresentable {
+    func create(item: T) -> Observable<Bool>
+    func createAll(items: [T]) -> Observable<[Bool]>
 }
 
-protocol Readable: DatabaseOperation {
-    func read(id: ID) -> Observable<Data>
-    func readAll() -> Observable<[Data]>
+protocol DataReadable: DatabaseRepresentable {
+    func read(id: ID) -> Observable<T>
+    func readAll() -> Observable<[T]>
 }
 
-protocol Updatable: DatabaseOperation {
-    func update(id: ID, item: Data) -> Observable<Bool>
-    func updateAll(ids: [ID], item:[Data]) -> Observable<[Bool]>
+protocol DataUpdatable: DatabaseRepresentable {
+    func update(item: T) -> Observable<Bool>
+    func updateAll(items:[T]) -> Observable<Bool>
 }
 
-protocol Deletable: DatabaseOperation {
-    func delete(id: ID, item: Data) -> Observable<Bool>
-    func deleteAll(ids: [ID], item:[Data]) -> Observable<[Bool]>
+protocol DataDeletable: DatabaseRepresentable {
+    func delete(item: T) -> Observable<Bool>
+    func deleteAll(items:[T]) -> Observable<Bool>
 }
+
+
+typealias AbstractDatabaseClient = DataCreatable & DataReadable & DataUpdatable & DataDeletable
+

@@ -10,9 +10,9 @@ import Foundation
 
 class UserSessionDataClient: AbstractUserSessionDataClient {
     public static let shared: AbstractUserSessionDataClient = UserSessionDataClient(kvContainer: UserDefaults.shared)
-    public var kvContainer: AbstractKVLocalSorageIntereactor
+    public var kvContainer: AbstractLocalSorageIntereactor
     
-    private init(kvContainer: AbstractKVLocalSorageIntereactor) {
+    private init(kvContainer: AbstractLocalSorageIntereactor) {
         self.kvContainer = kvContainer
     }
     
@@ -28,8 +28,8 @@ class UserSessionDataClient: AbstractUserSessionDataClient {
     }
 }
 
-class MockUserSessionData: AbstractKVLocalSorageIntereactor {
-    static var shared: AbstractKVLocalSorageIntereactor {
+class MockUserSessionData: AbstractLocalSorageIntereactor {
+    static var shared: AbstractLocalSorageIntereactor {
         return MockUserSessionData()
     }
     

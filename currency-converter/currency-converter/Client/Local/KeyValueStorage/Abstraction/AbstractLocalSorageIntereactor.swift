@@ -9,9 +9,9 @@ import Foundation
 
 
 // TODO: Change this class to make common local data source client for UserDefault, KeyChain, Database
-protocol AbstractKVLocalSorageIntereactor: AnyObject {
+protocol AbstractLocalSorageIntereactor: AnyObject {
     init()
-    static var shared: AbstractKVLocalSorageIntereactor {get}
+    static var shared: AbstractLocalSorageIntereactor {get}
     
     func set(key: String, value: Int)
     func set(key: String, value: Float)

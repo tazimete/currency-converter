@@ -7,8 +7,8 @@
 
 import Foundation
 
-extension UserDefaults: AbstractKVLocalSorageIntereactor {
-    static var shared: AbstractKVLocalSorageIntereactor {
+extension UserDefaults: AbstractLocalSorageIntereactor {
+    static var shared: AbstractLocalSorageIntereactor {
         return standard
     }
     

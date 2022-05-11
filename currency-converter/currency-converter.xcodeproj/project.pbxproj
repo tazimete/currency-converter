@@ -11,7 +11,7 @@
 		C165EDCEDF187E76A1594B4B /* Pods_currency_converterTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72271F9BB5D2808B1709C605 /* Pods_currency_converterTests.framework */; };
 		F722BF911E7F3A66EFC232A7 /* Pods_currency_converter_currency_converterUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 177CD4595E55F0E4C62A2A65 /* Pods_currency_converter_currency_converterUITests.framework */; };
 		FA387B712826638800B83C23 /* KVLocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA387B702826638800B83C23 /* KVLocalStorage.swift */; };
-		FA387B732826792E00B83C23 /* AbstractKVLocalSorageIntereactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA387B722826792E00B83C23 /* AbstractKVLocalSorageIntereactor.swift */; };
+		FA387B732826792E00B83C23 /* AbstractLocalSorageIntereactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA387B722826792E00B83C23 /* AbstractLocalSorageIntereactor.swift */; };
 		FA387B7628267CA800B83C23 /* KVLocalSorageIntereactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA387B7528267CA800B83C23 /* KVLocalSorageIntereactor.swift */; };
 		FA387B78282689DC00B83C23 /* UserSessionDataClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA387B77282689DC00B83C23 /* UserSessionDataClient.swift */; };
 		FA6C62C9282BCB4D00D42413 /* AbstractDatabaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6C62C8282BCB4D00D42413 /* AbstractDatabaseClient.swift */; };
@@ -156,7 +156,7 @@
 		D40E45D29F7C8E351A8F0ABE /* Pods-currency-converterTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-currency-converterTests.debug.xcconfig"; path = "Target Support Files/Pods-currency-converterTests/Pods-currency-converterTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F7B44F45BC65A91A9C0F84E7 /* Pods-currency-converter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-currency-converter.debug.xcconfig"; path = "Target Support Files/Pods-currency-converter/Pods-currency-converter.debug.xcconfig"; sourceTree = "<group>"; };
 		FA387B702826638800B83C23 /* KVLocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KVLocalStorage.swift; sourceTree = "<group>"; };
-		FA387B722826792E00B83C23 /* AbstractKVLocalSorageIntereactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractKVLocalSorageIntereactor.swift; sourceTree = "<group>"; };
+		FA387B722826792E00B83C23 /* AbstractLocalSorageIntereactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractLocalSorageIntereactor.swift; sourceTree = "<group>"; };
 		FA387B7528267CA800B83C23 /* KVLocalSorageIntereactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KVLocalSorageIntereactor.swift; sourceTree = "<group>"; };
 		FA387B77282689DC00B83C23 /* UserSessionDataClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSessionDataClient.swift; sourceTree = "<group>"; };
 		FA6C62C8282BCB4D00D42413 /* AbstractDatabaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractDatabaseClient.swift; sourceTree = "<group>"; };
@@ -331,7 +331,7 @@
 		FA387B7428267C8D00B83C23 /* Abstraction */ = {
 			isa = PBXGroup;
 			children = (
-				FA387B722826792E00B83C23 /* AbstractKVLocalSorageIntereactor.swift */,
+				FA387B722826792E00B83C23 /* AbstractLocalSorageIntereactor.swift */,
 				FA387B7528267CA800B83C23 /* KVLocalSorageIntereactor.swift */,
 				FA6C62CA282BD9E000D42413 /* AbstractUserSessionDataClient.swift */,
 			);
@@ -1319,7 +1319,7 @@
 				FAE7E7C8282181B80019BCC2 /* UIImage+Extension.swift in Sources */,
 				FAE7E7CA282181B80019BCC2 /* UIViewController+Extension.swift in Sources */,
 				FAE7E7DE282181B80019BCC2 /* ServerConfig.swift in Sources */,
-				FA387B732826792E00B83C23 /* AbstractKVLocalSorageIntereactor.swift in Sources */,
+				FA387B732826792E00B83C23 /* AbstractLocalSorageIntereactor.swift in Sources */,
 				FAE7E7C5282181B70019BCC2 /* UIImageView+Extension.swift in Sources */,
 				FAE7E7B3282181B70019BCC2 /* ImageDownloader.swift in Sources */,
 				FAE7E7AC282181B70019BCC2 /* StubbedResponse.swift in Sources */,
