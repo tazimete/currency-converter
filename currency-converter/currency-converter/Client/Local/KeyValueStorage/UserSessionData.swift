@@ -8,8 +8,8 @@
 import Foundation
 
 
-class UserSessionData {
-    public static let shared = UserSessionData(kvContainer: UserDefaults.shared)
+class UserSessionDataClient: AbstractUserSessionDataClient {
+    public static let shared: AbstractUserSessionDataClient = UserSessionDataClient(kvContainer: UserDefaults.shared)
     public var kvContainer: AbstractKVLocalSorageIntereactor
     
     private init(kvContainer: AbstractKVLocalSorageIntereactor) {
@@ -18,11 +18,19 @@ class UserSessionData {
     
     @KVLocalStorage(key: "conversionCount", defaultValue: 0)
     var conversionCount: Int
+    
+    func setConversionCount(count: Int) {
+        conversionCount = count
+    }
+    
+    func getConversionCount() -> Int {
+        return conversionCount
+    }
 }
 
-class Mock: AbstractKVLocalSorageIntereactor {
+class MockUserSessionData: AbstractKVLocalSorageIntereactor {
     static var shared: AbstractKVLocalSorageIntereactor {
-        return Mock()
+        return MockUserSessionData()
     }
     
     required init(){

@@ -9,8 +9,8 @@ import Foundation
 
 @propertyWrapper
 struct KVLocalStorage<Value: Codable> {
-    typealias ValueKeyPath = ReferenceWritableKeyPath<UserSessionData, Value>
-    typealias SelfKeyPath = ReferenceWritableKeyPath<UserSessionData, Self>
+//    typealias ValueKeyPath = ReferenceWritableKeyPath<EnclosingType, Value>
+//    typealias SelfKeyPath = ReferenceWritableKeyPath<EnclosingType, Self>
     
     private let key: String
     private let defaultValue: Value
@@ -26,10 +26,10 @@ struct KVLocalStorage<Value: Codable> {
         set { fatalError() }
     }
 
-    static subscript(
-        _enclosingInstance instance: UserSessionData,
-        wrapped wrappedKeyPath: ValueKeyPath,
-        storage storageKeyPath: SelfKeyPath
+    static subscript<EnclosingType: AbstractUserSessionDataClient>(
+        _enclosingInstance instance: EnclosingType,
+        wrapped wrappedKeyPath: ReferenceWritableKeyPath<EnclosingType, Value>,
+        storage storageKeyPath: ReferenceWritableKeyPath<EnclosingType, Self>
     ) -> Value {
         get {
             let propertyWrapper = instance[keyPath: storageKeyPath]

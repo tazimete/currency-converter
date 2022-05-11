@@ -49,8 +49,8 @@ public enum NetworkError: Error {
 
 class APIClient: AbstractApiClient{
     public static let shared = APIClient()
-    public var session: AbstractURLSession
-    public var queueManager: QueueManager
+    let session: AbstractURLSession
+    let queueManager: QueueManager
 
     
     public init(session: AbstractURLSession = URLSession(config: URLSessionConfigHolder.config), withQueueManager queueManager: QueueManager = QueueManager()) {
