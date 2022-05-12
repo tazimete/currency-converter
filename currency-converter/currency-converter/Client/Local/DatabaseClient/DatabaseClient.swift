@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 
 
-class DatabaseClient<I, T>: AbstractDatabaseClient {
+class DatabaseClient<T>: AbstractDatabaseClient {
     typealias T = T
     typealias ModelType = AbstractDataModel
     
