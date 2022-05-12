@@ -28,8 +28,11 @@ class DatabaseClient<I, T>: AbstractDatabaseClient {
         }).subscribe(on: schedular)
     }
     
-    func createAll(items: [T]) -> Observable<[Bool]> {
-        fatalError("Not Implemented Yet")
+    func createAll(items: [T]) -> Observable<Bool> {
+        return Observable<Bool>.create({ observer -> Disposable in
+            observer.onNext(self.interactor.createAll(type: T.self, items: items))
+            return Disposables.create()
+        }).subscribe(on: schedular)
     }
     
     func read(id: String) -> Observable<T> {

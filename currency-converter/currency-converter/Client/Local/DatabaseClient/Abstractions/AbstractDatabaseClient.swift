@@ -19,7 +19,7 @@ protocol DatabaseClientRepresentable {
 
 protocol DataCreatable: DatabaseClientRepresentable {
     func create(item: T) -> Observable<Bool>
-    func createAll(items: [T]) -> Observable<[Bool]>
+    func createAll(items: [T]) -> Observable<Bool>
 }
 
 protocol DataReadable: DatabaseClientRepresentable {
