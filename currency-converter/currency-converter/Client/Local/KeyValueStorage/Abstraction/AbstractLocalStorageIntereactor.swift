@@ -8,7 +8,7 @@
 import Foundation
 
 // TODO: Change this class to make common local data source client for UserDefault, KeyChain, Database
-protocol AbstractLocalKVSorageInteractor {
+protocol AbstractLocalKVStorageInteractor {
 //    static var shared: AbstractLocalKVSorageInteractor {get}
     
     func set(key: String, value: Int)
@@ -32,17 +32,17 @@ protocol AbstractLocalKVSorageInteractor {
     func getAnyValue(forKey: String) -> Any?
 }
 
-protocol AbstractLocalDBSorageInteractor {
+protocol AbstractLocalDBStorageInteractor {
 //    static var shared: AbstractLocalDBSorageInteractor {get}
     
-    func create<T: NSObjectProtocol>(item: T) -> Bool
-    func createAll<T>(items: [T]) -> Bool
-    func read<ID, T>(item: ID) -> T
-    func readAll<T>() -> [T]
-    func update<T>(item: T) -> Bool
-    func updateAll<T>(items: [T]) -> Bool
-    func delete<T>(item: T) -> Bool
-    func deleteAll<T>(items: [T]) -> Bool
+    func create<T>(type: T.Type, item: T) -> Bool
+    func createAll<T>(type: T.Type, items: [T]) -> Bool
+    func read<T>(type: T.Type, id: String) -> T
+    func readAll<T>(type: T.Type) -> [T]
+    func update<T>(type: T.Type, item: T) -> Bool
+    func updateAll<T>(type: T.Type, items: [T]) -> Bool
+    func delete<T>(type: T.Type, item: T) -> Bool
+    func deleteAll<T>(type: T.Type, items: [T]) -> Bool
 }
 
-typealias AbstractLocalStorageIntereactor = AbstractLocalKVSorageInteractor & AbstractLocalDBSorageInteractor
+typealias AbstractLocalStorageIntereactor = AbstractLocalKVStorageInteractor & AbstractLocalDBStorageInteractor

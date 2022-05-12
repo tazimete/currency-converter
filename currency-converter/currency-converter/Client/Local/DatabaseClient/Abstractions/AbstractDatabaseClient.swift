@@ -8,31 +8,32 @@
 import Foundation
 import RxSwift
 
-protocol DatabaseRepresentable {
+protocol DatabaseClientRepresentable {
     associatedtype T
     associatedtype ID
     
-    var client: AbstractLocalStorageIntereactor {get}
+    var interactor: AbstractLocalStorageIntereactor {get}
+    var schedular: SchedulerType {get}
     
-    init(client: AbstractLocalStorageIntereactor)
+    init(interactor: AbstractLocalStorageIntereactor, schedular: SchedulerType)
 }
 
-protocol DataCreatable: DatabaseRepresentable {
+protocol DataCreatable: DatabaseClientRepresentable {
     func create(item: T) -> Observable<Bool>
     func createAll(items: [T]) -> Observable<[Bool]>
 }
 
-protocol DataReadable: DatabaseRepresentable {
+protocol DataReadable: DatabaseClientRepresentable {
     func read(id: ID) -> Observable<T>
     func readAll() -> Observable<[T]>
 }
 
-protocol DataUpdatable: DatabaseRepresentable {
+protocol DataUpdatable: DatabaseClientRepresentable {
     func update(item: T) -> Observable<Bool>
     func updateAll(items:[T]) -> Observable<Bool>
 }
 
-protocol DataDeletable: DatabaseRepresentable {
+protocol DataDeletable: DatabaseClientRepresentable {
     func delete(item: T) -> Observable<Bool>
     func deleteAll(items:[T]) -> Observable<Bool>
 }

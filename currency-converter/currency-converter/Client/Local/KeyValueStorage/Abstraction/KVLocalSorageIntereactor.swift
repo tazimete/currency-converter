@@ -8,9 +8,9 @@
 import Foundation
 import UIKit
 
-extension UserDefaults: AbstractLocalKVSorageInteractor {
+extension UserDefaults: AbstractLocalKVStorageInteractor {
     
-    static var shared: AbstractLocalKVSorageInteractor {
+    static var shared: AbstractLocalKVStorageInteractor {
         return standard
     }
     
@@ -88,7 +88,7 @@ extension UserDefaults: AbstractLocalKVSorageInteractor {
 }
 
 
-class KeyValuePair: NSObject{
+class KeyValuePair: Codable {
     let key: String
     let value: Data
     
@@ -98,43 +98,44 @@ class KeyValuePair: NSObject{
     }
 }
 
-extension UserDefaults: AbstractLocalDBSorageInteractor {
-    
-//    static var shared: AbstractLocalDBSorageInteractor {
+extension UserDefaults: AbstractLocalDBStorageInteractor {
+//    typealias T = KeyValuePair
+//    typealias ID = String
+//    static var shared: AbstractLocalDBStorageInteractor {
 //        return UserDefaults.standard
 //    }
 
-    func create<T>(item: T) -> Bool where T: NSObjectProtocol {
+    func create<T>(type: T.Type, item: T) -> Bool {
         let data = item as! KeyValuePair
         self.set(key: data.key, value: data.value)
         return true
     }
 
-    func createAll<T>(items: [T]) -> Bool {
+    func createAll<T>(type: T.Type, items: [T]) -> Bool {
         fatalError("Not Implemented Yet")
     }
 
-    func read<ID, T>(item: ID) -> T {
+    func read<T>(type: T.Type, id: String) -> T {
+        return self.data(forKey: id) as! T
+    }
+
+    func readAll<T>(type: T.Type) -> [T] {
         fatalError("Not Implemented Yet")
     }
 
-    func readAll<T>() -> [T] {
+    func update<T>(type: T.Type, item: T) -> Bool {
         fatalError("Not Implemented Yet")
     }
 
-    func update<T>(item: T) -> Bool {
+    func updateAll<T>(type: T.Type, items: [T]) -> Bool {
         fatalError("Not Implemented Yet")
     }
 
-    func updateAll<T>(items: [T]) -> Bool {
+    func delete<T>(type: T.Type, item: T) -> Bool {
         fatalError("Not Implemented Yet")
     }
 
-    func delete<T>(item: T) -> Bool {
-        fatalError("Not Implemented Yet")
-    }
-
-    func deleteAll<T>(items: [T]) -> Bool {
+    func deleteAll<T>(type: T.Type, items: [T]) -> Bool {
         fatalError("Not Implemented Yet")
     }
 }

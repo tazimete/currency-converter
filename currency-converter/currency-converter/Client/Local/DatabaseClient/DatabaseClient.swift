@@ -9,23 +9,24 @@ import Foundation
 import RxSwift
 
 
-class DatabaseClient: AbstractDatabaseClient {
-    typealias T = AbstractDataModel
-    typealias ID = Int
+class DatabaseClient<I, T>: AbstractDatabaseClient {
+    typealias T = T
+    typealias ID = I
+    typealias ModelType = AbstractDataModel
     
-    let client: AbstractLocalStorageIntereactor
+    let interactor: AbstractLocalStorageIntereactor
+    let schedular: SchedulerType
     
-    required init(client: AbstractLocalStorageIntereactor) {
-        self.client = client
+    required init(interactor: AbstractLocalStorageIntereactor, schedular: SchedulerType) {
+        self.interactor = interactor
+        self.schedular = schedular
     }
     
-    
     func create(item: T) -> Observable<Bool> {
-//        return Observable.create({ observer -> Disposable in
-//            observer.onNext(self.client.create(item: item as! NSObjectProtocol))
-//            return Disposables.create()
-//        })
-        fatalError("Not Implemented Yet")
+        return Observable<Bool>.create({ observer -> Disposable in
+            observer.onNext(self.interactor.create(type: T.self, item: item))
+            return Disposables.create()
+        }).subscribe(on: schedular)
     }
     
     func createAll(items: [T]) -> Observable<[Bool]> {

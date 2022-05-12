@@ -36,7 +36,8 @@ struct KVLocalStorage<Value: Codable> {
             let key = propertyWrapper.key
             let defaultValue = propertyWrapper.defaultValue
              //Read value from storage
-            guard let data = instance.kvContainer.getDataValue(forKey: key) else {
+//            guard let data = instance.kvContainer.getDataValue(forKey: key) else {
+            guard let data = instance.kvContainer.read(type: Optional<Data>.self, id: key) else {
                 // Return defaultValue when no data in storgae
                 return defaultValue
             }
@@ -50,7 +51,7 @@ struct KVLocalStorage<Value: Codable> {
             let key = propertyWrapper.key
             // Convert newValue to data
             let data = try? JSONEncoder().encode(newValue)
-            instance.kvContainer.set(key: key, value: data)
+            instance.kvContainer.create(type: KeyValuePair.self, item: KeyValuePair(key: key, value: data!))
         }
     }
 }
