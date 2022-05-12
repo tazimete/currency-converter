@@ -12,9 +12,9 @@ protocol DatabaseRepresentable {
     associatedtype T
     associatedtype ID
     
-    var client: AbstractLocalSorageIntereactor {get}
+    var client: AbstractLocalStorageIntereactor {get}
     
-    init(client: AbstractLocalSorageIntereactor)
+    init(client: AbstractLocalStorageIntereactor)
 }
 
 protocol DataCreatable: DatabaseRepresentable {

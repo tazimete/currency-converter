@@ -12,7 +12,7 @@ import Foundation
  Base class for our server response
  */
 
-protocol AbstractDataModel: AnyObject {
+protocol AbstractDataModel: NSObjectProtocol {
     var id: Int? {get set}
     
     //dictionary representation of this model 

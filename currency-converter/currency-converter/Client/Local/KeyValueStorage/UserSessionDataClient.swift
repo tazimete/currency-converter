@@ -10,9 +10,9 @@ import Foundation
 
 class UserSessionDataClient: AbstractUserSessionDataClient {
     public static let shared: AbstractUserSessionDataClient = UserSessionDataClient(kvContainer: UserDefaults.shared)
-    public var kvContainer: AbstractLocalSorageIntereactor
+    public var kvContainer: AbstractLocalKVSorageInteractor
     
-    private init(kvContainer: AbstractLocalSorageIntereactor) {
+    private init(kvContainer: AbstractLocalKVSorageInteractor) {
         self.kvContainer = kvContainer
     }
     
@@ -28,8 +28,9 @@ class UserSessionDataClient: AbstractUserSessionDataClient {
     }
 }
 
-class MockUserSessionData: AbstractLocalSorageIntereactor {
-    static var shared: AbstractLocalSorageIntereactor {
+class MockUserSessionData: AbstractLocalKVSorageInteractor {
+    
+    static var shared: AbstractLocalKVSorageInteractor {
         return MockUserSessionData()
     }
     
@@ -48,6 +49,11 @@ class MockUserSessionData: AbstractLocalSorageIntereactor {
     func set(key: String, value: Double) {
         return
     }
+    
+    func set(key: String, value: Bool) {
+        return
+    }
+    
     
     func set(key: String, value: String) {
         return
@@ -79,6 +85,10 @@ class MockUserSessionData: AbstractLocalSorageIntereactor {
     
     func getDoubleValue(forKey: String) -> Double {
         return 0
+    }
+    
+    func getDoubleValue(forKey: String) -> Bool {
+        return true
     }
     
     func getStringValue(forKey: String) -> String? {
