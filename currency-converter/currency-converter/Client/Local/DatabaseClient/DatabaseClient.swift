@@ -11,7 +11,6 @@ import RxSwift
 
 class DatabaseClient<I, T>: AbstractDatabaseClient {
     typealias T = T
-    typealias ID = I
     typealias ModelType = AbstractDataModel
     
     let interactor: AbstractLocalStorageIntereactor
@@ -33,27 +32,45 @@ class DatabaseClient<I, T>: AbstractDatabaseClient {
         fatalError("Not Implemented Yet")
     }
     
-    func read(id: ID) -> Observable<T> {
-        fatalError("Not Implemented Yet")
+    func read(id: String) -> Observable<T> {
+        return Observable<T>.create({ observer -> Disposable in
+            observer.onNext(self.interactor.read(type: T.self, id: id))
+            return Disposables.create()
+        }).subscribe(on: schedular)
     }
     
     func readAll() -> Observable<[T]> {
-        fatalError("Not Implemented Yet")
+        return Observable<[T]>.create({ observer -> Disposable in
+            observer.onNext(self.interactor.readAll(type: T.self))
+            return Disposables.create()
+        }).subscribe(on: schedular)
     }
     
     func update(item: T) -> Observable<Bool> {
-        fatalError("Not Implemented Yet")
+        return Observable<Bool>.create({ observer -> Disposable in
+            observer.onNext(self.interactor.update(type: T.self, item: item))
+            return Disposables.create()
+        }).subscribe(on: schedular)
     }
     
     func updateAll(items: [T]) -> Observable<Bool> {
-        fatalError("Not Implemented Yet")
+        return Observable<Bool>.create({ observer -> Disposable in
+            observer.onNext(self.interactor.updateAll(type: T.self, items: items))
+            return Disposables.create()
+        }).subscribe(on: schedular)
     }
     
     func delete(item: T) -> Observable<Bool> {
-        fatalError("Not Implemented Yet")
+        return Observable<Bool>.create({ observer -> Disposable in
+            observer.onNext(self.interactor.delete(type: T.self, item: item))
+            return Disposables.create()
+        }).subscribe(on: schedular)
     }
     
     func deleteAll(items: [T]) -> Observable<Bool> {
-        fatalError("Not Implemented Yet")
+        return Observable<Bool>.create({ observer -> Disposable in
+            observer.onNext(self.interactor.deleteAll(type: T.self, items: items))
+            return Disposables.create()
+        }).subscribe(on: schedular)
     }
 }

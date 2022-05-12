@@ -10,7 +10,6 @@ import RxSwift
 
 protocol DatabaseClientRepresentable {
     associatedtype T
-    associatedtype ID
     
     var interactor: AbstractLocalStorageIntereactor {get}
     var schedular: SchedulerType {get}
@@ -24,7 +23,7 @@ protocol DataCreatable: DatabaseClientRepresentable {
 }
 
 protocol DataReadable: DatabaseClientRepresentable {
-    func read(id: ID) -> Observable<T>
+    func read(id: String) -> Observable<T>
     func readAll() -> Observable<[T]>
 }
 
