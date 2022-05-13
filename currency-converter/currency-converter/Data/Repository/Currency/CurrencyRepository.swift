@@ -18,11 +18,7 @@ class CurrencyRepository: AbstractCurrencyRepository {
         self.remoteDataSource = remoteDataSource
     }
     
-//    func convert(amount: String, currency: String) -> Observable<CurrencyApiRequest.ItemType> {
-//        return (localDataSource.dbClient as! AbstractCurrencyLocalDataSource).get(amount: amount, currency: currency)
-//    }
-    
-    func convert(amount: String, currency: String) -> Observable<CurrencyApiRequest.ItemType> {
+    func get(amount: String, currency: String) -> Observable<CurrencyApiRequest.ItemType> {
         return (remoteDataSource as! AbstractCurrencyRemoteDataSource).get(amount: amount, currency: currency)
     }
 }
