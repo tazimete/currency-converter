@@ -16,23 +16,23 @@ protocol DatabaseClientRepresentable {
 }
 
 protocol DataCreatable: DatabaseClientRepresentable {
-    func create<T>(item: T) -> Observable<Bool>
-    func createAll<T>(items: [T]) -> Observable<Bool>
+    func create<T>(item: T, type: T.Type) -> Observable<Bool>
+    func createAll<T>(items: [T], type: T.Type) -> Observable<Bool>
 }
 
 protocol DataReadable: DatabaseClientRepresentable {
-    func read<T>(id: String) -> Observable<T>
-    func readAll<T>() -> Observable<[T]>
+    func read<T>(id: String, type: T.Type) -> Observable<T>
+    func readAll<T>(type: T.Type) -> Observable<[T]>
 }
 
 protocol DataUpdatable: DatabaseClientRepresentable {
-    func update<T>(item: T) -> Observable<Bool>
-    func updateAll<T>(items:[T]) -> Observable<Bool>
+    func update<T>(item: T, type: T.Type) -> Observable<Bool>
+    func updateAll<T>(items:[T], type: T.Type) -> Observable<Bool>
 }
 
 protocol DataDeletable: DatabaseClientRepresentable {
-    func delete<T>(item: T) -> Observable<Bool>
-    func deleteAll<T>(items:[T]) -> Observable<Bool>
+    func delete<T>(item: T, type: T.Type) -> Observable<Bool>
+    func deleteAll<T>(items:[T], type: T.Type) -> Observable<Bool>
 }
 
 

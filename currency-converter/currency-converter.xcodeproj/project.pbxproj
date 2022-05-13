@@ -21,6 +21,8 @@
 		FA9CC8CB282E3D9D00E4B791 /* AbstractLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9CC8CA282E3D9D00E4B791 /* AbstractLocalDataSource.swift */; };
 		FA9CC8CD282E4A7000E4B791 /* AbstractCurrencyLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9CC8CC282E4A7000E4B791 /* AbstractCurrencyLocalDataSource.swift */; };
 		FA9CC8CF282E4A7F00E4B791 /* AbstractCurrencyRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9CC8CE282E4A7F00E4B791 /* AbstractCurrencyRemoteDataSource.swift */; };
+		FA9CC8D3282F08DA00E4B791 /* CurrencyLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9CC8D2282F08DA00E4B791 /* CurrencyLocalDataSource.swift */; };
+		FA9CC8D5282F092300E4B791 /* CurrencyRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9CC8D4282F092300E4B791 /* CurrencyRemoteDataSource.swift */; };
 		FAB2A49A282A5D8E00F1F075 /* FirstFiveConversionComissionPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB2A499282A5D8E00F1F075 /* FirstFiveConversionComissionPolicy.swift */; };
 		FAB2A49C282A8D9600F1F075 /* ComissionDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB2A49B282A8D9600F1F075 /* ComissionDependency.swift */; };
 		FAB2A49E282A9AC200F1F075 /* ComissionPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB2A49D282A9AC200F1F075 /* ComissionPolicy.swift */; };
@@ -171,6 +173,8 @@
 		FA9CC8CA282E3D9D00E4B791 /* AbstractLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractLocalDataSource.swift; sourceTree = "<group>"; };
 		FA9CC8CC282E4A7000E4B791 /* AbstractCurrencyLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractCurrencyLocalDataSource.swift; sourceTree = "<group>"; };
 		FA9CC8CE282E4A7F00E4B791 /* AbstractCurrencyRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractCurrencyRemoteDataSource.swift; sourceTree = "<group>"; };
+		FA9CC8D2282F08DA00E4B791 /* CurrencyLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyLocalDataSource.swift; sourceTree = "<group>"; };
+		FA9CC8D4282F092300E4B791 /* CurrencyRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyRemoteDataSource.swift; sourceTree = "<group>"; };
 		FAB2A499282A5D8E00F1F075 /* FirstFiveConversionComissionPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstFiveConversionComissionPolicy.swift; sourceTree = "<group>"; };
 		FAB2A49B282A8D9600F1F075 /* ComissionDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComissionDependency.swift; sourceTree = "<group>"; };
 		FAB2A49D282A9AC200F1F075 /* ComissionPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComissionPolicy.swift; sourceTree = "<group>"; };
@@ -414,6 +418,8 @@
 		FA9CC8D1282E9E9300E4B791 /* Currency */ = {
 			isa = PBXGroup;
 			children = (
+				FA9CC8D2282F08DA00E4B791 /* CurrencyLocalDataSource.swift */,
+				FA9CC8D4282F092300E4B791 /* CurrencyRemoteDataSource.swift */,
 			);
 			path = Currency;
 			sourceTree = "<group>";
@@ -1347,6 +1353,7 @@
 				FAE7E78E282181B70019BCC2 /* CGFloat+Extension.swift in Sources */,
 				FAE7E78B282181B70019BCC2 /* CellConfiguratorFactory.swift in Sources */,
 				FAE7E7B5282181B70019BCC2 /* CurrencyRepository.swift in Sources */,
+				FA9CC8D3282F08DA00E4B791 /* CurrencyLocalDataSource.swift in Sources */,
 				FAE7E7A4282181B70019BCC2 /* Coordinator.swift in Sources */,
 				FAE7E7AD282181B70019BCC2 /* ApiRequest.swift in Sources */,
 				FAE7E7E1282181B80019BCC2 /* AppConfig.swift in Sources */,
@@ -1412,6 +1419,7 @@
 				FAE7E87F282187900019BCC2 /* SkeletonLayerBuilder.swift in Sources */,
 				FAE7E88B282187900019BCC2 /* UIColor+Skeleton.swift in Sources */,
 				FAE7E89E282187900019BCC2 /* UICollectionView+CollectionSkeleton.swift in Sources */,
+				FA9CC8D5282F092300E4B791 /* CurrencyRemoteDataSource.swift in Sources */,
 				FAE7E7A8282181B70019BCC2 /* Parameterizable.swift in Sources */,
 				FAE7E880282187900019BCC2 /* SkeletonFlow.swift in Sources */,
 				FA387B7628267CA800B83C23 /* KVLocalSorageIntereactor.swift in Sources */,
