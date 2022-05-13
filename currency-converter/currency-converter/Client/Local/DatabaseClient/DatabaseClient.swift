@@ -23,56 +23,64 @@ class DatabaseClient<T>: AbstractDatabaseClient {
     
     func create(item: T) -> Observable<Bool> {
         return Observable<Bool>.create({ observer -> Disposable in
-            observer.onNext(self.interactor.create(type: T.self, item: item))
+            let result = self.interactor.create(type: T.self, item: item)
+            observer.onNext(result)
             return Disposables.create()
         }).subscribe(on: schedular)
     }
     
     func createAll(items: [T]) -> Observable<Bool> {
         return Observable<Bool>.create({ observer -> Disposable in
-            observer.onNext(self.interactor.createAll(type: T.self, items: items))
+            let result = self.interactor.createAll(type: T.self, items: items)
+            observer.onNext(result)
             return Disposables.create()
         }).subscribe(on: schedular)
     }
     
     func read(id: String) -> Observable<T> {
         return Observable<T>.create({ observer -> Disposable in
-            observer.onNext(self.interactor.read(type: T.self, id: id))
+            let result = self.interactor.read(type: T.self, id: id)
+            observer.onNext(result)
             return Disposables.create()
         }).subscribe(on: schedular)
     }
     
     func readAll() -> Observable<[T]> {
         return Observable<[T]>.create({ observer -> Disposable in
-            observer.onNext(self.interactor.readAll(type: T.self))
+            let result = self.interactor.readAll(type: T.self)
+            observer.onNext(result)
             return Disposables.create()
         }).subscribe(on: schedular)
     }
     
     func update(item: T) -> Observable<Bool> {
         return Observable<Bool>.create({ observer -> Disposable in
-            observer.onNext(self.interactor.update(type: T.self, item: item))
+            let result = self.interactor.update(type: T.self, item: item)
+            observer.onNext(result)
             return Disposables.create()
         }).subscribe(on: schedular)
     }
     
     func updateAll(items: [T]) -> Observable<Bool> {
         return Observable<Bool>.create({ observer -> Disposable in
-            observer.onNext(self.interactor.updateAll(type: T.self, items: items))
+            let result = self.interactor.updateAll(type: T.self, items: items)
+            observer.onNext(result)
             return Disposables.create()
         }).subscribe(on: schedular)
     }
     
     func delete(item: T) -> Observable<Bool> {
         return Observable<Bool>.create({ observer -> Disposable in
-            observer.onNext(self.interactor.delete(type: T.self, item: item))
+            let result = self.interactor.delete(type: T.self, item: item)
+            observer.onNext(result)
             return Disposables.create()
         }).subscribe(on: schedular)
     }
     
     func deleteAll(items: [T]) -> Observable<Bool> {
         return Observable<Bool>.create({ observer -> Disposable in
-            observer.onNext(self.interactor.deleteAll(type: T.self, items: items))
+            let result = self.interactor.deleteAll(type: T.self, items: items)
+            observer.onNext(result)
             return Disposables.create()
         }).subscribe(on: schedular)
     }

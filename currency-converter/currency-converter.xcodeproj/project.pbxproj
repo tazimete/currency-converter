@@ -17,6 +17,10 @@
 		FA387B78282689DC00B83C23 /* UserSessionDataClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA387B77282689DC00B83C23 /* UserSessionDataClient.swift */; };
 		FA6C62C9282BCB4D00D42413 /* AbstractDatabaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6C62C8282BCB4D00D42413 /* AbstractDatabaseClient.swift */; };
 		FA6C62CB282BD9E000D42413 /* AbstractUserSessionDataClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6C62CA282BD9E000D42413 /* AbstractUserSessionDataClient.swift */; };
+		FA9CC8C9282E3CAA00E4B791 /* AbstractionRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9CC8C8282E3CAA00E4B791 /* AbstractionRemoteDataSource.swift */; };
+		FA9CC8CB282E3D9D00E4B791 /* AbstractLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9CC8CA282E3D9D00E4B791 /* AbstractLocalDataSource.swift */; };
+		FA9CC8CD282E4A7000E4B791 /* AbstractCurrencyLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9CC8CC282E4A7000E4B791 /* AbstractCurrencyLocalDataSource.swift */; };
+		FA9CC8CF282E4A7F00E4B791 /* AbstractCurrencyRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9CC8CE282E4A7F00E4B791 /* AbstractCurrencyRemoteDataSource.swift */; };
 		FAB2A49A282A5D8E00F1F075 /* FirstFiveConversionComissionPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB2A499282A5D8E00F1F075 /* FirstFiveConversionComissionPolicy.swift */; };
 		FAB2A49C282A8D9600F1F075 /* ComissionDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB2A49B282A8D9600F1F075 /* ComissionDependency.swift */; };
 		FAB2A49E282A9AC200F1F075 /* ComissionPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB2A49D282A9AC200F1F075 /* ComissionPolicy.swift */; };
@@ -163,6 +167,10 @@
 		FA387B77282689DC00B83C23 /* UserSessionDataClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSessionDataClient.swift; sourceTree = "<group>"; };
 		FA6C62C8282BCB4D00D42413 /* AbstractDatabaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractDatabaseClient.swift; sourceTree = "<group>"; };
 		FA6C62CA282BD9E000D42413 /* AbstractUserSessionDataClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractUserSessionDataClient.swift; sourceTree = "<group>"; };
+		FA9CC8C8282E3CAA00E4B791 /* AbstractionRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractionRemoteDataSource.swift; sourceTree = "<group>"; };
+		FA9CC8CA282E3D9D00E4B791 /* AbstractLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractLocalDataSource.swift; sourceTree = "<group>"; };
+		FA9CC8CC282E4A7000E4B791 /* AbstractCurrencyLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractCurrencyLocalDataSource.swift; sourceTree = "<group>"; };
+		FA9CC8CE282E4A7F00E4B791 /* AbstractCurrencyRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractCurrencyRemoteDataSource.swift; sourceTree = "<group>"; };
 		FAB2A499282A5D8E00F1F075 /* FirstFiveConversionComissionPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstFiveConversionComissionPolicy.swift; sourceTree = "<group>"; };
 		FAB2A49B282A8D9600F1F075 /* ComissionDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComissionDependency.swift; sourceTree = "<group>"; };
 		FAB2A49D282A9AC200F1F075 /* ComissionPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComissionPolicy.swift; sourceTree = "<group>"; };
@@ -374,6 +382,40 @@
 				FA6C62C8282BCB4D00D42413 /* AbstractDatabaseClient.swift */,
 			);
 			path = Abstractions;
+			sourceTree = "<group>";
+		};
+		FA9CC8C6282E3C4100E4B791 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				FA9CC8C8282E3CAA00E4B791 /* AbstractionRemoteDataSource.swift */,
+				FA9CC8CA282E3D9D00E4B791 /* AbstractLocalDataSource.swift */,
+				FA9CC8C7282E3C5E00E4B791 /* Currency */,
+			);
+			path = DataSource;
+			sourceTree = "<group>";
+		};
+		FA9CC8C7282E3C5E00E4B791 /* Currency */ = {
+			isa = PBXGroup;
+			children = (
+				FA9CC8CC282E4A7000E4B791 /* AbstractCurrencyLocalDataSource.swift */,
+				FA9CC8CE282E4A7F00E4B791 /* AbstractCurrencyRemoteDataSource.swift */,
+			);
+			path = Currency;
+			sourceTree = "<group>";
+		};
+		FA9CC8D0282E9E8500E4B791 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				FA9CC8D1282E9E9300E4B791 /* Currency */,
+			);
+			path = DataSource;
+			sourceTree = "<group>";
+		};
+		FA9CC8D1282E9E9300E4B791 /* Currency */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Currency;
 			sourceTree = "<group>";
 		};
 		FAB2A498282A5D7800F1F075 /* Commission */ = {
@@ -608,6 +650,7 @@
 		FAE7E6FC282181B40019BCC2 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				FA9CC8D0282E9E8500E4B791 /* DataSource */,
 				FAE7E6FD282181B40019BCC2 /* Repository */,
 				FAE7E702282181B40019BCC2 /* Model */,
 				FAE7E704282181B40019BCC2 /* Request */,
@@ -676,6 +719,7 @@
 		FAE7E710282181B50019BCC2 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				FA9CC8C6282E3C4100E4B791 /* DataSource */,
 				FAE7E711282181B50019BCC2 /* Repository */,
 				FAE7E717282181B50019BCC2 /* Entity */,
 				FAE7E71B282181B50019BCC2 /* Usecase */,
@@ -1296,6 +1340,7 @@
 				FAE7E7C6282181B70019BCC2 /* UIColor+Extension.swift in Sources */,
 				FAE7E896282187900019BCC2 /* SkeletonReusableCell.swift in Sources */,
 				FAE7E7A9282181B70019BCC2 /* NetworkOperation.swift in Sources */,
+				FA9CC8CF282E4A7F00E4B791 /* AbstractCurrencyRemoteDataSource.swift in Sources */,
 				FA6C62C9282BCB4D00D42413 /* AbstractDatabaseClient.swift in Sources */,
 				FAE7E8A4282187900019BCC2 /* RecursiveProtocol.swift in Sources */,
 				FAE7E7BA282181B70019BCC2 /* CurrencyConverterParams.swift in Sources */,
@@ -1357,6 +1402,7 @@
 				FAE7E7C4282181B70019BCC2 /* AbstractUsecase.swift in Sources */,
 				FAE7E7B0282181B70019BCC2 /* AbstractDownloader.swift in Sources */,
 				FAE7E89A282187900019BCC2 /* SkeletonCollectionDelegate.swift in Sources */,
+				FA9CC8CD282E4A7000E4B791 /* AbstractCurrencyLocalDataSource.swift in Sources */,
 				FAE7E7AF282181B70019BCC2 /* DownloadDataParser.swift in Sources */,
 				FAE7E88E282187900019BCC2 /* UITableView+VisibleSections.swift in Sources */,
 				FAE7E7AA282181B70019BCC2 /* QueueManager.swift in Sources */,
@@ -1372,6 +1418,7 @@
 				FAB2A49E282A9AC200F1F075 /* ComissionPolicy.swift in Sources */,
 				FAE7E7CE282181B80019BCC2 /* AbstractViewModel.swift in Sources */,
 				FAE7E7B1282181B70019BCC2 /* DownloaderClient.swift in Sources */,
+				FA9CC8CB282E3D9D00E4B791 /* AbstractLocalDataSource.swift in Sources */,
 				FAE7E89B282187900019BCC2 /* UITableView+CollectionSkeleton.swift in Sources */,
 				FAE7E7A1282181B70019BCC2 /* HomeCoordinator.swift in Sources */,
 				FAE7E7D3282181B80019BCC2 /* BaseViewController.swift in Sources */,
@@ -1381,6 +1428,7 @@
 				FAE7E7D0282181B80019BCC2 /* MyBalanceViewModel.swift in Sources */,
 				FAE7E7A5282181B70019BCC2 /* AbstractURLSession.swift in Sources */,
 				FAE7E7D9282181B80019BCC2 /* SearchItemCell.swift in Sources */,
+				FA9CC8C9282E3CAA00E4B791 /* AbstractionRemoteDataSource.swift in Sources */,
 				FAE7E899282187900019BCC2 /* CollectionSkeletonProtocol.swift in Sources */,
 				FAE7E7AE282181B70019BCC2 /* Downloader.swift in Sources */,
 				FAE7E884282187900019BCC2 /* Recoverable.swift in Sources */,
