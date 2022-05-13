@@ -9,14 +9,16 @@ import Foundation
 import RxSwift
 
 /* This is Currency repository class implementation from AbstractCurrencyRepository. Which will be used to get currency related data from api client/server response*/
-class CurrencyRepository: AbstractCurrencyRepository {
-    let apiClient: AbstractApiClient
+class CurrencyRepository<T>: AbstractCurrencyRepository {
+    let localDataSource: AbstractLocalDataSource
+    let remoteDataSource: AbstractRemoteDataSource
     
-    init(apiClient: AbstractApiClient = APIClient.shared) {
-        self.apiClient = apiClient
+    init(localDataSource: AbstractLocalDataSource, remoteDataSource: AbstractRemoteDataSource) {
+        self.localDataSource = localDataSource
+        self.remoteDataSource = remoteDataSource
     }
     
     func convert(amount: String, currency: String) -> Observable<CurrencyApiRequest.ItemType> {
-        return apiClient.send(apiRequest: CurrencyApiRequest.convert(params: CurrencyConverterParams(amount: amount, currency: currency)), type: CurrencyApiRequest.ItemType.self)
+//        return apiClient.send(apiRequest: CurrencyApiRequest.convert(params: CurrencyConverterParams(amount: amount, currency: currency)), type: CurrencyApiRequest.ItemType.self)
     }
 }

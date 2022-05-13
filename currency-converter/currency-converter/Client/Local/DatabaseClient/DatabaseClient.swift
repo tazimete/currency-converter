@@ -9,10 +9,10 @@ import Foundation
 import RxSwift
 
 
-class DatabaseClient<T>: AbstractDatabaseClient {
-    typealias T = T
-    typealias ModelType = AbstractDataModel
+class DatabaseClient: AbstractDatabaseClient {
+//    typealias T = T
     
+    static let shared = DatabaseClient(interactor: UserDefaults.shared as! AbstractLocalDBStorageInteractor, schedular: ConcurrentDispatchQueueScheduler(qos: .utility))
     let interactor: AbstractLocalStorageIntereactor
     let schedular: SchedulerType
     
@@ -21,7 +21,7 @@ class DatabaseClient<T>: AbstractDatabaseClient {
         self.schedular = schedular
     }
     
-    func create(item: T) -> Observable<Bool> {
+    func create<T>(item: T) -> Observable<Bool> {
         return Observable<Bool>.create({ observer -> Disposable in
             let result = self.interactor.create(type: T.self, item: item)
             observer.onNext(result)
@@ -29,7 +29,7 @@ class DatabaseClient<T>: AbstractDatabaseClient {
         }).subscribe(on: schedular)
     }
     
-    func createAll(items: [T]) -> Observable<Bool> {
+    func createAll<T>(items: [T]) -> Observable<Bool> {
         return Observable<Bool>.create({ observer -> Disposable in
             let result = self.interactor.createAll(type: T.self, items: items)
             observer.onNext(result)
@@ -37,7 +37,7 @@ class DatabaseClient<T>: AbstractDatabaseClient {
         }).subscribe(on: schedular)
     }
     
-    func read(id: String) -> Observable<T> {
+    func read<T>(id: String) -> Observable<T> {
         return Observable<T>.create({ observer -> Disposable in
             let result = self.interactor.read(type: T.self, id: id)
             observer.onNext(result)
@@ -45,7 +45,7 @@ class DatabaseClient<T>: AbstractDatabaseClient {
         }).subscribe(on: schedular)
     }
     
-    func readAll() -> Observable<[T]> {
+    func readAll<T>() -> Observable<[T]> {
         return Observable<[T]>.create({ observer -> Disposable in
             let result = self.interactor.readAll(type: T.self)
             observer.onNext(result)
@@ -53,7 +53,7 @@ class DatabaseClient<T>: AbstractDatabaseClient {
         }).subscribe(on: schedular)
     }
     
-    func update(item: T) -> Observable<Bool> {
+    func update<T>(item: T) -> Observable<Bool> {
         return Observable<Bool>.create({ observer -> Disposable in
             let result = self.interactor.update(type: T.self, item: item)
             observer.onNext(result)
@@ -61,7 +61,7 @@ class DatabaseClient<T>: AbstractDatabaseClient {
         }).subscribe(on: schedular)
     }
     
-    func updateAll(items: [T]) -> Observable<Bool> {
+    func updateAll<T>(items: [T]) -> Observable<Bool> {
         return Observable<Bool>.create({ observer -> Disposable in
             let result = self.interactor.updateAll(type: T.self, items: items)
             observer.onNext(result)
@@ -69,7 +69,7 @@ class DatabaseClient<T>: AbstractDatabaseClient {
         }).subscribe(on: schedular)
     }
     
-    func delete(item: T) -> Observable<Bool> {
+    func delete<T>(item: T) -> Observable<Bool> {
         return Observable<Bool>.create({ observer -> Disposable in
             let result = self.interactor.delete(type: T.self, item: item)
             observer.onNext(result)
@@ -77,7 +77,7 @@ class DatabaseClient<T>: AbstractDatabaseClient {
         }).subscribe(on: schedular)
     }
     
-    func deleteAll(items: [T]) -> Observable<Bool> {
+    func deleteAll<T>(items: [T]) -> Observable<Bool> {
         return Observable<Bool>.create({ observer -> Disposable in
             let result = self.interactor.deleteAll(type: T.self, items: items)
             observer.onNext(result)

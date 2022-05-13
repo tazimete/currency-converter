@@ -10,5 +10,5 @@ import Foundation
 
 /* This base remote datasource of all remote datasource will be used in this project. It will have a base api client to get data from server. */
 protocol AbstractRemoteDataSource: AnyObject {
-    var repository: AbstractApiClient {get}
+    var apiClient: AbstractApiClient {get}
 }
