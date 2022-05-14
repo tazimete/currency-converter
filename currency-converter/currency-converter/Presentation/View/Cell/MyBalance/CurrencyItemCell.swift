@@ -23,10 +23,10 @@ class CurrencyItemCell: UICollectionViewCell, ConfigurableCell {
         return view
     }()
     
-    let lblTitle: UILabel = {
+    let titleLabel: UILabel = {
         let label = UILabel(frame: .zero, setAdaptive: true)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = AppConfig.shared.getTheme().getColors().textColorLight
+        label.textColor = AppConfig.shared.getTheme().getColors().textColorDark
         label.font = UIFont.systemFont(ofSize: 13)
         label.textAlignment = .center
         label.numberOfLines = 1
@@ -48,20 +48,20 @@ class CurrencyItemCell: UICollectionViewCell, ConfigurableCell {
     
     public func setupViews() {
         contentView.addSubview(containerView)
-        containerView.addSubview(lblTitle)
+        containerView.addSubview(titleLabel)
         
         self.backgroundColor = .clear
         self.contentView.backgroundColor = .clear
         
         let contentViewConstraint = [AdaptiveLayoutConstraint(item: containerView, attribute: .left, relatedBy: .equal, toItem: contentView, attribute: .left, multiplier: 1, constant: 0, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: containerView, attribute: .right, relatedBy: .equal, toItem: contentView, attribute: .right, multiplier: 1, constant: 0, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: containerView, attribute: .top, relatedBy: .equal, toItem: contentView, attribute: .top, multiplier: 1, constant: 0, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: containerView, attribute: .bottom, relatedBy: .equal, toItem: contentView, attribute: .bottom, multiplier: 1, constant: 0, setAdaptiveLayout: true)]
         
-        let lblTitleConstraint = [AdaptiveLayoutConstraint(item: lblTitle, attribute: .leading, relatedBy: .equal, toItem: containerView, attribute: .leading, multiplier: 1, constant: 5, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: lblTitle, attribute: .trailing, relatedBy: .equal, toItem: containerView, attribute: .trailing, multiplier: 1, constant: 5, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: lblTitle, attribute: .centerY, relatedBy: .equal, toItem: containerView, attribute: .centerY, multiplier: 1, constant: 0, setAdaptiveLayout: true)]
+        let lblTitleConstraint = [AdaptiveLayoutConstraint(item: titleLabel, attribute: .leading, relatedBy: .equal, toItem: containerView, attribute: .leading, multiplier: 1, constant: 5, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: titleLabel, attribute: .trailing, relatedBy: .equal, toItem: containerView, attribute: .trailing, multiplier: 1, constant: 5, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: titleLabel, attribute: .centerY, relatedBy: .equal, toItem: containerView, attribute: .centerY, multiplier: 1, constant: 0, setAdaptiveLayout: true)]
 
         NSLayoutConstraint.activate(contentViewConstraint + lblTitleConstraint)
     }
     
     func configure(data: AbstractCellViewModel) {
         AppLogger.debug("cell view model = \(data.title), \(data.thumbnail)")
-        lblTitle.text = data.title
+        titleLabel.text = "\(data.title ?? "")"
     }
 }

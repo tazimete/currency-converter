@@ -12,11 +12,11 @@ import Foundation
  Base class for our server response
  */
 
-protocol AbstractDataModel: NSObjectProtocol {
+protocol AbstractDataModel {
     var id: Int? {get set}
     
     //dictionary representation of this model 
-    var asDictionary : [String: Any]? {get}
-    var asCellViewModel : AbstractCellViewModel? {get}
+    var asDictionary : [String: Any] {get}
+    var asCellViewModel : AbstractCellViewModel {get}
 }
 

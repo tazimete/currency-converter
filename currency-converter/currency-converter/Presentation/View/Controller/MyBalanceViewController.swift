@@ -12,6 +12,7 @@ import RxCocoa
 class MyBalanceViewController: BaseViewController {
     // MARK: Non UI Proeprties
     public var myBalanceViewModel: AbstractMyBalanceViewModel!
+    private let currencyListRelay: BehaviorRelay<[Currency]> = BehaviorRelay<[Currency]>(value: [])
     private let currencyConverterTrigger = PublishSubject<MyBalanceViewModel.CurrencyConverterInput>()
     
     // MARK: UI Proeprties
@@ -20,7 +21,7 @@ class MyBalanceViewController: BaseViewController {
         layout.scrollDirection = .horizontal
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .clear
+        collectionView.backgroundColor = .white
         collectionView.isUserInteractionEnabled = true
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.showsHorizontalScrollIndicator = false
@@ -39,19 +40,7 @@ class MyBalanceViewController: BaseViewController {
         
         return collectionView
     }()
-    
-    let lblNoData: UILabel = {
-        let label = UILabel()
-        label.text = "No data to show, Plz search by tapping on search button in top bar."
-        label.textColor = .darkGray
-        label.font = UIFont.boldSystemFont(ofSize: 20)
-        label.textAlignment = .center
-        label.numberOfLines = 0
-        label.isSkeletonable = false
-        label.skeletonLineSpacing = 10
-        label.multilineSpacing = 10
-        return label
-    }()
+
 
     // MARK: Constructors
     init(viewModel: AbstractMyBalanceViewModel) {
@@ -70,15 +59,19 @@ class MyBalanceViewController: BaseViewController {
     // MARK: Overrriden Methods
     override func initView() {
         super.initView()
-        //setup tableview
+        //setup view
         view.addSubview(currencyListView)
+        view.backgroundColor = .white
         
-        let currencyListViewConstraint = [AdaptiveLayoutConstraint(item: currencyListView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 10, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyListView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: -10, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyListView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 10, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyListView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 30, setAdaptiveLayout: true)]
+        let currencyListViewConstraint = [AdaptiveLayoutConstraint(item: currencyListView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyListView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyListView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: topBarHeight + 30, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyListView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 30, setAdaptiveLayout: true)]
 
         NSLayoutConstraint.activate(currencyListViewConstraint)
         
-        //table view
+        //collection view
+        observeCurrencyItems()
         onTapTableviewCell()
+        
+        currencyListRelay.accept([Currency(amount: "1000", title: "USD"), Currency(amount: "100", title: "EURO"), Currency(amount: "100", title: "JPY"), Currency(amount: "100", title: "TK")])
     }
     
     override func initNavigationBar() {
@@ -136,24 +129,24 @@ class MyBalanceViewController: BaseViewController {
     }
     
     public func convertCurrency(amount: String, currency: String) {
-        hideNoDataMessageView()
         currencyConverterTrigger.onNext(MyBalanceViewModel.CurrencyConverterInput(amount: amount, currency: currency))
     }
     
-    private func hideNoDataMessageView() {
-        lblNoData.isHidden = true
+    public func observeCurrencyItems() {
+        currencyListRelay.observe(on: MainScheduler.instance)
+            .bind(to: currencyListView.rx.items) { [weak self] collectionView, row, model in
+                guard let weakSelf = self else {
+                    return UICollectionViewCell()
+                }
+                
+                return weakSelf.populateCurrencyViewCell(viewModel: model.asCellViewModel, indexPath: IndexPath(row: row, section: 0), collectionView: collectionView)
+            }.disposed(by: disposeBag)
     }
     
-    //populate table view cell
-    private func populateTableViewCell(viewModel: AbstractCellViewModel, indexPath: IndexPath, tableView: UITableView) -> UITableViewCell {
-        var item: CellConfigurator = ShimmerItemCellConfig.init(item: CurrencyCellViewModel())
-        
-        // check actual data exists or not, to hide shimmer cell
-        if viewModel.id != nil {
-            item = SearchItemCellConfig.init(item: viewModel)
-        }
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: type(of: item).reuseId, for: indexPath)
+    //populate collection view cell
+    private func populateCurrencyViewCell(viewModel: AbstractCellViewModel, indexPath: IndexPath, collectionView: UICollectionView) -> UICollectionViewCell {
+        let item: CellConfigurator = CurrencyItemCellConfig.init(item: viewModel)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: type(of: item).reuseId, for: indexPath)
         item.configure(cell: cell)
         
         return cell

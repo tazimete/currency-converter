@@ -8,7 +8,8 @@
 import Foundation
 
 /* Currency entity of search response */
-struct Currency: Codable {
+struct Currency: AbstractDataModel, Codable {
+    var id: Int?
     public let amount: String?
     public let title: String?
     
@@ -20,6 +21,10 @@ struct Currency: Codable {
     enum CodingKeys: String, CodingKey {
         case amount = "amount"
         case title = "currency"
+    }
+    
+    public var asDictionary : [String: Any] {
+        return [CodingKeys.amount.rawValue: amount ?? "", CodingKeys.title.rawValue: title ?? ""]
     }
     
     public var asCellViewModel: AbstractCellViewModel {
