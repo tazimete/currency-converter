@@ -32,6 +32,7 @@
 		FAB726CA2820F85F0061A22E /* currency_converterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB726C92820F85F0061A22E /* currency_converterTests.swift */; };
 		FAB726D42820F85F0061A22E /* currency_converterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB726D32820F85F0061A22E /* currency_converterUITests.swift */; };
 		FAB726D62820F85F0061A22E /* currency_converterUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB726D52820F85F0061A22E /* currency_converterUITestsLaunchTests.swift */; };
+		FAE7D4802830673600F80C20 /* CurrencyItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7D47F2830673600F80C20 /* CurrencyItemCell.swift */; };
 		FAE7E75A282181B70019BCC2 /* AppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E67F282181B30019BCC2 /* AppLogger.swift */; };
 		FAE7E78A282181B70019BCC2 /* GenericCellComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E6BE282181B30019BCC2 /* GenericCellComponents.swift */; };
 		FAE7E78B282181B70019BCC2 /* CellConfiguratorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E6BF282181B30019BCC2 /* CellConfiguratorFactory.swift */; };
@@ -188,6 +189,7 @@
 		FAB726CF2820F85F0061A22E /* currency-converterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "currency-converterUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAB726D32820F85F0061A22E /* currency_converterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = currency_converterUITests.swift; sourceTree = "<group>"; };
 		FAB726D52820F85F0061A22E /* currency_converterUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = currency_converterUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		FAE7D47F2830673600F80C20 /* CurrencyItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyItemCell.swift; sourceTree = "<group>"; };
 		FAE7E67F282181B30019BCC2 /* AppLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppLogger.swift; sourceTree = "<group>"; };
 		FAE7E6BE282181B30019BCC2 /* GenericCellComponents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericCellComponents.swift; sourceTree = "<group>"; };
 		FAE7E6BF282181B30019BCC2 /* CellConfiguratorFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellConfiguratorFactory.swift; sourceTree = "<group>"; };
@@ -892,6 +894,7 @@
 			children = (
 				FAE7E749282181B60019BCC2 /* SearchItemCell.swift */,
 				FAE7E74A282181B60019BCC2 /* SearchShimmerCell.swift */,
+				FAE7D47F2830673600F80C20 /* CurrencyItemCell.swift */,
 			);
 			path = MyBalance;
 			sourceTree = "<group>";
@@ -1341,6 +1344,7 @@
 				FAE7E898282187900019BCC2 /* SkeletonCollectionDataSource.swift in Sources */,
 				FAE7E88F282187900019BCC2 /* UIView+IBInspectable.swift in Sources */,
 				FAE7E7DA282181B80019BCC2 /* SearchShimmerCell.swift in Sources */,
+				FAE7D4802830673600F80C20 /* CurrencyItemCell.swift in Sources */,
 				FAE7E7BE282181B70019BCC2 /* AbstractRepository.swift in Sources */,
 				FAE7E7BF282181B70019BCC2 /* AbstractCurrencyRepository.swift in Sources */,
 				FAE7E7C6282181B70019BCC2 /* UIColor+Extension.swift in Sources */,

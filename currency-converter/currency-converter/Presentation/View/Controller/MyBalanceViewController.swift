@@ -15,18 +15,29 @@ class MyBalanceViewController: BaseViewController {
     private let currencyConverterTrigger = PublishSubject<MyBalanceViewModel.CurrencyConverterInput>()
     
     // MARK: UI Proeprties
-    private lazy var tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.separatorStyle = .none
-        tableView.separatorInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-        tableView.showsHorizontalScrollIndicator = false
-        tableView.showsVerticalScrollIndicator = false
+    public lazy var currencyListView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .clear
+        collectionView.isUserInteractionEnabled = true
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.contentInset = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
+        collectionView.isPagingEnabled = false
+        collectionView.clipsToBounds = true
+        
+        if #available(iOS 11.0, *) {
+          collectionView.contentInsetAdjustmentBehavior = .never
+        }
         
         //cell registration
-        tableView.register(SearchItemCell.self, forCellReuseIdentifier: SearchItemCellConfig.reuseId)
-        tableView.register(SearchShimmerCell.self, forCellReuseIdentifier: ShimmerItemCellConfig.reuseId)
-        return tableView
+        collectionView.rx.setDelegate(self).disposed(by: self.disposeBag)
+        collectionView.register(CurrencyItemCell.self, forCellWithReuseIdentifier: CurrencyItemCellConfig.reuseId)
+        
+        return collectionView
     }()
     
     let lblNoData: UILabel = {
@@ -60,30 +71,14 @@ class MyBalanceViewController: BaseViewController {
     override func initView() {
         super.initView()
         //setup tableview
-        view.addSubview(tableView)
-        view.addSubview(lblNoData)
+        view.addSubview(currencyListView)
         
-        //set anchor
-        tableView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: view.frame.width, height: 0, enableInsets: true)
-        lblNoData.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: view.frame.width, height: 0, enableInsets: true)
+        let currencyListViewConstraint = [AdaptiveLayoutConstraint(item: currencyListView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 10, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyListView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: -10, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyListView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 10, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyListView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 30, setAdaptiveLayout: true)]
+
+        NSLayoutConstraint.activate(currencyListViewConstraint)
         
         //table view
         onTapTableviewCell()
-    }
-    
-    //when theme change, we can also define dark mode color option in color asse
-    override public func applyDarkTheme() {
-        navigationController?.navigationBar.backgroundColor = .lightGray
-        tableView.backgroundColor = .black
-        self.navigationItem.rightBarButtonItem?.tintColor = .lightGray
-        tableView.reloadData()
-    }
-    
-    override public func applyNormalTheme() {
-        navigationController?.navigationBar.backgroundColor = .white
-        tableView.backgroundColor = .white
-        self.navigationItem.rightBarButtonItem?.tintColor = .black
-        tableView.reloadData()
     }
     
     override func initNavigationBar() {
@@ -110,7 +105,8 @@ class MyBalanceViewController: BaseViewController {
 //                return weakSelf.populateTableViewCell(viewModel: model.asCellViewModel, indexPath: IndexPath(row: row, section: 0), tableView: tableView)
 //            }.disposed(by: disposeBag)
         
-        currencyConverterOutput.currency.observe(on: MainScheduler.instance)
+        currencyConverterOutput.currency
+            .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] response in
                 AppLogger.info("\(response)")
                 guard let weakSelf = self, let currencyRespone = response else {
@@ -122,9 +118,9 @@ class MyBalanceViewController: BaseViewController {
             }).disposed(by: disposeBag)
         
         // detect error
-        currencyConverterOutput.errorTracker.observe(on: MainScheduler.instance)
+        currencyConverterOutput.errorTracker
+            .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] error in
-                
                 guard let weakSelf = self, let error = error else {
                     return
                 }
@@ -166,13 +162,12 @@ class MyBalanceViewController: BaseViewController {
     // MARK: Actions
     private func onTapTableviewCell() {
         Observable
-            .zip(tableView.rx.itemSelected, tableView.rx.modelSelected(Currency.self))
+            .zip(currencyListView.rx.itemSelected, currencyListView.rx.modelSelected(Currency.self))
             .bind { [weak self] indexPath, model in
                 guard let weakSelf = self else {
                     return
                 }
                 
-                weakSelf.tableView.deselectRow(at: indexPath, animated: true)
                 AppLogger.debug(" Selected " + (model.title ?? "") + " at \(indexPath)")
             }
             .disposed(by: disposeBag)
