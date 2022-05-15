@@ -16,9 +16,21 @@ class MyBalanceViewController: BaseViewController {
     private let currencyConverterTrigger = PublishSubject<MyBalanceViewModel.CurrencyConverterInput>()
     
     // MARK: UI Proeprties
-    public lazy var currencyListView: UICollectionView = {
+    let balanceTitleLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false 
+        label.text = "My Balances"
+        label.textColor = .darkGray
+        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.textAlignment = .left
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    lazy var currencyListView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
+        layout.itemSize = CGSize(width: 100, height: 40)
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .white
@@ -60,18 +72,28 @@ class MyBalanceViewController: BaseViewController {
     override func initView() {
         super.initView()
         //setup view
-        view.addSubview(currencyListView)
         view.backgroundColor = .white
-        
-        let currencyListViewConstraint = [AdaptiveLayoutConstraint(item: currencyListView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyListView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyListView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: topBarHeight + 30, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyListView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 30, setAdaptiveLayout: true)]
-
-        NSLayoutConstraint.activate(currencyListViewConstraint)
         
         //collection view
         observeCurrencyItems()
         onTapTableviewCell()
         
         currencyListRelay.accept([Currency(amount: "1000", title: "USD"), Currency(amount: "100", title: "EURO"), Currency(amount: "100", title: "JPY"), Currency(amount: "100", title: "TK")])
+    }
+    
+    override func addSubviews() {
+        addBalanceView()
+    }
+    
+    func addBalanceView() {
+        view.addSubview(currencyListView)
+        view.addSubview(balanceTitleLabel)
+        
+        let balanceTitleLabelConstraint = [AdaptiveLayoutConstraint(item: balanceTitleLabel, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 10, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: balanceTitleLabel, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: balanceTitleLabel, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: topBarHeight, setAdaptiveLayout: true)]
+        
+        let currencyListViewConstraint = [AdaptiveLayoutConstraint(item: currencyListView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyListView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyListView, attribute: .top, relatedBy: .equal, toItem: balanceTitleLabel, attribute: .bottom, multiplier: 1, constant: 5, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyListView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 30, setAdaptiveLayout: true)]
+
+        NSLayoutConstraint.activate(balanceTitleLabelConstraint + currencyListViewConstraint)
     }
     
     override func initNavigationBar() {
@@ -199,4 +221,3 @@ class MyBalanceViewController: BaseViewController {
         self.present(alertController, animated: true, completion: nil)
     }
 }
-

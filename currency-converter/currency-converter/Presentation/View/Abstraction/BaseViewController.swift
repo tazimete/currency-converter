@@ -36,7 +36,7 @@ public class BaseViewController: UIViewController, UIScrollViewDelegate, Storybo
         
         initView()
         
-        addSubview()
+        addSubviews()
         addConstraints()
         
         setDataSource()
@@ -79,7 +79,7 @@ public class BaseViewController: UIViewController, UIScrollViewDelegate, Storybo
     }
     
     // add its subview 
-    public func addSubview() {
+    public func addSubviews() {
         
     }
     
