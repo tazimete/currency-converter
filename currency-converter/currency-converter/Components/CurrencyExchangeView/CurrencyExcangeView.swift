@@ -12,11 +12,11 @@ import RxCocoa
 
 class CurrencyExcangeView: UIView {
     private let disposeBag = DisposeBag()
-    private let navigationListRelay: BehaviorRelay<[Currency]> = BehaviorRelay<[Currency]>(value: [])
+    private let currencyListRelay: BehaviorRelay<[Currency]> = BehaviorRelay<[Currency]>(value: [])
     public let itemTapHandler: PublishSubject<Currency> = PublishSubject<Currency>()
     public var navigationItems: [Currency]! {
         didSet{
-            self.navigationListRelay.accept(navigationItems)
+            self.currencyListRelay.accept(navigationItems)
         }
     }
     
@@ -30,7 +30,31 @@ class CurrencyExcangeView: UIView {
         return view
     }()
     
-    public lazy var navigationListView: UICollectionView = {
+    let titleLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Sell"
+        label.textColor = .black
+        label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+        label.textAlignment = .left
+        label.numberOfLines = 0
+        label.applyAdaptiveLayout()
+        return label
+    }()
+    
+    let amountLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "100"
+        label.textColor = .black
+        label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+        label.textAlignment = .left
+        label.numberOfLines = 0
+        label.applyAdaptiveLayout()
+        return label
+    }()
+    
+    public lazy var currencyListView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.itemSize = CGSize(width: 60, height: 25)
@@ -81,13 +105,19 @@ class CurrencyExcangeView: UIView {
     
     public func setupSubViews() {
         addSubview(containerView)
-        containerView.addSubview(navigationListView)
+        containerView.addSubview(currencyListView)
+        containerView.addSubview(titleLabel)
+        containerView.addSubview(amountLabel)
         
         let contentViewConstraint = [AdaptiveLayoutConstraint(item: containerView, attribute: .left, relatedBy: .equal, toItem: self, attribute: .left, multiplier: 1, constant: 0, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: containerView, attribute: .right, relatedBy: .equal, toItem: self, attribute: .right, multiplier: 1, constant: 0, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: containerView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 0, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: containerView, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: 0, setAdaptiveLayout: true)]
         
-        let navigationListViewConstraint = [AdaptiveLayoutConstraint(item: navigationListView, attribute: .leading, relatedBy: .equal, toItem: containerView, attribute: .leading, multiplier: 1, constant: 5, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: navigationListView, attribute: .trailing, relatedBy: .equal, toItem: containerView, attribute: .trailing, multiplier: 1, constant: -5, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: navigationListView, attribute: .top, relatedBy: .equal, toItem: containerView, attribute: .top, multiplier: 1, constant: 5, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: navigationListView, attribute: .bottom, relatedBy: .equal, toItem: containerView, attribute: .bottom, multiplier: 1, constant: -5, setAdaptiveLayout: true)]
+        let titleViewConstraint = [AdaptiveLayoutConstraint(item: titleLabel, attribute: .leading, relatedBy: .equal, toItem: containerView, attribute: .leading, multiplier: 1, constant: 5, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: titleLabel, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: 60, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: titleLabel, attribute: .centerY, relatedBy: .equal, toItem: containerView, attribute: .centerY, multiplier: 1, constant: 0, setAdaptiveLayout: true)]
+        
+        let amountViewConstraint = [AdaptiveLayoutConstraint(item: amountLabel, attribute: .leading, relatedBy: .equal, toItem: titleLabel, attribute: .trailing, multiplier: 1, constant: 5, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: amountLabel, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: 120, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: amountLabel, attribute: .centerY, relatedBy: .equal, toItem: titleLabel, attribute: .centerY, multiplier: 1, constant: 0, setAdaptiveLayout: true)]
+        
+        let currencyListViewConstraint = [AdaptiveLayoutConstraint(item: currencyListView, attribute: .leading, relatedBy: .equal, toItem: amountLabel, attribute: .leading, multiplier: 1, constant: 5, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyListView, attribute: .trailing, relatedBy: .equal, toItem: containerView, attribute: .trailing, multiplier: 1, constant: -5, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyListView, attribute: .centerY, relatedBy: .equal, toItem: containerView, attribute: .centerY, multiplier: 1, constant: 0, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyListView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 30, setAdaptiveLayout: true)]
 
-        NSLayoutConstraint.activate(contentViewConstraint + navigationListViewConstraint)
+        NSLayoutConstraint.activate(contentViewConstraint + titleViewConstraint + amountViewConstraint + currencyListViewConstraint)
     }
     
     public func addActionsToSubViews() {
@@ -95,8 +125,8 @@ class CurrencyExcangeView: UIView {
     }
     
     public func observeNavigationItems() {
-        navigationListRelay.observe(on: MainScheduler.instance)
-            .bind(to: navigationListView.rx.items) { [weak self] collectionView, row, model in
+        currencyListRelay.observe(on: MainScheduler.instance)
+            .bind(to: currencyListView.rx.items) { [weak self] collectionView, row, model in
                 guard let weakSelf = self else {
                     return UICollectionViewCell()
                 }
@@ -118,7 +148,7 @@ class CurrencyExcangeView: UIView {
     // MARK: Actions
     public func onTapCollectionviewCell() {
         Observable
-            .zip(navigationListView.rx.itemSelected, navigationListView.rx.modelSelected(Currency.self))
+            .zip(currencyListView.rx.itemSelected, currencyListView.rx.modelSelected(Currency.self))
             .bind { [weak self] indexPath, model in
                 guard let weakSelf = self else {
                     return
