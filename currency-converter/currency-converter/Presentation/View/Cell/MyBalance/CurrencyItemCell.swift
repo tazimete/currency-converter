@@ -27,9 +27,10 @@ class CurrencyItemCell: UICollectionViewCell, ConfigurableCell {
         let label = UILabel(frame: .zero, setAdaptive: true)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = AppConfig.shared.getTheme().getColors().textColorDark
-        label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
+        label.font = UIFont.systemFont(ofSize: 20, weight: .medium)
         label.textAlignment = .left
         label.numberOfLines = 1
+        label.applyAdaptiveLayout()
         return label
     }()
     
