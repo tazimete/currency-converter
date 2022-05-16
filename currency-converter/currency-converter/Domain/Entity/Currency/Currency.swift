@@ -9,7 +9,7 @@ import Foundation
 
 /* Currency entity of search response */
 struct Currency: AbstractDataModel, Codable {
-    var id: Int?
+    public var id: Int?
     public let amount: String?
     public let title: String?
     

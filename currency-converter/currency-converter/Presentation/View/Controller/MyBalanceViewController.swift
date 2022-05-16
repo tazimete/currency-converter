@@ -66,6 +66,12 @@ class MyBalanceViewController: BaseViewController {
         return label
     }()
 
+    let currencyExchangeView: CurrencyExcangeView = {
+        let view = CurrencyExcangeView(frame: .zero)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.currencies = [Currency(amount: nil, title: "USD"), Currency(amount: nil, title: "EURO"), Currency(amount: nil, title: "JPY"), Currency(amount: nil, title: "TK")]
+        return view
+    }()
 
     // MARK: Constructors
     init(viewModel: AbstractMyBalanceViewModel) {
@@ -112,10 +118,13 @@ class MyBalanceViewController: BaseViewController {
     
     func addCurrencyExchangeView() {
         view.addSubview(currencyExchangeLabel)
+        view.addSubview(currencyExchangeView)
         
         let currencyExchangeLabelConstraint = [AdaptiveLayoutConstraint(item: currencyExchangeLabel, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 10, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyExchangeLabel, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyExchangeLabel, attribute: .top, relatedBy: .equal, toItem: currencyListView, attribute: .bottom, multiplier: 1, constant: 30, setAdaptiveLayout: true)]
         
-        NSLayoutConstraint.activate(currencyExchangeLabelConstraint)
+        let currencyExchangeViewConstraint = [AdaptiveLayoutConstraint(item: currencyExchangeView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 10, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyExchangeView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyExchangeView, attribute: .top, relatedBy: .equal, toItem: currencyExchangeLabel, attribute: .bottom, multiplier: 1, constant: 20, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyExchangeView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 40, setAdaptiveLayout: true)]
+        
+        NSLayoutConstraint.activate(currencyExchangeLabelConstraint + currencyExchangeViewConstraint)
     }
     
     override func initNavigationBar() {

@@ -8,9 +8,12 @@ target 'currency-converter' do
   # Pods for currency-converter
 
 	#Reactive prgramming
-	pod 'RxSwift', '6.2.0'
+    pod 'RxSwift', '6.2.0'
   	pod 'RxCocoa', '6.2.0'
   	pod "RxGesture"
+    
+    #UI 
+    pod 'DropDown', '2.3.13'
 
   target 'currency-converterTests' do
     inherit! :search_paths
