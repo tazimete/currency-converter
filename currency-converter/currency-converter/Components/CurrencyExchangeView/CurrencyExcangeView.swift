@@ -16,10 +16,61 @@ class CurrencyExcangeView: UIView {
     private let disposeBag = DisposeBag()
     private let currencyListRelay: BehaviorRelay<[Currency]> = BehaviorRelay<[Currency]>(value: [])
     public let itemTapHandler: PublishSubject<Currency> = PublishSubject<Currency>()
+
     public var currencies: [Currency]! {
         didSet{
             self.currencyListRelay.accept(currencies)
             self.currencyDropdown.dataSource.append(contentsOf: currencies.map({return $0.title ?? ""}))
+        }
+    }
+    
+    public var titleIconText: String {
+        set(newValue) {
+            self.titleIcon.text = newValue
+        }
+        
+        get{
+            return titleIcon.text ?? ""
+        }
+    }
+    
+    public var titleIconBackground: UIColor {
+        set(newValue) {
+            self.titleIcon.backgroundColor = newValue
+        }
+        
+        get{
+            return self.titleIcon.backgroundColor ?? .white
+        }
+    }
+    
+    public var titleText: String {
+        set(newValue) {
+            self.titleLabel.text = newValue
+        }
+        
+        get{
+            return titleLabel.text ?? ""
+        }
+    }
+    
+    public var amountText: String {
+        set(newValue) {
+            self.amountLabel.text = newValue
+        }
+        
+        get{
+            return amountLabel.text ?? ""
+        }
+    }
+    
+    public var amountTextColor: UIColor {
+        set(newValue) {
+            self.amountLabel.textColor = newValue
+        }
+        
+        get{
+            return self.amountLabel.textColor ?? .white
         }
     }
     
@@ -33,7 +84,7 @@ class CurrencyExcangeView: UIView {
         return view
     }()
     
-    let titleIcon: UILabel = {
+    private let titleIcon: UILabel = {
         let label = UILabel(frame: .zero)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = .red
@@ -47,44 +98,44 @@ class CurrencyExcangeView: UIView {
         return label
     }()
     
-    let titleLabel: UILabel = {
+    private let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Sell"
         label.textColor = .black
-        label.font = UIFont.systemFont(ofSize: 19, weight: .medium)
+        label.font = UIFont.systemFont(ofSize: 19, weight: .regular)
         label.textAlignment = .left
         label.numberOfLines = 0
         label.applyAdaptiveLayout()
         return label
     }()
     
-    let amountLabel: UITextField = {
+    private let amountLabel: UITextField = {
         let label = UITextField()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "100"
         label.textColor = .black
-        label.font = UIFont.systemFont(ofSize: 19, weight: .medium)
+        label.font = UIFont.systemFont(ofSize: 19, weight: .regular)
         label.textAlignment = .right
         label.keyboardType = .numberPad
         label.applyAdaptiveLayout()
         return label
     }()
     
-    let currencyLabel: UILabel = {
+    private let currencyLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.isUserInteractionEnabled = true
         label.addTrailing(image: .checkmark, text: "USD")
         label.textColor = .black
-        label.font = UIFont.systemFont(ofSize: 19, weight: .medium)
+        label.font = UIFont.systemFont(ofSize: 19, weight: .regular)
         label.textAlignment = .left
         label.numberOfLines = 0
         label.applyAdaptiveLayout()
         return label
     }()
     
-    lazy var currencyDropdown: DropDown = {
+    private lazy var currencyDropdown: DropDown = {
         let dropDown = DropDown()
         dropDown.translatesAutoresizingMaskIntoConstraints = false
         dropDown.anchorView = currencyLabel
@@ -119,11 +170,11 @@ class CurrencyExcangeView: UIView {
         
         let titleIconConstraint = [AdaptiveLayoutConstraint(item: titleIcon, attribute: .leading, relatedBy: .equal, toItem: containerView, attribute: .leading, multiplier: 1, constant: 5, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: titleIcon, attribute: .centerY, relatedBy: .equal, toItem: containerView, attribute: .centerY, multiplier: 1, constant: 0, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: titleIcon, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: 40, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: titleIcon, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 40, setAdaptiveLayout: true)]
         
-        let titleViewConstraint = [AdaptiveLayoutConstraint(item: titleLabel, attribute: .leading, relatedBy: .equal, toItem: titleIcon, attribute: .trailing, multiplier: 1, constant: 20, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: titleLabel, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: 50, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: titleLabel, attribute: .centerY, relatedBy: .equal, toItem: titleIcon, attribute: .centerY, multiplier: 1, constant: 0, setAdaptiveLayout: true)]
+        let titleViewConstraint = [AdaptiveLayoutConstraint(item: titleLabel, attribute: .leading, relatedBy: .equal, toItem: titleIcon, attribute: .trailing, multiplier: 1, constant: 20, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: titleLabel, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: 80, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: titleLabel, attribute: .centerY, relatedBy: .equal, toItem: titleIcon, attribute: .centerY, multiplier: 1, constant: 0, setAdaptiveLayout: true)]
         
         let amountViewConstraint = [AdaptiveLayoutConstraint(item: amountLabel, attribute: .leading, relatedBy: .equal, toItem: titleLabel, attribute: .trailing, multiplier: 1, constant: 20, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: amountLabel, attribute: .trailing, relatedBy: .equal, toItem: currencyLabel, attribute: .leading, multiplier: 1, constant: -25, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: amountLabel, attribute: .centerY, relatedBy: .equal, toItem: titleLabel, attribute: .centerY, multiplier: 1, constant: 0, setAdaptiveLayout: true)]
         
-        let currencyLabelConstraint = [AdaptiveLayoutConstraint(item: currencyLabel, attribute: .trailing, relatedBy: .equal, toItem: containerView, attribute: .trailing, multiplier: 1, constant: -15, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyLabel, attribute: .centerY, relatedBy: .equal, toItem: containerView, attribute: .centerY, multiplier: 1, constant: 0, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyLabel, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: 80, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyLabel, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 40, setAdaptiveLayout: true)]
+        let currencyLabelConstraint = [AdaptiveLayoutConstraint(item: currencyLabel, attribute: .trailing, relatedBy: .equal, toItem: containerView, attribute: .trailing, multiplier: 1, constant: -10, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyLabel, attribute: .centerY, relatedBy: .equal, toItem: containerView, attribute: .centerY, multiplier: 1, constant: 0, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyLabel, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: 80, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyLabel, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 40, setAdaptiveLayout: true)]
 
         NSLayoutConstraint.activate(contentViewConstraint + titleIconConstraint + titleViewConstraint + amountViewConstraint + currencyLabelConstraint)
     }
@@ -147,43 +198,6 @@ class CurrencyExcangeView: UIView {
             weakSelf.currencyLabel.addTrailing(image: .checkmark, text: item)
         }
     }
-    
-//    public func observeNavigationItems() {
-//        currencyListRelay.observe(on: MainScheduler.instance)
-//            .bind(to: currencyListView.rx.items) { [weak self] collectionView, row, model in
-//                guard let weakSelf = self else {
-//                    return UICollectionViewCell()
-//                }
-//
-//                return weakSelf.populateNavigationViewItem(viewModel: model.asCellViewModel, indexPath: IndexPath(row: row, section: 0), collectionView: collectionView)
-//            }.disposed(by: disposeBag)
-//    }
-//
-//    //populate collection view cell
-//    public func populateNavigationViewItem(viewModel: AbstractCellViewModel, indexPath: IndexPath, collectionView: UICollectionView) -> UICollectionViewCell {
-//        let item: CellConfigurator = CurrencyItemCellConfig.init(item: viewModel)
-//
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: type(of: item).reuseId, for: indexPath)
-//        item.configure(cell: cell)
-//
-//        return cell
-//    }
-//
-//    // MARK: Actions
-//    public func onTapCollectionviewCell() {
-//        Observable
-//            .zip(currencyListView.rx.itemSelected, currencyListView.rx.modelSelected(Currency.self))
-//            .bind { [weak self] indexPath, model in
-//                guard let weakSelf = self else {
-//                    return
-//                }
-//
-//                AppLogger.debug("Did tap genre section item vcell - \(model.title)")
-//                weakSelf.currencyDropdown.show()
-//                weakSelf.itemTapHandler.onNext(model)
-//            }
-//            .disposed(by: disposeBag)
-//    }
 }
 
 
