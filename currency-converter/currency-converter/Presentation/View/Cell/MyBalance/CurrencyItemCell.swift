@@ -61,7 +61,7 @@ class CurrencyItemCell: UICollectionViewCell, ConfigurableCell {
         NSLayoutConstraint.activate(contentViewConstraint + lblTitleConstraint)
     }
     
-    func configure(data: AbstractCellViewModel) {
+    func configure(data: DataType) {
         AppLogger.debug("cell view model = \(data.title), \(data.thumbnail)")
         titleLabel.text = "\(data.title ?? "")"
     }

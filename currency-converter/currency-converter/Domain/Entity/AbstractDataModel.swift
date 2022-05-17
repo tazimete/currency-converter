@@ -9,7 +9,7 @@ import Foundation
 
 
 /*
- Base class for our server response
+ Base protocol for our server response
  */
 
 protocol AbstractDataModel {

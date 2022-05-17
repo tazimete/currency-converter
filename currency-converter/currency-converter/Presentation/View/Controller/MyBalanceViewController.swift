@@ -11,10 +11,10 @@ import RxCocoa
 
 class MyBalanceViewController: BaseViewController {
     // MARK: Non UI Proeprties
-    public var myBalanceViewModel: AbstractMyBalanceViewModel!
-    private let currencyListRelay: BehaviorRelay<[Currency]> = BehaviorRelay<[Currency]>(value: [Currency(amount: "1000.00", title: "USD"), Currency(amount: "100", title: "EUR"), Currency(amount: "100", title: "JPY"), Currency(amount: "100", title: "BDT")])
+    public var myBalanceViewModel: MyBalanceViewModel!
+    private let currencyListRelay: BehaviorRelay<[Balance]> = BehaviorRelay<[Balance]>(value: [Balance(amount: "1000.00", currency: "USD"), Balance(amount: "100", currency: "EUR"), Balance(amount: "100", currency: "JPY"), Balance(amount: "100", currency: "BDT")])
     private let currencyConverterTrigger = PublishSubject<MyBalanceViewModel.CurrencyConverterInput>()
-    private(set) var currencyToConvert: Currency?
+    private(set) var currencyToConvert: Balance?
     
     // MARK: UI Proeprties
     private let balanceTitleLabel: UILabel = {
@@ -102,7 +102,7 @@ class MyBalanceViewController: BaseViewController {
     }()
     
     // MARK: Constructors
-    init(viewModel: AbstractMyBalanceViewModel) {
+    init(viewModel: MyBalanceViewModel) {
         super.init(viewModel: viewModel)
         self.viewModel = viewModel
     }
@@ -161,13 +161,13 @@ class MyBalanceViewController: BaseViewController {
             }
             
 
-            weakSelf.convertCurrency(currency: currency)
+            weakSelf.convertCurrency(balance: currency)
         }
         .disposed(by: disposeBag)
     }
     
     override func bindViewModel() {
-        myBalanceViewModel = (viewModel as! AbstractMyBalanceViewModel)
+        myBalanceViewModel = (viewModel as! MyBalanceViewModel)
         let currencyConverterInput = MyBalanceViewModel.MyBalanceInput(currencyConverterTrigger: currencyConverterTrigger)
         let currencyConverterOutput = myBalanceViewModel.getMyBalanceOutput(input: currencyConverterInput)
         
@@ -238,15 +238,15 @@ class MyBalanceViewController: BaseViewController {
     }
     
     // MARK: EVENT FIRE
-    func convertCurrency(currency: Currency) {
-        currencyConverterTrigger.onNext(MyBalanceViewModel.CurrencyConverterInput(amount: currency.amount ?? "", currency: currency.title ?? ""))
+    func convertCurrency(balance: Balance) {
+        currencyConverterTrigger.onNext(MyBalanceViewModel.CurrencyConverterInput(amount: balance.amount ?? "", currency: balance.currency ?? ""))
     }
     
-    func addCurrencies(currenies: [Currency]) {
+    func addBalances(balances: [Balance]) {
         let values = currencyListRelay.value
-        currencyListRelay.accept(values + currenies)
-        currencyExchangeSellView.currencies = currenies
-        currencyExchangeReceivedView.currencies = currenies
+        currencyListRelay.accept(values + balances)
+        currencyExchangeSellView.currencies = balances
+        currencyExchangeReceivedView.currencies = balances
     }
     
     // MARK: LIST VIEW
@@ -295,10 +295,10 @@ class MyBalanceViewController: BaseViewController {
         }
         
         let saveAction = UIAlertAction(title: "Add", style: UIAlertAction.Style.default, handler: { [weak self] alert -> Void in
-            let name = (alertController.textFields?[0])?.text ?? ""
+            let currency = (alertController.textFields?[0])?.text ?? ""
             
-            if !name.isEmpty {
-                self?.addCurrencies(currenies: [Currency(amount: "0.00", title: name)])
+            if !currency.isEmpty {
+                self?.addBalances(balances: [Balance(amount: "0.00", currency: currency)])
             }
         })
         

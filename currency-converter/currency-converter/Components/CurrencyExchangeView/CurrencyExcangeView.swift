@@ -14,11 +14,11 @@ import DropDown
 
 class CurrencyExcangeView: UIView {
     private let disposeBag = DisposeBag()
-    public let selectionHandler: PublishSubject<Currency> = PublishSubject<Currency>()
+    public let selectionHandler: PublishSubject<Balance> = PublishSubject<Balance>()
 
-    public var currencies: [Currency]! {
+    public var currencies: [Balance]! {
         didSet{
-            self.currencyDropdown.dataSource.append(contentsOf: currencies.map({return $0.title ?? ""}))
+            self.currencyDropdown.dataSource.append(contentsOf: currencies.map({return $0.currency ?? ""}))
         }
     }
     
@@ -220,12 +220,12 @@ class CurrencyExcangeView: UIView {
                     return
                 }
                 
-                weakSelf.observeCurrencyValue(amount: value, currency: weakSelf.currencyDropdown.dataSource[weakSelf.currencyDropdown.indexForSelectedRow ?? 0] ?? "")
+                weakSelf.observeCurrencyValue(amount: value, currency: weakSelf.currencyDropdown.dataSource[weakSelf.currencyDropdown.indexForSelectedRow ?? 0] )
             }).disposed(by: disposeBag)
     }
     
     private func observeCurrencyValue(amount: String, currency: String) {
-        selectionHandler.onNext(Currency(amount: amount, title: currency))
+        selectionHandler.onNext(Balance(amount: amount, currency: currency))
     }
 }
 
