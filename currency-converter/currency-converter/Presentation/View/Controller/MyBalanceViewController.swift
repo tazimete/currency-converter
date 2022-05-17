@@ -160,7 +160,6 @@ class MyBalanceViewController: BaseViewController {
                 return
             }
             
-
             weakSelf.convertCurrency(balance: currency)
         }
         .disposed(by: disposeBag)
@@ -171,7 +170,7 @@ class MyBalanceViewController: BaseViewController {
         let currencyConverterInput = MyBalanceViewModel.MyBalanceInput(currencyConverterTrigger: currencyConverterTrigger)
         let currencyConverterOutput = myBalanceViewModel.getMyBalanceOutput(input: currencyConverterInput)
         
-        currencyConverterOutput.currency
+        currencyConverterOutput.balance
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] response in
                 AppLogger.info("\(response)")

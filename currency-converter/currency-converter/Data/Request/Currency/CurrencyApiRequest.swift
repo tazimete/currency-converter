@@ -28,7 +28,7 @@ extension CurrencyApiRequest: APIRequest {
     
     public var path: String {
         switch self {
-        case .convert: return "currency/commercial/exchange/\(parameters["amount"] ?? "")-\(parameters["currency"] ?? "")/\(parameters["currency"] ?? "")/latest"
+        case .convert: return "currency/commercial/exchange/\(parameters[CurrencyConverterParams.CodingKeys.fromAmount.rawValue] ?? "")-\(parameters[CurrencyConverterParams.CodingKeys.fromCurrency.rawValue] ?? "")/\(parameters[CurrencyConverterParams.CodingKeys.toCurrency.rawValue] ?? "")/latest"
         }
     }
     

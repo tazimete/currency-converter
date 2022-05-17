@@ -15,7 +15,7 @@ class CurrencyLocalDataSource: AbstractCurrencyLocalDataSource {
         self.dbClient = dbClient
     }
     
-    func get(amount: String, currency: String) -> Observable<CurrencyApiRequest.ItemType> {
-        return dbClient.read(id: currency, type: CurrencyApiRequest.ItemType.self)
+    func get(fromAmount: String, fromCurrency: String, toCurrency: String) -> Observable<CurrencyApiRequest.ItemType> {
+        return dbClient.read(id: fromAmount, type: CurrencyApiRequest.ItemType.self)
     }
 }

@@ -10,5 +10,5 @@ import RxSwift
 
 /* This is Currency remote data source abstraction extented from AbstractRemoteDataSource. Which will be used to get currency related data from currency api*/
 protocol AbstractCurrencyRemoteDataSource: AbstractRemoteDataSource {
-    func get(amount: String, currency: String) -> Observable<CurrencyApiRequest.ItemType>
+    func get(fromAmount: String, fromCurrency: String, toCurrency: String) -> Observable<CurrencyApiRequest.ItemType>
 }

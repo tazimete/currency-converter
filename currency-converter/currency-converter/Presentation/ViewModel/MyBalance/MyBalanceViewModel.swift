@@ -11,6 +11,7 @@ import RxCocoa
 
 /* This is my balance viewmodel class implementation of AbstractMyBalanceViewModel. Which will be used to get my blalance related data by its usecase*/
 class MyBalanceViewModel: AbstractMyBalanceViewModel {
+    typealias DomainEntity = Balance
     
     // This struct will be used get input from viewcontroller
     public struct CurrencyConverterInput {
@@ -25,7 +26,7 @@ class MyBalanceViewModel: AbstractMyBalanceViewModel {
     
     // This struct will be used to send event with observable data/response to viewcontroller
     public struct MyBalanceOutput {
-        let currency: BehaviorRelay<CurrencyApiRequest.ItemType?>
+        let balance: BehaviorRelay<DomainEntity?>
         let errorTracker: BehaviorRelay<NetworkError?>
     }
     
@@ -38,7 +39,7 @@ class MyBalanceViewModel: AbstractMyBalanceViewModel {
     }
     
     public func getMyBalanceOutput(input: MyBalanceInput) -> MyBalanceOutput {
-        let currencyResponse = BehaviorRelay<CurrencyApiRequest.ItemType?>(value: nil)
+        let balanceResponse = BehaviorRelay<DomainEntity?>(value: nil)
         let errorResponse = BehaviorRelay<NetworkError?>(value: nil) 
         
         input.currencyConverterTrigger.flatMapLatest({ [weak self] (inputModel) -> Observable<CurrencyApiRequest.ItemType> in
@@ -47,23 +48,22 @@ class MyBalanceViewModel: AbstractMyBalanceViewModel {
             }
             
             //fetch movie list
-            return weakSelf.convert(amount: inputModel.amount, currency: inputModel.currency)
+            return weakSelf.convert(fromAmount: inputModel.amount, fromCurrency: inputModel.currency, toCurrency: inputModel.currency)
                    .catch({ error in
                        errorResponse.accept(error as? NetworkError)
-                    
                        return Observable.just(CurrencyApiRequest.ItemType())
                     })
         }).subscribe(onNext: { response in
-            currencyResponse.accept(response)
+            balanceResponse.accept(DomainEntity(amount: response.amount, currency: response.title))
         }, onError: { [weak self] error in
             errorResponse.accept(error as? NetworkError)
         }, onCompleted: nil, onDisposed: nil)
         
-        return MyBalanceOutput.init(currency: currencyResponse, errorTracker: errorResponse)
+        return MyBalanceOutput.init(balance: balanceResponse, errorTracker: errorResponse)
     }
     
-    func convert(amount: String, currency: String) -> Observable<CurrencyApiRequest.ItemType> {
-        return (usecase as! AbstractCurrencyUsecase).convert(amount: amount, currency: currency)
+    func convert(fromAmount: String, fromCurrency: String, toCurrency: String) -> Observable<CurrencyApiRequest.ItemType> {
+        return (usecase as! AbstractCurrencyUsecase).convert(fromAmount: fromAmount, fromCurrency: fromCurrency, toCurrency: toCurrency)
     }
 }
 

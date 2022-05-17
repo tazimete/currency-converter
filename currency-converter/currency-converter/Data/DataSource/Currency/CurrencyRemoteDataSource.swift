@@ -15,7 +15,7 @@ class CurrencyRemoteDataSource: AbstractCurrencyRemoteDataSource {
         self.apiClient = apiClient
     }
     
-    func get(amount: String, currency: String) -> Observable<CurrencyApiRequest.ItemType> {
-        return apiClient.send(apiRequest: CurrencyApiRequest.convert(params: CurrencyConverterParams(amount: amount, currency: currency)), type: CurrencyApiRequest.ItemType.self)
+    func get(fromAmount: String, fromCurrency: String, toCurrency: String) -> Observable<CurrencyApiRequest.ItemType> {
+        return apiClient.send(apiRequest: CurrencyApiRequest.convert(params: CurrencyConverterParams(fromAmount: fromAmount, fromCurrency: fromCurrency, toCurrency: toCurrency)), type: CurrencyApiRequest.ItemType.self)
     }
 }

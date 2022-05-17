@@ -685,10 +685,10 @@
 		FAE7E6FC282181B40019BCC2 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				FAE7E704282181B40019BCC2 /* Request */,
 				FAE7E702282181B40019BCC2 /* Entity */,
 				FA9CC8D0282E9E8500E4B791 /* DataSource */,
 				FAE7E6FD282181B40019BCC2 /* Repository */,
-				FAE7E704282181B40019BCC2 /* Request */,
 				FAE7E70B282181B40019BCC2 /* Usecase */,
 			);
 			path = Data;
@@ -766,8 +766,8 @@
 		FAE7E711282181B50019BCC2 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
-				FAE7E715282181B50019BCC2 /* Currency */,
 				FAE7E714282181B50019BCC2 /* AbstractRepository.swift */,
+				FAE7E715282181B50019BCC2 /* Currency */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -801,8 +801,8 @@
 		FAE7E71B282181B50019BCC2 /* Usecase */ = {
 			isa = PBXGroup;
 			children = (
-				FAE7E8A928219E120019BCC2 /* Currency */,
 				FAE7E720282181B50019BCC2 /* AbstractUsecase.swift */,
+				FAE7E8A928219E120019BCC2 /* Currency */,
 			);
 			path = Usecase;
 			sourceTree = "<group>";
@@ -845,8 +845,8 @@
 		FAE7E72B282181B60019BCC2 /* Abstraction */ = {
 			isa = PBXGroup;
 			children = (
-				FAE7E72E282181B60019BCC2 /* MyBalance */,
 				FAE7E730282181B60019BCC2 /* AbstractViewModel.swift */,
+				FAE7E72E282181B60019BCC2 /* MyBalance */,
 			);
 			path = Abstraction;
 			sourceTree = "<group>";

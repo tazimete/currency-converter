@@ -8,24 +8,25 @@
 import Foundation
 
 
-struct CurrencyConverterParams: Parameterizable{
-    let apiKey: String = AppConfig.shared.getServerConfig().setAuthCredential().apiKey ?? ""
-    let amount: String
-    let currency: String 
+struct CurrencyConverterParams: Parameterizable {
+    let fromAmount: String
+    let fromCurrency: String
+    let toCurrency: String
 
-    public init(amount: String, currency: String) {
-        self.amount = amount
-        self.currency = currency
+    public init(fromAmount: String, fromCurrency: String, toCurrency: String) {
+        self.fromAmount = fromAmount
+        self.fromCurrency = fromCurrency
+        self.toCurrency = toCurrency
     }
 
-    private enum CodingKeys: String, CodingKey {
-        case apiKey = "api_key"
-        case amount = "amount"
-        case currency = "currency"
+    public enum CodingKeys: String, CodingKey {
+        case fromAmount = "fromAmount"
+        case fromCurrency = "fromCurrency"
+        case toCurrency = "toCurrency"
     }
 
     public var asRequestParam: [String: Any] {
-        let param: [String: Any] = [CodingKeys.apiKey.rawValue: apiKey, CodingKeys.amount.rawValue: amount, CodingKeys.currency.rawValue: currency]
+        let param: [String: Any] = [CodingKeys.fromAmount.rawValue: fromAmount, CodingKeys.fromCurrency.rawValue: fromCurrency, CodingKeys.toCurrency.rawValue: toCurrency]
         return param.compactMapValues { $0 }
     }
 }
