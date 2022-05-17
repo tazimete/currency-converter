@@ -12,7 +12,7 @@ import RxCocoa
 class MyBalanceViewController: BaseViewController {
     // MARK: Non UI Proeprties
     public var myBalanceViewModel: AbstractMyBalanceViewModel!
-    private let currencyListRelay: BehaviorRelay<[Currency]> = BehaviorRelay<[Currency]>(value: [Currency(amount: "1000.00", title: "USD"), Currency(amount: "100", title: "EURO"), Currency(amount: "100", title: "JPY"), Currency(amount: "100", title: "TK")])
+    private let currencyListRelay: BehaviorRelay<[Currency]> = BehaviorRelay<[Currency]>(value: [Currency(amount: "1000.00", title: "USD"), Currency(amount: "100", title: "EUR"), Currency(amount: "100", title: "JPY"), Currency(amount: "100", title: "BDT")])
     private let currencyConverterTrigger = PublishSubject<MyBalanceViewModel.CurrencyConverterInput>()
     private(set) var currencyToConvert: Currency?
     
@@ -142,9 +142,6 @@ class MyBalanceViewController: BaseViewController {
     }
     
     override func addActionsToSubviews() {
-        // send currencies to balance
-//        addCurrencies(currenies: )
-        
         // observe currency to exchange
         currencyExchangeSellView.selectionHandler
             .subscribe(onNext: { [weak self] currency in
@@ -230,7 +227,7 @@ class MyBalanceViewController: BaseViewController {
     func addSubmitButton() {
         view.addSubview(submitButton)
         
-        let submitButtonConstraint = [AdaptiveLayoutConstraint(item: submitButton, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 40, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: submitButton, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: -40, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: submitButton, attribute: .top, relatedBy: .equal, toItem: currencyExchangeReceivedView, attribute: .bottom, multiplier: 1, constant: 30, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: submitButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 40, setAdaptiveLayout: true)]
+        let submitButtonConstraint = [AdaptiveLayoutConstraint(item: submitButton, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 40, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: submitButton, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: -40, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: submitButton, attribute: .top, relatedBy: .equal, toItem: currencyExchangeReceivedView, attribute: .bottom, multiplier: 1, constant: 30, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: submitButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 45, setAdaptiveLayout: true)]
         
 
         NSLayoutConstraint.activate(submitButtonConstraint)
@@ -287,10 +284,10 @@ class MyBalanceViewController: BaseViewController {
     }
     
     @objc func didTapAddButton(sender : AnyObject){
-        showSearchDialog()
+        showAddCurrencyDialog()
     }
     
-    private func showSearchDialog() {
+    private func showAddCurrencyDialog() {
         let alertController = UIAlertController(title: "Add currency", message: "Enter currency name. Ex - SGD, YEN, BDT", preferredStyle: UIAlertController.Style.alert)
         
         alertController.addTextField { (textField : UITextField!) -> Void in

@@ -147,6 +147,7 @@ class CurrencyExcangeView: UIView {
         let dropDown = DropDown()
         dropDown.translatesAutoresizingMaskIntoConstraints = false
         dropDown.anchorView = currencyLabel
+        dropDown.selectRow(at: 0)
         
         return dropDown
     }()
@@ -219,7 +220,7 @@ class CurrencyExcangeView: UIView {
                     return
                 }
                 
-                weakSelf.observeCurrencyValue(amount: value, currency: weakSelf.currencyDropdown.selectedItem ?? "")
+                weakSelf.observeCurrencyValue(amount: value, currency: weakSelf.currencyDropdown.dataSource[weakSelf.currencyDropdown.indexForSelectedRow ?? 0] ?? "")
             }).disposed(by: disposeBag)
     }
     
