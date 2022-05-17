@@ -14,7 +14,7 @@ class MyBalanceViewController: BaseViewController {
     public var myBalanceViewModel: AbstractMyBalanceViewModel!
     private let currencyListRelay: BehaviorRelay<[Currency]> = BehaviorRelay<[Currency]>(value: [])
     private let currencyConverterTrigger = PublishSubject<MyBalanceViewModel.CurrencyConverterInput>()
-    private(set) var currencyToConvert: Currency!
+    private(set) var currencyToConvert: Currency?
     
     // MARK: UI Proeprties
     private let balanceTitleLabel: UILabel = {
@@ -32,7 +32,7 @@ class MyBalanceViewController: BaseViewController {
     private lazy var currencyListView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: 110, height: 40)
+        layout.itemSize = CGSize(width: 150, height: 40)
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = AppConfig.shared.getTheme().getColors().primaryBackgroundColor
@@ -150,7 +150,7 @@ class MyBalanceViewController: BaseViewController {
         super.initNavigationBar()
         
         self.navigationItem.title = "Currency Converter"
-        let btnAction = UIBarButtonItem(title: "Convert", style: .done, target: self, action: #selector(didTapConvertButton))
+        let btnAction = UIBarButtonItem(title: "ADD", style: .done, target: self, action: #selector(didTapAddButton))
         btnAction.tintColor = appColors.textColorLight
         self.navigationItem.rightBarButtonItem = btnAction
     }
@@ -173,7 +173,7 @@ class MyBalanceViewController: BaseViewController {
     
     override func addActionsToSubviews() {
         // send currencies to balance
-        currencyListRelay.accept([Currency(amount: "1000", title: "USD"), Currency(amount: "100", title: "EURO"), Currency(amount: "100", title: "JPY"), Currency(amount: "100", title: "TK")])
+        addCurrencies(currenies: [Currency(amount: "1000.00", title: "USD"), Currency(amount: "100", title: "EURO"), Currency(amount: "100", title: "JPY"), Currency(amount: "100", title: "TK")])
         
         // observe currency to exchange
         currencyExchangeSellView.selectionHandler.subscribe(onNext: { [weak self] currency in
@@ -187,11 +187,12 @@ class MyBalanceViewController: BaseViewController {
         
         // did tap submit button
         submitButton.rx.tap.bind { [weak self] in
-            guard let weakSelf = self else {
+            guard let weakSelf = self, let currency = weakSelf.currencyToConvert, let amount = currency.amount, amount != "" else {
                 return
             }
             
-            weakSelf.convertCurrency(currency: weakSelf.currencyToConvert)
+
+            weakSelf.convertCurrency(currency: currency)
         }
         .disposed(by: disposeBag)
     }
@@ -235,6 +236,10 @@ class MyBalanceViewController: BaseViewController {
         currencyConverterTrigger.onNext(MyBalanceViewModel.CurrencyConverterInput(amount: currency.amount ?? "", currency: currency.title ?? ""))
     }
     
+    private func addCurrencies(currenies: [Currency]) {
+        let values = currencyListRelay.value
+        currencyListRelay.accept(values + currenies)
+    }
     
     // MARK: LIST VIEW
     //populate collection view cell
@@ -270,27 +275,22 @@ class MyBalanceViewController: BaseViewController {
             }.disposed(by: disposeBag)
     }
     
-    @objc func didTapConvertButton(sender : AnyObject){
+    @objc func didTapAddButton(sender : AnyObject){
         showSearchDialog()
     }
     
     private func showSearchDialog() {
-        let alertController = UIAlertController(title: "Search movie", message: "Enter movie name. Ex- The \n Enter releasing year. Ex- 2000", preferredStyle: UIAlertController.Style.alert)
+        let alertController = UIAlertController(title: "Add currency", message: "Enter currency name. Ex - SGD, YEN, BDT", preferredStyle: UIAlertController.Style.alert)
         
         alertController.addTextField { (textField : UITextField!) -> Void in
-            textField.placeholder = "Movie name"
+            textField.placeholder = "Currency name"
         }
         
-        alertController.addTextField { (textField : UITextField!) -> Void in
-            textField.placeholder = "Releasing year"
-        }
-        
-        let saveAction = UIAlertAction(title: "Search", style: UIAlertAction.Style.default, handler: { [weak self] alert -> Void in
+        let saveAction = UIAlertAction(title: "Add", style: UIAlertAction.Style.default, handler: { [weak self] alert -> Void in
             let name = (alertController.textFields?[0])?.text ?? ""
-            let year = (alertController.textFields?[1])?.text ?? ""
             
-            if !name.isEmpty && !year.isEmpty {
-                self?.convertCurrency(currency: Currency(amount: year, title: name))
+            if !name.isEmpty {
+                self?.addCurrencies(currenies: [Currency(amount: "0.00", title: name)])
             }
         })
         
