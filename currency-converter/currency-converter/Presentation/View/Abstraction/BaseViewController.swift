@@ -40,6 +40,7 @@ public class BaseViewController: UIViewController, UIScrollViewDelegate, Storybo
         addConstraints()
         
         setDataSource()
+        addActionsToSubviews()
     }
     
     // bind respective viewmodel
@@ -75,12 +76,12 @@ public class BaseViewController: UIViewController, UIScrollViewDelegate, Storybo
     
     //initialize its subview
     public func initView() {
-        // Not Implemented Yet
+        // TODO: Implement in child Class
     }
     
     // add its subview 
     public func addSubviews() {
-        
+        // TODO: Implement in child Class
     }
     
     public func addConstraints() {
@@ -89,6 +90,11 @@ public class BaseViewController: UIViewController, UIScrollViewDelegate, Storybo
     
     //set its data source for subview/table/collection view
     public func setDataSource() {
+        // TODO: Implement in child Class
+    }
+    
+    // add actions to its subview
+    public func addActionsToSubviews() {
         // TODO: Implement in child Class
     }
     

@@ -14,13 +14,14 @@ class MyBalanceViewController: BaseViewController {
     public var myBalanceViewModel: AbstractMyBalanceViewModel!
     private let currencyListRelay: BehaviorRelay<[Currency]> = BehaviorRelay<[Currency]>(value: [])
     private let currencyConverterTrigger = PublishSubject<MyBalanceViewModel.CurrencyConverterInput>()
+    private(set) var currencyToConvert: Currency!
     
     // MARK: UI Proeprties
-    let balanceTitleLabel: UILabel = {
+    private let balanceTitleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false 
         label.text = "MY BALANCES"
-        label.textColor = .gray
+        label.textColor = AppConfig.shared.getTheme().getColors().disabledTextColor
         label.font = UIFont.systemFont(ofSize: 15, weight: .medium)
         label.textAlignment = .left
         label.numberOfLines = 0
@@ -28,13 +29,13 @@ class MyBalanceViewController: BaseViewController {
         return label
     }()
     
-    lazy var currencyListView: UICollectionView = {
+    private lazy var currencyListView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.itemSize = CGSize(width: 110, height: 40)
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = AppConfig.shared.getTheme().getColors().primaryBackgroundColor
         collectionView.isUserInteractionEnabled = true
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.showsHorizontalScrollIndicator = false
@@ -54,11 +55,11 @@ class MyBalanceViewController: BaseViewController {
         return collectionView
     }()
     
-    let currencyExchangeLabel: UILabel = {
+    private let currencyExchangeLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "CURRENCY EXCHANGE"
-        label.textColor = .gray
+        label.textColor = AppConfig.shared.getTheme().getColors().disabledTextColor
         label.font = UIFont.systemFont(ofSize: 15, weight: .medium)
         label.textAlignment = .left
         label.numberOfLines = 0
@@ -66,14 +67,14 @@ class MyBalanceViewController: BaseViewController {
         return label
     }()
 
-    let currencyExchangeSellView: CurrencyExcangeView = {
+    private let currencyExchangeSellView: CurrencyExcangeView = {
         let view = CurrencyExcangeView(frame: .zero)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.currencies = [Currency(amount: nil, title: "USD"), Currency(amount: nil, title: "EURO"), Currency(amount: nil, title: "JPY"), Currency(amount: nil, title: "TK")]
         return view
     }()
     
-    let currencyExchangeReceivedView: CurrencyExcangeView = {
+    private let currencyExchangeReceivedView: CurrencyExcangeView = {
         let view = CurrencyExcangeView(frame: .zero)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.titleIconBackground = .systemGreen
@@ -85,6 +86,20 @@ class MyBalanceViewController: BaseViewController {
         return view
     }()
 
+    private let submitButton: UIButton = {
+        let button = UIButton(frame: .zero, setAdaptive: true)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = AppConfig.shared.getTheme().getColors().primaryDark
+        button.setTitle("SUBMIT", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.borderWidth = 1
+        button.borderColor = AppConfig.shared.getTheme().getColors().primaryBackgroundColor
+        button.layer.cornerRadius = CGFloat(20).relativeToIphone8Width()
+        button.addShadow()
+        
+        return button
+    }()
+    
     // MARK: Constructors
     init(viewModel: AbstractMyBalanceViewModel) {
         super.init(viewModel: viewModel)
@@ -100,71 +115,10 @@ class MyBalanceViewController: BaseViewController {
     }
 
     // MARK: Overrriden Methods
-    override func initView() {
-        super.initView()
-        //setup view
-        view.backgroundColor = .white
-        
-        //collection view
-        observeCurrencyItems()
-        onTapTableviewCell()
-        
-        currencyListRelay.accept([Currency(amount: "1000", title: "USD"), Currency(amount: "100", title: "EURO"), Currency(amount: "100", title: "JPY"), Currency(amount: "100", title: "TK")])
-    }
-    
-    override func addSubviews() {
-        addBalanceView()
-        addCurrencyExchangeView()
-    }
-    
-    func addBalanceView() {
-        view.addSubview(currencyListView)
-        view.addSubview(balanceTitleLabel)
-        
-        let balanceTitleLabelConstraint = [AdaptiveLayoutConstraint(item: balanceTitleLabel, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 10, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: balanceTitleLabel, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: balanceTitleLabel, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: topBarHeight+20, setAdaptiveLayout: true)]
-        
-        let currencyListViewConstraint = [AdaptiveLayoutConstraint(item: currencyListView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyListView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyListView, attribute: .top, relatedBy: .equal, toItem: balanceTitleLabel, attribute: .bottom, multiplier: 1, constant: 30, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyListView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 30, setAdaptiveLayout: true)]
-
-        NSLayoutConstraint.activate(balanceTitleLabelConstraint + currencyListViewConstraint)
-    }
-    
-    func addCurrencyExchangeView() {
-        view.addSubview(currencyExchangeLabel)
-        view.addSubview(currencyExchangeSellView)
-        view.addSubview(currencyExchangeReceivedView)
-        
-        let currencyExchangeLabelConstraint = [AdaptiveLayoutConstraint(item: currencyExchangeLabel, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 10, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyExchangeLabel, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyExchangeLabel, attribute: .top, relatedBy: .equal, toItem: currencyListView, attribute: .bottom, multiplier: 1, constant: 30, setAdaptiveLayout: true)]
-        
-        let currencyExchangeSellViewConstraint = [AdaptiveLayoutConstraint(item: currencyExchangeSellView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 10, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyExchangeSellView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyExchangeSellView, attribute: .top, relatedBy: .equal, toItem: currencyExchangeLabel, attribute: .bottom, multiplier: 1, constant: 30, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyExchangeSellView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 40, setAdaptiveLayout: true)]
-        
-        let currencyExchangeReceivedViewConstraint = [AdaptiveLayoutConstraint(item: currencyExchangeReceivedView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 10, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyExchangeReceivedView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyExchangeReceivedView, attribute: .top, relatedBy: .equal, toItem: currencyExchangeSellView, attribute: .bottom, multiplier: 1, constant: 15, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyExchangeReceivedView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 40, setAdaptiveLayout: true)]
-        
-        NSLayoutConstraint.activate(currencyExchangeLabelConstraint + currencyExchangeSellViewConstraint + currencyExchangeReceivedViewConstraint)
-    }
-    
-    override func initNavigationBar() {
-        super.initNavigationBar()
-        
-        self.navigationItem.title = "Currency Converter"
-        let btnAction = UIBarButtonItem(title: "Convert", style: .done, target: self, action: #selector(didTapConvertButton))
-        btnAction.tintColor = appColors.textColorLight
-        self.navigationItem.rightBarButtonItem = btnAction
-    }
-    
     override func bindViewModel() {
         myBalanceViewModel = (viewModel as! AbstractMyBalanceViewModel)
         let currencyConverterInput = MyBalanceViewModel.MyBalanceInput(currencyConverterTrigger: currencyConverterTrigger)
         let currencyConverterOutput = myBalanceViewModel.getMyBalanceOutput(input: currencyConverterInput)
-        
-        //populate table view
-//        currencyConverterOutput.currency.observe(on: MainScheduler.instance)
-//            .bind(to: tableView.rx.items) { [weak self] tableView, row, model in
-//                guard let weakSelf = self else {
-//                    return UITableViewCell()
-//                }
-//
-//                return weakSelf.populateTableViewCell(viewModel: model.asCellViewModel, indexPath: IndexPath(row: row, section: 0), tableView: tableView)
-//            }.disposed(by: disposeBag)
         
         currencyConverterOutput.currency
             .observe(on: MainScheduler.instance)
@@ -189,28 +143,100 @@ class MyBalanceViewController: BaseViewController {
                 AppLogger.debug("code = \(error.errorCode), message = \(error.errorMessage)")
         }).disposed(by: disposeBag)
         
-        convertCurrency(amount: "250", currency: "USD")
-        
-//        UserSessionDataClient.shared.setConversionCount(count: 0)
-//        UserSessionDataClient.shared.kvContainer = Mock()
         AppLogger.info("conversionCount == \(UserSessionDataClient.shared.conversionCount)")
     }
     
-    public func convertCurrency(amount: String, currency: String) {
-        currencyConverterTrigger.onNext(MyBalanceViewModel.CurrencyConverterInput(amount: amount, currency: currency))
+    override func initNavigationBar() {
+        super.initNavigationBar()
+        
+        self.navigationItem.title = "Currency Converter"
+        let btnAction = UIBarButtonItem(title: "Convert", style: .done, target: self, action: #selector(didTapConvertButton))
+        btnAction.tintColor = appColors.textColorLight
+        self.navigationItem.rightBarButtonItem = btnAction
     }
     
-    public func observeCurrencyItems() {
-        currencyListRelay.observe(on: MainScheduler.instance)
-            .bind(to: currencyListView.rx.items) { [weak self] collectionView, row, model in
-                guard let weakSelf = self else {
-                    return UICollectionViewCell()
-                }
-                
-                return weakSelf.populateCurrencyViewCell(viewModel: model.asCellViewModel, indexPath: IndexPath(row: row, section: 0), collectionView: collectionView)
-            }.disposed(by: disposeBag)
+    override func initView() {
+        super.initView()
+        //setup view
+        view.backgroundColor = .white
+        
+        //collection view
+        observeCurrencyItems()
+        onTapTableviewCell()
     }
     
+    override func addSubviews() {
+        addBalanceView()
+        addCurrencyExchangeView()
+        addSubmitButton()
+    }
+    
+    override func addActionsToSubviews() {
+        // send currencies to balance
+        currencyListRelay.accept([Currency(amount: "1000", title: "USD"), Currency(amount: "100", title: "EURO"), Currency(amount: "100", title: "JPY"), Currency(amount: "100", title: "TK")])
+        
+        // observe currency to exchange
+        currencyExchangeSellView.selectionHandler.subscribe(onNext: { [weak self] currency in
+            guard let weakSelf = self else {
+                return
+            }
+            
+            AppLogger.info("Selected currency : \(currency)")
+            weakSelf.currencyToConvert = currency
+        })
+        
+        // did tap submit button
+        submitButton.rx.tap.bind { [weak self] in
+            guard let weakSelf = self else {
+                return
+            }
+            
+            weakSelf.convertCurrency(currency: weakSelf.currencyToConvert)
+        }
+        .disposed(by: disposeBag)
+    }
+    
+    func addBalanceView() {
+        view.addSubview(currencyListView)
+        view.addSubview(balanceTitleLabel)
+        
+        let balanceTitleLabelConstraint = [AdaptiveLayoutConstraint(item: balanceTitleLabel, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 10, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: balanceTitleLabel, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: balanceTitleLabel, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: topBarHeight+20, setAdaptiveLayout: true)]
+        
+        let currencyListViewConstraint = [AdaptiveLayoutConstraint(item: currencyListView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyListView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyListView, attribute: .top, relatedBy: .equal, toItem: balanceTitleLabel, attribute: .bottom, multiplier: 1, constant: 30, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyListView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 30, setAdaptiveLayout: true)]
+
+        NSLayoutConstraint.activate(balanceTitleLabelConstraint + currencyListViewConstraint)
+    }
+    
+    func addCurrencyExchangeView() {
+        view.addSubview(currencyExchangeLabel)
+        view.addSubview(currencyExchangeSellView)
+        view.addSubview(currencyExchangeReceivedView)
+        
+        let currencyExchangeLabelConstraint = [AdaptiveLayoutConstraint(item: currencyExchangeLabel, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 10, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyExchangeLabel, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyExchangeLabel, attribute: .top, relatedBy: .equal, toItem: currencyListView, attribute: .bottom, multiplier: 1, constant: 40, setAdaptiveLayout: true)]
+        
+        let currencyExchangeSellViewConstraint = [AdaptiveLayoutConstraint(item: currencyExchangeSellView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 10, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyExchangeSellView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyExchangeSellView, attribute: .top, relatedBy: .equal, toItem: currencyExchangeLabel, attribute: .bottom, multiplier: 1, constant: 40, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyExchangeSellView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 40, setAdaptiveLayout: true)]
+        
+        let currencyExchangeReceivedViewConstraint = [AdaptiveLayoutConstraint(item: currencyExchangeReceivedView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 10, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyExchangeReceivedView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyExchangeReceivedView, attribute: .top, relatedBy: .equal, toItem: currencyExchangeSellView, attribute: .bottom, multiplier: 1, constant: 15, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyExchangeReceivedView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 40, setAdaptiveLayout: true)]
+        
+        NSLayoutConstraint.activate(currencyExchangeLabelConstraint + currencyExchangeSellViewConstraint + currencyExchangeReceivedViewConstraint)
+    }
+    
+    func addSubmitButton() {
+        view.addSubview(submitButton)
+        
+        let submitButtonConstraint = [AdaptiveLayoutConstraint(item: submitButton, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 40, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: submitButton, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: -40, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: submitButton, attribute: .top, relatedBy: .equal, toItem: currencyExchangeReceivedView, attribute: .bottom, multiplier: 1, constant: 30, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: submitButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 40, setAdaptiveLayout: true)]
+        
+
+        NSLayoutConstraint.activate(submitButtonConstraint)
+    }
+    
+    // MARK: EVENT FIRE
+    public func convertCurrency(currency: Currency) {
+        currencyConverterTrigger.onNext(MyBalanceViewModel.CurrencyConverterInput(amount: currency.amount ?? "", currency: currency.title ?? ""))
+    }
+    
+    
+    // MARK: LIST VIEW
     //populate collection view cell
     private func populateCurrencyViewCell(viewModel: AbstractCellViewModel, indexPath: IndexPath, collectionView: UICollectionView) -> UICollectionViewCell {
         let item: CellConfigurator = CurrencyItemCellConfig.init(item: viewModel)
@@ -220,7 +246,6 @@ class MyBalanceViewController: BaseViewController {
         return cell
     }
     
-    // MARK: Actions
     private func onTapTableviewCell() {
         Observable
             .zip(currencyListView.rx.itemSelected, currencyListView.rx.modelSelected(Currency.self))
@@ -232,6 +257,17 @@ class MyBalanceViewController: BaseViewController {
                 AppLogger.debug(" Selected " + (model.title ?? "") + " at \(indexPath)")
             }
             .disposed(by: disposeBag)
+    }
+    
+    public func observeCurrencyItems() {
+        currencyListRelay.observe(on: MainScheduler.instance)
+            .bind(to: currencyListView.rx.items) { [weak self] collectionView, row, model in
+                guard let weakSelf = self else {
+                    return UICollectionViewCell()
+                }
+                
+                return weakSelf.populateCurrencyViewCell(viewModel: model.asCellViewModel, indexPath: IndexPath(row: row, section: 0), collectionView: collectionView)
+            }.disposed(by: disposeBag)
     }
     
     @objc func didTapConvertButton(sender : AnyObject){
@@ -254,7 +290,7 @@ class MyBalanceViewController: BaseViewController {
             let year = (alertController.textFields?[1])?.text ?? ""
             
             if !name.isEmpty && !year.isEmpty {
-                self?.convertCurrency(amount: name, currency: year)
+                self?.convertCurrency(currency: Currency(amount: year, title: name))
             }
         })
         

@@ -14,12 +14,10 @@ import DropDown
 
 class CurrencyExcangeView: UIView {
     private let disposeBag = DisposeBag()
-    private let currencyListRelay: BehaviorRelay<[Currency]> = BehaviorRelay<[Currency]>(value: [])
-    public let itemTapHandler: PublishSubject<Currency> = PublishSubject<Currency>()
+    public let selectionHandler: PublishSubject<Currency> = PublishSubject<Currency>()
 
     public var currencies: [Currency]! {
         didSet{
-            self.currencyListRelay.accept(currencies)
             self.currencyDropdown.dataSource.append(contentsOf: currencies.map({return $0.title ?? ""}))
         }
     }
@@ -56,31 +54,31 @@ class CurrencyExcangeView: UIView {
     
     public var amountText: String {
         set(newValue) {
-            self.amountLabel.text = newValue
+            self.amountField.text = newValue
         }
         
         get{
-            return amountLabel.text ?? ""
+            return amountField.text ?? ""
         }
     }
     
     public var amountTextColor: UIColor {
         set(newValue) {
-            self.amountLabel.textColor = newValue
+            self.amountField.textColor = newValue
         }
         
         get{
-            return self.amountLabel.textColor ?? .white
+            return self.amountField.textColor ?? .white
         }
     }
     
     public var isAmountFieldEditable: Bool {
         set(newValue) {
-            self.amountLabel.isEnabled = newValue
+            self.amountField.isEnabled = newValue
         }
         
         get{
-            return self.amountLabel.isEnabled
+            return self.amountField.isEnabled
         }
     }
     
@@ -120,7 +118,7 @@ class CurrencyExcangeView: UIView {
         return label
     }()
     
-    private let amountLabel: UITextField = {
+    private let amountField: UITextField = {
         let label = UITextField()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "100"
@@ -172,7 +170,7 @@ class CurrencyExcangeView: UIView {
         addSubview(containerView)
         containerView.addSubview(titleIcon)
         containerView.addSubview(titleLabel)
-        containerView.addSubview(amountLabel)
+        containerView.addSubview(amountField)
         containerView.addSubview(currencyLabel)
         containerView.addSubview(currencyDropdown)
         
@@ -182,7 +180,7 @@ class CurrencyExcangeView: UIView {
         
         let titleViewConstraint = [AdaptiveLayoutConstraint(item: titleLabel, attribute: .leading, relatedBy: .equal, toItem: titleIcon, attribute: .trailing, multiplier: 1, constant: 20, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: titleLabel, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: 80, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: titleLabel, attribute: .centerY, relatedBy: .equal, toItem: titleIcon, attribute: .centerY, multiplier: 1, constant: 0, setAdaptiveLayout: true)]
         
-        let amountViewConstraint = [AdaptiveLayoutConstraint(item: amountLabel, attribute: .leading, relatedBy: .equal, toItem: titleLabel, attribute: .trailing, multiplier: 1, constant: 20, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: amountLabel, attribute: .trailing, relatedBy: .equal, toItem: currencyLabel, attribute: .leading, multiplier: 1, constant: -25, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: amountLabel, attribute: .centerY, relatedBy: .equal, toItem: titleLabel, attribute: .centerY, multiplier: 1, constant: 0, setAdaptiveLayout: true)]
+        let amountViewConstraint = [AdaptiveLayoutConstraint(item: amountField, attribute: .leading, relatedBy: .equal, toItem: titleLabel, attribute: .trailing, multiplier: 1, constant: 20, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: amountField, attribute: .trailing, relatedBy: .equal, toItem: currencyLabel, attribute: .leading, multiplier: 1, constant: -25, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: amountField, attribute: .centerY, relatedBy: .equal, toItem: titleLabel, attribute: .centerY, multiplier: 1, constant: 0, setAdaptiveLayout: true)]
         
         let currencyLabelConstraint = [AdaptiveLayoutConstraint(item: currencyLabel, attribute: .trailing, relatedBy: .equal, toItem: containerView, attribute: .trailing, multiplier: 1, constant: -15, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyLabel, attribute: .centerY, relatedBy: .equal, toItem: containerView, attribute: .centerY, multiplier: 1, constant: 0, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyLabel, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: 80, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyLabel, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 40, setAdaptiveLayout: true)]
 
@@ -190,23 +188,44 @@ class CurrencyExcangeView: UIView {
     }
     
     public func addActionsToSubViews() {
-        currencyLabel.rx.tapGesture()
-                .when(.recognized)
-                .subscribe(onNext: { [weak self] _ in
-                    guard let self = self else { return }
-                    self.currencyDropdown.show()
-                })
-                .disposed(by: disposeBag)
+        // open currency dropdown on tap
+        currencyLabel
+            .rx
+            .tapGesture()
+            .when(.recognized)
+            .subscribe(onNext: { [weak self] _ in
+                guard let weakSelf = self else { return }
+                weakSelf.currencyDropdown.show()
+            })
+            .disposed(by: disposeBag)
         
+        // observe currency dropdown selection value
         currencyDropdown.selectionAction = { [weak self] (index: Int, item: String) in
-            AppLogger.info("Selected item: \(item) at index: \(index)")
-            
             guard let weakSelf = self else {
                 return
             }
             
+            AppLogger.info("Selected item: \(item) at index: \(index)")
             weakSelf.currencyLabel.addTrailing(image: .checkmark, text: item)
+            weakSelf.observeCurrencyValue(amount: weakSelf.amountField.text ?? "", currency: item)
         }
+        
+        // observe amount field text change
+        amountField
+            .rx.controlEvent([.editingChanged])
+            .asObservable()
+            .withLatestFrom(amountField.rx.text.orEmpty)
+            .subscribe(onNext: { [weak self] value in
+                guard let weakSelf = self else {
+                    return
+                }
+                
+                weakSelf.observeCurrencyValue(amount: value, currency: weakSelf.currencyDropdown.dataSource.first ?? "")
+            }).disposed(by: disposeBag)
+    }
+    
+    private func observeCurrencyValue(amount: String, currency: String) {
+        selectionHandler.onNext(Currency(amount: amount, title: currency))
     }
 }
 
