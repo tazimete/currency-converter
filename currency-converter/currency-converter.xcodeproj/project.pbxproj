@@ -15,6 +15,7 @@
 		FA387B732826792E00B83C23 /* AbstractLocalStorageIntereactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA387B722826792E00B83C23 /* AbstractLocalStorageIntereactor.swift */; };
 		FA387B7628267CA800B83C23 /* KVLocalSorageIntereactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA387B7528267CA800B83C23 /* KVLocalSorageIntereactor.swift */; };
 		FA387B78282689DC00B83C23 /* UserSessionDataClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA387B77282689DC00B83C23 /* UserSessionDataClient.swift */; };
+		FA63E538283316A400470DCC /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA63E537283316A400470DCC /* UILabel+Extension.swift */; };
 		FA6C62C9282BCB4D00D42413 /* AbstractDatabaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6C62C8282BCB4D00D42413 /* AbstractDatabaseClient.swift */; };
 		FA6C62CB282BD9E000D42413 /* AbstractUserSessionDataClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6C62CA282BD9E000D42413 /* AbstractUserSessionDataClient.swift */; };
 		FA75805E2831A8AD00A94028 /* CurrencyExcangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75805D2831A8AD00A94028 /* CurrencyExcangeView.swift */; };
@@ -169,6 +170,7 @@
 		FA387B722826792E00B83C23 /* AbstractLocalStorageIntereactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractLocalStorageIntereactor.swift; sourceTree = "<group>"; };
 		FA387B7528267CA800B83C23 /* KVLocalSorageIntereactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KVLocalSorageIntereactor.swift; sourceTree = "<group>"; };
 		FA387B77282689DC00B83C23 /* UserSessionDataClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSessionDataClient.swift; sourceTree = "<group>"; };
+		FA63E537283316A400470DCC /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		FA6C62C8282BCB4D00D42413 /* AbstractDatabaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractDatabaseClient.swift; sourceTree = "<group>"; };
 		FA6C62CA282BD9E000D42413 /* AbstractUserSessionDataClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractUserSessionDataClient.swift; sourceTree = "<group>"; };
 		FA75805D2831A8AD00A94028 /* CurrencyExcangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyExcangeView.swift; sourceTree = "<group>"; };
@@ -799,6 +801,7 @@
 				FAE7E726282181B50019BCC2 /* UINavigationController+Extension.swift */,
 				FAE7E727282181B50019BCC2 /* UIViewController+Extension.swift */,
 				FAE7E728282181B50019BCC2 /* Codable+Extension.swift */,
+				FA63E537283316A400470DCC /* UILabel+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1370,6 +1373,7 @@
 				FAE7E7B5282181B70019BCC2 /* CurrencyRepository.swift in Sources */,
 				FA9CC8D3282F08DA00E4B791 /* CurrencyLocalDataSource.swift in Sources */,
 				FAE7E7A4282181B70019BCC2 /* Coordinator.swift in Sources */,
+				FA63E538283316A400470DCC /* UILabel+Extension.swift in Sources */,
 				FAE7E7AD282181B70019BCC2 /* ApiRequest.swift in Sources */,
 				FAE7E7E1282181B80019BCC2 /* AppConfig.swift in Sources */,
 				FAE7E895282187900019BCC2 /* UIView+Transitions.swift in Sources */,
