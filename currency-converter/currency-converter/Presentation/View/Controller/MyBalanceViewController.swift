@@ -12,7 +12,7 @@ import RxCocoa
 class MyBalanceViewController: BaseViewController {
     // MARK: Non UI Proeprties
     public var myBalanceViewModel: AbstractMyBalanceViewModel!
-    private let currencyListRelay: BehaviorRelay<[Currency]> = BehaviorRelay<[Currency]>(value: [])
+    private let currencyListRelay: BehaviorRelay<[Currency]> = BehaviorRelay<[Currency]>(value: [Currency(amount: "1000.00", title: "USD"), Currency(amount: "100", title: "EURO"), Currency(amount: "100", title: "JPY"), Currency(amount: "100", title: "TK")])
     private let currencyConverterTrigger = PublishSubject<MyBalanceViewModel.CurrencyConverterInput>()
     private(set) var currencyToConvert: Currency?
     
@@ -67,22 +67,23 @@ class MyBalanceViewController: BaseViewController {
         return label
     }()
 
-    private let currencyExchangeSellView: CurrencyExcangeView = {
+    private lazy var currencyExchangeSellView: CurrencyExcangeView = {
         let view = CurrencyExcangeView(frame: .zero)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.currencies = [Currency(amount: nil, title: "USD"), Currency(amount: nil, title: "EURO"), Currency(amount: nil, title: "JPY"), Currency(amount: nil, title: "TK")]
+        view.currencies = self.currencyListRelay.value
+        view.amountText = "0.00"
         return view
     }()
     
-    private let currencyExchangeReceivedView: CurrencyExcangeView = {
+    private lazy var currencyExchangeReceivedView: CurrencyExcangeView = {
         let view = CurrencyExcangeView(frame: .zero)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.titleIconBackground = .systemGreen
         view.titleText = "Received"
         view.amountTextColor = .systemGreen
-        view.amountText = "+ 200"
+        view.amountText = "+ 0.00"
         view.isAmountFieldEditable = false
-        view.currencies = [Currency(amount: nil, title: "USD"), Currency(amount: nil, title: "EURO"), Currency(amount: nil, title: "JPY"), Currency(amount: nil, title: "TK")]
+        view.currencies = self.currencyListRelay.value
         return view
     }()
 
@@ -114,7 +115,60 @@ class MyBalanceViewController: BaseViewController {
         super.viewDidLoad()
     }
 
-    // MARK: Overrriden Methods
+    // MARK: Overrriden MethodS
+    override func initView() {
+        super.initView()
+        //setup view
+        view.backgroundColor = .white
+        
+        //collection view
+        observeCurrencyItems()
+        onTapTableviewCell()
+    }
+    
+    override func initNavigationBar() {
+        super.initNavigationBar()
+        
+        self.navigationItem.title = "Currency Converter"
+        let btnAction = UIBarButtonItem(title: "ADD", style: .done, target: self, action: #selector(didTapAddButton))
+        btnAction.tintColor = appColors.textColorLight
+        self.navigationItem.rightBarButtonItem = btnAction
+    }
+    
+    override func addSubviews() {
+        addBalanceView()
+        addCurrencyExchangeView()
+        addSubmitButton()
+    }
+    
+    override func addActionsToSubviews() {
+        // send currencies to balance
+//        addCurrencies(currenies: )
+        
+        // observe currency to exchange
+        currencyExchangeSellView.selectionHandler
+            .subscribe(onNext: { [weak self] currency in
+            guard let weakSelf = self else {
+                return
+            }
+            
+            AppLogger.info("Selected currency : \(currency)")
+            weakSelf.currencyToConvert = currency
+        })
+        
+        // did tap submit button
+        submitButton.rx.tap
+            .bind { [weak self] in
+            guard let weakSelf = self, let currency = weakSelf.currencyToConvert, let amount = currency.amount, amount != "" else {
+                return
+            }
+            
+
+            weakSelf.convertCurrency(currency: currency)
+        }
+        .disposed(by: disposeBag)
+    }
+    
     override func bindViewModel() {
         myBalanceViewModel = (viewModel as! AbstractMyBalanceViewModel)
         let currencyConverterInput = MyBalanceViewModel.MyBalanceInput(currencyConverterTrigger: currencyConverterTrigger)
@@ -128,8 +182,10 @@ class MyBalanceViewController: BaseViewController {
                     return
                 }
                 
-                AppLogger.info("commission = \(weakSelf.myBalanceViewModel.commissionCalculator.calculateCommissionAmount(conversionSerial: UserSessionDataClient.shared.conversionCount, conversionAmount: 250))")
+                AppLogger.info("commission = \(weakSelf.myBalanceViewModel.commissionCalculator.calculateCommissionAmount(conversionSerial: UserSessionDataClient.shared.conversionCount, conversionAmount: Double(currencyRespone.amount ?? "0.0") ?? 0.00))")
                 UserSessionDataClient.shared.setConversionCount(count: UserSessionDataClient.shared.getConversionCount() + 1 )
+                
+                weakSelf.setReceivedAmount(amount: currencyRespone.amount ?? "0.00")
             }).disposed(by: disposeBag)
         
         // detect error
@@ -144,57 +200,6 @@ class MyBalanceViewController: BaseViewController {
         }).disposed(by: disposeBag)
         
         AppLogger.info("conversionCount == \(UserSessionDataClient.shared.conversionCount)")
-    }
-    
-    override func initNavigationBar() {
-        super.initNavigationBar()
-        
-        self.navigationItem.title = "Currency Converter"
-        let btnAction = UIBarButtonItem(title: "ADD", style: .done, target: self, action: #selector(didTapAddButton))
-        btnAction.tintColor = appColors.textColorLight
-        self.navigationItem.rightBarButtonItem = btnAction
-    }
-    
-    override func initView() {
-        super.initView()
-        //setup view
-        view.backgroundColor = .white
-        
-        //collection view
-        observeCurrencyItems()
-        onTapTableviewCell()
-    }
-    
-    override func addSubviews() {
-        addBalanceView()
-        addCurrencyExchangeView()
-        addSubmitButton()
-    }
-    
-    override func addActionsToSubviews() {
-        // send currencies to balance
-        addCurrencies(currenies: [Currency(amount: "1000.00", title: "USD"), Currency(amount: "100", title: "EURO"), Currency(amount: "100", title: "JPY"), Currency(amount: "100", title: "TK")])
-        
-        // observe currency to exchange
-        currencyExchangeSellView.selectionHandler.subscribe(onNext: { [weak self] currency in
-            guard let weakSelf = self else {
-                return
-            }
-            
-            AppLogger.info("Selected currency : \(currency)")
-            weakSelf.currencyToConvert = currency
-        })
-        
-        // did tap submit button
-        submitButton.rx.tap.bind { [weak self] in
-            guard let weakSelf = self, let currency = weakSelf.currencyToConvert, let amount = currency.amount, amount != "" else {
-                return
-            }
-            
-
-            weakSelf.convertCurrency(currency: currency)
-        }
-        .disposed(by: disposeBag)
     }
     
     func addBalanceView() {
@@ -231,14 +236,20 @@ class MyBalanceViewController: BaseViewController {
         NSLayoutConstraint.activate(submitButtonConstraint)
     }
     
+    func setReceivedAmount(amount: String) {
+        currencyExchangeReceivedView.amountText = "+\(amount)"
+    }
+    
     // MARK: EVENT FIRE
-    public func convertCurrency(currency: Currency) {
+    func convertCurrency(currency: Currency) {
         currencyConverterTrigger.onNext(MyBalanceViewModel.CurrencyConverterInput(amount: currency.amount ?? "", currency: currency.title ?? ""))
     }
     
-    private func addCurrencies(currenies: [Currency]) {
+    func addCurrencies(currenies: [Currency]) {
         let values = currencyListRelay.value
         currencyListRelay.accept(values + currenies)
+        currencyExchangeSellView.currencies = currenies
+        currencyExchangeReceivedView.currencies = currenies
     }
     
     // MARK: LIST VIEW

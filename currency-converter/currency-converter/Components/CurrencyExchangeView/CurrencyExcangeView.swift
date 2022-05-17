@@ -121,7 +121,7 @@ class CurrencyExcangeView: UIView {
     private let amountField: UITextField = {
         let label = UITextField()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "100"
+        label.text = "0.00"
         label.textColor = .black
         label.font = UIFont.systemFont(ofSize: 19, weight: .regular)
         label.textAlignment = .right
@@ -147,7 +147,6 @@ class CurrencyExcangeView: UIView {
         let dropDown = DropDown()
         dropDown.translatesAutoresizingMaskIntoConstraints = false
         dropDown.anchorView = currencyLabel
-        dropDown.dataSource = ["USD", "EURO", "JPY"]
         
         return dropDown
     }()
@@ -220,7 +219,7 @@ class CurrencyExcangeView: UIView {
                     return
                 }
                 
-                weakSelf.observeCurrencyValue(amount: value, currency: weakSelf.currencyDropdown.dataSource.first ?? "")
+                weakSelf.observeCurrencyValue(amount: value, currency: weakSelf.currencyDropdown.selectedItem ?? "")
             }).disposed(by: disposeBag)
     }
     
