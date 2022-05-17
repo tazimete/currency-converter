@@ -74,6 +74,16 @@ class CurrencyExcangeView: UIView {
         }
     }
     
+    public var isAmountFieldEditable: Bool {
+        set(newValue) {
+            self.amountLabel.isEnabled = newValue
+        }
+        
+        get{
+            return self.amountLabel.isEnabled
+        }
+    }
+    
     public var containerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -129,7 +139,7 @@ class CurrencyExcangeView: UIView {
         label.addTrailing(image: .checkmark, text: "USD")
         label.textColor = .black
         label.font = UIFont.systemFont(ofSize: 19, weight: .regular)
-        label.textAlignment = .left
+        label.textAlignment = .right
         label.numberOfLines = 0
         label.applyAdaptiveLayout()
         return label
@@ -174,7 +184,7 @@ class CurrencyExcangeView: UIView {
         
         let amountViewConstraint = [AdaptiveLayoutConstraint(item: amountLabel, attribute: .leading, relatedBy: .equal, toItem: titleLabel, attribute: .trailing, multiplier: 1, constant: 20, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: amountLabel, attribute: .trailing, relatedBy: .equal, toItem: currencyLabel, attribute: .leading, multiplier: 1, constant: -25, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: amountLabel, attribute: .centerY, relatedBy: .equal, toItem: titleLabel, attribute: .centerY, multiplier: 1, constant: 0, setAdaptiveLayout: true)]
         
-        let currencyLabelConstraint = [AdaptiveLayoutConstraint(item: currencyLabel, attribute: .trailing, relatedBy: .equal, toItem: containerView, attribute: .trailing, multiplier: 1, constant: -10, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyLabel, attribute: .centerY, relatedBy: .equal, toItem: containerView, attribute: .centerY, multiplier: 1, constant: 0, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyLabel, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: 80, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyLabel, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 40, setAdaptiveLayout: true)]
+        let currencyLabelConstraint = [AdaptiveLayoutConstraint(item: currencyLabel, attribute: .trailing, relatedBy: .equal, toItem: containerView, attribute: .trailing, multiplier: 1, constant: -15, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyLabel, attribute: .centerY, relatedBy: .equal, toItem: containerView, attribute: .centerY, multiplier: 1, constant: 0, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyLabel, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: 80, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyLabel, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 40, setAdaptiveLayout: true)]
 
         NSLayoutConstraint.activate(contentViewConstraint + titleIconConstraint + titleViewConstraint + amountViewConstraint + currencyLabelConstraint)
     }

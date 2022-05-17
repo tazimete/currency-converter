@@ -80,6 +80,7 @@ class MyBalanceViewController: BaseViewController {
         view.titleText = "Received"
         view.amountTextColor = .systemGreen
         view.amountText = "+ 200"
+        view.isAmountFieldEditable = false
         view.currencies = [Currency(amount: nil, title: "USD"), Currency(amount: nil, title: "EURO"), Currency(amount: nil, title: "JPY"), Currency(amount: nil, title: "TK")]
         return view
     }()
