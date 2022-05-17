@@ -16,9 +16,9 @@ class CurrencyExcangeView: UIView {
     private let disposeBag = DisposeBag()
     public let selectionHandler: PublishSubject<Balance> = PublishSubject<Balance>()
 
-    public var currencies: [Balance]! {
+    public var currencies: [String]! {
         didSet{
-            self.currencyDropdown.dataSource.append(contentsOf: currencies.map({return $0.currency ?? ""}))
+            self.currencyDropdown.dataSource.append(contentsOf: currencies)
         }
     }
     

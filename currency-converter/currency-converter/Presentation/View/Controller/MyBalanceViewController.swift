@@ -12,7 +12,7 @@ import RxCocoa
 class MyBalanceViewController: BaseViewController {
     // MARK: Non UI Proeprties
     public var myBalanceViewModel: MyBalanceViewModel!
-    private let currencyListRelay: BehaviorRelay<[Balance]> = BehaviorRelay<[Balance]>(value: [Balance(amount: "1000.00", currency: "USD"), Balance(amount: "100", currency: "EUR"), Balance(amount: "100", currency: "JPY"), Balance(amount: "100", currency: "BDT")])
+    private let balanceListRelay: BehaviorRelay<[Balance]> = BehaviorRelay<[Balance]>(value: [Balance(amount: "1000.00", currency: "USD"), Balance(amount: "100", currency: "EUR"), Balance(amount: "100", currency: "JPY"), Balance(amount: "100", currency: "BDT")])
     private let currencyConverterTrigger = PublishSubject<MyBalanceViewModel.CurrencyConverterInput>()
     private(set) var currencyToConvert: Balance?
     
@@ -29,7 +29,7 @@ class MyBalanceViewController: BaseViewController {
         return label
     }()
     
-    private lazy var currencyListView: UICollectionView = {
+    private lazy var balanceListView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.itemSize = CGSize(width: 150, height: 40)
@@ -70,7 +70,7 @@ class MyBalanceViewController: BaseViewController {
     private lazy var currencyExchangeSellView: CurrencyExcangeView = {
         let view = CurrencyExcangeView(frame: .zero)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.currencies = self.currencyListRelay.value
+        view.currencies = self.balanceListRelay.value.map({ return $0.currency ?? ""})
         view.amountText = "0.00"
         return view
     }()
@@ -83,7 +83,7 @@ class MyBalanceViewController: BaseViewController {
         view.amountTextColor = .systemGreen
         view.amountText = "+ 0.00"
         view.isAmountFieldEditable = false
-        view.currencies = self.currencyListRelay.value
+        view.currencies = self.balanceListRelay.value.map({ return $0.currency ?? ""})
         return view
     }()
 
@@ -200,12 +200,12 @@ class MyBalanceViewController: BaseViewController {
     }
     
     func addBalanceView() {
-        view.addSubview(currencyListView)
+        view.addSubview(balanceListView)
         view.addSubview(balanceTitleLabel)
         
         let balanceTitleLabelConstraint = [AdaptiveLayoutConstraint(item: balanceTitleLabel, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 10, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: balanceTitleLabel, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: balanceTitleLabel, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: topBarHeight+20, setAdaptiveLayout: true)]
         
-        let currencyListViewConstraint = [AdaptiveLayoutConstraint(item: currencyListView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyListView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyListView, attribute: .top, relatedBy: .equal, toItem: balanceTitleLabel, attribute: .bottom, multiplier: 1, constant: 30, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyListView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 30, setAdaptiveLayout: true)]
+        let currencyListViewConstraint = [AdaptiveLayoutConstraint(item: balanceListView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: balanceListView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: balanceListView, attribute: .top, relatedBy: .equal, toItem: balanceTitleLabel, attribute: .bottom, multiplier: 1, constant: 30, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: balanceListView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 30, setAdaptiveLayout: true)]
 
         NSLayoutConstraint.activate(balanceTitleLabelConstraint + currencyListViewConstraint)
     }
@@ -215,7 +215,7 @@ class MyBalanceViewController: BaseViewController {
         view.addSubview(currencyExchangeSellView)
         view.addSubview(currencyExchangeReceivedView)
         
-        let currencyExchangeLabelConstraint = [AdaptiveLayoutConstraint(item: currencyExchangeLabel, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 10, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyExchangeLabel, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyExchangeLabel, attribute: .top, relatedBy: .equal, toItem: currencyListView, attribute: .bottom, multiplier: 1, constant: 40, setAdaptiveLayout: true)]
+        let currencyExchangeLabelConstraint = [AdaptiveLayoutConstraint(item: currencyExchangeLabel, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 10, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyExchangeLabel, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyExchangeLabel, attribute: .top, relatedBy: .equal, toItem: balanceListView, attribute: .bottom, multiplier: 1, constant: 40, setAdaptiveLayout: true)]
         
         let currencyExchangeSellViewConstraint = [AdaptiveLayoutConstraint(item: currencyExchangeSellView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 10, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyExchangeSellView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyExchangeSellView, attribute: .top, relatedBy: .equal, toItem: currencyExchangeLabel, attribute: .bottom, multiplier: 1, constant: 40, setAdaptiveLayout: true), AdaptiveLayoutConstraint(item: currencyExchangeSellView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 40, setAdaptiveLayout: true)]
         
@@ -243,15 +243,15 @@ class MyBalanceViewController: BaseViewController {
     }
     
     func addBalances(balances: [Balance]) {
-        let values = currencyListRelay.value
-        currencyListRelay.accept(values + balances)
-        currencyExchangeSellView.currencies = balances
-        currencyExchangeReceivedView.currencies = balances
+        let values = balanceListRelay.value
+        balanceListRelay.accept(values + balances)
+        currencyExchangeSellView.currencies = balances.map({return $0.currency ?? ""})
+        currencyExchangeReceivedView.currencies = balances.map({return $0.currency ?? ""})
     }
     
     // MARK: LIST VIEW
     //populate collection view cell
-    private func populateCurrencyViewCell(viewModel: AbstractCellViewModel, indexPath: IndexPath, collectionView: UICollectionView) -> UICollectionViewCell {
+    private func populateBalanceViewCell(viewModel: AbstractCellViewModel, indexPath: IndexPath, collectionView: UICollectionView) -> UICollectionViewCell {
         let item: CellConfigurator = CurrencyItemCellConfig.init(item: viewModel)
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: type(of: item).reuseId, for: indexPath)
         item.configure(cell: cell)
@@ -261,7 +261,7 @@ class MyBalanceViewController: BaseViewController {
     
     private func onTapTableviewCell() {
         Observable
-            .zip(currencyListView.rx.itemSelected, currencyListView.rx.modelSelected(Currency.self))
+            .zip(balanceListView.rx.itemSelected, balanceListView.rx.modelSelected(Currency.self))
             .bind { [weak self] indexPath, model in
                 guard let weakSelf = self else {
                     return
@@ -273,13 +273,13 @@ class MyBalanceViewController: BaseViewController {
     }
     
     public func observeCurrencyItems() {
-        currencyListRelay.observe(on: MainScheduler.instance)
-            .bind(to: currencyListView.rx.items) { [weak self] collectionView, row, model in
+        balanceListRelay.observe(on: MainScheduler.instance)
+            .bind(to: balanceListView.rx.items) { [weak self] collectionView, row, model in
                 guard let weakSelf = self else {
                     return UICollectionViewCell()
                 }
                 
-                return weakSelf.populateCurrencyViewCell(viewModel: model.asCellViewModel, indexPath: IndexPath(row: row, section: 0), collectionView: collectionView)
+                return weakSelf.populateBalanceViewCell(viewModel: model.asCellViewModel, indexPath: IndexPath(row: row, section: 0), collectionView: collectionView)
             }.disposed(by: disposeBag)
     }
     
