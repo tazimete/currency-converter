@@ -10,10 +10,10 @@ import Foundation
 /* Balance entity of presentation/application layer */
 struct Balance: AbstractDataModel, Codable {
     public var id: Int?
-    public var amount: String?
+    public var amount: Double?
     public var currency: String?
     
-    init(amount: String? = nil, currency: String? = nil) {
+    init(amount: Double? = nil, currency: String? = nil) {
         self.amount = amount
         self.currency = currency
     }
@@ -28,7 +28,13 @@ struct Balance: AbstractDataModel, Codable {
     }
     
     public var asCellViewModel: AbstractCellViewModel {
-        return CurrencyCellViewModel(title: "\(amount ?? "") \(currency ?? "")")
+        var viewModel = CurrencyCellViewModel(title: "\(currency ?? "")")
+        
+        if let amount = amount {
+            viewModel = CurrencyCellViewModel(title: "\(amount ?? 0.00) \(currency ?? "")")
+        }
+        
+        return viewModel 
     }
 }
 

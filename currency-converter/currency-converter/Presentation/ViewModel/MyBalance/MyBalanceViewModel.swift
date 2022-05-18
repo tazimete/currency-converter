@@ -55,7 +55,7 @@ class MyBalanceViewModel: AbstractMyBalanceViewModel {
                        return Observable.just(CurrencyApiRequest.ItemType())
                     })
         }).subscribe(onNext: { response in
-            balanceResponse.accept(DomainEntity(amount: response.amount, currency: response.title))
+            balanceResponse.accept(DomainEntity(amount: Double(response.amount ?? "0.00") ?? 0.00, currency: response.title))
         }, onError: { [weak self] error in
             errorResponse.accept(error as? NetworkError)
         }, onCompleted: nil, onDisposed: nil)

@@ -14,7 +14,7 @@ import DropDown
 
 class CurrencyExcangeView: UIView {
     private let disposeBag = DisposeBag()
-    public let selectionHandler: PublishSubject<Balance> = PublishSubject<Balance>()
+    public let selectionHandler: BehaviorSubject<Balance?> = BehaviorSubject<Balance?>(value: nil)
 
     public var currencies: [String]! {
         didSet{
@@ -247,8 +247,13 @@ class CurrencyExcangeView: UIView {
             }).disposed(by: disposeBag)
     }
     
+    override func didMoveToSuperview() {
+        //observe default value
+        observeCurrencyValue(amount: "0.00", currency: currencyDropdown.dataSource[currencyDropdown.indexForSelectedRow ?? 0] )
+    }
+    
     private func observeCurrencyValue(amount: String, currency: String) {
-        selectionHandler.onNext(Balance(amount: amount, currency: currency))
+        selectionHandler.onNext(Balance(amount: Double(amount) ?? 0.00, currency: currency))
     }
 }
 
