@@ -12,9 +12,7 @@ import RxCocoa
 class MyBalanceViewController: BaseViewController {
     // MARK: Non UI Proeprties
     public var myBalanceViewModel: MyBalanceViewModel!
-    private let balanceListRelay: BehaviorRelay<[Balance]> = BehaviorRelay<[Balance]>(value: [Balance(amount: 1000.00, currency: "USD"), Balance(amount: 100, currency: "EUR"), Balance(amount: 100, currency: "JPY"), Balance(amount: 100, currency: "BDT")])
     private let currencyConverterTrigger = PublishSubject<MyBalanceViewModel.CurrencyConverterInput>()
-    private(set) var currencyExchange: CurrencyExchange? = CurrencyExchange()
     
     // MARK: UI Proeprties
     private let balanceTitleLabel: UILabel = {
@@ -70,7 +68,7 @@ class MyBalanceViewController: BaseViewController {
     private lazy var currencyExchangeSellView: CurrencyExcangeView = {
         let view = CurrencyExcangeView(frame: .zero)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.currencies = self.balanceListRelay.value.map({ return $0.currency ?? ""})
+        view.currencies = self.myBalanceViewModel.balanceListRelay.value.map({ return $0.currency ?? ""})
         view.amountText = "0.00"
         return view
     }()
@@ -83,7 +81,7 @@ class MyBalanceViewController: BaseViewController {
         view.amountTextColor = .systemGreen
         view.amountText = "+ 0.00"
         view.isAmountFieldEditable = false
-        view.currencies = self.balanceListRelay.value.map({ return $0.currency ?? ""})
+        view.currencies = self.myBalanceViewModel.balanceListRelay.value.map({ return $0.currency ?? ""})
         return view
     }()
 
@@ -122,7 +120,7 @@ class MyBalanceViewController: BaseViewController {
         view.backgroundColor = .white
         
         //collection view
-        observeCurrencyItems()
+        observeBalanceItems()
         onTapTableviewCell()
     }
     
@@ -150,7 +148,7 @@ class MyBalanceViewController: BaseViewController {
             }
             
             AppLogger.info("Selected currency : \(currency)")
-                weakSelf.currencyExchange?.sell = currency
+                weakSelf.myBalanceViewModel.currencyExchange?.sell = currency
             }).disposed(by: disposeBag)
         
         // observe receive currency to exchange
@@ -161,13 +159,13 @@ class MyBalanceViewController: BaseViewController {
             }
             
             AppLogger.info("Selected currency : \(currency)")
-                weakSelf.currencyExchange?.receive = currency
+                weakSelf.myBalanceViewModel.currencyExchange?.receive = currency
             }).disposed(by: disposeBag)
         
         // did tap submit button
         submitButton.rx.tap
             .bind { [weak self] in
-                guard let weakSelf = self, let currencies = weakSelf.currencyExchange, let amount = currencies.sell?.amount, amount != 0 else {
+                guard let weakSelf = self, let currencies = weakSelf.myBalanceViewModel.currencyExchange, let amount = currencies.sell?.amount, amount != 0 else {
                 return
             }
             
@@ -181,6 +179,7 @@ class MyBalanceViewController: BaseViewController {
         let currencyConverterInput = MyBalanceViewModel.MyBalanceInput(currencyConverterTrigger: currencyConverterTrigger)
         let currencyConverterOutput = myBalanceViewModel.getMyBalanceOutput(input: currencyConverterInput)
         
+        // observe balance exchange response
         currencyConverterOutput.balance
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] response in
@@ -210,21 +209,21 @@ class MyBalanceViewController: BaseViewController {
     }
     
     func calculatOutputBalance(output: Balance) {
-        currencyExchange?.receive = output
+        myBalanceViewModel.currencyExchange?.receive = output
         setReceivedAmount(amount: output.amount ?? 0.00)
         
-        var result = balanceListRelay.value
+        var result = myBalanceViewModel.balanceListRelay.value
         
         // set recieve amount
-        if let index = balanceListRelay.value.firstIndex(where: { $0.currency?.elementsEqual(output.currency ?? "") ?? false}) {
+        if let index = myBalanceViewModel.balanceListRelay.value.firstIndex(where: { $0.currency?.elementsEqual(output.currency ?? "") ?? false}) {
             result[index].amount = (result[index].amount ?? 0.0) + (output.amount ?? 0.00)
-            balanceListRelay.accept(result)
+            myBalanceViewModel.balanceListRelay.accept(result)
         }
         
         //set deduct amount
-        if let index = balanceListRelay.value.firstIndex(where: { $0.currency?.elementsEqual(currencyExchange?.sell?.currency ?? "") ?? false}) {
-            result[index].amount = (result[index].amount ?? 0.0) - (currencyExchange?.sell?.amount ?? 0.00)
-            balanceListRelay.accept(result)
+        if let index = myBalanceViewModel.balanceListRelay.value.firstIndex(where: { $0.currency?.elementsEqual(myBalanceViewModel.currencyExchange?.sell?.currency ?? "") ?? false}) {
+            result[index].amount = (result[index].amount ?? 0.0) - (myBalanceViewModel.currencyExchange?.sell?.amount ?? 0.00)
+            myBalanceViewModel.balanceListRelay.accept(result)
         }
     }
     
@@ -301,8 +300,8 @@ class MyBalanceViewController: BaseViewController {
     }
     
     func addBalances(balances: [Balance]) {
-        let values = balanceListRelay.value
-        balanceListRelay.accept(values + balances)
+        let values = myBalanceViewModel.balanceListRelay.value
+        myBalanceViewModel.balanceListRelay.accept(values + balances)
         currencyExchangeSellView.currencies = balances.map({return $0.currency ?? ""})
         currencyExchangeReceivedView.currencies = balances.map({return $0.currency ?? ""})
     }
@@ -319,19 +318,19 @@ class MyBalanceViewController: BaseViewController {
     
     private func onTapTableviewCell() {
         Observable
-            .zip(balanceListView.rx.itemSelected, balanceListView.rx.modelSelected(Currency.self))
+            .zip(balanceListView.rx.itemSelected, balanceListView.rx.modelSelected(MyBalanceViewModel.DomainEntity.self))
             .bind { [weak self] indexPath, model in
                 guard let weakSelf = self else {
                     return
                 }
                 
-                AppLogger.debug(" Selected " + (model.title ?? "") + " at \(indexPath)")
+                AppLogger.debug(" Selected " + (model.currency ?? "") + " at \(indexPath)")
             }
             .disposed(by: disposeBag)
     }
     
-    public func observeCurrencyItems() {
-        balanceListRelay.observe(on: MainScheduler.instance)
+    public func observeBalanceItems() {
+        myBalanceViewModel.balanceListRelay.observe(on: MainScheduler.instance)
             .bind(to: balanceListView.rx.items) { [weak self] collectionView, row, model in
                 guard let weakSelf = self else {
                     return UICollectionViewCell()

@@ -8,6 +8,7 @@
 
 import Foundation
 import RxSwift
+import RxRelay
 
 /* This is AbstractMyBalanceViewModel abstraction extented from AbstractViewModel. Which will be used to get balance related data by its usecases*/
 protocol AbstractMyBalanceViewModel: AbstractViewModel {
@@ -16,6 +17,7 @@ protocol AbstractMyBalanceViewModel: AbstractViewModel {
     associatedtype MyBalanceOutput
     
     var commissionCalculator: ComissionCalculator {get}
+    var balanceListRelay: BehaviorRelay<[Balance]> {get}
     
     // Transform the my balance input to output observable
     func getMyBalanceOutput(input: MyBalanceInput) -> MyBalanceOutput

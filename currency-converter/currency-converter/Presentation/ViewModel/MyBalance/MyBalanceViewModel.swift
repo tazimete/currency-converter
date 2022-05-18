@@ -33,6 +33,8 @@ class MyBalanceViewModel: AbstractMyBalanceViewModel {
     
     let usecase: AbstractUsecase
     let commissionCalculator: ComissionCalculator
+    let balanceListRelay: BehaviorRelay<[Balance]> = BehaviorRelay<[Balance]>(value: [Balance(amount: 1000.00, currency: "USD"), Balance(amount: 100, currency: "EUR"), Balance(amount: 100, currency: "JPY"), Balance(amount: 100, currency: "BDT")])
+    private(set) var currencyExchange: CurrencyExchange? = CurrencyExchange()
     
     public init(usecase: AbstractCurrencyUsecase, commissionCalculator: ComissionCalculator) {
         self.usecase = usecase

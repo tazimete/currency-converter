@@ -6,9 +6,8 @@
 //
 
 import Foundation
-import UIKit
 
-struct CurrencyExchange {
+class CurrencyExchange {
     var sell: Balance?
     var receive: Balance?
     
