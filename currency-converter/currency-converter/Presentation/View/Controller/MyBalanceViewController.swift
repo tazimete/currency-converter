@@ -213,9 +213,19 @@ class MyBalanceViewController: BaseViewController {
         currencyExchange?.receive = output
         setReceivedAmount(amount: output.amount ?? 0.00)
         
-        let result = balanceListRelay.value.filter({return $0.currency?.elementsEqual(output.currency ?? "") ?? false}).first
-        var item = balanceListRelay.value.first(where: { $0.currency?.elementsEqual(output.currency ?? "") ?? false})
-//        item?.amount = (output.amount ?? 0.00) + (item?.amount ?? 0.00)
+        var result = balanceListRelay.value
+        
+        // set recieve amount
+        if let index = balanceListRelay.value.firstIndex(where: { $0.currency?.elementsEqual(output.currency ?? "") ?? false}) {
+            result[index].amount = (result[index].amount ?? 0.0) + (output.amount ?? 0.00)
+            balanceListRelay.accept(result)
+        }
+        
+        //set deduct amount
+        if let index = balanceListRelay.value.firstIndex(where: { $0.currency?.elementsEqual(currencyExchange?.sell?.currency ?? "") ?? false}) {
+            result[index].amount = (result[index].amount ?? 0.0) - (currencyExchange?.sell?.amount ?? 0.00)
+            balanceListRelay.accept(result)
+        }
     }
     
     func addBalanceView() {
