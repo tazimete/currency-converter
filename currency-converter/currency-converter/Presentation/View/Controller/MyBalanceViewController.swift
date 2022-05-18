@@ -145,7 +145,7 @@ class MyBalanceViewController: BaseViewController {
         // observe sell currency to exchange
         currencyExchangeSellView.selectionHandler
             .subscribe(onNext: { [weak self] currency in
-            guard let weakSelf = self else {
+            guard let weakSelf = self, let currency =  currency else {
                 return
             }
             
@@ -184,7 +184,7 @@ class MyBalanceViewController: BaseViewController {
         currencyConverterOutput.balance
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] response in
-                AppLogger.info("\(response)")
+                AppLogger.info("Response = \(response)")
                 guard let weakSelf = self, let currencyRespone = response else {
                     return
                 }
