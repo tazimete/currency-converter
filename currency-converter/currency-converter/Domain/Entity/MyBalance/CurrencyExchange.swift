@@ -6,8 +6,14 @@
 //
 
 import Foundation
+import UIKit
 
 struct CurrencyExchange {
-    let sell: Balance
-    let receive: Balance
+    var sell: Balance?
+    var receive: Balance?
+    
+    init(sell: Balance? = nil, receive: Balance? = nil) {
+        self.sell = sell
+        self.receive = receive
+    }
 }

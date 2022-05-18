@@ -14,7 +14,7 @@ class MyBalanceViewController: BaseViewController {
     public var myBalanceViewModel: MyBalanceViewModel!
     private let balanceListRelay: BehaviorRelay<[Balance]> = BehaviorRelay<[Balance]>(value: [Balance(amount: "1000.00", currency: "USD"), Balance(amount: "100", currency: "EUR"), Balance(amount: "100", currency: "JPY"), Balance(amount: "100", currency: "BDT")])
     private let currencyConverterTrigger = PublishSubject<MyBalanceViewModel.CurrencyConverterInput>()
-    private(set) var currencyToConvert: Balance?
+    private(set) var currencyExchange: CurrencyExchange? = CurrencyExchange()
     
     // MARK: UI Proeprties
     private let balanceTitleLabel: UILabel = {
@@ -142,7 +142,7 @@ class MyBalanceViewController: BaseViewController {
     }
     
     override func addActionsToSubviews() {
-        // observe currency to exchange
+        // observe sell currency to exchange
         currencyExchangeSellView.selectionHandler
             .subscribe(onNext: { [weak self] currency in
             guard let weakSelf = self else {
@@ -150,17 +150,28 @@ class MyBalanceViewController: BaseViewController {
             }
             
             AppLogger.info("Selected currency : \(currency)")
-            weakSelf.currencyToConvert = currency
+                weakSelf.currencyExchange?.sell = currency
+        })
+        
+        // observe receive currency to exchange
+        currencyExchangeReceivedView.selectionHandler
+            .subscribe(onNext: { [weak self] currency in
+            guard let weakSelf = self else {
+                return
+            }
+            
+            AppLogger.info("Selected currency : \(currency)")
+                weakSelf.currencyExchange?.receive = currency
         })
         
         // did tap submit button
         submitButton.rx.tap
             .bind { [weak self] in
-            guard let weakSelf = self, let currency = weakSelf.currencyToConvert, let amount = currency.amount, amount != "" else {
+                guard let weakSelf = self, let currencies = weakSelf.currencyExchange, let amount = currencies.sell?.amount, amount != "" else {
                 return
             }
             
-            weakSelf.convertCurrency(balance: currency)
+                weakSelf.exchangeCurrency(currencies: currencies)
         }
         .disposed(by: disposeBag)
     }
@@ -265,8 +276,8 @@ class MyBalanceViewController: BaseViewController {
     }
     
     // MARK: EVENT FIRE
-    func convertCurrency(balance: Balance) {
-        currencyConverterTrigger.onNext(MyBalanceViewModel.CurrencyConverterInput(amount: balance.amount ?? "", currency: balance.currency ?? ""))
+    func exchangeCurrency(currencies: CurrencyExchange) {
+        currencyConverterTrigger.onNext(MyBalanceViewModel.CurrencyConverterInput(fromAmount: currencies.sell?.amount ?? "", fromCurrency: currencies.sell?.currency ?? "", toCurrency: currencies.receive?.currency ?? ""))
     }
     
     func addBalances(balances: [Balance]) {

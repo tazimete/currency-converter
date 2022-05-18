@@ -15,8 +15,9 @@ class MyBalanceViewModel: AbstractMyBalanceViewModel {
     
     // This struct will be used get input from viewcontroller
     public struct CurrencyConverterInput {
-        let amount: String
-        let currency: String
+        let fromAmount: String
+        let fromCurrency: String
+        let toCurrency: String
     }
     
     // This struct will be used get event with data from viewcontroller
@@ -48,7 +49,7 @@ class MyBalanceViewModel: AbstractMyBalanceViewModel {
             }
             
             //fetch movie list
-            return weakSelf.convert(fromAmount: inputModel.amount, fromCurrency: inputModel.currency, toCurrency: inputModel.currency)
+            return weakSelf.convert(fromAmount: inputModel.fromAmount, fromCurrency: inputModel.fromCurrency, toCurrency: inputModel.toCurrency)
                    .catch({ error in
                        errorResponse.accept(error as? NetworkError)
                        return Observable.just(CurrencyApiRequest.ItemType())
