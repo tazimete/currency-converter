@@ -10,8 +10,8 @@ import Foundation
 /* Balance entity of presentation/application layer */
 struct Balance: AbstractDataModel, Codable {
     public var id: Int?
-    public let amount: String?
-    public let currency: String?
+    public var amount: String?
+    public var currency: String?
     
     init(amount: String? = nil, currency: String? = nil) {
         self.amount = amount

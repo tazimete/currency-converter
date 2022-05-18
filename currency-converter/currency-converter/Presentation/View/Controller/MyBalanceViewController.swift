@@ -192,7 +192,7 @@ class MyBalanceViewController: BaseViewController {
                 AppLogger.info("commission = \(weakSelf.myBalanceViewModel.commissionCalculator.calculateCommissionAmount(conversionSerial: UserSessionDataClient.shared.conversionCount, conversionAmount: Double(currencyRespone.amount ?? "0.0") ?? 0.00))")
                 UserSessionDataClient.shared.setConversionCount(count: UserSessionDataClient.shared.getConversionCount() + 1 )
                 
-                weakSelf.setReceivedAmount(amount: currencyRespone.amount ?? "0.00")
+                weakSelf.calculatOutputBalance(output: currencyRespone)
             }).disposed(by: disposeBag)
         
         // detect error
@@ -207,6 +207,15 @@ class MyBalanceViewController: BaseViewController {
         }).disposed(by: disposeBag)
         
         AppLogger.info("conversionCount == \(UserSessionDataClient.shared.conversionCount)")
+    }
+    
+    func calculatOutputBalance(output: Balance) {
+        currencyExchange?.receive = output
+        setReceivedAmount(amount: output.amount ?? "0.00")
+        
+        let result = balanceListRelay.value.filter({return $0.currency?.elementsEqual(output.currency ?? "") ?? false}).first
+        var item = balanceListRelay.value.first(where: { $0.currency?.elementsEqual(output.currency ?? "") ?? false})
+        item?.amount = "\(Double(output.amount ?? "0.00")! ?? 0.00 + Double(item?.amount ?? "0.00")! ?? 0.00)"
     }
     
     func addBalanceView() {
