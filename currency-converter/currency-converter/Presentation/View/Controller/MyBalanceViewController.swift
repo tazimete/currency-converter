@@ -13,6 +13,7 @@ class MyBalanceViewController: BaseViewController {
     // MARK: Non UI Proeprties
     public var myBalanceViewModel: MyBalanceViewModel!
     private let currencyConverterTrigger = PublishSubject<MyBalanceViewModel.CurrencyConverterInput>()
+    private let addCurrencyTrigger = PublishSubject<MyBalanceViewModel.DomainEntity>()
     
     // MARK: UI Proeprties
     private let balanceTitleLabel: UILabel = {
@@ -169,14 +170,14 @@ class MyBalanceViewController: BaseViewController {
                 return
             }
             
-                weakSelf.exchangeCurrency(currencies: currencies)
+            weakSelf.exchangeCurrency(currencies: currencies)
         }
         .disposed(by: disposeBag)
     }
     
     override func bindViewModel() {
         myBalanceViewModel = (viewModel as! MyBalanceViewModel)
-        let currencyConverterInput = MyBalanceViewModel.MyBalanceInput(currencyConverterTrigger: currencyConverterTrigger)
+        let currencyConverterInput = MyBalanceViewModel.MyBalanceInput(currencyConverterTrigger: currencyConverterTrigger, addCurrencyTrigger: addCurrencyTrigger)
         let currencyConverterOutput = myBalanceViewModel.getMyBalanceOutput(input: currencyConverterInput)
         
         // observe balance exchange response
@@ -191,7 +192,7 @@ class MyBalanceViewController: BaseViewController {
                 AppLogger.info("commission = \(weakSelf.myBalanceViewModel.commissionCalculator.calculateCommissionAmount(conversionSerial: UserSessionDataClient.shared.conversionCount, conversionAmount: currencyRespone.amount ?? 0.00))")
                 UserSessionDataClient.shared.setConversionCount(count: UserSessionDataClient.shared.getConversionCount() + 1 )
                 
-                weakSelf.calculatOutputBalance(output: currencyRespone)
+                weakSelf.setReceivedAmount(amount: currencyRespone.amount ?? 0.00)
             }).disposed(by: disposeBag)
         
         // detect error
@@ -206,25 +207,6 @@ class MyBalanceViewController: BaseViewController {
         }).disposed(by: disposeBag)
         
         AppLogger.info("conversionCount == \(UserSessionDataClient.shared.conversionCount)")
-    }
-    
-    func calculatOutputBalance(output: Balance) {
-        myBalanceViewModel.currencyExchange?.receive = output
-        setReceivedAmount(amount: output.amount ?? 0.00)
-        
-        var result = myBalanceViewModel.balanceListRelay.value
-        
-        // set recieve amount
-        if let index = myBalanceViewModel.balanceListRelay.value.firstIndex(where: { $0.currency?.elementsEqual(output.currency ?? "") ?? false}) {
-            result[index].amount = (result[index].amount ?? 0.0) + (output.amount ?? 0.00)
-            myBalanceViewModel.balanceListRelay.accept(result)
-        }
-        
-        //set deduct amount
-        if let index = myBalanceViewModel.balanceListRelay.value.firstIndex(where: { $0.currency?.elementsEqual(myBalanceViewModel.currencyExchange?.sell?.currency ?? "") ?? false}) {
-            result[index].amount = (result[index].amount ?? 0.0) - (myBalanceViewModel.currencyExchange?.sell?.amount ?? 0.00)
-            myBalanceViewModel.balanceListRelay.accept(result)
-        }
     }
     
     func addBalanceView() {
@@ -285,7 +267,6 @@ class MyBalanceViewController: BaseViewController {
             AdaptiveLayoutConstraint(item: submitButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 45, setAdaptiveLayout: true)
         ]
         
-
         NSLayoutConstraint.activate(submitButtonConstraint)
     }
     
@@ -299,11 +280,8 @@ class MyBalanceViewController: BaseViewController {
         currencyConverterTrigger.onNext(MyBalanceViewModel.CurrencyConverterInput(fromAmount: amount, fromCurrency: currencies.sell?.currency ?? "", toCurrency: currencies.receive?.currency ?? ""))
     }
     
-    func addBalances(balances: [Balance]) {
-        let values = myBalanceViewModel.balanceListRelay.value
-        myBalanceViewModel.balanceListRelay.accept(values + balances)
-        currencyExchangeSellView.currencies = balances.map({return $0.currency ?? ""})
-        currencyExchangeReceivedView.currencies = balances.map({return $0.currency ?? ""})
+    func addBalances(balance: Balance) {
+        addCurrencyTrigger.onNext(balance)
     }
     
     // MARK: LIST VIEW
@@ -330,7 +308,9 @@ class MyBalanceViewController: BaseViewController {
     }
     
     public func observeBalanceItems() {
-        myBalanceViewModel.balanceListRelay.observe(on: MainScheduler.instance)
+        // bind balance list view
+        myBalanceViewModel.balanceListRelay
+            .observe(on: MainScheduler.instance)
             .bind(to: balanceListView.rx.items) { [weak self] collectionView, row, model in
                 guard let weakSelf = self else {
                     return UICollectionViewCell()
@@ -338,6 +318,17 @@ class MyBalanceViewController: BaseViewController {
                 
                 return weakSelf.populateBalanceViewCell(viewModel: model.asCellViewModel, indexPath: IndexPath(row: row, section: 0), collectionView: collectionView)
             }.disposed(by: disposeBag)
+        
+        // observe balance list
+        myBalanceViewModel.balanceListRelay
+            .subscribe(onNext: { [weak self] balances in
+                guard let weakSelf = self else {
+                    return
+                }
+            
+                weakSelf.currencyExchangeSellView.currencies = balances.map({$0.currency ?? ""})
+                weakSelf.currencyExchangeReceivedView.currencies = balances.map({$0.currency ?? ""})
+        }).disposed(by: disposeBag)
     }
     
     @objc func didTapAddButton(sender : AnyObject){
@@ -355,7 +346,7 @@ class MyBalanceViewController: BaseViewController {
             let currency = (alertController.textFields?[0])?.text ?? ""
             
             if !currency.isEmpty {
-                self?.addBalances(balances: [Balance(amount: 0.00, currency: currency)])
+                self?.addBalances(balance: Balance(amount: 0.00, currency: currency))
             }
         })
         

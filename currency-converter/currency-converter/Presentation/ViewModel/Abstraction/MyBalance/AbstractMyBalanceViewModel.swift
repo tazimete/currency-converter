@@ -16,6 +16,7 @@ protocol AbstractMyBalanceViewModel: AbstractViewModel {
     associatedtype MyBalanceInput
     associatedtype MyBalanceOutput
     
+    var disposeBag: DisposeBag {get}
     var commissionCalculator: ComissionCalculator {get}
     var balanceListRelay: BehaviorRelay<[Balance]> {get}
     
