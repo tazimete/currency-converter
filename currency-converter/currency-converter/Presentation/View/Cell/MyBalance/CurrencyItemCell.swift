@@ -8,9 +8,9 @@
 import UIKit
 
 
-typealias CurrencyItemCellConfig = ListViewCellConfigurator<CurrencyItemCell, AbstractCellViewModel>
+typealias BalanceItemCellConfig = ListViewCellConfigurator<BalanceItemCell, AbstractCellViewModel>
 
-class CurrencyItemCell: UICollectionViewCell, ConfigurableCell {
+class BalanceItemCell: UICollectionViewCell, ConfigurableCell {
     typealias DataType = AbstractCellViewModel
     
     let containerView: UIView = {

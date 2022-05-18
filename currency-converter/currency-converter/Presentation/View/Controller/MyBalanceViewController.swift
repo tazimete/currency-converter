@@ -50,7 +50,7 @@ class MyBalanceViewController: BaseViewController {
         
         //cell registration
         collectionView.rx.setDelegate(self).disposed(by: self.disposeBag)
-        collectionView.register(CurrencyItemCell.self, forCellWithReuseIdentifier: CurrencyItemCellConfig.reuseId)
+        collectionView.register(BalanceItemCell.self, forCellWithReuseIdentifier: BalanceItemCellConfig.reuseId)
         
         return collectionView
     }()
@@ -251,7 +251,7 @@ class MyBalanceViewController: BaseViewController {
     // MARK: LIST VIEW
     //populate collection view cell
     private func populateBalanceViewCell(viewModel: AbstractCellViewModel, indexPath: IndexPath, collectionView: UICollectionView) -> UICollectionViewCell {
-        let item: CellConfigurator = CurrencyItemCellConfig.init(item: viewModel)
+        let item: CellConfigurator = BalanceItemCellConfig.init(item: viewModel)
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: type(of: item).reuseId, for: indexPath)
         item.configure(cell: cell)
         
