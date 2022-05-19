@@ -70,8 +70,14 @@ class MyBalanceViewModel: AbstractMyBalanceViewModel {
                        errorResponse.accept(error as? NetworkError)
                        return Observable.just(CurrencyApiRequest.ItemType())
                     })
-        }).subscribe(onNext: { response in
-            balanceResponse.accept(DomainEntity(amount: Double(response.amount ?? "0.00") ?? 0.00, currency: response.title))
+        }).subscribe(onNext: { [weak self] response in
+            guard let weakSelf = self else {
+                return
+            }
+            
+            let output = DomainEntity(amount: Double(response.amount ?? "0.00") ?? 0.00, currency: response.title)
+            weakSelf.balanceListRelay.accept(weakSelf.calculatOutputBalance(output: output))
+            balanceResponse.accept(output)
         }, onError: { [weak self] error in
             errorResponse.accept(error as? NetworkError)
         }).disposed(by: disposeBag)
@@ -79,27 +85,29 @@ class MyBalanceViewModel: AbstractMyBalanceViewModel {
         return MyBalanceOutput.init(balance: balanceResponse, errorTracker: errorResponse)
     }
     
+    // MARK: API CALLS
     func convert(fromAmount: String, fromCurrency: String, toCurrency: String) -> Observable<CurrencyApiRequest.ItemType> {
         return (usecase as! AbstractCurrencyUsecase).convert(fromAmount: fromAmount, fromCurrency: fromCurrency, toCurrency: toCurrency)
     }
     
-    // deduct and increase balance after exchange 
-    func calculatOutputBalance(output: DomainEntity) {
+    // MARK: OTHERS METHODS 
+    // deduct and increase balance after exchange
+    func calculatOutputBalance(output: DomainEntity) -> [DomainEntity] {
         currencyExchange?.receive = output
         
         var result = balanceListRelay.value
         
         // set recieve amount
-        if let index = balanceListRelay.value.firstIndex(where: { $0.currency?.elementsEqual(output.currency ?? "") ?? false}) {
+        if let index = result.firstIndex(where: { $0.currency?.elementsEqual(output.currency ?? "") ?? false}) {
             result[index].amount = (result[index].amount ?? 0.0) + (output.amount ?? 0.00)
-            balanceListRelay.accept(result)
         }
         
         //set deduct amount
-        if let index = balanceListRelay.value.firstIndex(where: { $0.currency?.elementsEqual(currencyExchange?.sell?.currency ?? "") ?? false}) {
+        if let index = result.firstIndex(where: { $0.currency?.elementsEqual(currencyExchange?.sell?.currency ?? "") ?? false}) {
             result[index].amount = (result[index].amount ?? 0.0) - (currencyExchange?.sell?.amount ?? 0.00)
-            balanceListRelay.accept(result)
         }
+        
+        return result
     }
 }
 
