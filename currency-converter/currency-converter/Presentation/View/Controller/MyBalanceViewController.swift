@@ -321,6 +321,7 @@ class MyBalanceViewController: BaseViewController {
         
         // observe balance list
         myBalanceViewModel.balanceListRelay
+            .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] balances in
                 guard let weakSelf = self else {
                     return
