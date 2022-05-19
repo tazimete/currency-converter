@@ -12,7 +12,6 @@ import RxRelay
 
 /* This is AbstractMyBalanceViewModel abstraction extented from AbstractViewModel. Which will be used to get balance related data by its usecases*/
 protocol AbstractMyBalanceViewModel: AbstractViewModel {
-    associatedtype DomainEntity 
     associatedtype MyBalanceInput
     associatedtype MyBalanceOutput
     
@@ -27,7 +26,7 @@ protocol AbstractMyBalanceViewModel: AbstractViewModel {
     func convert(fromAmount: String, fromCurrency: String, toCurrency: String) -> Observable<CurrencyApiRequest.ItemType>
     
     // deduct and increase balance after exchange 
-    func calculatOutputBalance(output: DomainEntity) -> [DomainEntity]
+    func calculatFinalBalance(exchangedBalance: CurrencyExchange) -> [Balance]
 }
 
 

@@ -13,7 +13,7 @@ class MyBalanceViewController: BaseViewController {
     // MARK: Non UI Proeprties
     public var myBalanceViewModel: MyBalanceViewModel!
     private let currencyConverterTrigger = PublishSubject<MyBalanceViewModel.CurrencyConverterInput>()
-    private let addCurrencyTrigger = PublishSubject<MyBalanceViewModel.DomainEntity>()
+    private let addCurrencyTrigger = PublishSubject<Balance>()
     
     // MARK: UI Proeprties
     private let balanceTitleLabel: UILabel = {
@@ -149,7 +149,7 @@ class MyBalanceViewController: BaseViewController {
             }
             
             AppLogger.info("Selected currency : \(currency)")
-                weakSelf.myBalanceViewModel.currencyExchange?.sell = currency
+                weakSelf.myBalanceViewModel.currencyExchange.sell = currency
             }).disposed(by: disposeBag)
         
         // observe receive currency to exchange
@@ -160,17 +160,17 @@ class MyBalanceViewController: BaseViewController {
             }
             
             AppLogger.info("Selected currency : \(currency)")
-                weakSelf.myBalanceViewModel.currencyExchange?.receive = currency
+                weakSelf.myBalanceViewModel.currencyExchange.receive = currency
             }).disposed(by: disposeBag)
         
         // did tap submit button
         submitButton.rx.tap
             .bind { [weak self] in
-                guard let weakSelf = self, let currencies = weakSelf.myBalanceViewModel.currencyExchange, let amount = currencies.sell?.amount, amount != 0 else {
+                guard let weakSelf = self, let amount = weakSelf.myBalanceViewModel.currencyExchange.sell?.amount, amount != 0 else {
                 return
             }
             
-            weakSelf.exchangeCurrency(currencies: currencies)
+            weakSelf.exchangeCurrency(currencyExchange: weakSelf.myBalanceViewModel.currencyExchange)
         }
         .disposed(by: disposeBag)
     }
@@ -185,6 +185,7 @@ class MyBalanceViewController: BaseViewController {
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] response in
                 AppLogger.info("Response = \(response)")
+                
                 guard let weakSelf = self, let currencyRespone = response else {
                     return
                 }
@@ -209,6 +210,17 @@ class MyBalanceViewController: BaseViewController {
         AppLogger.info("conversionCount == \(UserSessionDataClient.shared.conversionCount)")
     }
     
+    // MARK: EVENT FIRE
+    func exchangeCurrency(currencyExchange: CurrencyExchange) {
+        let amount = "\(currencyExchange.sell?.amount ?? 0.00)"
+        currencyConverterTrigger.onNext(MyBalanceViewModel.CurrencyConverterInput(fromAmount: amount, fromCurrency: currencyExchange.sell?.currency ?? "", toCurrency: currencyExchange.receive?.currency ?? ""))
+    }
+    
+    func addBalances(balance: Balance) {
+        addCurrencyTrigger.onNext(balance)
+    }
+    
+    //MARK: UI METHODS
     func addBalanceView() {
         view.addSubview(balanceListView)
         view.addSubview(balanceTitleLabel)
@@ -274,15 +286,6 @@ class MyBalanceViewController: BaseViewController {
         currencyExchangeReceivedView.amountText = "+\(amount)"
     }
     
-    // MARK: EVENT FIRE
-    func exchangeCurrency(currencies: CurrencyExchange) {
-        let amount = "\(currencies.sell?.amount ?? 0.00)"
-        currencyConverterTrigger.onNext(MyBalanceViewModel.CurrencyConverterInput(fromAmount: amount, fromCurrency: currencies.sell?.currency ?? "", toCurrency: currencies.receive?.currency ?? ""))
-    }
-    
-    func addBalances(balance: Balance) {
-        addCurrencyTrigger.onNext(balance)
-    }
     
     // MARK: LIST VIEW
     //populate collection view cell
@@ -296,7 +299,7 @@ class MyBalanceViewController: BaseViewController {
     
     private func onTapTableviewCell() {
         Observable
-            .zip(balanceListView.rx.itemSelected, balanceListView.rx.modelSelected(MyBalanceViewModel.DomainEntity.self))
+            .zip(balanceListView.rx.itemSelected, balanceListView.rx.modelSelected(Balance.self))
             .bind { [weak self] indexPath, model in
                 guard let weakSelf = self else {
                     return

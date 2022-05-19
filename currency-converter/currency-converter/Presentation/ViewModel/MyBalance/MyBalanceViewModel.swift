@@ -11,7 +11,6 @@ import RxCocoa
 
 /* This is my balance viewmodel class implementation of AbstractMyBalanceViewModel. Which will be used to get my blalance related data by its usecase*/
 class MyBalanceViewModel: AbstractMyBalanceViewModel {
-    typealias DomainEntity = Balance
     
     // This struct will be used get input from viewcontroller
     public struct CurrencyConverterInput {
@@ -28,15 +27,15 @@ class MyBalanceViewModel: AbstractMyBalanceViewModel {
     
     // This struct will be used to send event with observable data/response to viewcontroller
     public struct MyBalanceOutput {
-        let balance: BehaviorRelay<DomainEntity?>
+        let balance: BehaviorRelay<Balance?>
         let errorTracker: BehaviorRelay<NetworkError?>
     }
     
-    var disposeBag =  DisposeBag()
+    let disposeBag =  DisposeBag()
     let usecase: AbstractUsecase
     let commissionCalculator: ComissionCalculator
     let balanceListRelay: BehaviorRelay<[Balance]> = BehaviorRelay<[Balance]>(value: [Balance(amount: 1000.00, currency: "USD"), Balance(amount: 100, currency: "EUR"), Balance(amount: 100, currency: "JPY"), Balance(amount: 100, currency: "BDT")])
-    private(set) var currencyExchange: CurrencyExchange? = CurrencyExchange()
+    let currencyExchange: CurrencyExchange = CurrencyExchange()
     
     public init(usecase: AbstractCurrencyUsecase, commissionCalculator: ComissionCalculator) {
         self.usecase = usecase
@@ -44,7 +43,7 @@ class MyBalanceViewModel: AbstractMyBalanceViewModel {
     }
     
     public func getMyBalanceOutput(input: MyBalanceInput) -> MyBalanceOutput {
-        let balanceResponse = BehaviorRelay<DomainEntity?>(value: nil)
+        let balanceResponse = BehaviorRelay<Balance?>(value: nil)
         let errorResponse = BehaviorRelay<NetworkError?>(value: nil) 
         
         //add currency trigger
@@ -75,8 +74,9 @@ class MyBalanceViewModel: AbstractMyBalanceViewModel {
                 return
             }
             
-            let output = DomainEntity(amount: Double(response.amount ?? "0.00") ?? 0.00, currency: response.title)
-            weakSelf.balanceListRelay.accept(weakSelf.calculatOutputBalance(output: output))
+            let output = Balance(amount: Double(response.amount ?? "0.00") ?? 0.00, currency: response.title)
+            weakSelf.currencyExchange.receive = output
+            weakSelf.balanceListRelay.accept(weakSelf.calculatFinalBalance(exchangedBalance: weakSelf.currencyExchange))
             balanceResponse.accept(output)
         }, onError: { [weak self] error in
             errorResponse.accept(error as? NetworkError)
@@ -90,21 +90,19 @@ class MyBalanceViewModel: AbstractMyBalanceViewModel {
         return (usecase as! AbstractCurrencyUsecase).convert(fromAmount: fromAmount, fromCurrency: fromCurrency, toCurrency: toCurrency)
     }
     
-    // MARK: OTHERS METHODS 
+    // MARK: HELPER METHODS
     // deduct and increase balance after exchange
-    func calculatOutputBalance(output: DomainEntity) -> [DomainEntity] {
-        currencyExchange?.receive = output
-        
+    func calculatFinalBalance(exchangedBalance: CurrencyExchange) -> [Balance] {
         var result = balanceListRelay.value
         
         // set recieve amount
-        if let index = result.firstIndex(where: { $0.currency?.elementsEqual(output.currency ?? "") ?? false}) {
-            result[index].amount = (result[index].amount ?? 0.0) + (output.amount ?? 0.00)
+        if let index = result.firstIndex(where: { $0.currency?.elementsEqual(exchangedBalance.receive?.currency ?? "") ?? false}) {
+            result[index].amount = (result[index].amount ?? 0.0) + (exchangedBalance.receive?.amount ?? 0.00)
         }
         
         //set deduct amount
-        if let index = result.firstIndex(where: { $0.currency?.elementsEqual(currencyExchange?.sell?.currency ?? "") ?? false}) {
-            result[index].amount = (result[index].amount ?? 0.0) - (currencyExchange?.sell?.amount ?? 0.00)
+        if let index = result.firstIndex(where: { $0.currency?.elementsEqual(currencyExchange.sell?.currency ?? "") ?? false}) {
+            result[index].amount = (result[index].amount ?? 0.0) - (currencyExchange.sell?.amount ?? 0.00)
         }
         
         return result
