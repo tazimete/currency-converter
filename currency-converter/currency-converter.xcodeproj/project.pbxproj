@@ -18,6 +18,7 @@
 		FA63E538283316A400470DCC /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA63E537283316A400470DCC /* UILabel+Extension.swift */; };
 		FA6C62C9282BCB4D00D42413 /* AbstractDatabaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6C62C8282BCB4D00D42413 /* AbstractDatabaseClient.swift */; };
 		FA6C62CB282BD9E000D42413 /* AbstractUserSessionDataClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6C62CA282BD9E000D42413 /* AbstractUserSessionDataClient.swift */; };
+		FA6E9BC72836EA240046B405 /* BalanceCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6E9BC62836EA240046B405 /* BalanceCalculator.swift */; };
 		FA75805E2831A8AD00A94028 /* CurrencyExcangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75805D2831A8AD00A94028 /* CurrencyExcangeView.swift */; };
 		FA880E16283451AF00388BE6 /* CurrencyExchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA880E15283451AF00388BE6 /* CurrencyExchange.swift */; };
 		FA880E1828345C8C00388BE6 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA880E1728345C8C00388BE6 /* Currency.swift */; };
@@ -175,6 +176,7 @@
 		FA63E537283316A400470DCC /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		FA6C62C8282BCB4D00D42413 /* AbstractDatabaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractDatabaseClient.swift; sourceTree = "<group>"; };
 		FA6C62CA282BD9E000D42413 /* AbstractUserSessionDataClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractUserSessionDataClient.swift; sourceTree = "<group>"; };
+		FA6E9BC62836EA240046B405 /* BalanceCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceCalculator.swift; sourceTree = "<group>"; };
 		FA75805D2831A8AD00A94028 /* CurrencyExcangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyExcangeView.swift; sourceTree = "<group>"; };
 		FA880E15283451AF00388BE6 /* CurrencyExchange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyExchange.swift; sourceTree = "<group>"; };
 		FA880E1728345C8C00388BE6 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
@@ -398,6 +400,14 @@
 			path = Abstractions;
 			sourceTree = "<group>";
 		};
+		FA6E9BC52836EA010046B405 /* BalanceCalculator */ = {
+			isa = PBXGroup;
+			children = (
+				FA6E9BC62836EA240046B405 /* BalanceCalculator.swift */,
+			);
+			path = BalanceCalculator;
+			sourceTree = "<group>";
+		};
 		FA75805C2831A7C100A94028 /* CurrencyExchangeView */ = {
 			isa = PBXGroup;
 			children = (
@@ -452,7 +462,7 @@
 			path = Currency;
 			sourceTree = "<group>";
 		};
-		FAB2A498282A5D7800F1F075 /* Commission */ = {
+		FAB2A498282A5D7800F1F075 /* CommissionCalculator */ = {
 			isa = PBXGroup;
 			children = (
 				FAB2A49D282A9AC200F1F075 /* ComissionPolicy.swift */,
@@ -460,7 +470,7 @@
 				FAB2A4A4282ABA3500F1F075 /* ComissionCalculator.swift */,
 				FAB2A49F282A9B7400F1F075 /* Policy */,
 			);
-			path = Commission;
+			path = CommissionCalculator;
 			sourceTree = "<group>";
 		};
 		FAB2A49F282A9B7400F1F075 /* Policy */ = {
@@ -837,7 +847,6 @@
 			children = (
 				FAE7E72B282181B60019BCC2 /* Abstraction */,
 				FAE7E733282181B60019BCC2 /* MyBalance */,
-				FAB2A498282A5D7800F1F075 /* Commission */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -862,6 +871,8 @@
 		FAE7E733282181B60019BCC2 /* MyBalance */ = {
 			isa = PBXGroup;
 			children = (
+				FA6E9BC52836EA010046B405 /* BalanceCalculator */,
+				FAB2A498282A5D7800F1F075 /* CommissionCalculator */,
 				FAE7E734282181B60019BCC2 /* MyBalanceViewModel.swift */,
 			);
 			path = MyBalance;
@@ -1457,6 +1468,7 @@
 				FAE7E87F282187900019BCC2 /* SkeletonLayerBuilder.swift in Sources */,
 				FAE7E88B282187900019BCC2 /* UIColor+Skeleton.swift in Sources */,
 				FAE7E89E282187900019BCC2 /* UICollectionView+CollectionSkeleton.swift in Sources */,
+				FA6E9BC72836EA240046B405 /* BalanceCalculator.swift in Sources */,
 				FA9CC8D5282F092300E4B791 /* CurrencyRemoteDataSource.swift in Sources */,
 				FAE7E7A8282181B70019BCC2 /* Parameterizable.swift in Sources */,
 				FAE7E880282187900019BCC2 /* SkeletonFlow.swift in Sources */,

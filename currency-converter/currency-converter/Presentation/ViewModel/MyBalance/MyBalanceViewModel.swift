@@ -34,6 +34,7 @@ class MyBalanceViewModel: AbstractMyBalanceViewModel {
     let disposeBag =  DisposeBag()
     let usecase: AbstractUsecase
     let commissionCalculator: ComissionCalculator
+    let balanceCalculator = BalanceCalculator()
     let balanceListRelay: BehaviorRelay<[Balance]> = BehaviorRelay<[Balance]>(value: [Balance(amount: 1000.00, currency: "USD"), Balance(amount: 100, currency: "EUR"), Balance(amount: 100, currency: "JPY"), Balance(amount: 100, currency: "BDT")])
     let currencyExchange: CurrencyExchange = CurrencyExchange()
     
@@ -60,7 +61,7 @@ class MyBalanceViewModel: AbstractMyBalanceViewModel {
         // currency exchange trigger
         input.currencyConverterTrigger.flatMapLatest({ [weak self] (inputModel) -> Observable<CurrencyApiRequest.ItemType> in
             // check if  self is exists and balance is enough
-            guard let weakSelf = self, let balance = weakSelf.currencyExchange.sell, weakSelf.hasEnoughBalance(balance: balance) == true else {
+            guard let weakSelf = self else {
                 return Observable.just(CurrencyApiRequest.ItemType())
             }
             
@@ -77,7 +78,7 @@ class MyBalanceViewModel: AbstractMyBalanceViewModel {
             
             let output = Balance(amount: Double(response.amount ?? "0.00") ?? 0.00, currency: response.title)
             weakSelf.currencyExchange.receive = output
-            weakSelf.balanceListRelay.accept(weakSelf.calculatFinalBalance(exchangedBalance: weakSelf.currencyExchange))
+            weakSelf.balanceListRelay.accept(weakSelf.calculatFinalBalance())
             balanceResponse.accept(output)
         }, onError: { [weak self] error in
             errorResponse.accept(error as? NetworkError)
@@ -92,41 +93,14 @@ class MyBalanceViewModel: AbstractMyBalanceViewModel {
     }
     
     // MARK: HELPER METHODS
-    // check enough balance before exchange
-    func hasEnoughBalance(balance: Balance) -> Bool {
-        var result = true
-        let balances = balanceListRelay.value
-        let currency = currencyExchange.sell?.currency ?? ""
-        let amount = balance.amount ?? 0.00
-        
-        //set deduct amount
-        if let index = balances.firstIndex(where: { $0.currency?.elementsEqual(currency) ?? false}) {
-            let diff = (balances[index].amount ?? 0.0) - amount
-            result = diff >= 0 ? true : false
-        }
-        
-        return result
+    // check if balance is enough before exchange 
+    func hasEnoughBalance() -> Bool {
+        return balanceCalculator.hasEnoughBalance(exchangeBalance: currencyExchange, balances: balanceListRelay.value)
     }
     
     // deduct and increase balance after exchange
-    func calculatFinalBalance(exchangedBalance: CurrencyExchange) -> [Balance] {
-        var balances = balanceListRelay.value
-        let sellCurrency = exchangedBalance.sell?.currency ?? ""
-        let receiveCurrency = exchangedBalance.receive?.currency ?? ""
-        let sellAmount = exchangedBalance.sell?.amount ?? 0.00
-        let receiveAmount = exchangedBalance.receive?.amount ?? 0.00
-        
-        // set recieve amount
-        if let index = balances.firstIndex(where: { $0.currency?.elementsEqual(receiveCurrency) ?? false}) {
-            balances[index].amount = (balances[index].amount ?? 0.0) + receiveAmount
-        }
-        
-        //set deduct amount from sell balance
-        if let index = balances.firstIndex(where: { $0.currency?.elementsEqual(sellCurrency) ?? false}) {
-            balances[index].amount = (balances[index].amount ?? 0.0) - sellAmount
-        }
-        
-        return balances
+    func calculatFinalBalance() -> [Balance] {
+        return balanceCalculator.calculatFinalBalance(exchangeBalance: currencyExchange, balances: balanceListRelay.value)
     }
 }
 
