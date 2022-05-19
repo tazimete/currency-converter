@@ -61,7 +61,7 @@ class MyBalanceViewModel: AbstractMyBalanceViewModel {
         // currency exchange trigger
         input.currencyConverterTrigger.flatMapLatest({ [weak self] (inputModel) -> Observable<CurrencyApiRequest.ItemType> in
             // check if  self is exists and balance is enough
-            guard let weakSelf = self else {
+            guard let weakSelf = self, weakSelf.hasEnoughBalance() == true  else {
                 return Observable.just(CurrencyApiRequest.ItemType())
             }
             
@@ -72,11 +72,11 @@ class MyBalanceViewModel: AbstractMyBalanceViewModel {
                        return Observable.just(CurrencyApiRequest.ItemType())
                     })
         }).subscribe(onNext: { [weak self] response in
-            guard let weakSelf = self else {
+            guard let weakSelf = self, let amount = response.amount, let currency = response.title else {
                 return
             }
             
-            let output = Balance(amount: Double(response.amount ?? "0.00") ?? 0.00, currency: response.title)
+            let output = Balance(amount: Double(amount) ?? 0.00, currency: currency)
             weakSelf.currencyExchange.receive = output
             weakSelf.balanceListRelay.accept(weakSelf.calculatFinalBalance())
             balanceResponse.accept(output)
