@@ -59,11 +59,12 @@ class MyBalanceViewModel: AbstractMyBalanceViewModel {
         
         // currency exchange trigger
         input.currencyConverterTrigger.flatMapLatest({ [weak self] (inputModel) -> Observable<CurrencyApiRequest.ItemType> in
-            guard let weakSelf = self else {
+            // check if  self is exists and balance is enough
+            guard let weakSelf = self, let balance = weakSelf.currencyExchange.sell, weakSelf.hasEnoughBalance(balance: balance) == true else {
                 return Observable.just(CurrencyApiRequest.ItemType())
             }
             
-            //fetch movie list
+            //convert currency with balance
             return weakSelf.convert(fromAmount: inputModel.fromAmount, fromCurrency: inputModel.fromCurrency, toCurrency: inputModel.toCurrency)
                    .catch({ error in
                        errorResponse.accept(error as? NetworkError)
@@ -91,21 +92,41 @@ class MyBalanceViewModel: AbstractMyBalanceViewModel {
     }
     
     // MARK: HELPER METHODS
-    // deduct and increase balance after exchange
-    func calculatFinalBalance(exchangedBalance: CurrencyExchange) -> [Balance] {
-        var result = balanceListRelay.value
-        
-        // set recieve amount
-        if let index = result.firstIndex(where: { $0.currency?.elementsEqual(exchangedBalance.receive?.currency ?? "") ?? false}) {
-            result[index].amount = (result[index].amount ?? 0.0) + (exchangedBalance.receive?.amount ?? 0.00)
-        }
+    // check enough balance before exchange
+    func hasEnoughBalance(balance: Balance) -> Bool {
+        var result = true
+        let balances = balanceListRelay.value
+        let currency = currencyExchange.sell?.currency ?? ""
+        let amount = balance.amount ?? 0.00
         
         //set deduct amount
-        if let index = result.firstIndex(where: { $0.currency?.elementsEqual(currencyExchange.sell?.currency ?? "") ?? false}) {
-            result[index].amount = (result[index].amount ?? 0.0) - (currencyExchange.sell?.amount ?? 0.00)
+        if let index = balances.firstIndex(where: { $0.currency?.elementsEqual(currency) ?? false}) {
+            let diff = (balances[index].amount ?? 0.0) - amount
+            result = diff >= 0 ? true : false
         }
         
         return result
+    }
+    
+    // deduct and increase balance after exchange
+    func calculatFinalBalance(exchangedBalance: CurrencyExchange) -> [Balance] {
+        var balances = balanceListRelay.value
+        let sellCurrency = exchangedBalance.sell?.currency ?? ""
+        let receiveCurrency = exchangedBalance.receive?.currency ?? ""
+        let sellAmount = exchangedBalance.sell?.amount ?? 0.00
+        let receiveAmount = exchangedBalance.receive?.amount ?? 0.00
+        
+        // set recieve amount
+        if let index = balances.firstIndex(where: { $0.currency?.elementsEqual(receiveCurrency) ?? false}) {
+            balances[index].amount = (balances[index].amount ?? 0.0) + receiveAmount
+        }
+        
+        //set deduct amount from sell balance
+        if let index = balances.firstIndex(where: { $0.currency?.elementsEqual(sellCurrency) ?? false}) {
+            balances[index].amount = (balances[index].amount ?? 0.0) - sellAmount
+        }
+        
+        return balances
     }
 }
 
