@@ -18,7 +18,7 @@ class CurrencyExcangeView: UIView {
 
     public var currencies: [String]! {
         didSet{
-            self.currencyDropdown.dataSource.append(contentsOf: currencies)
+            self.currencyDropdown.dataSource = currencies
         }
     }
     

@@ -25,6 +25,9 @@ protocol AbstractMyBalanceViewModel: AbstractViewModel {
     
     // convert currency through api call
     func convert(fromAmount: String, fromCurrency: String, toCurrency: String) -> Observable<CurrencyApiRequest.ItemType>
+    
+    // deduct and increase balance after exchange 
+    func calculatOutputBalance(output: DomainEntity)
 }
 
 

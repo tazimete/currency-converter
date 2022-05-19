@@ -79,7 +79,12 @@ class MyBalanceViewModel: AbstractMyBalanceViewModel {
         return MyBalanceOutput.init(balance: balanceResponse, errorTracker: errorResponse)
     }
     
-    func calculatOutputBalance(output: Balance) {
+    func convert(fromAmount: String, fromCurrency: String, toCurrency: String) -> Observable<CurrencyApiRequest.ItemType> {
+        return (usecase as! AbstractCurrencyUsecase).convert(fromAmount: fromAmount, fromCurrency: fromCurrency, toCurrency: toCurrency)
+    }
+    
+    // deduct and increase balance after exchange 
+    func calculatOutputBalance(output: DomainEntity) {
         currencyExchange?.receive = output
         
         var result = balanceListRelay.value
@@ -95,10 +100,6 @@ class MyBalanceViewModel: AbstractMyBalanceViewModel {
             result[index].amount = (result[index].amount ?? 0.0) - (currencyExchange?.sell?.amount ?? 0.00)
             balanceListRelay.accept(result)
         }
-    }
-    
-    func convert(fromAmount: String, fromCurrency: String, toCurrency: String) -> Observable<CurrencyApiRequest.ItemType> {
-        return (usecase as! AbstractCurrencyUsecase).convert(fromAmount: fromAmount, fromCurrency: fromCurrency, toCurrency: toCurrency)
     }
 }
 
