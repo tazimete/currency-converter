@@ -196,15 +196,28 @@ class MyBalanceViewController: BaseViewController {
                 weakSelf.setReceivedAmount(amount: currencyRespone.amount ?? 0.00)
             }).disposed(by: disposeBag)
         
-        // detect error
-        currencyConverterOutput.errorTracker
+        // detect validation error
+        currencyConverterOutput.validationError
             .asDriver()
             .drive(onNext: { [weak self] error in
                 guard let weakSelf = self, let error = error else {
                     return
                 }
             
-                AppLogger.debug("code = \(error.errorCode), message = \(error.errorMessage)")
+                AppLogger.debug("validationError -- code = \(error.errorCode), message = \(error.errorMessage)")
+                weakSelf.showAlertDialog(title: "No Balance", message: error.errorMessage)
+                
+        }).disposed(by: disposeBag)
+        
+        // detect network error
+        currencyConverterOutput.errorResponse
+            .asDriver()
+            .drive(onNext: { [weak self] error in
+                guard let weakSelf = self, let error = error else {
+                    return
+                }
+            
+                AppLogger.debug("errorResponse -- code = \(error.errorCode), message = \(error.errorMessage)")
         }).disposed(by: disposeBag)
         
         AppLogger.info("conversionCount == \(UserSessionDataClient.shared.conversionCount)")
@@ -339,6 +352,14 @@ class MyBalanceViewController: BaseViewController {
     
     @objc func didTapAddButton(sender : AnyObject){
         showAddCurrencyDialog()
+    }
+    
+    
+    // MARK: DIALOG VIEW
+    private func showAlertDialog(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.destructive, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     private func showAddCurrencyDialog() {

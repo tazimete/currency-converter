@@ -28,7 +28,8 @@ class MyBalanceViewModel: AbstractMyBalanceViewModel {
     // This struct will be used to send event with observable data/response to viewcontroller
     public struct MyBalanceOutput {
         let balance: BehaviorRelay<Balance?>
-        let errorTracker: BehaviorRelay<NetworkError?>
+        let validationError: BehaviorRelay<ValidationError?>
+        let errorResponse: BehaviorRelay<NetworkError?>
     }
     
     let disposeBag =  DisposeBag()
@@ -45,6 +46,7 @@ class MyBalanceViewModel: AbstractMyBalanceViewModel {
     
     public func getMyBalanceOutput(input: MyBalanceInput) -> MyBalanceOutput {
         let balanceResponse = BehaviorRelay<Balance?>(value: nil)
+        let validationError = BehaviorRelay<ValidationError?>(value: nil)
         let errorResponse = BehaviorRelay<NetworkError?>(value: nil) 
         
         //add currency trigger
@@ -65,7 +67,9 @@ class MyBalanceViewModel: AbstractMyBalanceViewModel {
                 return Observable.just(CurrencyApiRequest.ItemType())
             }
             
+            // check enough balance before proceed
             guard weakSelf.hasEnoughBalance() == true else {
+                validationError.accept(ValidationError.notEnoughBalance(code: 101, message: "You dont have enough balance to exchange include 0.7% comission"))
                 return Observable.just(CurrencyApiRequest.ItemType())
             }
             
@@ -88,7 +92,7 @@ class MyBalanceViewModel: AbstractMyBalanceViewModel {
             errorResponse.accept(error as? NetworkError)
         }).disposed(by: disposeBag)
         
-        return MyBalanceOutput.init(balance: balanceResponse, errorTracker: errorResponse)
+        return MyBalanceOutput.init(balance: balanceResponse, validationError: validationError, errorResponse: errorResponse)
     }
     
     // MARK: API CALLS
@@ -108,3 +112,26 @@ class MyBalanceViewModel: AbstractMyBalanceViewModel {
     }
 }
 
+
+public enum ValidationError: Error {
+    case notEnoughBalance(code: Int, message: String)
+    case none
+    
+    public var errorMessage: String {
+        switch self {
+        case .notEnoughBalance(_, let message):
+            return message
+        case .none:
+            return ""
+        }
+    }
+    
+    public var errorCode: Int {
+        switch self {
+        case .notEnoughBalance(let code, _):
+            return code
+        case .none:
+            return 0
+        }
+    }
+}
