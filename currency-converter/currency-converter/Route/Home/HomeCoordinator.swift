@@ -22,7 +22,9 @@ class HomeCoordinator: Coordinator {
         
         let commissionCalculator = ComissionCalculator(commissionOptions: ComissionDependency.shared, policies: [FirstFiveConversionComissionPolicy(commissionOptions: ComissionDependency.shared), EveryTenthComissionPolicy(commissionOptions: ComissionDependency.shared), UpToTwoHundredPolicy(commissionOptions: ComissionDependency.shared)])
         
-        let viewModel = MyBalanceViewModel(usecase: usecase, commissionCalculator: commissionCalculator, balanceCalculator: BalanceCalculator())
+        let balanceExecutor = BalanceOperationExecutor(operation: BalanceCheckOperation())
+        
+        let viewModel = MyBalanceViewModel(usecase: usecase, commissionCalculator: commissionCalculator, balanceExecutor: balanceExecutor)
         let vc = MyBalanceViewController(viewModel: viewModel)
         self.navigationController.pushViewController(vc, animated: true)
     }

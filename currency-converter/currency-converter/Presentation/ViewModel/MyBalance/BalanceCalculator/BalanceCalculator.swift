@@ -7,40 +7,24 @@
 
 import Foundation
 
-struct BalanceCalculator {
+class BalanceOperationExecutor {
+    private(set) var operation: BalanceOperation
+    
+    init(operation: BalanceOperation) {
+        self.operation = operation
+    }
+    
+    func update(operation: BalanceOperation) {
+        self.operation = operation
+    }
+    
     // check enough balance before exchange
-    func hasEnoughBalance(exchangeBalance: CurrencyExchange, balances: [Balance], commission: Double) -> Bool {
-        var result = true
-        let currency = exchangeBalance.sell?.currency ?? ""
-        let amount = exchangeBalance.sell?.amount ?? 0.00
-        
-        //check in all available balances 
-        if let index = balances.firstIndex(where: { $0.currency?.elementsEqual(currency) ?? false}) {
-            let diff = (balances[index].amount ?? 0.0) - amount - commission
-            result = diff >= 0 ? true : false
-        }
-        
-        return result
+    func executeCheck(exchangeBalance: CurrencyExchange, balances: [Balance], commission: Double) -> Bool {
+        return operation.check(exchangeBalance: exchangeBalance, balances: balances, commission: commission)
     }
     
     // deduct and increase balance after exchange
-    func calculatFinalBalance(exchangeBalance: CurrencyExchange, balances: [Balance]) -> [Balance] {
-        var balances = balances
-        let sellCurrency = exchangeBalance.sell?.currency ?? ""
-        let receiveCurrency = exchangeBalance.receive?.currency ?? ""
-        let sellAmount = exchangeBalance.sell?.amount ?? 0.00
-        let receiveAmount = exchangeBalance.receive?.amount ?? 0.00
-        
-        // set recieve amount
-        if let index = balances.firstIndex(where: { $0.currency?.elementsEqual(receiveCurrency) ?? false}) {
-            balances[index].amount = (balances[index].amount ?? 0.0) + receiveAmount
-        }
-        
-        //set deduct amount from sell balance
-        if let index = balances.firstIndex(where: { $0.currency?.elementsEqual(sellCurrency) ?? false}) {
-            balances[index].amount = (balances[index].amount ?? 0.0) - sellAmount
-        }
-        
-        return balances
+    func executeBalance(exchangeBalance: CurrencyExchange, balances: [Balance], commission: Double) -> [Balance] {
+        return operation.execute(exchangeBalance: exchangeBalance, balances: balances, commission: commission)
     }
 }

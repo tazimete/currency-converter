@@ -35,15 +35,15 @@ class MyBalanceViewModel: AbstractMyBalanceViewModel {
     let disposeBag =  DisposeBag()
     let usecase: AbstractUsecase
     let commissionCalculator: ComissionCalculator
-    let balanceCalculator: BalanceCalculator
+    let balanceExecutor: BalanceOperationExecutor
     let currencyExchange: CurrencyExchange = CurrencyExchange()
     let balanceListRelay: BehaviorRelay<[Balance]> = BehaviorRelay<[Balance]>(value: [Balance(amount: 1000.00, currency: "USD"), Balance(amount: 100, currency: "EUR"), Balance(amount: 100, currency: "JPY"), Balance(amount: 100, currency: "BDT")])
     
     
-    public init(usecase: AbstractCurrencyUsecase, commissionCalculator: ComissionCalculator, balanceCalculator: BalanceCalculator) {
+    public init(usecase: AbstractCurrencyUsecase, commissionCalculator: ComissionCalculator, balanceExecutor: BalanceOperationExecutor) {
         self.usecase = usecase
         self.commissionCalculator = commissionCalculator
-        self.balanceCalculator = balanceCalculator
+        self.balanceExecutor = balanceExecutor
     }
     
     public func getMyBalanceOutput(input: MyBalanceInput) -> MyBalanceOutput {
@@ -88,7 +88,7 @@ class MyBalanceViewModel: AbstractMyBalanceViewModel {
             
             let output = Balance(amount: Double(amount) ?? 0.00, currency: currency)
             weakSelf.currencyExchange.receive = output
-            weakSelf.balanceListRelay.accept(weakSelf.calculatFinalBalance())
+            weakSelf.balanceListRelay.accept(weakSelf.calculatFinalBalance(exchangeBalance: weakSelf.currencyExchange, balances: weakSelf.balanceListRelay.value, commission: weakSelf.calculateCommission()))
             balanceResponse.accept(output)
         }, onError: { [weak self] error in
             errorResponse.accept(error as? NetworkError)
@@ -105,7 +105,8 @@ class MyBalanceViewModel: AbstractMyBalanceViewModel {
     // MARK: HELPER METHODS
     // check if balance is enough before exchange 
     func hasEnoughBalance() -> Bool {
-        return balanceCalculator.hasEnoughBalance(exchangeBalance: currencyExchange, balances: balanceListRelay.value, commission: calculateCommission())
+        balanceExecutor.update(operation: BalanceCheckOperation())
+        return balanceExecutor.executeCheck(exchangeBalance: currencyExchange, balances: balanceListRelay.value, commission: calculateCommission())
     }
     
     // calculate commission before exchange
@@ -115,9 +116,26 @@ class MyBalanceViewModel: AbstractMyBalanceViewModel {
         return commission
     }
     
-    // deduct and increase balance after exchange
-    func calculatFinalBalance() -> [Balance] {
-        return balanceCalculator.calculatFinalBalance(exchangeBalance: currencyExchange, balances: balanceListRelay.value)
+    // Deduct balance after exchange
+    func calculatSellBalance(exchangeBalance: CurrencyExchange, balances: [Balance], commission: Double) -> [Balance] {
+        balanceExecutor.update(operation: BalanceSellOperation())
+        
+        return balanceExecutor.executeBalance(exchangeBalance: exchangeBalance, balances: balances, commission: commission)
+    }
+    
+    // Add balance after exchange
+    func calculatReceiveBalance(exchangeBalance: CurrencyExchange, balances: [Balance], commission: Double) -> [Balance] {
+        balanceExecutor.update(operation: BalanceReceiveOperation())
+        
+        return balanceExecutor.executeBalance(exchangeBalance: exchangeBalance, balances: balances, commission: commission)
+    }
+    
+    // calculate total balance
+    func calculatFinalBalance(exchangeBalance: CurrencyExchange, balances: [Balance], commission: Double) -> [Balance] {
+        let updatedBalancesBySell = calculatSellBalance(exchangeBalance: exchangeBalance, balances: balances, commission: commission)
+        let result = calculatReceiveBalance(exchangeBalance: exchangeBalance, balances: updatedBalancesBySell, commission: commission)
+        
+        return result
     }
 }
 

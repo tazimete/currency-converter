@@ -17,6 +17,7 @@ protocol AbstractMyBalanceViewModel: AbstractViewModel {
     
     var disposeBag: DisposeBag {get}
     var commissionCalculator: ComissionCalculator {get}
+    var balanceExecutor: BalanceOperationExecutor {get}
     var balanceListRelay: BehaviorRelay<[Balance]> {get}
     
     // Transform the my balance input to output observable
@@ -31,10 +32,10 @@ protocol AbstractMyBalanceViewModel: AbstractViewModel {
     //calculate commission before exchange
     func calculateCommission() -> Double
     
-    // deduct and increase balance after exchange 
-    func calculatFinalBalance() -> [Balance]
-    
-    
+    // deduct and increase balance after exchange
+    func calculatSellBalance(exchangeBalance: CurrencyExchange, balances: [Balance], commission: Double) -> [Balance]
+    func calculatReceiveBalance(exchangeBalance: CurrencyExchange, balances: [Balance], commission: Double) -> [Balance]
+    func calculatFinalBalance(exchangeBalance: CurrencyExchange, balances: [Balance], commission: Double) -> [Balance]
 }
 
 
