@@ -210,7 +210,34 @@ class MyBalanceViewController: BaseViewController {
         AppLogger.info("conversionCount == \(UserSessionDataClient.shared.conversionCount)")
     }
     
-    // MARK: EVENT FIRE
+    
+    // MARK: EVENT FIRE & OBSERVE
+    public func observeBalanceItems() {
+        // bind balance list view
+        myBalanceViewModel.balanceListRelay
+            .asDriver()
+            .drive(balanceListView.rx.items) { [weak self] collectionView, row, model in
+                guard let weakSelf = self else {
+                    return UICollectionViewCell()
+                }
+                
+                return weakSelf.populateBalanceViewCell(viewModel: model.asCellViewModel, indexPath: IndexPath(row: row, section: 0), collectionView: collectionView)
+            }.disposed(by: disposeBag)
+        
+        // observe balance list
+        myBalanceViewModel.balanceListRelay
+            .asDriver()
+            .drive(onNext: { [weak self] balances in
+               guard let weakSelf = self else {
+                   return
+               }
+           
+                weakSelf.currencyExchangeSellView.currencies = balances.map({$0.currency ?? ""})
+                weakSelf.currencyExchangeReceivedView.currencies = balances.map({$0.currency ?? ""})
+            })
+            .disposed(by: disposeBag)
+    }
+    
     func exchangeCurrency(currencyExchange: CurrencyExchange) {
         let amount = "\(currencyExchange.sell?.amount ?? 0.00)"
         currencyConverterTrigger.onNext(MyBalanceViewModel.CurrencyConverterInput(fromAmount: amount, fromCurrency: currencyExchange.sell?.currency ?? "", toCurrency: currencyExchange.receive?.currency ?? ""))
@@ -308,31 +335,6 @@ class MyBalanceViewController: BaseViewController {
                 AppLogger.debug(" Selected " + (model.currency ?? "") + " at \(indexPath)")
             }
             .disposed(by: disposeBag)
-    }
-    
-    public func observeBalanceItems() {
-        // bind balance list view
-        myBalanceViewModel.balanceListRelay
-            .observe(on: MainScheduler.instance)
-            .bind(to: balanceListView.rx.items) { [weak self] collectionView, row, model in
-                guard let weakSelf = self else {
-                    return UICollectionViewCell()
-                }
-                
-                return weakSelf.populateBalanceViewCell(viewModel: model.asCellViewModel, indexPath: IndexPath(row: row, section: 0), collectionView: collectionView)
-            }.disposed(by: disposeBag)
-        
-        // observe balance list
-        myBalanceViewModel.balanceListRelay
-            .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { [weak self] balances in
-                guard let weakSelf = self else {
-                    return
-                }
-            
-                weakSelf.currencyExchangeSellView.currencies = balances.map({$0.currency ?? ""})
-                weakSelf.currencyExchangeReceivedView.currencies = balances.map({$0.currency ?? ""})
-        }).disposed(by: disposeBag)
     }
     
     @objc func didTapAddButton(sender : AnyObject){

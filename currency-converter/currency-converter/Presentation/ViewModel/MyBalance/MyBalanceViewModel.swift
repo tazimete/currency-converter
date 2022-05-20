@@ -61,7 +61,11 @@ class MyBalanceViewModel: AbstractMyBalanceViewModel {
         // currency exchange trigger
         input.currencyConverterTrigger.flatMapLatest({ [weak self] (inputModel) -> Observable<CurrencyApiRequest.ItemType> in
             // check if  self is exists and balance is enough
-            guard let weakSelf = self, weakSelf.hasEnoughBalance() == true  else {
+            guard let weakSelf = self else {
+                return Observable.just(CurrencyApiRequest.ItemType())
+            }
+            
+            guard weakSelf.hasEnoughBalance() == true else {
                 return Observable.just(CurrencyApiRequest.ItemType())
             }
             
