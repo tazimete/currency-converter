@@ -33,7 +33,7 @@ protocol AbstractMyBalanceViewModel: AbstractViewModel {
     func calculateCommission() -> Double
     
     // deduct and increase balance after exchange
-    func calculatFinalBalance() -> [Balance]
+    func calculatFinalBalances() -> [Balance]
 }
 
 

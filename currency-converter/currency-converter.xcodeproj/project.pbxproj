@@ -15,11 +15,14 @@
 		FA387B732826792E00B83C23 /* AbstractLocalStorageIntereactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA387B722826792E00B83C23 /* AbstractLocalStorageIntereactor.swift */; };
 		FA387B7628267CA800B83C23 /* KVLocalSorageIntereactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA387B7528267CA800B83C23 /* KVLocalSorageIntereactor.swift */; };
 		FA387B78282689DC00B83C23 /* UserSessionDataClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA387B77282689DC00B83C23 /* UserSessionDataClient.swift */; };
-		FA55084C28383F2100E3AE4F /* BalanceOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA55084B28383F2100E3AE4F /* BalanceOperations.swift */; };
+		FA55084C28383F2100E3AE4F /* BalanceOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA55084B28383F2100E3AE4F /* BalanceOperation.swift */; };
+		FA55084F28385E6800E3AE4F /* BalanceCheckOpration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA55084E28385E6800E3AE4F /* BalanceCheckOpration.swift */; };
+		FA55085128385E7A00E3AE4F /* BalanceSellOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA55085028385E7900E3AE4F /* BalanceSellOperation.swift */; };
+		FA55085328385E8B00E3AE4F /* BalanceReceiveOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA55085228385E8B00E3AE4F /* BalanceReceiveOperation.swift */; };
 		FA63E538283316A400470DCC /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA63E537283316A400470DCC /* UILabel+Extension.swift */; };
 		FA6C62C9282BCB4D00D42413 /* AbstractDatabaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6C62C8282BCB4D00D42413 /* AbstractDatabaseClient.swift */; };
 		FA6C62CB282BD9E000D42413 /* AbstractUserSessionDataClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6C62CA282BD9E000D42413 /* AbstractUserSessionDataClient.swift */; };
-		FA6E9BC72836EA240046B405 /* BalanceCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6E9BC62836EA240046B405 /* BalanceCalculator.swift */; };
+		FA6E9BC72836EA240046B405 /* BalanceOperationExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6E9BC62836EA240046B405 /* BalanceOperationExecutor.swift */; };
 		FA75805E2831A8AD00A94028 /* CurrencyExcangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75805D2831A8AD00A94028 /* CurrencyExcangeView.swift */; };
 		FA880E16283451AF00388BE6 /* CurrencyExchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA880E15283451AF00388BE6 /* CurrencyExchange.swift */; };
 		FA880E1828345C8C00388BE6 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA880E1728345C8C00388BE6 /* Currency.swift */; };
@@ -174,11 +177,14 @@
 		FA387B722826792E00B83C23 /* AbstractLocalStorageIntereactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractLocalStorageIntereactor.swift; sourceTree = "<group>"; };
 		FA387B7528267CA800B83C23 /* KVLocalSorageIntereactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KVLocalSorageIntereactor.swift; sourceTree = "<group>"; };
 		FA387B77282689DC00B83C23 /* UserSessionDataClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSessionDataClient.swift; sourceTree = "<group>"; };
-		FA55084B28383F2100E3AE4F /* BalanceOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceOperations.swift; sourceTree = "<group>"; };
+		FA55084B28383F2100E3AE4F /* BalanceOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceOperation.swift; sourceTree = "<group>"; };
+		FA55084E28385E6800E3AE4F /* BalanceCheckOpration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceCheckOpration.swift; sourceTree = "<group>"; };
+		FA55085028385E7900E3AE4F /* BalanceSellOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceSellOperation.swift; sourceTree = "<group>"; };
+		FA55085228385E8B00E3AE4F /* BalanceReceiveOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceReceiveOperation.swift; sourceTree = "<group>"; };
 		FA63E537283316A400470DCC /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		FA6C62C8282BCB4D00D42413 /* AbstractDatabaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractDatabaseClient.swift; sourceTree = "<group>"; };
 		FA6C62CA282BD9E000D42413 /* AbstractUserSessionDataClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractUserSessionDataClient.swift; sourceTree = "<group>"; };
-		FA6E9BC62836EA240046B405 /* BalanceCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceCalculator.swift; sourceTree = "<group>"; };
+		FA6E9BC62836EA240046B405 /* BalanceOperationExecutor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceOperationExecutor.swift; sourceTree = "<group>"; };
 		FA75805D2831A8AD00A94028 /* CurrencyExcangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyExcangeView.swift; sourceTree = "<group>"; };
 		FA880E15283451AF00388BE6 /* CurrencyExchange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyExchange.swift; sourceTree = "<group>"; };
 		FA880E1728345C8C00388BE6 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
@@ -375,6 +381,17 @@
 			path = Local;
 			sourceTree = "<group>";
 		};
+		FA55084D28385E3A00E3AE4F /* Operations */ = {
+			isa = PBXGroup;
+			children = (
+				FA55084B28383F2100E3AE4F /* BalanceOperation.swift */,
+				FA55084E28385E6800E3AE4F /* BalanceCheckOpration.swift */,
+				FA55085028385E7900E3AE4F /* BalanceSellOperation.swift */,
+				FA55085228385E8B00E3AE4F /* BalanceReceiveOperation.swift */,
+			);
+			path = Operations;
+			sourceTree = "<group>";
+		};
 		FA6C62C5282BBE9800D42413 /* KeyValueStorage */ = {
 			isa = PBXGroup;
 			children = (
@@ -402,13 +419,13 @@
 			path = Abstractions;
 			sourceTree = "<group>";
 		};
-		FA6E9BC52836EA010046B405 /* BalanceCalculator */ = {
+		FA6E9BC52836EA010046B405 /* BalanceExecutor */ = {
 			isa = PBXGroup;
 			children = (
-				FA6E9BC62836EA240046B405 /* BalanceCalculator.swift */,
-				FA55084B28383F2100E3AE4F /* BalanceOperations.swift */,
+				FA55084D28385E3A00E3AE4F /* Operations */,
+				FA6E9BC62836EA240046B405 /* BalanceOperationExecutor.swift */,
 			);
-			path = BalanceCalculator;
+			path = BalanceExecutor;
 			sourceTree = "<group>";
 		};
 		FA75805C2831A7C100A94028 /* CurrencyExchangeView */ = {
@@ -874,7 +891,7 @@
 		FAE7E733282181B60019BCC2 /* MyBalance */ = {
 			isa = PBXGroup;
 			children = (
-				FA6E9BC52836EA010046B405 /* BalanceCalculator */,
+				FA6E9BC52836EA010046B405 /* BalanceExecutor */,
 				FAB2A498282A5D7800F1F075 /* CommissionCalculator */,
 				FAE7E734282181B60019BCC2 /* MyBalanceViewModel.swift */,
 			);
@@ -1402,8 +1419,9 @@
 				FA880E1828345C8C00388BE6 /* Currency.swift in Sources */,
 				FAE7E78B282181B70019BCC2 /* CellConfiguratorFactory.swift in Sources */,
 				FAE7E7B5282181B70019BCC2 /* CurrencyRepository.swift in Sources */,
-				FA55084C28383F2100E3AE4F /* BalanceOperations.swift in Sources */,
+				FA55084C28383F2100E3AE4F /* BalanceOperation.swift in Sources */,
 				FA9CC8D3282F08DA00E4B791 /* CurrencyLocalDataSource.swift in Sources */,
+				FA55084F28385E6800E3AE4F /* BalanceCheckOpration.swift in Sources */,
 				FAE7E7A4282181B70019BCC2 /* Coordinator.swift in Sources */,
 				FA880E16283451AF00388BE6 /* CurrencyExchange.swift in Sources */,
 				FA63E538283316A400470DCC /* UILabel+Extension.swift in Sources */,
@@ -1434,6 +1452,7 @@
 				FAE7E7BC282181B70019BCC2 /* CurrencyUsecase.swift in Sources */,
 				FAE7E78C282181B70019BCC2 /* AdaptiveLayoutExtension.swift in Sources */,
 				FAE7E894282187900019BCC2 /* SkeletonTransitionStyle.swift in Sources */,
+				FA55085328385E8B00E3AE4F /* BalanceReceiveOperation.swift in Sources */,
 				FAE7E88D282187900019BCC2 /* CALayer+Extensions.swift in Sources */,
 				FAE7E7C7282181B70019BCC2 /* UIView+Extensions.swift in Sources */,
 				FAB2A49A282A5D8E00F1F075 /* FirstFiveConversionComissionPolicy.swift in Sources */,
@@ -1472,7 +1491,7 @@
 				FAE7E87F282187900019BCC2 /* SkeletonLayerBuilder.swift in Sources */,
 				FAE7E88B282187900019BCC2 /* UIColor+Skeleton.swift in Sources */,
 				FAE7E89E282187900019BCC2 /* UICollectionView+CollectionSkeleton.swift in Sources */,
-				FA6E9BC72836EA240046B405 /* BalanceCalculator.swift in Sources */,
+				FA6E9BC72836EA240046B405 /* BalanceOperationExecutor.swift in Sources */,
 				FA9CC8D5282F092300E4B791 /* CurrencyRemoteDataSource.swift in Sources */,
 				FAE7E7A8282181B70019BCC2 /* Parameterizable.swift in Sources */,
 				FAE7E880282187900019BCC2 /* SkeletonFlow.swift in Sources */,
@@ -1484,6 +1503,7 @@
 				FAE7E89B282187900019BCC2 /* UITableView+CollectionSkeleton.swift in Sources */,
 				FAE7E7A1282181B70019BCC2 /* HomeCoordinator.swift in Sources */,
 				FAE7E7D3282181B80019BCC2 /* BaseViewController.swift in Sources */,
+				FA55085128385E7A00E3AE4F /* BalanceSellOperation.swift in Sources */,
 				FAE7E887282187900019BCC2 /* UIView+Extension.swift in Sources */,
 				FAE7E87C282187900019BCC2 /* SkeletonGradient.swift in Sources */,
 				FAE7E7D8282181B80019BCC2 /* SearchCellViewModel.swift in Sources */,

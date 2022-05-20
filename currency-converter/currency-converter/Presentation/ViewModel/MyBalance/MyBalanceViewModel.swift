@@ -88,7 +88,7 @@ class MyBalanceViewModel: AbstractMyBalanceViewModel {
             
             let output = Balance(amount: Double(amount) ?? 0.00, currency: currency)
             weakSelf.currencyExchange.receive = output
-            weakSelf.balanceListRelay.accept(weakSelf.calculatFinalBalance())
+            weakSelf.balanceListRelay.accept(weakSelf.calculatFinalBalances())
             balanceResponse.accept(output)
         }, onError: { [weak self] error in
             errorResponse.accept(error as? NetworkError)
@@ -117,7 +117,7 @@ class MyBalanceViewModel: AbstractMyBalanceViewModel {
     }
     
     // calculate total balance
-    func calculatFinalBalance() -> [Balance] {
+    func calculatFinalBalances() -> [Balance] {
         balanceExecutor.update(operation: BalanceSellOperation())
         let updatedBalancesBySell = balanceExecutor.executeBalance(exchangeBalance: currencyExchange, balances: balanceListRelay.value, commission: calculateCommission())
         
