@@ -88,7 +88,7 @@ class MyBalanceViewModel: AbstractMyBalanceViewModel {
             
             let output = Balance(amount: Double(amount) ?? 0.00, currency: currency)
             weakSelf.currencyExchange.receive = output
-            weakSelf.balanceListRelay.accept(weakSelf.calculatFinalBalance(exchangeBalance: weakSelf.currencyExchange, balances: weakSelf.balanceListRelay.value, commission: weakSelf.calculateCommission()))
+            weakSelf.balanceListRelay.accept(weakSelf.calculatFinalBalance())
             balanceResponse.accept(output)
         }, onError: { [weak self] error in
             errorResponse.accept(error as? NetworkError)
@@ -116,26 +116,15 @@ class MyBalanceViewModel: AbstractMyBalanceViewModel {
         return commission
     }
     
-    // Deduct balance after exchange
-    func calculatSellBalance(exchangeBalance: CurrencyExchange, balances: [Balance], commission: Double) -> [Balance] {
-        balanceExecutor.update(operation: BalanceSellOperation())
-        
-        return balanceExecutor.executeBalance(exchangeBalance: exchangeBalance, balances: balances, commission: commission)
-    }
-    
-    // Add balance after exchange
-    func calculatReceiveBalance(exchangeBalance: CurrencyExchange, balances: [Balance], commission: Double) -> [Balance] {
-        balanceExecutor.update(operation: BalanceReceiveOperation())
-        
-        return balanceExecutor.executeBalance(exchangeBalance: exchangeBalance, balances: balances, commission: commission)
-    }
-    
     // calculate total balance
-    func calculatFinalBalance(exchangeBalance: CurrencyExchange, balances: [Balance], commission: Double) -> [Balance] {
-        let updatedBalancesBySell = calculatSellBalance(exchangeBalance: exchangeBalance, balances: balances, commission: commission)
-        let result = calculatReceiveBalance(exchangeBalance: exchangeBalance, balances: updatedBalancesBySell, commission: commission)
+    func calculatFinalBalance() -> [Balance] {
+        balanceExecutor.update(operation: BalanceSellOperation())
+        let updatedBalancesBySell = balanceExecutor.executeBalance(exchangeBalance: currencyExchange, balances: balanceListRelay.value, commission: calculateCommission())
         
-        return result
+        balanceExecutor.update(operation: BalanceReceiveOperation())
+        let updatedBalancesByReceive = balanceExecutor.executeBalance(exchangeBalance: currencyExchange, balances: updatedBalancesBySell, commission: calculateCommission())
+        
+        return updatedBalancesByReceive
     }
 }
 
