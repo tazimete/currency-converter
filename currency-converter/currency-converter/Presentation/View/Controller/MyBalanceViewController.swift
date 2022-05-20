@@ -190,10 +190,11 @@ class MyBalanceViewController: BaseViewController {
                     return
                 }
                 
-                AppLogger.info("commission = \(weakSelf.myBalanceViewModel.commissionCalculator.calculateCommissionAmount(conversionSerial: UserSessionDataClient.shared.conversionCount, conversionAmount: currencyRespone.amount ?? 0.00))")
-                UserSessionDataClient.shared.setConversionCount(count: UserSessionDataClient.shared.getConversionCount() + 1 )
-                
+                weakSelf.setConversionCount()
                 weakSelf.setReceivedAmount(amount: currencyRespone.amount ?? 0.00)
+                
+                let message = "You have converted to \(weakSelf.myBalanceViewModel.currencyExchange.sell?.amount ?? 0.00) \(weakSelf.myBalanceViewModel.currencyExchange.sell?.currency ?? "") to \(weakSelf.myBalanceViewModel.currencyExchange.receive?.amount ?? 0.00) \(weakSelf.myBalanceViewModel.currencyExchange.receive?.currency ?? ""). Commission free - \(weakSelf.myBalanceViewModel.calculateCommission()) \(weakSelf.myBalanceViewModel.currencyExchange.sell?.currency ?? ""))"
+                weakSelf.showAlertDialog(title: "Currency Converted", message: message)
             }).disposed(by: disposeBag)
         
         // detect validation error
@@ -259,6 +260,11 @@ class MyBalanceViewController: BaseViewController {
     func addBalances(balance: Balance) {
         addCurrencyTrigger.onNext(balance)
     }
+    
+    func setConversionCount() {
+        UserSessionDataClient.shared.setConversionCount(count: UserSessionDataClient.shared.getConversionCount() + 1 )
+    }
+    
     
     //MARK: UI METHODS
     func addBalanceView() {

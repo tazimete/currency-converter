@@ -35,13 +35,15 @@ class MyBalanceViewModel: AbstractMyBalanceViewModel {
     let disposeBag =  DisposeBag()
     let usecase: AbstractUsecase
     let commissionCalculator: ComissionCalculator
-    let balanceCalculator = BalanceCalculator()
-    let balanceListRelay: BehaviorRelay<[Balance]> = BehaviorRelay<[Balance]>(value: [Balance(amount: 1000.00, currency: "USD"), Balance(amount: 100, currency: "EUR"), Balance(amount: 100, currency: "JPY"), Balance(amount: 100, currency: "BDT")])
+    let balanceCalculator: BalanceCalculator
     let currencyExchange: CurrencyExchange = CurrencyExchange()
+    let balanceListRelay: BehaviorRelay<[Balance]> = BehaviorRelay<[Balance]>(value: [Balance(amount: 1000.00, currency: "USD"), Balance(amount: 100, currency: "EUR"), Balance(amount: 100, currency: "JPY"), Balance(amount: 100, currency: "BDT")])
     
-    public init(usecase: AbstractCurrencyUsecase, commissionCalculator: ComissionCalculator) {
+    
+    public init(usecase: AbstractCurrencyUsecase, commissionCalculator: ComissionCalculator, balanceCalculator: BalanceCalculator) {
         self.usecase = usecase
         self.commissionCalculator = commissionCalculator
+        self.balanceCalculator = balanceCalculator
     }
     
     public func getMyBalanceOutput(input: MyBalanceInput) -> MyBalanceOutput {
@@ -103,7 +105,14 @@ class MyBalanceViewModel: AbstractMyBalanceViewModel {
     // MARK: HELPER METHODS
     // check if balance is enough before exchange 
     func hasEnoughBalance() -> Bool {
-        return balanceCalculator.hasEnoughBalance(exchangeBalance: currencyExchange, balances: balanceListRelay.value)
+        return balanceCalculator.hasEnoughBalance(exchangeBalance: currencyExchange, balances: balanceListRelay.value, commission: calculateCommission())
+    }
+    
+    // calculate commission before exchange
+    func calculateCommission() -> Double {
+        let commission = commissionCalculator.calculateCommissionAmount(conversionSerial: UserSessionDataClient.shared.conversionCount, conversionAmount: currencyExchange.sell?.amount ?? 0.00)
+        
+        return commission
     }
     
     // deduct and increase balance after exchange

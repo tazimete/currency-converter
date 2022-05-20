@@ -28,8 +28,13 @@ protocol AbstractMyBalanceViewModel: AbstractViewModel {
     // check if balance is enough before exchange 
     func hasEnoughBalance() -> Bool
     
+    //calculate commission before exchange
+    func calculateCommission() -> Double
+    
     // deduct and increase balance after exchange 
     func calculatFinalBalance() -> [Balance]
+    
+    
 }
 
 
