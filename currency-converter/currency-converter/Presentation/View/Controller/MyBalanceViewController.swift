@@ -182,8 +182,8 @@ class MyBalanceViewController: BaseViewController {
         
         // observe balance exchange response
         currencyConverterOutput.balance
-            .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { [weak self] response in
+            .asDriver()
+            .drive(onNext: { [weak self] response in
                 AppLogger.info("Response = \(response)")
                 
                 guard let weakSelf = self, let currencyRespone = response else {
@@ -198,8 +198,8 @@ class MyBalanceViewController: BaseViewController {
         
         // detect error
         currencyConverterOutput.errorTracker
-            .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { [weak self] error in
+            .asDriver()
+            .drive(onNext: { [weak self] error in
                 guard let weakSelf = self, let error = error else {
                     return
                 }
