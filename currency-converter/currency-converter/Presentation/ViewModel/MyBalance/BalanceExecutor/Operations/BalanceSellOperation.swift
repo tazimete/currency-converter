@@ -8,6 +8,7 @@
 import Foundation
 
 
+/// BalanceSellOperation - This class will deduct balance which is being sold 
 struct BalanceSellOperation: BalanceOperation {
     func execute(exchangeBalance: CurrencyExchange, balances: [Balance], commission: Double) -> [Balance] {
         var balances = balances

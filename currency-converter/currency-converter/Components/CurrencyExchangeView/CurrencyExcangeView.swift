@@ -229,7 +229,7 @@ class CurrencyExcangeView: UIView {
             }
             
             AppLogger.info("Selected item: \(item) at index: \(index)")
-            weakSelf.currencyLabel.addTrailing(image: .checkmark, text: item)
+            weakSelf.currencyLabel.addTrailing(image: UIImage(named: "ic_dropdown")!, text: item)
             weakSelf.observeCurrencyValue(amount: weakSelf.amountField.text ?? "", currency: item)
         }
         

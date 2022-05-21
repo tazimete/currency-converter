@@ -7,6 +7,9 @@
 
 import Foundation
 
+
+/// BalanceOperationExecutor
+/// - This class will be responsible for execute balance operation 
 class BalanceOperationExecutor {
     private(set) var operation: BalanceOperation
     

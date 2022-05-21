@@ -8,10 +8,15 @@
 import Foundation
 
 
+
+
+/// This is the abstraction part of comission policy, will check balance precessing has commission or not
 protocol ComissionApplicable {
     func hasComission(conversionSerial: Int, conversionAmount: Double) -> Bool
 }
 
+
+/// This is the abstraction part of commission policy, will be responsible for getting commission amount 
 protocol ComissionAmount {
     var commissionOptions: ComissionDependency {get}
     

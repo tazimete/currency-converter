@@ -8,6 +8,9 @@
 import Foundation
 
 
+/// BalanceCheckOperation - This class is responsible for balance chek operation
+/// - Parameters:
+/// 
 struct BalanceCheckOperation: BalanceOperation {
     func check(exchangeBalance: CurrencyExchange, balances: [Balance], commission: Double) -> Bool {
         var result = true

@@ -196,7 +196,7 @@ class MyBalanceViewController: BaseViewController {
                 let sell = weakSelf.myBalanceViewModel.currencyExchange.sell.unwrappedValue
                 let receive = weakSelf.myBalanceViewModel.currencyExchange.receive.unwrappedValue
                 
-                let message = "You have converted \(sell.amount.unwrappedValue) \(sell.currency.unwrappedValue) to \(receive.amount.unwrappedValue) \(receive.currency.unwrappedValue). Commission free - \(weakSelf.myBalanceViewModel.calculateCommission()) \(sell.currency.unwrappedValue)"
+                let message = "You have converted \(sell.amount.unwrappedValue) \(sell.currency.unwrappedValue) to \(receive.amount.unwrappedValue) \(receive.currency.unwrappedValue). Commission free - \(weakSelf.myBalanceViewModel.calculateCommission().round(to: 2)) \(sell.currency.unwrappedValue)"
                 
                 weakSelf.showAlertDialog(title: "Currency Converted", message: message)
             }).disposed(by: disposeBag)

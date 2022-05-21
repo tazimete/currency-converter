@@ -8,6 +8,7 @@
 import Foundation
 
 
+/// This class will be responsible for receive balance (add balance in existing currency )
 struct BalanceReceiveOperation: BalanceOperation {
     func execute(exchangeBalance: CurrencyExchange, balances: [Balance], commission: Double) -> [Balance] {
         var balances = balances

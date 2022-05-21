@@ -8,13 +8,13 @@
 import Foundation
 
 
-class BalanceFactory {
-    enum BalanceType{
+class ModelFactory {
+    enum ModelType{
         case balance
         case currencyExchange
     }
     
-    func createList(type: BalanceType) -> [AbstractDataModel] {
+    func createList(type: ModelType) -> [AbstractDataModel] {
         var result = [AbstractDataModel] ()
         
         if type == .balance {
