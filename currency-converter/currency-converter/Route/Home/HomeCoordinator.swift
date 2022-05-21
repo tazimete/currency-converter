@@ -16,7 +16,7 @@ class HomeCoordinator: Coordinator {
     }
 
     public func start(window: UIWindow) {
-        let repository = CurrencyRepository(localDataSource: CurrencyLocalDataSource(dbClient: DatabaseClient.shared), remoteDataSource: CurrencyRemoteDataSource(apiClient: APIClient.shared))
+        let repository = CurrencyRepository(localDataSource: CurrencyLocalDataSource(dbClient: DatabaseClient.shared), remoteDataSource: CurrencyRemoteDataSource(apiClient: ApiClient.shared))
         
         let usecase = CurrencyUsecase(repository: repository)
         

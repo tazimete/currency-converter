@@ -1,54 +1,23 @@
 //
-//  ApiClient.swift
-//  currency-converter
+//  MockApiClient.swift
+//  currency-converterTests
 //
-//  Created by AGM Tazimon 24/7/21.
+//  Created by AGM Tazim on 5/22/22.
 //
 
+import Foundation
+@testable import currency_converter
 import RxSwift
-import RxCocoa
 
-public enum NetworkError: Error {
-    case serverError(code: Int, message: String)
-    case decodingError(code: Int, message: String)
-    case wrongMimeTypeError(code: Int, message: String)
-    case noDataError(code: Int, message: String)
-    case none
-    
-    public var errorMessage: String {
-        switch self {
-        case .serverError(_, let message):
-            return message
-        case .decodingError(_, let message):
-            return message
-        case .wrongMimeTypeError(_, let message):
-            return message
-        case .noDataError(_, let message):
-            return message
-        case .none:
-            return ""
-        }
-    }
-    
-    public var errorCode: Int {
-        switch self {
-        case .serverError(let code, _):
-            return code
-        case .decodingError(let code, _):
-            return code
-        case .wrongMimeTypeError(let code, _):
-            return code
-        case .noDataError(let code, _):
-            return code
-        case .none: 
-            return 0
-        }
+
+extension ApiClient {
+    func setMockSession(session: AbstractURLSession) {
+        self.session = session
     }
 }
 
-
-class ApiClient: AbstractApiClient {
-    public static let shared = ApiClient()
+class MockAPIClient: AbstractApiClient{
+    public static let shared = MockAPIClient()
     var session: AbstractURLSession
     let queueManager: QueueManager
 
