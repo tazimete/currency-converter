@@ -33,17 +33,19 @@ class MyBalanceViewModel: AbstractMyBalanceViewModel {
     }
     
     let disposeBag =  DisposeBag()
+    let entityFactory = EntityFactory()
     let usecase: AbstractUsecase
     let commissionCalculator: ComissionCalculator
     let balanceExecutor: BalanceOperationExecutor
     let currencyExchange: CurrencyExchange = CurrencyExchange()
-    let balanceListRelay: BehaviorRelay<[Balance]> = BehaviorRelay<[Balance]>(value: [Balance(amount: 1000.00, currency: "USD"), Balance(amount: 100, currency: "EUR"), Balance(amount: 100, currency: "JPY"), Balance(amount: 100, currency: "BDT")])
+    let balanceListRelay: BehaviorRelay<[Balance]> = BehaviorRelay<[Balance]>(value: [])
     
     
     public init(usecase: AbstractCurrencyUsecase, commissionCalculator: ComissionCalculator, balanceExecutor: BalanceOperationExecutor) {
         self.usecase = usecase
         self.commissionCalculator = commissionCalculator
         self.balanceExecutor = balanceExecutor
+        self.balanceListRelay.accept((entityFactory.create(type: .balance) as? [Balance]) ?? [])
     }
     
     public func getMyBalanceOutput(input: MyBalanceInput) -> MyBalanceOutput {
@@ -112,6 +114,8 @@ class MyBalanceViewModel: AbstractMyBalanceViewModel {
     // calculate commission before exchange
     func calculateCommission() -> Double {
         let commission = commissionCalculator.calculateCommissionAmount(conversionSerial: UserSessionDataClient.shared.conversionCount, conversionAmount: currencyExchange.sell?.amount ?? 0.00)
+        
+        AppLogger.info("Commission = \(commission)")
         
         return commission
     }
