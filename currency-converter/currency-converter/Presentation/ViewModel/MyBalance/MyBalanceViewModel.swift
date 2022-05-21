@@ -33,7 +33,7 @@ class MyBalanceViewModel: AbstractMyBalanceViewModel {
     }
     
     let disposeBag =  DisposeBag()
-    let entityFactory = EntityFactory()
+    let entityFactory = BalanceFactory()
     let usecase: AbstractUsecase
     let commissionCalculator: ComissionCalculator
     let balanceExecutor: BalanceOperationExecutor
@@ -45,7 +45,7 @@ class MyBalanceViewModel: AbstractMyBalanceViewModel {
         self.usecase = usecase
         self.commissionCalculator = commissionCalculator
         self.balanceExecutor = balanceExecutor
-        self.balanceListRelay.accept((entityFactory.create(type: .balance) as? [Balance]) ?? [])
+        self.balanceListRelay.accept((entityFactory.createList(type: .balance) as? [Balance]) ?? [])
     }
     
     public func getMyBalanceOutput(input: MyBalanceInput) -> MyBalanceOutput {

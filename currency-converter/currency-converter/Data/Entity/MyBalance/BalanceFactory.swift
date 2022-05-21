@@ -8,17 +8,13 @@
 import Foundation
 
 
-enum EntityType {
-    case balance
-}
-
-class EntityFactory {
-    enum EntityType {
+class BalanceFactory {
+    enum BalanceType{
         case balance
         case currencyExchange
     }
     
-    func create(type: EntityType) -> [AbstractDataModel] {
+    func createList(type: BalanceType) -> [AbstractDataModel] {
         if type == .balance {
             return [Balance(amount: 1000.00, currency: "USD"), Balance(amount: 100, currency: "EUR"), Balance(amount: 100, currency: "JPY"), Balance(amount: 100, currency: "BDT")]
         } else {

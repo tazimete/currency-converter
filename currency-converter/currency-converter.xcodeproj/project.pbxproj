@@ -437,7 +437,6 @@
 		FA880E142834518600388BE6 /* MyBalance */ = {
 			isa = PBXGroup;
 			children = (
-				FA880E15283451AF00388BE6 /* CurrencyExchange.swift */,
 				FA880E1728345C8C00388BE6 /* Currency.swift */,
 			);
 			name = MyBalance;
@@ -820,8 +819,9 @@
 		FAE7E718282181B50019BCC2 /* MyBalance */ = {
 			isa = PBXGroup;
 			children = (
-				FAE7E719282181B50019BCC2 /* Balance.swift */,
 				FAF98FC028390F5C005FB093 /* BalanceFactory.swift */,
+				FA880E15283451AF00388BE6 /* CurrencyExchange.swift */,
+				FAE7E719282181B50019BCC2 /* Balance.swift */,
 			);
 			name = MyBalance;
 			path = ../../Data/Entity/MyBalance;
