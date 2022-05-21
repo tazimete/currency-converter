@@ -23,3 +23,5 @@ struct BalanceCheckOperation: BalanceOperation {
         return result
     }
 }
+
+

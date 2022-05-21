@@ -71,7 +71,6 @@ class BalanceItemCell: UICollectionViewCell, ConfigurableCell {
     }
     
     func configure(data: DataType) {
-        AppLogger.debug("cell view model = \(data.title), \(data.thumbnail)")
-        titleLabel.text = "\(data.title ?? "")"
+        titleLabel.text = "\( data.title ?? "")"
     }
 }

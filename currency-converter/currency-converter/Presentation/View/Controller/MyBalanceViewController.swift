@@ -392,3 +392,4 @@ class MyBalanceViewController: BaseViewController {
         self.present(alertController, animated: true, completion: nil)
     }
 }
+

@@ -8,17 +8,13 @@
 import Foundation
 
 
-typealias SearchItemCellConfig = ListViewCellConfigurator<SearchItemCell, AbstractCellViewModel>
-typealias ShimmerItemCellConfig = ListViewCellConfigurator<SearchShimmerCell, AbstractCellViewModel>
-
-
 // collection of cell configurator
 class CellConfiguratorFactory {
     private var items: [CellConfigurator] = []
     
     //add cell configurator converted from cellviewmodel
     public func addAsCellConfigurator(cellViewModel: AbstractCellViewModel) {
-        let cellConfig = SearchItemCellConfig.init(item: cellViewModel)
+        let cellConfig = BalanceItemCellConfig.init(item: cellViewModel)
         items.append(cellConfig)
     }
     
@@ -27,7 +23,7 @@ class CellConfiguratorFactory {
     }
     
     public func updateAsCellConfigurator(cellViewModel: AbstractCellViewModel, at index: Int) {
-        let cellConfig = SearchItemCellConfig.init(item: cellViewModel)
+        let cellConfig = BalanceItemCellConfig.init(item: cellViewModel)
         items[index] = cellConfig
     }
     
