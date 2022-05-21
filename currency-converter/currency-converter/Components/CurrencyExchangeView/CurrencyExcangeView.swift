@@ -134,7 +134,7 @@ class CurrencyExcangeView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.isUserInteractionEnabled = true
-        label.addTrailing(image: .checkmark, text: "USD")
+        label.addTrailing(image: UIImage(named: "ic_dropdown")!, text: "USD")
         label.textColor = .black
         label.font = UIFont.systemFont(ofSize: 19, weight: .regular)
         label.textAlignment = .right
