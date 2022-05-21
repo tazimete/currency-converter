@@ -10,7 +10,11 @@ import Foundation
 import RxSwift
 
 
-extension ApiClient {
+protocol MockSessionable {
+    func setMockSession(session: AbstractURLSession)
+}
+
+extension ApiClient: MockSessionable {
     func setMockSession(session: AbstractURLSession) {
         self.session = session
     }
