@@ -7,6 +7,8 @@
 
 import Foundation
 
+
+// MARK: KV Interactor 
 extension UserDefaults: AbstractLocalKVStorageInteractor {
     
     static var shared: AbstractLocalKVStorageInteractor {
@@ -23,16 +25,7 @@ extension UserDefaults: AbstractLocalKVStorageInteractor {
 }
 
 
-class KeyValuePair: Codable {
-    let key: String
-    let value: Data?
-    
-    init(key: String, value: Data?) {
-        self.key = key
-        self.value = value
-    }
-}
-
+// MARK: LOCAL DB Interactor
 extension UserDefaults: AbstractLocalDBStorageInteractor {
 
     func create<T>(type: T.Type, item: T) -> Bool {

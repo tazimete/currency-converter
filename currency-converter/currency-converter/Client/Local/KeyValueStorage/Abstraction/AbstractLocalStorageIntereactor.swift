@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 /**
  This protocol will used as interactor to key value storage
  **/
@@ -36,6 +35,16 @@ protocol AbstractLocalDBStorageInteractor {
     
     func createOrUpdateKeyValuePair(keyValuePair: KeyValuePair) -> Bool
     func readKeyValuePair(id: String) -> KeyValuePair
+}
+
+class KeyValuePair: Codable {
+    let key: String
+    let value: Data?
+    
+    init(key: String, value: Data?) {
+        self.key = key
+        self.value = value
+    }
 }
 
 typealias AbstractLocalStorageIntereactor = AbstractLocalKVStorageInteractor & AbstractLocalDBStorageInteractor
