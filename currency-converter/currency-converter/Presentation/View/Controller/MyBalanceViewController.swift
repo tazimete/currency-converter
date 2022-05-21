@@ -219,6 +219,7 @@ class MyBalanceViewController: BaseViewController {
                 }
             
                 AppLogger.debug("errorResponse -- code = \(error.errorCode), message = \(error.errorMessage)")
+                weakSelf.showAlertDialog(title: "Conversion Failed", message: error.errorMessage)
         }).disposed(by: disposeBag)
         
         AppLogger.info("conversionCount == \(UserSessionDataClient.shared.conversionCount)")

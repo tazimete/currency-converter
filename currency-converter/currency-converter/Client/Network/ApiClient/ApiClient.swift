@@ -70,10 +70,16 @@ class APIClient: AbstractApiClient{
         
         return Observable.create { [weak self] observer -> Disposable in
             let task: URLSessionDataTask? = self?.session.dataTask(with: request, type: type) { [weak self] data, response, error in
-                AppLogger.debug("response = \((try? JSONSerialization.jsonObject(with: data ?? Data([]), options: .allowFragments)) ?? NSDictionary())")
+                let resDictionary = (try? JSONSerialization.jsonObject(with: data ?? Data([]), options: .allowFragments)) as? NSDictionary
+                AppLogger.debug("response = \(resDictionary)")
                 
                 guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
+                    if (400...499).contains((response as? HTTPURLResponse)?.statusCode ?? 401) {
+                        observer.onError(NetworkError.serverError(code: 404, message: ((resDictionary)?.value(forKey: "error_description") as? String) ?? ""))
+                    }
+                    
                     observer.onError(NetworkError.serverError(code: (response as? HTTPURLResponse)?.statusCode ?? 401, message: "Request failed"))
+                    
                     return
                 }
                 

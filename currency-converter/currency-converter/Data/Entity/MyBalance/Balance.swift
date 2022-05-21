@@ -31,7 +31,7 @@ struct Balance: AbstractDataModel, Codable {
         var viewModel = CurrencyCellViewModel(title: "\(currency ?? "")")
         
         if let amount = amount {
-            viewModel = CurrencyCellViewModel(title: "\(amount.round(to: 2) ?? 0.00) \(currency ?? "")")
+            viewModel = CurrencyCellViewModel(title: "\(amount.round(to: 2)) \(currency ?? "")")
         }
         
         return viewModel 
