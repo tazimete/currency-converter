@@ -142,6 +142,7 @@
 		FAE7E8AB28219E120019BCC2 /* AbstractCurrencyUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E8AA28219E120019BCC2 /* AbstractCurrencyUsecase.swift */; };
 		FAE7E8AD2821C4CE0019BCC2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAE7E8AC2821C4CE0019BCC2 /* Main.storyboard */; };
 		FAF98FC128390F5C005FB093 /* BalanceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF98FC028390F5C005FB093 /* BalanceFactory.swift */; };
+		FAF98FC328394C48005FB093 /* Optional+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF98FC228394C48005FB093 /* Optional+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -307,6 +308,7 @@
 		FAE7E8AA28219E120019BCC2 /* AbstractCurrencyUsecase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractCurrencyUsecase.swift; sourceTree = "<group>"; };
 		FAE7E8AC2821C4CE0019BCC2 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		FAF98FC028390F5C005FB093 /* BalanceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceFactory.swift; sourceTree = "<group>"; };
+		FAF98FC228394C48005FB093 /* Optional+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -847,6 +849,7 @@
 				FAE7E727282181B50019BCC2 /* UIViewController+Extension.swift */,
 				FAE7E728282181B50019BCC2 /* Codable+Extension.swift */,
 				FA63E537283316A400470DCC /* UILabel+Extension.swift */,
+				FAF98FC228394C48005FB093 /* Optional+Extensions.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1464,6 +1467,7 @@
 				FAE7E7C0282181B70019BCC2 /* Balance.swift in Sources */,
 				FAE7E897282187900019BCC2 /* GenericCollectionView.swift in Sources */,
 				FAE7E7B6282181B70019BCC2 /* AbstractDataModel.swift in Sources */,
+				FAF98FC328394C48005FB093 /* Optional+Extensions.swift in Sources */,
 				FAE7E8AB28219E120019BCC2 /* AbstractCurrencyUsecase.swift in Sources */,
 				FAE7E8A2282187900019BCC2 /* AssociationPolicy.swift in Sources */,
 				FAE7E891282187900019BCC2 /* ContainsMultilineText.swift in Sources */,

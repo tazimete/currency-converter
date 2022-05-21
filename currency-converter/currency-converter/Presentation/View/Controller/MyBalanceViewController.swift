@@ -193,7 +193,11 @@ class MyBalanceViewController: BaseViewController {
                 weakSelf.setConversionCount()
                 weakSelf.setReceivedAmount(amount: currencyRespone.amount ?? 0.00)
                 
-                let message = "You have converted to \(weakSelf.myBalanceViewModel.currencyExchange.sell?.amount ?? 0.00) \(weakSelf.myBalanceViewModel.currencyExchange.sell?.currency ?? "") to \(weakSelf.myBalanceViewModel.currencyExchange.receive?.amount ?? 0.00) \(weakSelf.myBalanceViewModel.currencyExchange.receive?.currency ?? ""). Commission free - \(weakSelf.myBalanceViewModel.calculateCommission()) \(weakSelf.myBalanceViewModel.currencyExchange.sell?.currency ?? ""))"
+                let sell = weakSelf.myBalanceViewModel.currencyExchange.sell.unwrappedValue
+                let receive = weakSelf.myBalanceViewModel.currencyExchange.receive.unwrappedValue
+                
+                let message = "You have converted \(sell.amount.unwrappedValue) \(sell.currency.unwrappedValue) to \(receive.amount.unwrappedValue) \(receive.currency.unwrappedValue). Commission free - \(weakSelf.myBalanceViewModel.calculateCommission()) \(sell.currency.unwrappedValue)"
+                
                 weakSelf.showAlertDialog(title: "Currency Converted", message: message)
             }).disposed(by: disposeBag)
         
@@ -247,15 +251,15 @@ class MyBalanceViewController: BaseViewController {
                    return
                }
            
-                weakSelf.currencyExchangeSellView.currencies = balances.map({$0.currency ?? ""})
-                weakSelf.currencyExchangeReceivedView.currencies = balances.map({$0.currency ?? ""})
+                weakSelf.currencyExchangeSellView.currencies = balances.map({$0.currency.unwrappedValue})
+                weakSelf.currencyExchangeReceivedView.currencies = balances.map({$0.currency.unwrappedValue})
             })
             .disposed(by: disposeBag)
     }
     
     func exchangeCurrency(currencyExchange: CurrencyExchange) {
-        let amount = "\(currencyExchange.sell?.amount ?? 0.00)"
-        currencyConverterTrigger.onNext(MyBalanceViewModel.CurrencyConverterInput(fromAmount: amount, fromCurrency: currencyExchange.sell?.currency ?? "", toCurrency: currencyExchange.receive?.currency ?? ""))
+        let amount = "\((currencyExchange.sell?.amount).unwrappedValue)"
+        currencyConverterTrigger.onNext(MyBalanceViewModel.CurrencyConverterInput(fromAmount: amount, fromCurrency: (currencyExchange.sell?.currency).unwrappedValue, toCurrency: (currencyExchange.receive?.currency).unwrappedValue))
     }
     
     func addBalances(balance: Balance) {

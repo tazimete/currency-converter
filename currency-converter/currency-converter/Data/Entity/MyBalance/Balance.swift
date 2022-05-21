@@ -39,3 +39,8 @@ struct Balance: AbstractDataModel, Codable {
 }
 
 
+extension Optional where Wrapped == Balance {
+    var unwrappedValue: Balance {
+        return self ?? Balance()
+    }
+}

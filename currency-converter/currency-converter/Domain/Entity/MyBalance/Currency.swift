@@ -23,3 +23,10 @@ struct Currency: Codable {
         case title = "currency"
     }
 }
+
+
+extension Optional where Wrapped == Currency {
+    var unwrappedValue: Currency {
+        return self ?? Currency()
+    }
+}

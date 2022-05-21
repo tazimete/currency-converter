@@ -11,12 +11,12 @@ import Foundation
 struct BalanceSellOperation: BalanceOperation {
     func execute(exchangeBalance: CurrencyExchange, balances: [Balance], commission: Double) -> [Balance] {
         var balances = balances
-        let sellCurrency = exchangeBalance.sell?.currency ?? ""
-        let sellAmount = exchangeBalance.sell?.amount ?? 0.00
+        let sellCurrency = (exchangeBalance.sell?.currency).unwrappedValue
+        let sellAmount = (exchangeBalance.sell?.amount).unwrappedValue
         
         //set deduct amount from sell balance
-        if let index = balances.firstIndex(where: { $0.currency?.elementsEqual(sellCurrency) ?? false}) {
-            balances[index].amount = (balances[index].amount ?? 0.0) - sellAmount - commission
+        if let index = balances.firstIndex(where: { ($0.currency?.elementsEqual(sellCurrency)).unwrappedValue}) {
+            balances[index].amount = (balances[index].amount).unwrappedValue - sellAmount - commission
         }
         
         return balances

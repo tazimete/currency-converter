@@ -11,12 +11,12 @@ import Foundation
 struct BalanceReceiveOperation: BalanceOperation {
     func execute(exchangeBalance: CurrencyExchange, balances: [Balance], commission: Double) -> [Balance] {
         var balances = balances
-        let receiveCurrency = exchangeBalance.receive?.currency ?? ""
-        let receiveAmount = exchangeBalance.receive?.amount ?? 0.00
+        let receiveCurrency = (exchangeBalance.receive?.currency).unwrappedValue
+        let receiveAmount = (exchangeBalance.receive?.amount).unwrappedValue
         
         // set recieve amount
-        if let index = balances.firstIndex(where: { $0.currency?.elementsEqual(receiveCurrency) ?? false}) {
-            balances[index].amount = (balances[index].amount ?? 0.0) + receiveAmount
+        if let index = balances.firstIndex(where: { ($0.currency?.elementsEqual(receiveCurrency)).unwrappedValue }) {
+            balances[index].amount = (balances[index].amount).unwrappedValue + receiveAmount
         }
         
         return balances

@@ -11,12 +11,12 @@ import Foundation
 struct BalanceCheckOperation: BalanceOperation {
     func check(exchangeBalance: CurrencyExchange, balances: [Balance], commission: Double) -> Bool {
         var result = true
-        let currency = exchangeBalance.sell?.currency ?? ""
-        let amount = exchangeBalance.sell?.amount ?? 0.00
+        let currency = (exchangeBalance.sell?.currency).unwrappedValue
+        let amount = (exchangeBalance.sell?.amount).unwrappedValue
         
         //check in all available balances
-        if let index = balances.firstIndex(where: { $0.currency?.elementsEqual(currency) ?? false}) {
-            let diff = (balances[index].amount ?? 0.0) - amount - commission
+        if let index = balances.firstIndex(where: { ($0.currency?.elementsEqual(currency)).unwrappedValue}) {
+            let diff = balances[index].amount.unwrappedValue - amount - commission
             result = diff >= 0 ? true : false
         }
         

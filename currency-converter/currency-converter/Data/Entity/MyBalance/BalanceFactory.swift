@@ -15,10 +15,12 @@ class BalanceFactory {
     }
     
     func createList(type: BalanceType) -> [AbstractDataModel] {
+        var result = [AbstractDataModel] ()
+        
         if type == .balance {
-            return [Balance(amount: 1000.00, currency: "USD"), Balance(amount: 100, currency: "EUR"), Balance(amount: 100, currency: "JPY"), Balance(amount: 100, currency: "BDT")]
-        } else {
-            return [] 
+            result =  [Balance(amount: 1000.00, currency: "USD"), Balance(amount: 100, currency: "EUR"), Balance(amount: 100, currency: "JPY"), Balance(amount: 100, currency: "BDT")]
         }
+        
+        return result
     }
 }
