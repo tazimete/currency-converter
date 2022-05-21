@@ -7,35 +7,25 @@
 
 import Foundation
 
-// TODO: Change this class to make common local data source client for UserDefault, KeyChain, Database
+
+/**
+ This protocol will used as interactor to key value storage
+ **/
 protocol AbstractLocalKVStorageInteractor {
-//    static var shared: AbstractLocalKVSorageInteractor {get}
+    static var shared: AbstractLocalKVStorageInteractor {get}
     
-    func set(key: String, value: Int)
-    func set(key: String, value: Float)
-    func set(key: String, value: Double)
-    func set(key: String, value: Bool)
-    func set(key: String, value: String)
-    func set(key: String, value: AnyObject)
-    func set(key: String, value: Data)
-    func set(key: String, value: URL?)
-    func set(key: String, value: Any?)
-    
-    func getIntValue(forKey: String) -> Int
-    func getFloatValue(forKey: String) -> Float
-    func getDoubleValue(forKey: String) -> Double
-    func getDoubleValue(forKey: String) -> Bool
-    func getStringValue(forKey: String) -> String?
-    func getAnyObjectValue(forKey: String) -> Any?
-    func getDataValue(forKey: String) -> Data?
-    func getURLValue(forKey: String) -> URL?
-    func getAnyValue(forKey: String) -> Any?
+    func setData(keyValuePair: KeyValuePair)
+    func getData(key: String) -> KeyValuePair
 }
 
+/**
+ This protocol will used as interactor to local database 
+ **/
 protocol AbstractLocalDBStorageInteractor {
 //    static var shared: AbstractLocalDBSorageInteractor {get}
     
     func create<T>(type: T.Type, item: T) -> Bool
+    func createOrUpdate<T>(type: T.Type, item: T) -> Bool
     func createAll<T>(type: T.Type, items: [T]) -> Bool
     func read<T>(type: T.Type, id: String) -> T
     func readAll<T>(type: T.Type) -> [T]
@@ -43,6 +33,9 @@ protocol AbstractLocalDBStorageInteractor {
     func updateAll<T>(type: T.Type, items: [T]) -> Bool
     func delete<T>(type: T.Type, item: T) -> Bool
     func deleteAll<T>(type: T.Type, items: [T]) -> Bool
+    
+    func createOrUpdateKeyValuePair(keyValuePair: KeyValuePair) -> Bool
+    func readKeyValuePair(id: String) -> KeyValuePair
 }
 
 typealias AbstractLocalStorageIntereactor = AbstractLocalKVStorageInteractor & AbstractLocalDBStorageInteractor

@@ -34,82 +34,17 @@ class MockUserSessionData: AbstractLocalKVStorageInteractor {
         return MockUserSessionData()
     }
     
+    var data:[String: Data?] = [:]
+    
     required init(){
         
     }
     
-    func set(key: String, value: Int) {
-        return
+    func setData(keyValuePair: KeyValuePair) {
+        self.data[keyValuePair.key] = keyValuePair.value
     }
     
-    func set(key: String, value: Float) {
-        return
+    func getData(key: String) -> KeyValuePair {
+        return KeyValuePair(key: key, value: data[key] as? Data)
     }
-    
-    func set(key: String, value: Double) {
-        return
-    }
-    
-    func set(key: String, value: Bool) {
-        return
-    }
-    
-    
-    func set(key: String, value: String) {
-        return
-    }
-    
-    func set(key: String, value: AnyObject) {
-        return
-    }
-    
-    func set(key: String, value: Data) {
-        return
-    }
-    
-    func set(key: String, value: URL?) {
-        return
-    }
-    
-    func set(key: String, value: Any?) {
-        return
-    }
-    
-    func getIntValue(forKey: String) -> Int {
-        return 0
-    }
-    
-    func getFloatValue(forKey: String) -> Float {
-        return 0
-    }
-    
-    func getDoubleValue(forKey: String) -> Double {
-        return 0
-    }
-    
-    func getDoubleValue(forKey: String) -> Bool {
-        return true
-    }
-    
-    func getStringValue(forKey: String) -> String? {
-        return  nil
-    }
-    
-    func getAnyObjectValue(forKey: String) -> Any? {
-        return  6666
-    }
-    
-    func getDataValue(forKey: String) -> Data? {
-        return  "5555".data(using: .utf8)
-    }
-    
-    func getURLValue(forKey: String) -> URL? {
-        return  nil
-    }
-    
-    func getAnyValue(forKey: String) -> Any? {
-        return  nil
-    }
-    
-    
 }
