@@ -143,6 +143,8 @@
 		FAE7E8AD2821C4CE0019BCC2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAE7E8AC2821C4CE0019BCC2 /* Main.storyboard */; };
 		FAF98FC128390F5C005FB093 /* BalanceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF98FC028390F5C005FB093 /* BalanceFactory.swift */; };
 		FAF98FC328394C48005FB093 /* Optional+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF98FC228394C48005FB093 /* Optional+Extensions.swift */; };
+		FAF98FCB2839A2FA005FB093 /* StubResponseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF98FCA2839A2FA005FB093 /* StubResponseProvider.swift */; };
+		FAF98FCD2839A3B2005FB093 /* StubbedResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF98FCC2839A3B2005FB093 /* StubbedResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -309,6 +311,8 @@
 		FAE7E8AC2821C4CE0019BCC2 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		FAF98FC028390F5C005FB093 /* BalanceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceFactory.swift; sourceTree = "<group>"; };
 		FAF98FC228394C48005FB093 /* Optional+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Extensions.swift"; sourceTree = "<group>"; };
+		FAF98FCA2839A2FA005FB093 /* StubResponseProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubResponseProvider.swift; sourceTree = "<group>"; };
+		FAF98FCC2839A3B2005FB093 /* StubbedResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubbedResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -546,6 +550,7 @@
 		FAB726C82820F85F0061A22E /* currency-converterTests */ = {
 			isa = PBXGroup;
 			children = (
+				FAF98FC62839A2B7005FB093 /* Client */,
 				FAB726C92820F85F0061A22E /* currency_converterTests.swift */,
 			);
 			path = "currency-converterTests";
@@ -1149,6 +1154,39 @@
 			path = Currency;
 			sourceTree = "<group>";
 		};
+		FAF98FC62839A2B7005FB093 /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				FAF98FC72839A2C6005FB093 /* Network */,
+			);
+			path = Client;
+			sourceTree = "<group>";
+		};
+		FAF98FC72839A2C6005FB093 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				FAF98FC82839A2DA005FB093 /* ApiClient */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		FAF98FC82839A2DA005FB093 /* ApiClient */ = {
+			isa = PBXGroup;
+			children = (
+				FAF98FC92839A2E8005FB093 /* Stubbing */,
+			);
+			path = ApiClient;
+			sourceTree = "<group>";
+		};
+		FAF98FC92839A2E8005FB093 /* Stubbing */ = {
+			isa = PBXGroup;
+			children = (
+				FAF98FCA2839A2FA005FB093 /* StubResponseProvider.swift */,
+				FAF98FCC2839A3B2005FB093 /* StubbedResponse.swift */,
+			);
+			path = Stubbing;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1522,7 +1560,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAF98FCD2839A3B2005FB093 /* StubbedResponse.swift in Sources */,
 				FAB726CA2820F85F0061A22E /* currency_converterTests.swift in Sources */,
+				FAF98FCB2839A2FA005FB093 /* StubResponseProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

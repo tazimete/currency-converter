@@ -262,7 +262,7 @@ class MyBalanceViewController: BaseViewController {
         currencyConverterTrigger.onNext(MyBalanceViewModel.CurrencyConverterInput(fromAmount: amount, fromCurrency: (currencyExchange.sell?.currency).unwrappedValue, toCurrency: (currencyExchange.receive?.currency).unwrappedValue))
     }
     
-    func addBalances(balance: Balance) {
+    func addBalance(balance: Balance) {
         addCurrencyTrigger.onNext(balance)
     }
     
@@ -381,10 +381,10 @@ class MyBalanceViewController: BaseViewController {
         }
         
         let saveAction = UIAlertAction(title: "Add", style: UIAlertAction.Style.default, handler: { [weak self] alert -> Void in
-            let currency = (alertController.textFields?[0])?.text ?? ""
+            let currency = (alertController.textFields?[0])?.text?.uppercased() ?? ""
             
             if !currency.isEmpty {
-                self?.addBalances(balance: Balance(amount: 0.00, currency: currency))
+                self?.addBalance(balance: Balance(amount: 0.00, currency: currency))
             }
         })
         
