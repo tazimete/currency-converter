@@ -28,6 +28,10 @@
 		FA880E1828345C8C00388BE6 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA880E1728345C8C00388BE6 /* Currency.swift */; };
 		FA9189FF283AB8B200BEDF56 /* UserSessionDataClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9189FE283AB8B200BEDF56 /* UserSessionDataClientTests.swift */; };
 		FA918A03283AC69F00BEDF56 /* MockLocalStorageInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA918A02283AC69F00BEDF56 /* MockLocalStorageInteractor.swift */; };
+		FA918A0C283AE0ED00BEDF56 /* MockCurrencyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA918A0B283AE0EC00BEDF56 /* MockCurrencyRepository.swift */; };
+		FA918A0E283AE11700BEDF56 /* CurrencyRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA918A0D283AE11700BEDF56 /* CurrencyRepositoryTests.swift */; };
+		FA918A11283AE1E600BEDF56 /* MockLocalCurrencyDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA918A10283AE1E600BEDF56 /* MockLocalCurrencyDataSource.swift */; };
+		FA918A13283AE20300BEDF56 /* MockRemoteCurrencyDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA918A12283AE20300BEDF56 /* MockRemoteCurrencyDataSource.swift */; };
 		FA9CC8C9282E3CAA00E4B791 /* AbstractionRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9CC8C8282E3CAA00E4B791 /* AbstractionRemoteDataSource.swift */; };
 		FA9CC8CB282E3D9D00E4B791 /* AbstractLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9CC8CA282E3D9D00E4B791 /* AbstractLocalDataSource.swift */; };
 		FA9CC8CD282E4A7000E4B791 /* AbstractCurrencyLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9CC8CC282E4A7000E4B791 /* AbstractCurrencyLocalDataSource.swift */; };
@@ -146,7 +150,7 @@
 		FAF98FCB2839A2FA005FB093 /* StubResponseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF98FCA2839A2FA005FB093 /* StubResponseProvider.swift */; };
 		FAF98FCD2839A3B2005FB093 /* StubbedResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF98FCC2839A3B2005FB093 /* StubbedResponse.swift */; };
 		FAF98FCF2839ABC4005FB093 /* MockUrlSessions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF98FCE2839ABC4005FB093 /* MockUrlSessions.swift */; };
-		FAF98FD22839AEC7005FB093 /* MockApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF98FD12839AEC7005FB093 /* MockApiClient.swift */; };
+		FAF98FD22839AEC7005FB093 /* MockAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF98FD12839AEC7005FB093 /* MockAPIClient.swift */; };
 		FAF98FD52839B393005FB093 /* ApiClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF98FD42839B393005FB093 /* ApiClientTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -195,6 +199,10 @@
 		FA880E1728345C8C00388BE6 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		FA9189FE283AB8B200BEDF56 /* UserSessionDataClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSessionDataClientTests.swift; sourceTree = "<group>"; };
 		FA918A02283AC69F00BEDF56 /* MockLocalStorageInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLocalStorageInteractor.swift; sourceTree = "<group>"; };
+		FA918A0B283AE0EC00BEDF56 /* MockCurrencyRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCurrencyRepository.swift; sourceTree = "<group>"; };
+		FA918A0D283AE11700BEDF56 /* CurrencyRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyRepositoryTests.swift; sourceTree = "<group>"; };
+		FA918A10283AE1E600BEDF56 /* MockLocalCurrencyDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLocalCurrencyDataSource.swift; sourceTree = "<group>"; };
+		FA918A12283AE20300BEDF56 /* MockRemoteCurrencyDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRemoteCurrencyDataSource.swift; sourceTree = "<group>"; };
 		FA9CC8C8282E3CAA00E4B791 /* AbstractionRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractionRemoteDataSource.swift; sourceTree = "<group>"; };
 		FA9CC8CA282E3D9D00E4B791 /* AbstractLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractLocalDataSource.swift; sourceTree = "<group>"; };
 		FA9CC8CC282E4A7000E4B791 /* AbstractCurrencyLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractCurrencyLocalDataSource.swift; sourceTree = "<group>"; };
@@ -317,7 +325,7 @@
 		FAF98FCA2839A2FA005FB093 /* StubResponseProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubResponseProvider.swift; sourceTree = "<group>"; };
 		FAF98FCC2839A3B2005FB093 /* StubbedResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubbedResponse.swift; sourceTree = "<group>"; };
 		FAF98FCE2839ABC4005FB093 /* MockUrlSessions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUrlSessions.swift; sourceTree = "<group>"; };
-		FAF98FD12839AEC7005FB093 /* MockApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockApiClient.swift; sourceTree = "<group>"; };
+		FAF98FD12839AEC7005FB093 /* MockAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPIClient.swift; sourceTree = "<group>"; };
 		FAF98FD42839B393005FB093 /* ApiClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClientTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -467,7 +475,7 @@
 			isa = PBXGroup;
 			children = (
 				FA918A00283AC5D200BEDF56 /* Mocking */,
-				FA918A01283AC5D900BEDF56 /* Tests */,
+				FA9189FE283AB8B200BEDF56 /* UserSessionDataClientTests.swift */,
 			);
 			path = KeyValueStorage;
 			sourceTree = "<group>";
@@ -480,12 +488,63 @@
 			path = Mocking;
 			sourceTree = "<group>";
 		};
-		FA918A01283AC5D900BEDF56 /* Tests */ = {
+		FA918A04283ADC2000BEDF56 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				FA9189FE283AB8B200BEDF56 /* UserSessionDataClientTests.swift */,
+				FA918A08283ADC5600BEDF56 /* Request */,
+				FA918A07283ADC4000BEDF56 /* Usecase */,
+				FA918A06283ADC3800BEDF56 /* DataSource */,
+				FA918A05283ADC2C00BEDF56 /* Repository */,
 			);
-			path = Tests;
+			path = Data;
+			sourceTree = "<group>";
+		};
+		FA918A05283ADC2C00BEDF56 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				FA918A0A283AE0D400BEDF56 /* Mocking */,
+				FA918A0D283AE11700BEDF56 /* CurrencyRepositoryTests.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		FA918A06283ADC3800BEDF56 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				FA918A0F283AE1B400BEDF56 /* Mocking */,
+			);
+			path = DataSource;
+			sourceTree = "<group>";
+		};
+		FA918A07283ADC4000BEDF56 /* Usecase */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Usecase;
+			sourceTree = "<group>";
+		};
+		FA918A08283ADC5600BEDF56 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		FA918A0A283AE0D400BEDF56 /* Mocking */ = {
+			isa = PBXGroup;
+			children = (
+				FA918A0B283AE0EC00BEDF56 /* MockCurrencyRepository.swift */,
+			);
+			path = Mocking;
+			sourceTree = "<group>";
+		};
+		FA918A0F283AE1B400BEDF56 /* Mocking */ = {
+			isa = PBXGroup;
+			children = (
+				FA918A10283AE1E600BEDF56 /* MockLocalCurrencyDataSource.swift */,
+				FA918A12283AE20300BEDF56 /* MockRemoteCurrencyDataSource.swift */,
+			);
+			path = Mocking;
 			sourceTree = "<group>";
 		};
 		FA9CC8C6282E3C4100E4B791 /* DataSource */ = {
@@ -590,6 +649,7 @@
 			isa = PBXGroup;
 			children = (
 				FAF98FC62839A2B7005FB093 /* Client */,
+				FA918A04283ADC2000BEDF56 /* Data */,
 				FAB726C92820F85F0061A22E /* currency_converterTests.swift */,
 			);
 			path = "currency-converterTests";
@@ -1205,7 +1265,7 @@
 			children = (
 				FAF98FC92839A2E8005FB093 /* Stubbing */,
 				FAF98FD02839ABDF005FB093 /* Mocking */,
-				FAF98FD32839B37F005FB093 /* Tests */,
+				FAF98FD42839B393005FB093 /* ApiClientTests.swift */,
 			);
 			path = ApiClient;
 			sourceTree = "<group>";
@@ -1223,17 +1283,9 @@
 			isa = PBXGroup;
 			children = (
 				FAF98FCE2839ABC4005FB093 /* MockUrlSessions.swift */,
-				FAF98FD12839AEC7005FB093 /* MockApiClient.swift */,
+				FAF98FD12839AEC7005FB093 /* MockAPIClient.swift */,
 			);
 			path = Mocking;
-			sourceTree = "<group>";
-		};
-		FAF98FD32839B37F005FB093 /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-				FAF98FD42839B393005FB093 /* ApiClientTests.swift */,
-			);
-			path = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1607,13 +1659,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA918A11283AE1E600BEDF56 /* MockLocalCurrencyDataSource.swift in Sources */,
+				FA918A13283AE20300BEDF56 /* MockRemoteCurrencyDataSource.swift in Sources */,
 				FA918A03283AC69F00BEDF56 /* MockLocalStorageInteractor.swift in Sources */,
 				FAF98FCF2839ABC4005FB093 /* MockUrlSessions.swift in Sources */,
+				FA918A0E283AE11700BEDF56 /* CurrencyRepositoryTests.swift in Sources */,
 				FAF98FCD2839A3B2005FB093 /* StubbedResponse.swift in Sources */,
 				FA9189FF283AB8B200BEDF56 /* UserSessionDataClientTests.swift in Sources */,
 				FAB726CA2820F85F0061A22E /* currency_converterTests.swift in Sources */,
 				FAF98FD52839B393005FB093 /* ApiClientTests.swift in Sources */,
-				FAF98FD22839AEC7005FB093 /* MockApiClient.swift in Sources */,
+				FA918A0C283AE0ED00BEDF56 /* MockCurrencyRepository.swift in Sources */,
+				FAF98FD22839AEC7005FB093 /* MockAPIClient.swift in Sources */,
 				FAF98FCB2839A2FA005FB093 /* StubResponseProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

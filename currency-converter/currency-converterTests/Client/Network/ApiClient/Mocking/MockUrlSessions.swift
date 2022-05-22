@@ -11,7 +11,7 @@ import Foundation
 class MockURLSessionSucess: AbstractURLSession {
     var responseType: Codable.Type?
     
-    required init(configuration: URLSessionConfiguration = URLSessionConfigHolder.config) {
+    required init(config: URLSessionConfiguration = URLSessionConfigHolder.config) {
         defaultConfig = configuration
     }
     
@@ -29,7 +29,7 @@ class MockURLSessionSucess: AbstractURLSession {
 class MockURLSessionFailed: AbstractURLSession {
     var responseType: Codable.Type?
     
-    required init(configuration: URLSessionConfiguration = URLSessionConfigHolder.config) {
+    required init(config: URLSessionConfiguration = URLSessionConfigHolder.config) {
         defaultConfig = configuration
     }
     
