@@ -35,7 +35,8 @@ class ApiClientTest: XCTestCase {
         var networkError: NetworkError?
         
         apiClient.send(apiRequest: request, type: CurrencyApiRequest.ItemType.self)
-            .observe(on: MainScheduler.instance)
+            .observe(on: ConcurrentDispatchQueueScheduler(qos: .utility))
+            .subscribe(on: MainScheduler.instance)
             .subscribe(onNext: { response in
                 result = response
                 expectation.fulfill()
@@ -74,7 +75,8 @@ class ApiClientTest: XCTestCase {
         apiClient.setMockSession(session: MockURLSessionFailed(configuration: URLSessionConfigHolder.config))
         
         apiClient.send(apiRequest: request, type: CurrencyApiRequest.ItemType.self)
-            .observe(on: MainScheduler.instance)
+            .observe(on: ConcurrentDispatchQueueScheduler(qos: .utility))
+            .subscribe(on: MainScheduler.instance)
             .subscribe(onNext: { response in
                 result = response
                 expectation.fulfill()
@@ -109,7 +111,8 @@ class ApiClientTest: XCTestCase {
             var networkError: NetworkError?
             
             apiClient.send(apiRequest: request, type: CurrencyApiRequest.ItemType.self)
-                .observe(on: MainScheduler.instance)
+                .observe(on: ConcurrentDispatchQueueScheduler(qos: .utility))
+                .subscribe(on: MainScheduler.instance)
                 .subscribe(onNext: { response in
                     result = response
                     expectation.fulfill()

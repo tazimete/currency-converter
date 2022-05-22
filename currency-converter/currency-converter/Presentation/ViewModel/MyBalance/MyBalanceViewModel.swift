@@ -83,7 +83,9 @@ class MyBalanceViewModel: AbstractMyBalanceViewModel {
                        errorResponse.accept(error as? NetworkError)
                        return Observable.just(CurrencyApiRequest.ItemType())
                     })
-        }).subscribe(onNext: { [weak self] response in
+        })
+        .observe(on: ConcurrentDispatchQueueScheduler(qos: .utility))
+        .subscribe(onNext: { [weak self] response in
             guard let weakSelf = self, let amount = response.amount, let currency = response.title else {
                 return
             }

@@ -22,40 +22,40 @@ class MockLocalStorageInteractor: AbstractLocalStorageIntereactor {
         return KeyValuePair(key: key, value: data[key])
     }
     
-    func create<T>(type: T.Type, item: T) -> Bool {
-        fatalError("Not Implemented Yet")
+    func create<T: Codable>(type: T.Type, item: T) -> Bool {
+        return true
     }
     
-    func createOrUpdate<T>(type: T.Type, item: T) -> Bool {
-        fatalError("Not Implemented Yet")
+    func createOrUpdate<T: Codable>(type: T.Type, item: T) -> Bool {
+        return true
     }
     
-    func createAll<T>(type: T.Type, items: [T]) -> Bool {
-        fatalError("Not Implemented Yet")
+    func createAll<T: Codable>(type: T.Type, items: [T]) -> Bool {
+        return true
     }
     
-    func read<T>(type: T.Type, id: String) -> T {
-        fatalError("Not Implemented Yet")
+    func read<T: Codable>(type: T.Type, id: String) -> T {
+        return StubResponseProvider.getResponse(type: type)
     }
     
-    func readAll<T>(type: T.Type) -> [T] {
-        fatalError("Not Implemented Yet")
+    func readAll<T: Codable>(type: T.Type) -> [T] {
+        return [StubResponseProvider.getResponse(type: type)]
     }
     
-    func update<T>(type: T.Type, item: T) -> Bool {
-        fatalError("Not Implemented Yet")
+    func update<T: Codable>(type: T.Type, item: T) -> Bool {
+        return true
     }
     
-    func updateAll<T>(type: T.Type, items: [T]) -> Bool {
-        fatalError("Not Implemented Yet")
+    func updateAll<T: Codable>(type: T.Type, items: [T]) -> Bool {
+        return true
     }
     
-    func delete<T>(type: T.Type, item: T) -> Bool {
-        fatalError("Not Implemented Yet")
+    func delete<T: Codable>(type: T.Type, item: T) -> Bool {
+        return true
     }
     
-    func deleteAll<T>(type: T.Type, items: [T]) -> Bool {
-        fatalError("Not Implemented Yet")
+    func deleteAll<T: Codable>(type: T.Type, items: [T]) -> Bool {
+        return true 
     }
     
     func createOrUpdateKeyValuePair(keyValuePair: KeyValuePair) -> Bool {

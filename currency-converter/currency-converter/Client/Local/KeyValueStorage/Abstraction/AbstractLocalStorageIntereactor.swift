@@ -21,15 +21,15 @@ protocol AbstractLocalKVStorageInteractor {
 protocol AbstractLocalDBStorageInteractor {
     static var shared: AbstractLocalStorageIntereactor {get}
     
-    func create<T>(type: T.Type, item: T) -> Bool
-    func createOrUpdate<T>(type: T.Type, item: T) -> Bool
-    func createAll<T>(type: T.Type, items: [T]) -> Bool
-    func read<T>(type: T.Type, id: String) -> T
-    func readAll<T>(type: T.Type) -> [T]
-    func update<T>(type: T.Type, item: T) -> Bool
-    func updateAll<T>(type: T.Type, items: [T]) -> Bool
-    func delete<T>(type: T.Type, item: T) -> Bool
-    func deleteAll<T>(type: T.Type, items: [T]) -> Bool
+    func create<T: Codable>(type: T.Type, item: T) -> Bool
+    func createOrUpdate<T: Codable>(type: T.Type, item: T) -> Bool
+    func createAll<T: Codable>(type: T.Type, items: [T]) -> Bool
+    func read<T: Codable>(type: T.Type, id: String) -> T
+    func readAll<T: Codable>(type: T.Type) -> [T]
+    func update<T: Codable>(type: T.Type, item: T) -> Bool
+    func updateAll<T: Codable>(type: T.Type, items: [T]) -> Bool
+    func delete<T: Codable>(type: T.Type, item: T) -> Bool
+    func deleteAll<T: Codable>(type: T.Type, items: [T]) -> Bool
     
     func createOrUpdateKeyValuePair(keyValuePair: KeyValuePair) -> Bool
     func readKeyValuePair(id: String) -> KeyValuePair
