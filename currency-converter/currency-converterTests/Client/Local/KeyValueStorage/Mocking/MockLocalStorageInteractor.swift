@@ -12,7 +12,7 @@ import Foundation
 class MockLocalStorageInteractor: AbstractLocalStorageIntereactor {
     static let shared: AbstractLocalKVStorageInteractor = MockLocalStorageInteractor()
     
-    var data = [String: Any]()
+    var data = [String: Data]()
     
     func setData(keyValuePair: KeyValuePair) {
         data[keyValuePair.key] = keyValuePair.value
