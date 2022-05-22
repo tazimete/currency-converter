@@ -1,5 +1,5 @@
 //
-//  CurrencyLocalDataSourceTests.swift
+//  CurrencyRepositoryTests.swift
 //  currency-converterTests
 //
 //  Created by AGM Tazim on 5/23/22.
@@ -9,36 +9,39 @@ import XCTest
 @testable import currency_converter
 import RxSwift
 
-class CurrencyLocalDataSourceTests: XCTestCase {
-    private var currencyLocalDataSource: AbstractCurrencyLocalDataSource!
+class CurrencyRepositoryTests: XCTestCase {
+    private var currencyRepository: AbstractCurrencyRepository!
     private var disposeBag: DisposeBag!
 
     override func setUp() {
         let dbClient = DatabaseClient.shared
         dbClient.changeIntegractor(interactor: MockLocalStorageInteractor.shared)
-        currencyLocalDataSource = MockLocalCurrencyDataSource(dbClient: dbClient)
+        currencyRepository = CurrencyRepository(localDataSource: MockLocalCurrencyDataSource(dbClient: dbClient), remoteDataSource: MockRemoteCurrencyDataSource(apiClient: MockAPIClient.shared))
         disposeBag = DisposeBag()
     }
     
     override func tearDown() {
-        currencyLocalDataSource = nil
+        currencyRepository = nil
         disposeBag = nil
     }
     
-    func testDataSources() {
-        XCTAssertNotNil(currencyLocalDataSource)
-        XCTAssertNotNil(currencyLocalDataSource.dbClient)
-        XCTAssertNotNil(currencyLocalDataSource.dbClient.interactor)
+    func testDependencies() {
+        XCTAssertNotNil(currencyRepository.localDataSource)
+        XCTAssertNotNil(currencyRepository.remoteDataSource)
+        XCTAssertNotNil(currencyRepository.localDataSource.dbClient)
+        XCTAssertNotNil(currencyRepository.remoteDataSource.apiClient)
+        XCTAssertNotNil(currencyRepository.localDataSource.dbClient.interactor)
+        XCTAssertNotNil(currencyRepository.remoteDataSource.apiClient.session)
     }
     
     func testGet() {
-        let expectation = self.expectation(description: "Wait for currency local data source to load.")
+        let expectation = self.expectation(description: "Wait for currency repository to load.")
         let amount = "45875"
         let currency = "JPY"
         var result: CurrencyApiRequest.ItemType!
         var networkError: NetworkError?
         
-        currencyLocalDataSource.get(fromAmount: amount, fromCurrency: currency, toCurrency: currency)
+        currencyRepository.get(fromAmount: amount, fromCurrency: currency, toCurrency: currency)
             .observe(on: ConcurrentDispatchQueueScheduler(qos: .utility))
             .subscribe(on: MainScheduler.instance)
             .subscribe(onNext: { response in
@@ -68,4 +71,3 @@ class CurrencyLocalDataSourceTests: XCTestCase {
     }
 
 }
-

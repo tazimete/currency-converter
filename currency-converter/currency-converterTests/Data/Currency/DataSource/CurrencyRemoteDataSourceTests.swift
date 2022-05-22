@@ -23,7 +23,7 @@ class CurrencyRemoteDataSourceTests: XCTestCase {
         disposeBag = nil
     }
     
-    func testDataSources() {
+    func testDependencies() {
         XCTAssertNotNil(currencyRemoteDataSource)
         XCTAssertNotNil(currencyRemoteDataSource.apiClient)
         XCTAssertNotNil(currencyRemoteDataSource.apiClient.session)
