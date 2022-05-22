@@ -57,6 +57,8 @@ class ApiClientTest: XCTestCase {
         XCTAssertNotEqual(result.title, stubbedResposne.amount)
         XCTAssertTrue((result.amount?.elementsEqual(stubbedResposne.amount.unwrappedValue)).unwrappedValue)
         XCTAssertTrue((result.title?.elementsEqual(stubbedResposne.title.unwrappedValue)).unwrappedValue)
+        XCTAssertEqual(try? XCTUnwrap(result.amount, "Empty amount"), try? XCTUnwrap(stubbedResposne.amount, "Empty amount"))
+        XCTAssertEqual(try? XCTUnwrap(result.title, "Empty title"), try? XCTUnwrap(stubbedResposne.title, "Empty title"))
         XCTAssertNil(networkError)
     }
     
@@ -82,7 +84,7 @@ class ApiClientTest: XCTestCase {
                     expectation.fulfill()
                 }).disposed(by: disposeBag)
             
-            waitForExpectations(timeout: 5, handler: nil)
+            waitForExpectations(timeout: 2, handler: nil)
             
             //stubbed response to check data which are received through non-mock components
             let stubbedResposne = StubResponseProvider.getResponse(type: CurrencyApiRequest.ItemType.self)
