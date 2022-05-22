@@ -44,7 +44,7 @@ class ApiClientTest: XCTestCase {
                 expectation.fulfill()
             }).disposed(by: disposeBag)
         
-        waitForExpectations(timeout: 2, handler: nil)
+        wait(for: [expectation], timeout: 5)
         
         //stubbed response to check data which are received through non-mock components
         let stubbedResposne = StubResponseProvider.getResponse(type: CurrencyApiRequest.ItemType.self)
@@ -83,7 +83,7 @@ class ApiClientTest: XCTestCase {
                 expectation.fulfill()
             }).disposed(by: disposeBag)
         
-        waitForExpectations(timeout: 2, handler: nil)
+        wait(for: [expectation], timeout: 5)
         
         //stubbed response to check data which are received through non-mock components
         let stubbedResposne = StubResponseProvider.getErrorResponse(type: NetworkError.self)
@@ -118,7 +118,7 @@ class ApiClientTest: XCTestCase {
                     expectation.fulfill()
                 }).disposed(by: disposeBag)
             
-            waitForExpectations(timeout: 2, handler: nil)
+            wait(for: [expectation], timeout: 5)
             
             //stubbed response to check data which are received through non-mock components
             let stubbedResposne = StubResponseProvider.getResponse(type: CurrencyApiRequest.ItemType.self)

@@ -10,7 +10,7 @@ import Foundation
 
 protocol AbstractUserSessionDataClient {
     static var shared: AbstractUserSessionDataClient {get}
-    var kvContainer: AbstractLocalDBStorageInteractor {get set}
+    var kvContainer: AbstractLocalStorageIntereactor {get}
     
     var conversionCount: Int {get}
     func setConversionCount(count: Int)

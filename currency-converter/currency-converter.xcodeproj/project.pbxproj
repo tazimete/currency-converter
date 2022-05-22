@@ -26,6 +26,8 @@
 		FA75805E2831A8AD00A94028 /* CurrencyExcangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75805D2831A8AD00A94028 /* CurrencyExcangeView.swift */; };
 		FA880E16283451AF00388BE6 /* CurrencyExchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA880E15283451AF00388BE6 /* CurrencyExchange.swift */; };
 		FA880E1828345C8C00388BE6 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA880E1728345C8C00388BE6 /* Currency.swift */; };
+		FA9189FF283AB8B200BEDF56 /* UserSessionDataClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9189FE283AB8B200BEDF56 /* UserSessionDataClientTests.swift */; };
+		FA918A03283AC69F00BEDF56 /* MockLocalStorageInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA918A02283AC69F00BEDF56 /* MockLocalStorageInteractor.swift */; };
 		FA9CC8C9282E3CAA00E4B791 /* AbstractionRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9CC8C8282E3CAA00E4B791 /* AbstractionRemoteDataSource.swift */; };
 		FA9CC8CB282E3D9D00E4B791 /* AbstractLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9CC8CA282E3D9D00E4B791 /* AbstractLocalDataSource.swift */; };
 		FA9CC8CD282E4A7000E4B791 /* AbstractCurrencyLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9CC8CC282E4A7000E4B791 /* AbstractCurrencyLocalDataSource.swift */; };
@@ -56,8 +58,6 @@
 		FAE7E7A8282181B70019BCC2 /* Parameterizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E6EB282181B40019BCC2 /* Parameterizable.swift */; };
 		FAE7E7A9282181B70019BCC2 /* NetworkOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E6ED282181B40019BCC2 /* NetworkOperation.swift */; };
 		FAE7E7AA282181B70019BCC2 /* QueueManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E6EE282181B40019BCC2 /* QueueManager.swift */; };
-		FAE7E7AB282181B70019BCC2 /* StubResponseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E6F0282181B40019BCC2 /* StubResponseProvider.swift */; };
-		FAE7E7AC282181B70019BCC2 /* StubbedResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E6F1282181B40019BCC2 /* StubbedResponse.swift */; };
 		FAE7E7AD282181B70019BCC2 /* ApiRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E6F2282181B40019BCC2 /* ApiRequest.swift */; };
 		FAE7E7AE282181B70019BCC2 /* Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E6F4282181B40019BCC2 /* Downloader.swift */; };
 		FAE7E7AF282181B70019BCC2 /* DownloadDataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E6F5282181B40019BCC2 /* DownloadDataParser.swift */; };
@@ -193,6 +193,8 @@
 		FA75805D2831A8AD00A94028 /* CurrencyExcangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyExcangeView.swift; sourceTree = "<group>"; };
 		FA880E15283451AF00388BE6 /* CurrencyExchange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyExchange.swift; sourceTree = "<group>"; };
 		FA880E1728345C8C00388BE6 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
+		FA9189FE283AB8B200BEDF56 /* UserSessionDataClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSessionDataClientTests.swift; sourceTree = "<group>"; };
+		FA918A02283AC69F00BEDF56 /* MockLocalStorageInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLocalStorageInteractor.swift; sourceTree = "<group>"; };
 		FA9CC8C8282E3CAA00E4B791 /* AbstractionRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractionRemoteDataSource.swift; sourceTree = "<group>"; };
 		FA9CC8CA282E3D9D00E4B791 /* AbstractLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractLocalDataSource.swift; sourceTree = "<group>"; };
 		FA9CC8CC282E4A7000E4B791 /* AbstractCurrencyLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractCurrencyLocalDataSource.swift; sourceTree = "<group>"; };
@@ -227,8 +229,6 @@
 		FAE7E6EB282181B40019BCC2 /* Parameterizable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parameterizable.swift; sourceTree = "<group>"; };
 		FAE7E6ED282181B40019BCC2 /* NetworkOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkOperation.swift; sourceTree = "<group>"; };
 		FAE7E6EE282181B40019BCC2 /* QueueManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueueManager.swift; sourceTree = "<group>"; };
-		FAE7E6F0282181B40019BCC2 /* StubResponseProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StubResponseProvider.swift; sourceTree = "<group>"; };
-		FAE7E6F1282181B40019BCC2 /* StubbedResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StubbedResponse.swift; sourceTree = "<group>"; };
 		FAE7E6F2282181B40019BCC2 /* ApiRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiRequest.swift; sourceTree = "<group>"; };
 		FAE7E6F4282181B40019BCC2 /* Downloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Downloader.swift; sourceTree = "<group>"; };
 		FAE7E6F5282181B40019BCC2 /* DownloadDataParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadDataParser.swift; sourceTree = "<group>"; };
@@ -455,6 +455,39 @@
 			path = ../../Domain/Entity/MyBalance;
 			sourceTree = "<group>";
 		};
+		FA9189FC283AB80800BEDF56 /* Local */ = {
+			isa = PBXGroup;
+			children = (
+				FA9189FD283AB81900BEDF56 /* KeyValueStorage */,
+			);
+			path = Local;
+			sourceTree = "<group>";
+		};
+		FA9189FD283AB81900BEDF56 /* KeyValueStorage */ = {
+			isa = PBXGroup;
+			children = (
+				FA918A00283AC5D200BEDF56 /* Mocking */,
+				FA918A01283AC5D900BEDF56 /* Tests */,
+			);
+			path = KeyValueStorage;
+			sourceTree = "<group>";
+		};
+		FA918A00283AC5D200BEDF56 /* Mocking */ = {
+			isa = PBXGroup;
+			children = (
+				FA918A02283AC69F00BEDF56 /* MockLocalStorageInteractor.swift */,
+			);
+			path = Mocking;
+			sourceTree = "<group>";
+		};
+		FA918A01283AC5D900BEDF56 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				FA9189FE283AB8B200BEDF56 /* UserSessionDataClientTests.swift */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
 		FA9CC8C6282E3C4100E4B791 /* DataSource */ = {
 			isa = PBXGroup;
 			children = (
@@ -661,7 +694,6 @@
 				FAE7E6EA282181B40019BCC2 /* ApiClient.swift */,
 				FAE7E6EB282181B40019BCC2 /* Parameterizable.swift */,
 				FAE7E6EC282181B40019BCC2 /* Queue */,
-				FAE7E6EF282181B40019BCC2 /* Stubbing */,
 				FAE7E6F2282181B40019BCC2 /* ApiRequest.swift */,
 			);
 			path = ApiClient;
@@ -683,15 +715,6 @@
 				FAE7E6EE282181B40019BCC2 /* QueueManager.swift */,
 			);
 			path = Queue;
-			sourceTree = "<group>";
-		};
-		FAE7E6EF282181B40019BCC2 /* Stubbing */ = {
-			isa = PBXGroup;
-			children = (
-				FAE7E6F0282181B40019BCC2 /* StubResponseProvider.swift */,
-				FAE7E6F1282181B40019BCC2 /* StubbedResponse.swift */,
-			);
-			path = Stubbing;
 			sourceTree = "<group>";
 		};
 		FAE7E6F3282181B40019BCC2 /* Downloader */ = {
@@ -1164,6 +1187,7 @@
 			isa = PBXGroup;
 			children = (
 				FAF98FC72839A2C6005FB093 /* Network */,
+				FA9189FC283AB80800BEDF56 /* Local */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -1179,9 +1203,9 @@
 		FAF98FC82839A2DA005FB093 /* ApiClient */ = {
 			isa = PBXGroup;
 			children = (
-				FAF98FD32839B37F005FB093 /* Tests */,
 				FAF98FC92839A2E8005FB093 /* Stubbing */,
 				FAF98FD02839ABDF005FB093 /* Mocking */,
+				FAF98FD32839B37F005FB093 /* Tests */,
 			);
 			path = ApiClient;
 			sourceTree = "<group>";
@@ -1511,7 +1535,6 @@
 				FA387B732826792E00B83C23 /* AbstractLocalStorageIntereactor.swift in Sources */,
 				FAE7E7C5282181B70019BCC2 /* UIImageView+Extension.swift in Sources */,
 				FAE7E7B3282181B70019BCC2 /* ImageDownloader.swift in Sources */,
-				FAE7E7AC282181B70019BCC2 /* StubbedResponse.swift in Sources */,
 				FAE7E7BC282181B70019BCC2 /* CurrencyUsecase.swift in Sources */,
 				FAE7E78C282181B70019BCC2 /* AdaptiveLayoutExtension.swift in Sources */,
 				FAE7E894282187900019BCC2 /* SkeletonTransitionStyle.swift in Sources */,
@@ -1550,7 +1573,6 @@
 				FAE7E88E282187900019BCC2 /* UITableView+VisibleSections.swift in Sources */,
 				FAE7E7AA282181B70019BCC2 /* QueueManager.swift in Sources */,
 				FAE7E89D282187900019BCC2 /* UIView+CollectionSkeleton.swift in Sources */,
-				FAE7E7AB282181B70019BCC2 /* StubResponseProvider.swift in Sources */,
 				FAE7E8A0282187900019BCC2 /* SkeletonLayer.swift in Sources */,
 				FAE7E87F282187900019BCC2 /* SkeletonLayerBuilder.swift in Sources */,
 				FAE7E88B282187900019BCC2 /* UIColor+Skeleton.swift in Sources */,
@@ -1585,8 +1607,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA918A03283AC69F00BEDF56 /* MockLocalStorageInteractor.swift in Sources */,
 				FAF98FCF2839ABC4005FB093 /* MockUrlSessions.swift in Sources */,
 				FAF98FCD2839A3B2005FB093 /* StubbedResponse.swift in Sources */,
+				FA9189FF283AB8B200BEDF56 /* UserSessionDataClientTests.swift in Sources */,
 				FAB726CA2820F85F0061A22E /* currency_converterTests.swift in Sources */,
 				FAF98FD52839B393005FB093 /* ApiClientTests.swift in Sources */,
 				FAF98FD22839AEC7005FB093 /* MockApiClient.swift in Sources */,
