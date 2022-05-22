@@ -16,7 +16,7 @@ class ApiClientTest: XCTestCase {
 
     override func setUp() {
         apiClient = ApiClient.shared
-        apiClient.setMockSession(session: MockURLSession(configuration: URLSessionConfigHolder.config))
+        apiClient.setMockSession(session: MockURLSessionSucess(configuration: URLSessionConfigHolder.config))
         disposeBag = DisposeBag()
     }
     
@@ -25,7 +25,7 @@ class ApiClientTest: XCTestCase {
         disposeBag = nil
     }
     
-    func testApiClientWithCurrencyExchange() {
+    func testApiClientWithCurrencyExchangeSucces() {
         let amount = "45875"
         let currency = "JPY"
         
@@ -60,6 +60,40 @@ class ApiClientTest: XCTestCase {
         XCTAssertEqual(try XCTUnwrap(result.amount, "Empty amount"), try XCTUnwrap(stubbedResposne.amount, "Empty amount"))
         XCTAssertEqual(try XCTUnwrap(result.title, "Empty title"), try XCTUnwrap(stubbedResposne.title, "Empty title"))
         XCTAssertNil(networkError)
+    }
+    
+    func testApiClientWithCurrencyExchangeFailed() {
+        let amount = "45875"
+        let currency = "JPY"
+        
+        let request = CurrencyApiRequest.convert(params: CurrencyConverterParams(fromAmount: amount, fromCurrency: currency, toCurrency: currency))
+        let expectation = self.expectation(description: "Wait for \(request.path) to load.")
+        var result: CurrencyApiRequest.ItemType!
+        var networkError: NetworkError?
+        
+        apiClient.setMockSession(session: MockURLSessionFailed(configuration: URLSessionConfigHolder.config))
+        
+        apiClient.send(apiRequest: request, type: CurrencyApiRequest.ItemType.self)
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { response in
+                result = response
+                expectation.fulfill()
+            }, onError: { error in
+                networkError = error as? NetworkError
+                expectation.fulfill()
+            }).disposed(by: disposeBag)
+        
+        waitForExpectations(timeout: 2, handler: nil)
+        
+        //stubbed response to check data which are received through non-mock components
+        let stubbedResposne = StubResponseProvider.getErrorResponse(type: NetworkError.self)
+        
+        //assertions
+        XCTAssertNil(result)
+        XCTAssertNotNil(networkError)
+        XCTAssertEqual((networkError?.errorCode).unwrappedValue, stubbedResposne.errorCode)
+        XCTAssertEqual(networkError?.errorMessage, stubbedResposne.errorMessage)
+        XCTAssertEqual((networkError?.errorMessage).unwrappedValue, stubbedResposne.errorMessage)
     }
     
     func testApiClientPerformance() throws {

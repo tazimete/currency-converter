@@ -145,7 +145,7 @@
 		FAF98FC328394C48005FB093 /* Optional+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF98FC228394C48005FB093 /* Optional+Extensions.swift */; };
 		FAF98FCB2839A2FA005FB093 /* StubResponseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF98FCA2839A2FA005FB093 /* StubResponseProvider.swift */; };
 		FAF98FCD2839A3B2005FB093 /* StubbedResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF98FCC2839A3B2005FB093 /* StubbedResponse.swift */; };
-		FAF98FCF2839ABC4005FB093 /* MockUrlSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF98FCE2839ABC4005FB093 /* MockUrlSession.swift */; };
+		FAF98FCF2839ABC4005FB093 /* MockUrlSessions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF98FCE2839ABC4005FB093 /* MockUrlSessions.swift */; };
 		FAF98FD22839AEC7005FB093 /* MockApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF98FD12839AEC7005FB093 /* MockApiClient.swift */; };
 		FAF98FD52839B393005FB093 /* ApiClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF98FD42839B393005FB093 /* ApiClientTests.swift */; };
 /* End PBXBuildFile section */
@@ -316,7 +316,7 @@
 		FAF98FC228394C48005FB093 /* Optional+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Extensions.swift"; sourceTree = "<group>"; };
 		FAF98FCA2839A2FA005FB093 /* StubResponseProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubResponseProvider.swift; sourceTree = "<group>"; };
 		FAF98FCC2839A3B2005FB093 /* StubbedResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubbedResponse.swift; sourceTree = "<group>"; };
-		FAF98FCE2839ABC4005FB093 /* MockUrlSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUrlSession.swift; sourceTree = "<group>"; };
+		FAF98FCE2839ABC4005FB093 /* MockUrlSessions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUrlSessions.swift; sourceTree = "<group>"; };
 		FAF98FD12839AEC7005FB093 /* MockApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockApiClient.swift; sourceTree = "<group>"; };
 		FAF98FD42839B393005FB093 /* ApiClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClientTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1198,7 +1198,7 @@
 		FAF98FD02839ABDF005FB093 /* Mocking */ = {
 			isa = PBXGroup;
 			children = (
-				FAF98FCE2839ABC4005FB093 /* MockUrlSession.swift */,
+				FAF98FCE2839ABC4005FB093 /* MockUrlSessions.swift */,
 				FAF98FD12839AEC7005FB093 /* MockApiClient.swift */,
 			);
 			path = Mocking;
@@ -1585,7 +1585,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FAF98FCF2839ABC4005FB093 /* MockUrlSession.swift in Sources */,
+				FAF98FCF2839ABC4005FB093 /* MockUrlSessions.swift in Sources */,
 				FAF98FCD2839A3B2005FB093 /* StubbedResponse.swift in Sources */,
 				FAB726CA2820F85F0061A22E /* currency_converterTests.swift in Sources */,
 				FAF98FD52839B393005FB093 /* ApiClientTests.swift in Sources */,

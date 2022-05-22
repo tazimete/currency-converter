@@ -16,13 +16,17 @@ public class StubResponseProvider{
             result = Currency() as! T
         }
         
+        else if T.self is NetworkError.Type {
+            result = NetworkError.none as! T
+        }
+        
         return result
     }
     
     public static func getResponse<T: Codable>(type: T.Type) -> T{
         var result: T!
         
-        // model type is cussrency
+        // model type is currency
         if type is Currency.Type {
             let data  = StubResponseProvider.getData(type: type.self)
             
@@ -36,12 +40,23 @@ public class StubResponseProvider{
         return result
     }
     
+    public static func getErrorResponse<T: Error>(type: T.Type) -> T {
+        var result: T!
+        
+        // model type is NetworkError
+        if T.self is NetworkError.Type {
+            result = NetworkError.serverError(code: 404, message: currencyExchangeFailedResponse["error_description"].unwrappedValue) as! T
+        }
+        
+        return result
+    }
+    
     public static func getData<T: Codable>(type: T.Type) -> Data?{
         var response: [String : Any] = [String:Any]()
         var data: Data? = nil
         
         if T.self is Currency.Type {
-            response = currencyExchangeResponse
+            response = currencyExchangeSuccessResponse
         }
         
         data = try? JSONSerialization.data(withJSONObject: response, options: .fragmentsAllowed)

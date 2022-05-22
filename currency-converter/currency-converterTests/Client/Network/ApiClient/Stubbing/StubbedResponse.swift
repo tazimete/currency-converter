@@ -7,4 +7,5 @@
 
 import Foundation
 
-let currencyExchangeResponse: [String: Any] = ["amount": "45875","currency": "JPY"]
+let currencyExchangeSuccessResponse: [String: Any] = ["amount": "45875","currency": "JPY"]
+let currencyExchangeFailedResponse = ["error": "invalid_parameters", "error_description": "Can not parse amount or currency BTH"]
