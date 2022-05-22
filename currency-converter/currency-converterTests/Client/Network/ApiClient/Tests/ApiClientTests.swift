@@ -36,11 +36,11 @@ class ApiClientTest: XCTestCase {
         
         apiClient.send(apiRequest: request, type: CurrencyApiRequest.ItemType.self)
             .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { [weak self] response in
+            .subscribe(onNext: { response in
                 result = response
                 expectation.fulfill()
-            }, onError: { [weak self] error in
-                networkError = error as! NetworkError
+            }, onError: { error in
+                networkError = error as? NetworkError
                 expectation.fulfill()
             }).disposed(by: disposeBag)
         
@@ -57,13 +57,13 @@ class ApiClientTest: XCTestCase {
         XCTAssertNotEqual(result.title, stubbedResposne.amount)
         XCTAssertTrue((result.amount?.elementsEqual(stubbedResposne.amount.unwrappedValue)).unwrappedValue)
         XCTAssertTrue((result.title?.elementsEqual(stubbedResposne.title.unwrappedValue)).unwrappedValue)
-        XCTAssertEqual(try? XCTUnwrap(result.amount, "Empty amount"), try? XCTUnwrap(stubbedResposne.amount, "Empty amount"))
-        XCTAssertEqual(try? XCTUnwrap(result.title, "Empty title"), try? XCTUnwrap(stubbedResposne.title, "Empty title"))
+        XCTAssertEqual(try XCTUnwrap(result.amount, "Empty amount"), try XCTUnwrap(stubbedResposne.amount, "Empty amount"))
+        XCTAssertEqual(try XCTUnwrap(result.title, "Empty title"), try XCTUnwrap(stubbedResposne.title, "Empty title"))
         XCTAssertNil(networkError)
     }
     
     func testApiClientPerformance() throws {
-        // This is an example of a performance test case.
+        // This is performance test case.
         self.measure {
             // Put the code you want to measure the time of here.
             let amount = "45875"
@@ -76,11 +76,11 @@ class ApiClientTest: XCTestCase {
             
             apiClient.send(apiRequest: request, type: CurrencyApiRequest.ItemType.self)
                 .observe(on: MainScheduler.instance)
-                .subscribe(onNext: { [weak self] response in
+                .subscribe(onNext: { response in
                     result = response
                     expectation.fulfill()
-                }, onError: { [weak self] error in
-                    networkError = error as! NetworkError
+                }, onError: { error in
+                    networkError = error as? NetworkError
                     expectation.fulfill()
                 }).disposed(by: disposeBag)
             
