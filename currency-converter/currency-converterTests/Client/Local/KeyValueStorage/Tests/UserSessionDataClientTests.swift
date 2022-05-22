@@ -23,10 +23,24 @@ class UserSessionDataClientTests: XCTestCase {
         userSessionDataClient = nil
     }
     
-    func testConversionCount() {
+    func testKVContainer() {
+        XCTAssertNotNil(userSessionDataClient.kvContainer)
+    }
+    
+    func testSetConversionCount() {
         userSessionDataClient.setConversionCount(count: 10)
-        
-        XCTAssertEqual(userSessionDataClient.getConversionCount(), 10)
+        let value = userSessionDataClient.conversionCount
+        XCTAssertNotNil(value)
+        XCTAssertEqual(value, 10)
+        XCTAssertNotEqual(value, 20)
+    }
+    
+    func testGetConversionCount() {
+        userSessionDataClient.setConversionCount(count: 20)
+        let value = userSessionDataClient.getConversionCount()
+        XCTAssertNotNil(value)
+        XCTAssertEqual(value, 20)
+        XCTAssertNotEqual(value, 10)
     }
 }
 
