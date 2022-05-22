@@ -37,6 +37,7 @@
 		FA918A1A283AEE3A00BEDF56 /* MockDatabaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA918A19283AEE3A00BEDF56 /* MockDatabaseClient.swift */; };
 		FA918A1E283AFDB100BEDF56 /* MockCurrencyUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA918A1D283AFDB100BEDF56 /* MockCurrencyUsecase.swift */; };
 		FA918A20283AFE4F00BEDF56 /* CurrencyUsecaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA918A1F283AFE4F00BEDF56 /* CurrencyUsecaseTests.swift */; };
+		FA918A24283B01C600BEDF56 /* CurrencyViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA918A23283B01C600BEDF56 /* CurrencyViewModelTests.swift */; };
 		FA9CC8C9282E3CAA00E4B791 /* AbstractionRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9CC8C8282E3CAA00E4B791 /* AbstractionRemoteDataSource.swift */; };
 		FA9CC8CB282E3D9D00E4B791 /* AbstractLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9CC8CA282E3D9D00E4B791 /* AbstractLocalDataSource.swift */; };
 		FA9CC8CD282E4A7000E4B791 /* AbstractCurrencyLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9CC8CC282E4A7000E4B791 /* AbstractCurrencyLocalDataSource.swift */; };
@@ -213,6 +214,7 @@
 		FA918A19283AEE3A00BEDF56 /* MockDatabaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDatabaseClient.swift; sourceTree = "<group>"; };
 		FA918A1D283AFDB100BEDF56 /* MockCurrencyUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCurrencyUsecase.swift; sourceTree = "<group>"; };
 		FA918A1F283AFE4F00BEDF56 /* CurrencyUsecaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyUsecaseTests.swift; sourceTree = "<group>"; };
+		FA918A23283B01C600BEDF56 /* CurrencyViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyViewModelTests.swift; sourceTree = "<group>"; };
 		FA9CC8C8282E3CAA00E4B791 /* AbstractionRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractionRemoteDataSource.swift; sourceTree = "<group>"; };
 		FA9CC8CA282E3D9D00E4B791 /* AbstractLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractLocalDataSource.swift; sourceTree = "<group>"; };
 		FA9CC8CC282E4A7000E4B791 /* AbstractCurrencyLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractCurrencyLocalDataSource.swift; sourceTree = "<group>"; };
@@ -586,6 +588,30 @@
 			path = Currency;
 			sourceTree = "<group>";
 		};
+		FA918A21283B019500BEDF56 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				FA918A22283B019E00BEDF56 /* ViewModel */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		FA918A22283B019E00BEDF56 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				FA918A25283B01CC00BEDF56 /* Mocking */,
+				FA918A23283B01C600BEDF56 /* CurrencyViewModelTests.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		FA918A25283B01CC00BEDF56 /* Mocking */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Mocking;
+			sourceTree = "<group>";
+		};
 		FA9CC8C6282E3C4100E4B791 /* DataSource */ = {
 			isa = PBXGroup;
 			children = (
@@ -689,6 +715,7 @@
 			children = (
 				FAF98FC62839A2B7005FB093 /* Client */,
 				FA918A04283ADC2000BEDF56 /* Data */,
+				FA918A21283B019500BEDF56 /* Presentation */,
 				FAB726C92820F85F0061A22E /* currency_converterTests.swift */,
 			);
 			path = "currency-converterTests";
@@ -1709,6 +1736,7 @@
 				FAF98FCD2839A3B2005FB093 /* StubbedResponse.swift in Sources */,
 				FA918A17283AED8A00BEDF56 /* CurrencyRemoteDataSourceTests.swift in Sources */,
 				FA9189FF283AB8B200BEDF56 /* UserSessionDataClientTests.swift in Sources */,
+				FA918A24283B01C600BEDF56 /* CurrencyViewModelTests.swift in Sources */,
 				FAB726CA2820F85F0061A22E /* currency_converterTests.swift in Sources */,
 				FAF98FD52839B393005FB093 /* ApiClientTests.swift in Sources */,
 				FA918A1E283AFDB100BEDF56 /* MockCurrencyUsecase.swift in Sources */,
