@@ -26,7 +26,7 @@ class MockAPIClient: AbstractApiClient{
     let queueManager: QueueManager
 
     
-    public init(session: AbstractURLSession = MockURLSessionSucess(config: URLSessionConfigHolder.config), withQueueManager queueManager: QueueManager = QueueManager()) {
+    public init(session: AbstractURLSession = MockURLSessionSucess(configuration: URLSessionConfigHolder.config), withQueueManager queueManager: QueueManager = QueueManager()) {
         self.session = session
         self.queueManager = queueManager
     }

@@ -10,7 +10,7 @@ import Foundation
 
 
 class MockLocalStorageInteractor: AbstractLocalStorageIntereactor {
-    static let shared: AbstractLocalKVStorageInteractor = MockLocalStorageInteractor()
+    static let shared: AbstractLocalStorageIntereactor = MockLocalStorageInteractor()
     
     var data = [String: Data]()
     

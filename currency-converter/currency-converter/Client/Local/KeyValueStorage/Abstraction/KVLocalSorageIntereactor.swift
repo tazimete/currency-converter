@@ -10,11 +10,6 @@ import Foundation
 
 // MARK: KV Interactor 
 extension UserDefaults: AbstractLocalKVStorageInteractor {
-    
-    static var shared: AbstractLocalKVStorageInteractor {
-        return standard
-    }
-    
     func setData(keyValuePair: KeyValuePair) {
         self.set(keyValuePair.value, forKey: keyValuePair.key)
     }
@@ -27,7 +22,11 @@ extension UserDefaults: AbstractLocalKVStorageInteractor {
 
 // MARK: LOCAL DB Interactor
 extension UserDefaults: AbstractLocalDBStorageInteractor {
-
+    
+    static var shared: AbstractLocalStorageIntereactor {
+        return standard
+    }
+    
     func create<T>(type: T.Type, item: T) -> Bool {
         fatalError("Not Implemented Yet")
     }

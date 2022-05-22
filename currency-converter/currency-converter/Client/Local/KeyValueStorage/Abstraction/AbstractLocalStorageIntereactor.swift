@@ -11,8 +11,6 @@ import Foundation
  This protocol will used as interactor to key value storage
  **/
 protocol AbstractLocalKVStorageInteractor {
-    static var shared: AbstractLocalKVStorageInteractor {get}
-    
     func setData(keyValuePair: KeyValuePair)
     func getData(key: String) -> KeyValuePair
 }
@@ -21,7 +19,7 @@ protocol AbstractLocalKVStorageInteractor {
  This protocol will used as interactor to local database 
  **/
 protocol AbstractLocalDBStorageInteractor {
-//    static var shared: AbstractLocalDBSorageInteractor {get}
+    static var shared: AbstractLocalStorageIntereactor {get}
     
     func create<T>(type: T.Type, item: T) -> Bool
     func createOrUpdate<T>(type: T.Type, item: T) -> Bool
