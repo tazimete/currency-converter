@@ -8,6 +8,15 @@
 import Foundation
 @testable import currency_converter
 
+protocol MockLocalStorageInteractorChangable {
+    func changeInteractor(interactor: AbstractLocalStorageIntereactor)
+}
+
+extension UserSessionDataClient: MockInteractorChangable {
+    func changeIntegractor(interactor: AbstractLocalStorageIntereactor) {
+        self.kvContainer = interactor
+    }
+}
 
 class MockLocalStorageInteractor: AbstractLocalStorageIntereactor {
     static let shared: AbstractLocalStorageIntereactor = MockLocalStorageInteractor()

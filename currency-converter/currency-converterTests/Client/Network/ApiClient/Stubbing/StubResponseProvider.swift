@@ -48,6 +48,11 @@ public class StubResponseProvider{
             result = NetworkError.serverError(code: 404, message: currencyExchangeFailedResponse["error_description"].unwrappedValue) as! T
         }
         
+        // model type is ValidationError
+        if T.self is ValidationError.Type {
+            result = ValidationError.notEnoughBalance(code: 101, message: currencyExchangeValidationFailedResponse["error_description"].unwrappedValue) as! T
+        }
+        
         return result
     }
     

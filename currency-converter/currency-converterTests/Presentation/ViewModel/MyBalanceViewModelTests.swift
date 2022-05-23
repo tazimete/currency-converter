@@ -14,6 +14,7 @@ class MyBalanceViewModelTests: XCTestCase {
     private var disposeBag: DisposeBag!
 
     override func setUp() {
+        (UserSessionDataClient.shared as! UserSessionDataClient).changeIntegractor(interactor: MockLocalStorageInteractor())
         let dbClient = DatabaseClient.shared
         dbClient.changeIntegractor(interactor: MockLocalStorageInteractor.shared)
         let apiClient = MockAPIClient.shared
@@ -29,6 +30,7 @@ class MyBalanceViewModelTests: XCTestCase {
     }
     
     override func tearDown() {
+        (UserSessionDataClient.shared as! UserSessionDataClient).changeIntegractor(interactor: UserDefaults.shared)
         myBalanceViewModel = nil
         disposeBag = nil
     }
@@ -61,8 +63,8 @@ class MyBalanceViewModelTests: XCTestCase {
         // observe balance exchange response
         output.balance
             .asDriver()
-            .drive(onNext: { [weak self] response in
-                guard let weakSelf = self, let balance = response else {
+            .drive(onNext: { response in
+                guard let balance = response else {
                     return
                 }
                 
@@ -83,6 +85,41 @@ class MyBalanceViewModelTests: XCTestCase {
         XCTAssertTrue((result.amount.unwrappedValue == stubbedResposne.amount.unwrappedValue))
         XCTAssertTrue((result.currency?.elementsEqual(stubbedResposne.currency.unwrappedValue)).unwrappedValue)
         XCTAssertEqual(try XCTUnwrap(result.currency, "Empty currency"), try XCTUnwrap(stubbedResposne.currency, "Empty currency"))
+    }
+    
+    func testBalanceExchangeWithValidationErrorResponse() {
+        let expectation = self.expectation(description: "Wait for my balance viewmodel to load.")
+        let fromAmount = "122200"
+        let fromCurrency = "USD"
+        let toCurrency = "EUR"
+        var validationError: ValidationError?
+        
+        let input = MyBalanceViewModel.MyBalanceInput(currencyConverterTrigger: Observable.just(MyBalanceViewModel.CurrencyConverterInput(fromAmount: fromAmount, fromCurrency: fromCurrency , toCurrency: toCurrency)), addCurrencyTrigger: Observable.just(Balance(amount: 0.0, currency: "SGD")))
+        let output = myBalanceViewModel.getMyBalanceOutput(input: input)
+        
+        // detect validation error
+        output.validationError
+            .asDriver()
+            .drive(onNext: { error in
+                guard let error = error else {
+                    return
+                }
+            
+                validationError = error
+                expectation.fulfill()
+            }).disposed(by: disposeBag)
+        
+        
+        wait(for: [expectation], timeout: 5)
+        
+        //stubbed response to check data which are received through non-mock components
+        let stubbedResposne = StubResponseProvider.getErrorResponse(type: ValidationError.self)
+        
+        //assertions
+        XCTAssertNotNil(validationError)
+        XCTAssertEqual((validationError?.errorCode).unwrappedValue, stubbedResposne.errorCode)
+        XCTAssertEqual(validationError?.errorMessage, stubbedResposne.errorMessage)
+        XCTAssertEqual((validationError?.errorMessage).unwrappedValue, stubbedResposne.errorMessage)
     }
 }
 
