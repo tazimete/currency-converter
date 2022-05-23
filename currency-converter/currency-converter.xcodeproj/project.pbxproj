@@ -107,49 +107,6 @@
 		FAE7E7E0282181B80019BCC2 /* ConfigComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E753282181B70019BCC2 /* ConfigComponents.swift */; };
 		FAE7E7E1282181B80019BCC2 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E754282181B70019BCC2 /* AppConfig.swift */; };
 		FAE7E7E3282182F30019BCC2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAE7E7E2282182F30019BCC2 /* Assets.xcassets */; };
-		FAE7E87C282187900019BCC2 /* SkeletonGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E846282187900019BCC2 /* SkeletonGradient.swift */; };
-		FAE7E87D282187900019BCC2 /* SkeletonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E847282187900019BCC2 /* SkeletonView.swift */; };
-		FAE7E87E282187900019BCC2 /* SkeletonMultilineLayerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E849282187900019BCC2 /* SkeletonMultilineLayerBuilder.swift */; };
-		FAE7E87F282187900019BCC2 /* SkeletonLayerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E84A282187900019BCC2 /* SkeletonLayerBuilder.swift */; };
-		FAE7E880282187900019BCC2 /* SkeletonFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E84B282187900019BCC2 /* SkeletonFlow.swift */; };
-		FAE7E881282187900019BCC2 /* SkeletonAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E84D282187900019BCC2 /* SkeletonAppearance.swift */; };
-		FAE7E882282187900019BCC2 /* SubviewsSkeletonables.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E84E282187900019BCC2 /* SubviewsSkeletonables.swift */; };
-		FAE7E883282187900019BCC2 /* SkeletonConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E84F282187900019BCC2 /* SkeletonConfig.swift */; };
-		FAE7E884282187900019BCC2 /* Recoverable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E851282187900019BCC2 /* Recoverable.swift */; };
-		FAE7E885282187900019BCC2 /* RecoverableViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E852282187900019BCC2 /* RecoverableViewState.swift */; };
-		FAE7E886282187900019BCC2 /* Int+Whitespaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E854282187900019BCC2 /* Int+Whitespaces.swift */; };
-		FAE7E887282187900019BCC2 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E855282187900019BCC2 /* UIView+Extension.swift */; };
-		FAE7E888282187900019BCC2 /* UIView+Autolayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E856282187900019BCC2 /* UIView+Autolayout.swift */; };
-		FAE7E889282187900019BCC2 /* ProcessInfo+XCTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E857282187900019BCC2 /* ProcessInfo+XCTest.swift */; };
-		FAE7E88A282187900019BCC2 /* UIView+Frame.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E858282187900019BCC2 /* UIView+Frame.swift */; };
-		FAE7E88B282187900019BCC2 /* UIColor+Skeleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E859282187900019BCC2 /* UIColor+Skeleton.swift */; };
-		FAE7E88C282187900019BCC2 /* UIView+UIApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E85A282187900019BCC2 /* UIView+UIApplicationDelegate.swift */; };
-		FAE7E88D282187900019BCC2 /* CALayer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E85B282187900019BCC2 /* CALayer+Extensions.swift */; };
-		FAE7E88E282187900019BCC2 /* UITableView+VisibleSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E85C282187900019BCC2 /* UITableView+VisibleSections.swift */; };
-		FAE7E88F282187900019BCC2 /* UIView+IBInspectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E85D282187900019BCC2 /* UIView+IBInspectable.swift */; };
-		FAE7E890282187900019BCC2 /* UILabel+Multiline.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E85F282187900019BCC2 /* UILabel+Multiline.swift */; };
-		FAE7E891282187900019BCC2 /* ContainsMultilineText.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E860282187900019BCC2 /* ContainsMultilineText.swift */; };
-		FAE7E892282187900019BCC2 /* UITextView+Multiline.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E861282187900019BCC2 /* UITextView+Multiline.swift */; };
-		FAE7E893282187900019BCC2 /* SkeletonAnimationBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E862282187900019BCC2 /* SkeletonAnimationBuilder.swift */; };
-		FAE7E894282187900019BCC2 /* SkeletonTransitionStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E864282187900019BCC2 /* SkeletonTransitionStyle.swift */; };
-		FAE7E895282187900019BCC2 /* UIView+Transitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E865282187900019BCC2 /* UIView+Transitions.swift */; };
-		FAE7E896282187900019BCC2 /* SkeletonReusableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E868282187900019BCC2 /* SkeletonReusableCell.swift */; };
-		FAE7E897282187900019BCC2 /* GenericCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E869282187900019BCC2 /* GenericCollectionView.swift */; };
-		FAE7E898282187900019BCC2 /* SkeletonCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E86A282187900019BCC2 /* SkeletonCollectionDataSource.swift */; };
-		FAE7E899282187900019BCC2 /* CollectionSkeletonProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E86B282187900019BCC2 /* CollectionSkeletonProtocol.swift */; };
-		FAE7E89A282187900019BCC2 /* SkeletonCollectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E86C282187900019BCC2 /* SkeletonCollectionDelegate.swift */; };
-		FAE7E89B282187900019BCC2 /* UITableView+CollectionSkeleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E86E282187900019BCC2 /* UITableView+CollectionSkeleton.swift */; };
-		FAE7E89C282187900019BCC2 /* SkeletonTableViewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E86F282187900019BCC2 /* SkeletonTableViewProtocols.swift */; };
-		FAE7E89D282187900019BCC2 /* UIView+CollectionSkeleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E870282187900019BCC2 /* UIView+CollectionSkeleton.swift */; };
-		FAE7E89E282187900019BCC2 /* UICollectionView+CollectionSkeleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E872282187900019BCC2 /* UICollectionView+CollectionSkeleton.swift */; };
-		FAE7E89F282187900019BCC2 /* SkeletonCollectionViewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E873282187900019BCC2 /* SkeletonCollectionViewProtocols.swift */; };
-		FAE7E8A0282187900019BCC2 /* SkeletonLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E874282187900019BCC2 /* SkeletonLayer.swift */; };
-		FAE7E8A1282187900019BCC2 /* Swizzling.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E876282187900019BCC2 /* Swizzling.swift */; };
-		FAE7E8A2282187900019BCC2 /* AssociationPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E877282187900019BCC2 /* AssociationPolicy.swift */; };
-		FAE7E8A3282187900019BCC2 /* PrepareForSkeletonProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E878282187900019BCC2 /* PrepareForSkeletonProtocol.swift */; };
-		FAE7E8A4282187900019BCC2 /* RecursiveProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E879282187900019BCC2 /* RecursiveProtocol.swift */; };
-		FAE7E8A5282187900019BCC2 /* SkeletonDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E87B282187900019BCC2 /* SkeletonDebug.swift */; };
-		FAE7E8A7282187DA0019BCC2 /* ShimmerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E8A6282187DA0019BCC2 /* ShimmerHelper.swift */; };
 		FAE7E8AB28219E120019BCC2 /* AbstractCurrencyUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E8AA28219E120019BCC2 /* AbstractCurrencyUsecase.swift */; };
 		FAE7E8AD2821C4CE0019BCC2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAE7E8AC2821C4CE0019BCC2 /* Main.storyboard */; };
 		FAF98FC128390F5C005FB093 /* BalanceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF98FC028390F5C005FB093 /* BalanceFactory.swift */; };
@@ -289,49 +246,6 @@
 		FAE7E753282181B70019BCC2 /* ConfigComponents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigComponents.swift; sourceTree = "<group>"; };
 		FAE7E754282181B70019BCC2 /* AppConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		FAE7E7E2282182F30019BCC2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		FAE7E846282187900019BCC2 /* SkeletonGradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkeletonGradient.swift; sourceTree = "<group>"; };
-		FAE7E847282187900019BCC2 /* SkeletonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkeletonView.swift; sourceTree = "<group>"; };
-		FAE7E849282187900019BCC2 /* SkeletonMultilineLayerBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkeletonMultilineLayerBuilder.swift; sourceTree = "<group>"; };
-		FAE7E84A282187900019BCC2 /* SkeletonLayerBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkeletonLayerBuilder.swift; sourceTree = "<group>"; };
-		FAE7E84B282187900019BCC2 /* SkeletonFlow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkeletonFlow.swift; sourceTree = "<group>"; };
-		FAE7E84D282187900019BCC2 /* SkeletonAppearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkeletonAppearance.swift; sourceTree = "<group>"; };
-		FAE7E84E282187900019BCC2 /* SubviewsSkeletonables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubviewsSkeletonables.swift; sourceTree = "<group>"; };
-		FAE7E84F282187900019BCC2 /* SkeletonConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkeletonConfig.swift; sourceTree = "<group>"; };
-		FAE7E851282187900019BCC2 /* Recoverable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recoverable.swift; sourceTree = "<group>"; };
-		FAE7E852282187900019BCC2 /* RecoverableViewState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecoverableViewState.swift; sourceTree = "<group>"; };
-		FAE7E854282187900019BCC2 /* Int+Whitespaces.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Whitespaces.swift"; sourceTree = "<group>"; };
-		FAE7E855282187900019BCC2 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
-		FAE7E856282187900019BCC2 /* UIView+Autolayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Autolayout.swift"; sourceTree = "<group>"; };
-		FAE7E857282187900019BCC2 /* ProcessInfo+XCTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ProcessInfo+XCTest.swift"; sourceTree = "<group>"; };
-		FAE7E858282187900019BCC2 /* UIView+Frame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Frame.swift"; sourceTree = "<group>"; };
-		FAE7E859282187900019BCC2 /* UIColor+Skeleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Skeleton.swift"; sourceTree = "<group>"; };
-		FAE7E85A282187900019BCC2 /* UIView+UIApplicationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+UIApplicationDelegate.swift"; sourceTree = "<group>"; };
-		FAE7E85B282187900019BCC2 /* CALayer+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CALayer+Extensions.swift"; sourceTree = "<group>"; };
-		FAE7E85C282187900019BCC2 /* UITableView+VisibleSections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+VisibleSections.swift"; sourceTree = "<group>"; };
-		FAE7E85D282187900019BCC2 /* UIView+IBInspectable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+IBInspectable.swift"; sourceTree = "<group>"; };
-		FAE7E85F282187900019BCC2 /* UILabel+Multiline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Multiline.swift"; sourceTree = "<group>"; };
-		FAE7E860282187900019BCC2 /* ContainsMultilineText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainsMultilineText.swift; sourceTree = "<group>"; };
-		FAE7E861282187900019BCC2 /* UITextView+Multiline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView+Multiline.swift"; sourceTree = "<group>"; };
-		FAE7E862282187900019BCC2 /* SkeletonAnimationBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkeletonAnimationBuilder.swift; sourceTree = "<group>"; };
-		FAE7E864282187900019BCC2 /* SkeletonTransitionStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkeletonTransitionStyle.swift; sourceTree = "<group>"; };
-		FAE7E865282187900019BCC2 /* UIView+Transitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Transitions.swift"; sourceTree = "<group>"; };
-		FAE7E868282187900019BCC2 /* SkeletonReusableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkeletonReusableCell.swift; sourceTree = "<group>"; };
-		FAE7E869282187900019BCC2 /* GenericCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericCollectionView.swift; sourceTree = "<group>"; };
-		FAE7E86A282187900019BCC2 /* SkeletonCollectionDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkeletonCollectionDataSource.swift; sourceTree = "<group>"; };
-		FAE7E86B282187900019BCC2 /* CollectionSkeletonProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionSkeletonProtocol.swift; sourceTree = "<group>"; };
-		FAE7E86C282187900019BCC2 /* SkeletonCollectionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkeletonCollectionDelegate.swift; sourceTree = "<group>"; };
-		FAE7E86E282187900019BCC2 /* UITableView+CollectionSkeleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+CollectionSkeleton.swift"; sourceTree = "<group>"; };
-		FAE7E86F282187900019BCC2 /* SkeletonTableViewProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkeletonTableViewProtocols.swift; sourceTree = "<group>"; };
-		FAE7E870282187900019BCC2 /* UIView+CollectionSkeleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+CollectionSkeleton.swift"; sourceTree = "<group>"; };
-		FAE7E872282187900019BCC2 /* UICollectionView+CollectionSkeleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+CollectionSkeleton.swift"; sourceTree = "<group>"; };
-		FAE7E873282187900019BCC2 /* SkeletonCollectionViewProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkeletonCollectionViewProtocols.swift; sourceTree = "<group>"; };
-		FAE7E874282187900019BCC2 /* SkeletonLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkeletonLayer.swift; sourceTree = "<group>"; };
-		FAE7E876282187900019BCC2 /* Swizzling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Swizzling.swift; sourceTree = "<group>"; };
-		FAE7E877282187900019BCC2 /* AssociationPolicy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssociationPolicy.swift; sourceTree = "<group>"; };
-		FAE7E878282187900019BCC2 /* PrepareForSkeletonProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareForSkeletonProtocol.swift; sourceTree = "<group>"; };
-		FAE7E879282187900019BCC2 /* RecursiveProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecursiveProtocol.swift; sourceTree = "<group>"; };
-		FAE7E87B282187900019BCC2 /* SkeletonDebug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkeletonDebug.swift; sourceTree = "<group>"; };
-		FAE7E8A6282187DA0019BCC2 /* ShimmerHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShimmerHelper.swift; sourceTree = "<group>"; };
 		FAE7E8AA28219E120019BCC2 /* AbstractCurrencyUsecase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractCurrencyUsecase.swift; sourceTree = "<group>"; };
 		FAE7E8AC2821C4CE0019BCC2 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		FAF98FC028390F5C005FB093 /* BalanceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceFactory.swift; sourceTree = "<group>"; };
@@ -736,7 +650,6 @@
 			isa = PBXGroup;
 			children = (
 				FA75805C2831A7C100A94028 /* CurrencyExchangeView */,
-				FAE7E845282187900019BCC2 /* Skeleton */,
 				FAE7E67E282181B30019BCC2 /* Logger */,
 				FAE7E6BD282181B30019BCC2 /* GenericCell */,
 				FAE7E6C0282181B30019BCC2 /* AdaptiveLayout */,
@@ -1134,7 +1047,6 @@
 		FAE7E74E282181B60019BCC2 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				FAE7E8A6282187DA0019BCC2 /* ShimmerHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -1148,151 +1060,6 @@
 				FAE7E754282181B70019BCC2 /* AppConfig.swift */,
 			);
 			path = AppConfig;
-			sourceTree = "<group>";
-		};
-		FAE7E845282187900019BCC2 /* Skeleton */ = {
-			isa = PBXGroup;
-			children = (
-				FAE7E846282187900019BCC2 /* SkeletonGradient.swift */,
-				FAE7E847282187900019BCC2 /* SkeletonView.swift */,
-				FAE7E848282187900019BCC2 /* Builders */,
-				FAE7E84B282187900019BCC2 /* SkeletonFlow.swift */,
-				FAE7E84C282187900019BCC2 /* Appearance */,
-				FAE7E84E282187900019BCC2 /* SubviewsSkeletonables.swift */,
-				FAE7E84F282187900019BCC2 /* SkeletonConfig.swift */,
-				FAE7E850282187900019BCC2 /* Recoverable */,
-				FAE7E853282187900019BCC2 /* Extensions */,
-				FAE7E85E282187900019BCC2 /* Multilines */,
-				FAE7E862282187900019BCC2 /* SkeletonAnimationBuilder.swift */,
-				FAE7E863282187900019BCC2 /* Transitions */,
-				FAE7E866282187900019BCC2 /* Collections */,
-				FAE7E874282187900019BCC2 /* SkeletonLayer.swift */,
-				FAE7E875282187900019BCC2 /* Helpers */,
-				FAE7E87A282187900019BCC2 /* Debug */,
-			);
-			path = Skeleton;
-			sourceTree = "<group>";
-		};
-		FAE7E848282187900019BCC2 /* Builders */ = {
-			isa = PBXGroup;
-			children = (
-				FAE7E849282187900019BCC2 /* SkeletonMultilineLayerBuilder.swift */,
-				FAE7E84A282187900019BCC2 /* SkeletonLayerBuilder.swift */,
-			);
-			path = Builders;
-			sourceTree = "<group>";
-		};
-		FAE7E84C282187900019BCC2 /* Appearance */ = {
-			isa = PBXGroup;
-			children = (
-				FAE7E84D282187900019BCC2 /* SkeletonAppearance.swift */,
-			);
-			path = Appearance;
-			sourceTree = "<group>";
-		};
-		FAE7E850282187900019BCC2 /* Recoverable */ = {
-			isa = PBXGroup;
-			children = (
-				FAE7E851282187900019BCC2 /* Recoverable.swift */,
-				FAE7E852282187900019BCC2 /* RecoverableViewState.swift */,
-			);
-			path = Recoverable;
-			sourceTree = "<group>";
-		};
-		FAE7E853282187900019BCC2 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				FAE7E854282187900019BCC2 /* Int+Whitespaces.swift */,
-				FAE7E855282187900019BCC2 /* UIView+Extension.swift */,
-				FAE7E856282187900019BCC2 /* UIView+Autolayout.swift */,
-				FAE7E857282187900019BCC2 /* ProcessInfo+XCTest.swift */,
-				FAE7E858282187900019BCC2 /* UIView+Frame.swift */,
-				FAE7E859282187900019BCC2 /* UIColor+Skeleton.swift */,
-				FAE7E85A282187900019BCC2 /* UIView+UIApplicationDelegate.swift */,
-				FAE7E85B282187900019BCC2 /* CALayer+Extensions.swift */,
-				FAE7E85C282187900019BCC2 /* UITableView+VisibleSections.swift */,
-				FAE7E85D282187900019BCC2 /* UIView+IBInspectable.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		FAE7E85E282187900019BCC2 /* Multilines */ = {
-			isa = PBXGroup;
-			children = (
-				FAE7E85F282187900019BCC2 /* UILabel+Multiline.swift */,
-				FAE7E860282187900019BCC2 /* ContainsMultilineText.swift */,
-				FAE7E861282187900019BCC2 /* UITextView+Multiline.swift */,
-			);
-			path = Multilines;
-			sourceTree = "<group>";
-		};
-		FAE7E863282187900019BCC2 /* Transitions */ = {
-			isa = PBXGroup;
-			children = (
-				FAE7E864282187900019BCC2 /* SkeletonTransitionStyle.swift */,
-				FAE7E865282187900019BCC2 /* UIView+Transitions.swift */,
-			);
-			path = Transitions;
-			sourceTree = "<group>";
-		};
-		FAE7E866282187900019BCC2 /* Collections */ = {
-			isa = PBXGroup;
-			children = (
-				FAE7E867282187900019BCC2 /* Generics */,
-				FAE7E86A282187900019BCC2 /* SkeletonCollectionDataSource.swift */,
-				FAE7E86B282187900019BCC2 /* CollectionSkeletonProtocol.swift */,
-				FAE7E86C282187900019BCC2 /* SkeletonCollectionDelegate.swift */,
-				FAE7E86D282187900019BCC2 /* TableViews */,
-				FAE7E870282187900019BCC2 /* UIView+CollectionSkeleton.swift */,
-				FAE7E871282187900019BCC2 /* CollectionViews */,
-			);
-			path = Collections;
-			sourceTree = "<group>";
-		};
-		FAE7E867282187900019BCC2 /* Generics */ = {
-			isa = PBXGroup;
-			children = (
-				FAE7E868282187900019BCC2 /* SkeletonReusableCell.swift */,
-				FAE7E869282187900019BCC2 /* GenericCollectionView.swift */,
-			);
-			path = Generics;
-			sourceTree = "<group>";
-		};
-		FAE7E86D282187900019BCC2 /* TableViews */ = {
-			isa = PBXGroup;
-			children = (
-				FAE7E86E282187900019BCC2 /* UITableView+CollectionSkeleton.swift */,
-				FAE7E86F282187900019BCC2 /* SkeletonTableViewProtocols.swift */,
-			);
-			path = TableViews;
-			sourceTree = "<group>";
-		};
-		FAE7E871282187900019BCC2 /* CollectionViews */ = {
-			isa = PBXGroup;
-			children = (
-				FAE7E872282187900019BCC2 /* UICollectionView+CollectionSkeleton.swift */,
-				FAE7E873282187900019BCC2 /* SkeletonCollectionViewProtocols.swift */,
-			);
-			path = CollectionViews;
-			sourceTree = "<group>";
-		};
-		FAE7E875282187900019BCC2 /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				FAE7E876282187900019BCC2 /* Swizzling.swift */,
-				FAE7E877282187900019BCC2 /* AssociationPolicy.swift */,
-				FAE7E878282187900019BCC2 /* PrepareForSkeletonProtocol.swift */,
-				FAE7E879282187900019BCC2 /* RecursiveProtocol.swift */,
-			);
-			path = Helpers;
-			sourceTree = "<group>";
-		};
-		FAE7E87A282187900019BCC2 /* Debug */ = {
-			isa = PBXGroup;
-			children = (
-				FAE7E87B282187900019BCC2 /* SkeletonDebug.swift */,
-			);
-			path = Debug;
 			sourceTree = "<group>";
 		};
 		FAE7E8A8282188A80019BCC2 /* Assets */ = {
@@ -1600,27 +1367,19 @@
 				FAE7E7CD282181B80019BCC2 /* AbstractMyBalanceViewModel.swift in Sources */,
 				FAE7E7E0282181B80019BCC2 /* ConfigComponents.swift in Sources */,
 				FAE7E7DC282181B80019BCC2 /* SceneDelegate.swift in Sources */,
-				FAE7E889282187900019BCC2 /* ProcessInfo+XCTest.swift in Sources */,
 				FAE7E7A7282181B70019BCC2 /* ApiClient.swift in Sources */,
-				FAE7E87D282187900019BCC2 /* SkeletonView.swift in Sources */,
-				FAE7E893282187900019BCC2 /* SkeletonAnimationBuilder.swift in Sources */,
-				FAE7E8A3282187900019BCC2 /* PrepareForSkeletonProtocol.swift in Sources */,
 				FAB2A4A5282ABA3500F1F075 /* ComissionCalculator.swift in Sources */,
 				FAE7E7D4282181B80019BCC2 /* MyBalanceViewController.swift in Sources */,
 				FAE7E7CB282181B80019BCC2 /* Codable+Extension.swift in Sources */,
 				FA6C62CB282BD9E000D42413 /* AbstractUserSessionDataClient.swift in Sources */,
 				FAE7E78D282181B70019BCC2 /* AdaptiveLayoutConstraint.swift in Sources */,
-				FAE7E898282187900019BCC2 /* SkeletonCollectionDataSource.swift in Sources */,
-				FAE7E88F282187900019BCC2 /* UIView+IBInspectable.swift in Sources */,
 				FAE7D4802830673600F80C20 /* BalanceItemCell.swift in Sources */,
 				FAE7E7BE282181B70019BCC2 /* AbstractRepository.swift in Sources */,
 				FAE7E7BF282181B70019BCC2 /* AbstractCurrencyRepository.swift in Sources */,
 				FAE7E7C6282181B70019BCC2 /* UIColor+Extension.swift in Sources */,
-				FAE7E896282187900019BCC2 /* SkeletonReusableCell.swift in Sources */,
 				FAE7E7A9282181B70019BCC2 /* NetworkOperation.swift in Sources */,
 				FA9CC8CF282E4A7F00E4B791 /* AbstractCurrencyRemoteDataSource.swift in Sources */,
 				FA6C62C9282BCB4D00D42413 /* AbstractDatabaseClient.swift in Sources */,
-				FAE7E8A4282187900019BCC2 /* RecursiveProtocol.swift in Sources */,
 				FAF98FC128390F5C005FB093 /* BalanceFactory.swift in Sources */,
 				FAE7E7BA282181B70019BCC2 /* CurrencyConverterParams.swift in Sources */,
 				FAE7E78E282181B70019BCC2 /* CGFloat+Extension.swift in Sources */,
@@ -1635,20 +1394,13 @@
 				FA63E538283316A400470DCC /* UILabel+Extension.swift in Sources */,
 				FAE7E7AD282181B70019BCC2 /* ApiRequest.swift in Sources */,
 				FAE7E7E1282181B80019BCC2 /* AppConfig.swift in Sources */,
-				FAE7E895282187900019BCC2 /* UIView+Transitions.swift in Sources */,
-				FAE7E883282187900019BCC2 /* SkeletonConfig.swift in Sources */,
 				FAB2A4A3282A9BC100F1F075 /* UpToTwoHundredPolicy.swift in Sources */,
-				FAE7E89C282187900019BCC2 /* SkeletonTableViewProtocols.swift in Sources */,
 				FAB2A49C282A8D9600F1F075 /* ComissionDependency.swift in Sources */,
 				FA387B78282689DC00B83C23 /* UserSessionDataClient.swift in Sources */,
-				FAE7E888282187900019BCC2 /* UIView+Autolayout.swift in Sources */,
 				FAE7E78A282181B70019BCC2 /* GenericCellComponents.swift in Sources */,
 				FA75805E2831A8AD00A94028 /* CurrencyExcangeView.swift in Sources */,
 				FAE7E75A282181B70019BCC2 /* AppLogger.swift in Sources */,
-				FAE7E881282187900019BCC2 /* SkeletonAppearance.swift in Sources */,
 				FAE7E7DB282181B80019BCC2 /* AppDelegate.swift in Sources */,
-				FAE7E8A1282187900019BCC2 /* Swizzling.swift in Sources */,
-				FAE7E892282187900019BCC2 /* UITextView+Multiline.swift in Sources */,
 				FAE7E7C1282181B70019BCC2 /* Response.swift in Sources */,
 				FAE7E7C8282181B80019BCC2 /* UIImage+Extension.swift in Sources */,
 				FAE7E7CA282181B80019BCC2 /* UIViewController+Extension.swift in Sources */,
@@ -1658,69 +1410,41 @@
 				FAE7E7B3282181B70019BCC2 /* ImageDownloader.swift in Sources */,
 				FAE7E7BC282181B70019BCC2 /* CurrencyUsecase.swift in Sources */,
 				FAE7E78C282181B70019BCC2 /* AdaptiveLayoutExtension.swift in Sources */,
-				FAE7E894282187900019BCC2 /* SkeletonTransitionStyle.swift in Sources */,
 				FA55085328385E8B00E3AE4F /* BalanceReceiveOperation.swift in Sources */,
-				FAE7E88D282187900019BCC2 /* CALayer+Extensions.swift in Sources */,
 				FAE7E7C7282181B70019BCC2 /* UIView+Extensions.swift in Sources */,
 				FAB2A49A282A5D8E00F1F075 /* FirstFiveConversionComissionPolicy.swift in Sources */,
 				FAE7E7A6282181B70019BCC2 /* AbstractApiClient.swift in Sources */,
-				FAE7E886282187900019BCC2 /* Int+Whitespaces.swift in Sources */,
 				FAE7E7C9282181B80019BCC2 /* UINavigationController+Extension.swift in Sources */,
-				FAE7E882282187900019BCC2 /* SubviewsSkeletonables.swift in Sources */,
 				FA1187D0282C89810000870E /* DatabaseClient.swift in Sources */,
-				FAE7E8A7282187DA0019BCC2 /* ShimmerHelper.swift in Sources */,
-				FAE7E88C282187900019BCC2 /* UIView+UIApplicationDelegate.swift in Sources */,
-				FAE7E89F282187900019BCC2 /* SkeletonCollectionViewProtocols.swift in Sources */,
 				FAE7E7C0282181B70019BCC2 /* Balance.swift in Sources */,
-				FAE7E897282187900019BCC2 /* GenericCollectionView.swift in Sources */,
 				FAE7E7B6282181B70019BCC2 /* AbstractDataModel.swift in Sources */,
 				FAF98FC328394C48005FB093 /* Optional+Extensions.swift in Sources */,
 				FAE7E8AB28219E120019BCC2 /* AbstractCurrencyUsecase.swift in Sources */,
-				FAE7E8A2282187900019BCC2 /* AssociationPolicy.swift in Sources */,
-				FAE7E891282187900019BCC2 /* ContainsMultilineText.swift in Sources */,
-				FAE7E88A282187900019BCC2 /* UIView+Frame.swift in Sources */,
 				FAE7E7DF282181B80019BCC2 /* AppTheme.swift in Sources */,
-				FAE7E87E282187900019BCC2 /* SkeletonMultilineLayerBuilder.swift in Sources */,
-				FAE7E8A5282187900019BCC2 /* SkeletonDebug.swift in Sources */,
-				FAE7E890282187900019BCC2 /* UILabel+Multiline.swift in Sources */,
 				FAE7E7B2282181B70019BCC2 /* AbstractDownloaderClient.swift in Sources */,
 				FAE7E7B9282181B70019BCC2 /* CurrencyApiRequest.swift in Sources */,
 				FAB2A4A1282A9B9F00F1F075 /* EveryTenthComissionPolicy.swift in Sources */,
 				FAE7E7C4282181B70019BCC2 /* AbstractUsecase.swift in Sources */,
 				FAE7E7B0282181B70019BCC2 /* AbstractDownloader.swift in Sources */,
-				FAE7E89A282187900019BCC2 /* SkeletonCollectionDelegate.swift in Sources */,
 				FA9CC8CD282E4A7000E4B791 /* AbstractCurrencyLocalDataSource.swift in Sources */,
 				FAE7E7AF282181B70019BCC2 /* DownloadDataParser.swift in Sources */,
-				FAE7E88E282187900019BCC2 /* UITableView+VisibleSections.swift in Sources */,
 				FAE7E7AA282181B70019BCC2 /* QueueManager.swift in Sources */,
-				FAE7E89D282187900019BCC2 /* UIView+CollectionSkeleton.swift in Sources */,
-				FAE7E8A0282187900019BCC2 /* SkeletonLayer.swift in Sources */,
-				FAE7E87F282187900019BCC2 /* SkeletonLayerBuilder.swift in Sources */,
-				FAE7E88B282187900019BCC2 /* UIColor+Skeleton.swift in Sources */,
-				FAE7E89E282187900019BCC2 /* UICollectionView+CollectionSkeleton.swift in Sources */,
 				FA6E9BC72836EA240046B405 /* BalanceOperationExecutor.swift in Sources */,
 				FA9CC8D5282F092300E4B791 /* CurrencyRemoteDataSource.swift in Sources */,
 				FAE7E7A8282181B70019BCC2 /* Parameterizable.swift in Sources */,
-				FAE7E880282187900019BCC2 /* SkeletonFlow.swift in Sources */,
 				FA387B7628267CA800B83C23 /* KVLocalSorageIntereactor.swift in Sources */,
 				FAB2A49E282A9AC200F1F075 /* ComissionPolicy.swift in Sources */,
 				FAE7E7CE282181B80019BCC2 /* AbstractViewModel.swift in Sources */,
 				FAE7E7B1282181B70019BCC2 /* DownloaderClient.swift in Sources */,
 				FA9CC8CB282E3D9D00E4B791 /* AbstractLocalDataSource.swift in Sources */,
-				FAE7E89B282187900019BCC2 /* UITableView+CollectionSkeleton.swift in Sources */,
 				FAE7E7A1282181B70019BCC2 /* HomeCoordinator.swift in Sources */,
 				FAE7E7D3282181B80019BCC2 /* BaseViewController.swift in Sources */,
 				FA55085128385E7A00E3AE4F /* BalanceSellOperation.swift in Sources */,
-				FAE7E887282187900019BCC2 /* UIView+Extension.swift in Sources */,
-				FAE7E87C282187900019BCC2 /* SkeletonGradient.swift in Sources */,
 				FAE7E7D8282181B80019BCC2 /* SearchCellViewModel.swift in Sources */,
 				FAE7E7D0282181B80019BCC2 /* MyBalanceViewModel.swift in Sources */,
 				FAE7E7A5282181B70019BCC2 /* AbstractURLSession.swift in Sources */,
 				FA9CC8C9282E3CAA00E4B791 /* AbstractionRemoteDataSource.swift in Sources */,
-				FAE7E899282187900019BCC2 /* CollectionSkeletonProtocol.swift in Sources */,
 				FAE7E7AE282181B70019BCC2 /* Downloader.swift in Sources */,
-				FAE7E884282187900019BCC2 /* Recoverable.swift in Sources */,
-				FAE7E885282187900019BCC2 /* RecoverableViewState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
