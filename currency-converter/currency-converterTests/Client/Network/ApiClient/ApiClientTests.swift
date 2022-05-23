@@ -16,7 +16,7 @@ class ApiClientTest: XCTestCase {
 
     override func setUp() {
         apiClient = ApiClient.shared
-        apiClient.setMockSession(session: MockURLSessionSucess(configuration: URLSessionConfigHolder.config))
+        apiClient.changeMockSession(session: MockURLSessionSucess(configuration: URLSessionConfigHolder.config))
         disposeBag = DisposeBag()
     }
     
@@ -72,7 +72,7 @@ class ApiClientTest: XCTestCase {
         var result: CurrencyApiRequest.ItemType!
         var networkError: NetworkError?
         
-        apiClient.setMockSession(session: MockURLSessionFailed(configuration: URLSessionConfigHolder.config))
+        apiClient.changeMockSession(session: MockURLSessionFailed(configuration: URLSessionConfigHolder.config))
         
         apiClient.send(apiRequest: request, type: CurrencyApiRequest.ItemType.self)
             .observe(on: ConcurrentDispatchQueueScheduler(qos: .utility))

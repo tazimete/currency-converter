@@ -36,7 +36,7 @@ class CurrencyUsecaseTests: XCTestCase {
         XCTAssertNotNil(currencyUsecase.repository.remoteDataSource.apiClient.session)
     }
     
-    func testGet() {
+    func testConvertWithSuccessResponse() {
         let expectation = self.expectation(description: "Wait for currency repository to load.")
         let amount = "45875"
         let currency = "JPY"
@@ -70,6 +70,46 @@ class CurrencyUsecaseTests: XCTestCase {
         XCTAssertEqual(try XCTUnwrap(result.amount, "Empty amount"), try XCTUnwrap(stubbedResposne.amount, "Empty amount"))
         XCTAssertEqual(try XCTUnwrap(result.title, "Empty title"), try XCTUnwrap(stubbedResposne.title, "Empty title"))
         XCTAssertNil(networkError)
+    }
+    
+    func testConvertWithErrorResponse() {
+        let expectation = self.expectation(description: "Wait for currency remote data source to load for error response...")
+        let amount = "45875"
+        let currency = "JPY"
+        var result: CurrencyApiRequest.ItemType!
+        var networkError: NetworkError?
+        
+        let dbClient = DatabaseClient.shared
+        dbClient.changeIntegractor(interactor: MockLocalStorageInteractor.shared)
+        
+        let apiClient = MockAPIClient(session: MockURLSessionFailed(configuration: URLSessionConfigHolder.config))
+        
+        let repository = CurrencyRepository(localDataSource: MockLocalCurrencyDataSource(dbClient: dbClient), remoteDataSource: MockRemoteCurrencyDataSource(apiClient: apiClient))
+        
+        currencyUsecase = CurrencyUsecase(repository: repository)
+        
+        currencyUsecase.convert(fromAmount: amount, fromCurrency: currency, toCurrency: currency)
+            .observe(on: ConcurrentDispatchQueueScheduler(qos: .utility))
+            .subscribe(on: MainScheduler.instance)
+            .subscribe(onNext: { response in
+                result = response
+                expectation.fulfill()
+            }, onError: { error in
+                networkError = error as? NetworkError
+                expectation.fulfill()
+            }).disposed(by: disposeBag)
+        
+        wait(for: [expectation], timeout: 5)
+        
+        //stubbed response to check data which are received through non-mock components
+        let stubbedResposne = StubResponseProvider.getErrorResponse(type: NetworkError.self)
+        
+        //assertions
+        XCTAssertNil(result)
+        XCTAssertNotNil(networkError)
+        XCTAssertEqual((networkError?.errorCode).unwrappedValue, stubbedResposne.errorCode)
+        XCTAssertEqual(networkError?.errorMessage, stubbedResposne.errorMessage)
+        XCTAssertEqual((networkError?.errorMessage).unwrappedValue, stubbedResposne.errorMessage)
     }
 
 }
