@@ -186,12 +186,12 @@ class MyBalanceViewController: BaseViewController {
             .drive(onNext: { [weak self] response in
                 AppLogger.info("Response = \(response)")
                 
-                guard let weakSelf = self, let currencyRespone = response else {
+                guard let weakSelf = self, let balance = response else {
                     return
                 }
                 
                 weakSelf.setConversionCount()
-                weakSelf.setReceivedAmount(amount: currencyRespone.amount ?? 0.00)
+                weakSelf.setReceivedAmount(amount: balance.amount ?? 0.00)
                 
                 let sell = weakSelf.myBalanceViewModel.currencyExchange.sell.unwrappedValue
                 let receive = weakSelf.myBalanceViewModel.currencyExchange.receive.unwrappedValue

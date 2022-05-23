@@ -48,13 +48,12 @@ class MyBalanceViewModelTests: XCTestCase {
         XCTAssertNotNil(myBalanceViewModel.usecase.repository.remoteDataSource.apiClient.session)
     }
     
-    func testConvertWithSuccessResponse() {
-        let expectation = self.expectation(description: "Wait for currency repository to load.")
+    func testBalanceExchangeWithSuccessResponse() {
+        let expectation = self.expectation(description: "Wait for my balance viewmodel to load.")
         let fromAmount = "100"
         let fromCurrency = "USD"
         let toCurrency = "EUR"
         var result: Balance!
-        var networkError: NetworkError?
         
         let input = MyBalanceViewModel.MyBalanceInput(currencyConverterTrigger: Observable.just(MyBalanceViewModel.CurrencyConverterInput(fromAmount: fromAmount, fromCurrency: fromCurrency , toCurrency: toCurrency)), addCurrencyTrigger: Observable.just(Balance(amount: 0.0, currency: "SGD")))
         let output = myBalanceViewModel.getMyBalanceOutput(input: input)
@@ -63,7 +62,11 @@ class MyBalanceViewModelTests: XCTestCase {
         output.balance
             .asDriver()
             .drive(onNext: { [weak self] response in
-                result = response
+                guard let weakSelf = self, let balance = response else {
+                    return
+                }
+                
+                result = balance
                 expectation.fulfill()
             }).disposed(by: disposeBag)
         
@@ -80,7 +83,6 @@ class MyBalanceViewModelTests: XCTestCase {
         XCTAssertTrue((result.amount.unwrappedValue == stubbedResposne.amount.unwrappedValue))
         XCTAssertTrue((result.currency?.elementsEqual(stubbedResposne.currency.unwrappedValue)).unwrappedValue)
         XCTAssertEqual(try XCTUnwrap(result.currency, "Empty currency"), try XCTUnwrap(stubbedResposne.currency, "Empty currency"))
-        XCTAssertNil(networkError)
     }
 }
 
