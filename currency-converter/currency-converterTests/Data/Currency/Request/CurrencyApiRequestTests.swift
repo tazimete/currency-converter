@@ -20,6 +20,15 @@ class CurrencyApiRequestTests: XCTestCase {
         request = nil
     }
     
+    func testDependencies() {
+        XCTAssertNotNil(request)
+        XCTAssertNotNil(request.baseURL)
+        XCTAssertNotNil(request.baseURL.path)
+        XCTAssertNotNil(request.path)
+        XCTAssertNotNil(request.headers)
+        XCTAssertNotNil(request.parameters)
+    }
+    
     func testUrls() {
         XCTAssertEqual(request.baseURL.absoluteString, "\(AppConfig.shared.getServerConfig().getBaseUrl())")
         XCTAssertEqual(request.baseURL.path, "")
@@ -30,7 +39,8 @@ class CurrencyApiRequestTests: XCTestCase {
         XCTAssertEqual((request.parameters[CurrencyConverterParams.CodingKeys.fromAmount.rawValue] as? String).unwrappedValue, fromAmount)
         XCTAssertEqual((request.parameters[CurrencyConverterParams.CodingKeys.fromCurrency.rawValue] as? String).unwrappedValue, fromCurrency)
         XCTAssertEqual((request.parameters[CurrencyConverterParams.CodingKeys.toCurrency.rawValue] as? String).unwrappedValue, toCurrency)
-        XCTAssertEqual(request.headers, [String: String]())
+        XCTAssertEqual(request.headers.count, 0)
+        XCTAssertEqual(request.parameters.count, 3)
     }
     
     func testResponseType() {

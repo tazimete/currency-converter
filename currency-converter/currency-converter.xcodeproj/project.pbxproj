@@ -12,6 +12,7 @@
 		F722BF911E7F3A66EFC232A7 /* Pods_currency_converter_currency_converterUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 177CD4595E55F0E4C62A2A65 /* Pods_currency_converter_currency_converterUITests.framework */; };
 		FA1187D0282C89810000870E /* DatabaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1187CF282C89810000870E /* DatabaseClient.swift */; };
 		FA1FA2BA283B8B2900B2C865 /* CurrencyApiRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1FA2B9283B8B2900B2C865 /* CurrencyApiRequestTests.swift */; };
+		FA1FA2BC283BA70600B2C865 /* CurrencyConvertParametersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1FA2BB283BA70600B2C865 /* CurrencyConvertParametersTests.swift */; };
 		FA387B712826638800B83C23 /* KVLocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA387B702826638800B83C23 /* KVLocalStorage.swift */; };
 		FA387B732826792E00B83C23 /* AbstractLocalStorageIntereactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA387B722826792E00B83C23 /* AbstractLocalStorageIntereactor.swift */; };
 		FA387B7628267CA800B83C23 /* KVLocalSorageIntereactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA387B7528267CA800B83C23 /* KVLocalSorageIntereactor.swift */; };
@@ -148,6 +149,7 @@
 		F7B44F45BC65A91A9C0F84E7 /* Pods-currency-converter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-currency-converter.debug.xcconfig"; path = "Target Support Files/Pods-currency-converter/Pods-currency-converter.debug.xcconfig"; sourceTree = "<group>"; };
 		FA1187CF282C89810000870E /* DatabaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseClient.swift; sourceTree = "<group>"; };
 		FA1FA2B9283B8B2900B2C865 /* CurrencyApiRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyApiRequestTests.swift; sourceTree = "<group>"; };
+		FA1FA2BB283BA70600B2C865 /* CurrencyConvertParametersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConvertParametersTests.swift; sourceTree = "<group>"; };
 		FA387B702826638800B83C23 /* KVLocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KVLocalStorage.swift; sourceTree = "<group>"; };
 		FA387B722826792E00B83C23 /* AbstractLocalStorageIntereactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractLocalStorageIntereactor.swift; sourceTree = "<group>"; };
 		FA387B7528267CA800B83C23 /* KVLocalSorageIntereactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KVLocalSorageIntereactor.swift; sourceTree = "<group>"; };
@@ -458,6 +460,7 @@
 			isa = PBXGroup;
 			children = (
 				FA1FA2B9283B8B2900B2C865 /* CurrencyApiRequestTests.swift */,
+				FA1FA2BB283BA70600B2C865 /* CurrencyConvertParametersTests.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -1467,6 +1470,7 @@
 				FAF98FCD2839A3B2005FB093 /* StubbedResponse.swift in Sources */,
 				FA918A17283AED8A00BEDF56 /* CurrencyRemoteDataSourceTests.swift in Sources */,
 				FA9189FF283AB8B200BEDF56 /* UserSessionDataClientTests.swift in Sources */,
+				FA1FA2BC283BA70600B2C865 /* CurrencyConvertParametersTests.swift in Sources */,
 				FA918A27283B047A00BEDF56 /* MockSessionChangable.swift in Sources */,
 				FA918A24283B01C600BEDF56 /* CurrencyViewModelTests.swift in Sources */,
 				FAB726CA2820F85F0061A22E /* currency_converterTests.swift in Sources */,
