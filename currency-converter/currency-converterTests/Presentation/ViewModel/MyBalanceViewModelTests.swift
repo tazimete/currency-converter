@@ -31,6 +31,7 @@ class MyBalanceViewModelTests: XCTestCase {
     
     override func tearDown() {
         (UserSessionDataClient.shared as! UserSessionDataClient).changeIntegractor(interactor: UserDefaults.shared)
+        (myBalanceViewModel.usecase.repository.remoteDataSource.apiClient as! MockAPIClient).changeMockSession(session: MockURLSessionSucess())
         myBalanceViewModel = nil
         disposeBag = nil
     }
@@ -51,7 +52,7 @@ class MyBalanceViewModelTests: XCTestCase {
     }
     
     func testBalanceExchangeWithSuccessResponse() {
-        let expectation = self.expectation(description: "Wait for my balance viewmodel to load.")
+        let expectation = self.expectation(description: "Wait for my balance viewmodel -> testBalanceExchangeWithSuccessResponse() to load.")
         let fromAmount = "100"
         let fromCurrency = "USD"
         let toCurrency = "EUR"
@@ -87,8 +88,8 @@ class MyBalanceViewModelTests: XCTestCase {
         XCTAssertEqual(try XCTUnwrap(result.currency, "Empty currency"), try XCTUnwrap(stubbedResposne.currency, "Empty currency"))
     }
     
-    func testBalanceExchangeWithValidationErrorResponse() {
-        let expectation = self.expectation(description: "Wait for my balance viewmodel to load.")
+    func testBalanceExchangeWithValidationError() {
+        let expectation = self.expectation(description: "Wait for my balance viewmodel -> testBalanceExchangeWithValidationErrorResponse() to load.")
         let fromAmount = "122200"
         let fromCurrency = "USD"
         let toCurrency = "EUR"
@@ -123,6 +124,70 @@ class MyBalanceViewModelTests: XCTestCase {
         XCTAssertEqual((validationError?.errorCode).unwrappedValue, stubbedResposne.errorCode)
         XCTAssertEqual(validationError?.errorMessage, stubbedResposne.errorMessage)
         XCTAssertEqual((validationError?.errorMessage).unwrappedValue, stubbedResposne.errorMessage)
+    }
+    
+    func testBalanceExchangeWithErrorResponse() {
+        let expectation = self.expectation(description: "Wait for my balance viewmodel -> testBalanceExchangeWithServerErrorResponse() to load.")
+        let fromAmount = "100"
+        let fromCurrency = "USD"
+        let toCurrency = "EUR"
+        var networkError: NetworkError?
+        
+        myBalanceViewModel.currencyExchange.sell = Balance(amount: Double(fromAmount).unwrappedValue, currency: fromCurrency)
+        myBalanceViewModel.currencyExchange.receive = Balance(amount: nil, currency: toCurrency)
+        (myBalanceViewModel.usecase.repository.remoteDataSource.apiClient as! MockAPIClient).changeMockSession(session: MockURLSessionFailed())
+        
+        let input = MyBalanceViewModel.MyBalanceInput(currencyConverterTrigger: Observable.just(MyBalanceViewModel.CurrencyConverterInput(fromAmount: fromAmount, fromCurrency: fromCurrency , toCurrency: toCurrency)), addCurrencyTrigger: Observable.just(Balance(amount: 0.0, currency: "SGD")))
+        let output = myBalanceViewModel.getMyBalanceOutput(input: input)
+        
+        // detect validation error
+        output.errorResponse
+            .asDriver()
+            .drive(onNext: { error in
+                guard let error = error else {
+                    return
+                }
+            
+                networkError = error
+                expectation.fulfill()
+            }).disposed(by: disposeBag)
+        
+        wait(for: [expectation], timeout: 5)
+        
+        //stubbed response to check data which are received through non-mock components
+        let stubbedResposne = StubResponseProvider.getErrorResponse(type: NetworkError.self)
+        
+        //assertions
+        XCTAssertNotNil(networkError)
+        XCTAssertEqual((networkError?.errorCode).unwrappedValue, stubbedResposne.errorCode)
+        XCTAssertEqual(networkError?.errorMessage, stubbedResposne.errorMessage)
+        XCTAssertEqual((networkError?.errorMessage).unwrappedValue, stubbedResposne.errorMessage)
+    }
+    
+    func testBalanceList() {
+        let expectation = self.expectation(description: "Wait for my balance viewmodel -> testBalanceList() to load.")
+        var balanceList: [Balance]!
+        
+        // detect validation error
+        myBalanceViewModel.balanceListRelay
+            .asDriver()
+            .drive(onNext: { balances in
+                balanceList = balances
+                expectation.fulfill()
+            })
+            .disposed(by: disposeBag)
+        
+        wait(for: [expectation], timeout: 5)
+        
+        //stubbed response to check data which are received through non-mock components
+        let stubbedData: [Balance] = ModelFactory().createList(type: .balance) as! [Balance]
+        
+        //assertions
+        XCTAssertNotNil(balanceList)
+        XCTAssertEqual(balanceList.count, stubbedData.count)
+        XCTAssertEqual(balanceList.first?.currency, stubbedData.first?.currency)
+        XCTAssertEqual((balanceList.first?.currency).unwrappedValue, (stubbedData.first?.currency).unwrappedValue)
+        XCTAssertNotEqual((balanceList.first?.currency).unwrappedValue, (stubbedData.last?.currency).unwrappedValue)
     }
 }
 
