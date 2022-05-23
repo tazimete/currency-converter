@@ -94,6 +94,9 @@ class MyBalanceViewModelTests: XCTestCase {
         let toCurrency = "EUR"
         var validationError: ValidationError?
         
+        myBalanceViewModel.currencyExchange.sell = Balance(amount: Double(fromAmount).unwrappedValue, currency: fromCurrency)
+        myBalanceViewModel.currencyExchange.receive = Balance(amount: nil, currency: toCurrency)
+        
         let input = MyBalanceViewModel.MyBalanceInput(currencyConverterTrigger: Observable.just(MyBalanceViewModel.CurrencyConverterInput(fromAmount: fromAmount, fromCurrency: fromCurrency , toCurrency: toCurrency)), addCurrencyTrigger: Observable.just(Balance(amount: 0.0, currency: "SGD")))
         let output = myBalanceViewModel.getMyBalanceOutput(input: input)
         

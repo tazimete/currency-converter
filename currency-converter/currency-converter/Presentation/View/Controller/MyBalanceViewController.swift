@@ -144,22 +144,22 @@ class MyBalanceViewController: BaseViewController {
         // observe sell currency to exchange
         currencyExchangeSellView.selectionHandler
             .subscribe(onNext: { [weak self] currency in
-            guard let weakSelf = self, let currency =  currency else {
-                return
-            }
-            
-            AppLogger.info("Selected currency : \(currency)")
+                guard let weakSelf = self, let currency =  currency else {
+                    return
+                }
+                
+                AppLogger.info("Selected currency : \(currency)")
                 weakSelf.myBalanceViewModel.currencyExchange.sell = currency
             }).disposed(by: disposeBag)
         
         // observe receive currency to exchange
         currencyExchangeReceivedView.selectionHandler
             .subscribe(onNext: { [weak self] currency in
-            guard let weakSelf = self, let currency =  currency else {
-                return
-            }
-            
-            AppLogger.info("Selected currency : \(currency)")
+                guard let weakSelf = self, let currency =  currency else {
+                    return
+                }
+                
+                AppLogger.info("Selected currency : \(currency)")
                 weakSelf.myBalanceViewModel.currencyExchange.receive = currency
             }).disposed(by: disposeBag)
         
