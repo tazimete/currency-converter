@@ -6,27 +6,38 @@
 //
 
 import XCTest
+@testable import currency_converter
 
 class BalanceOperationExecutorTests: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    var operationExecutor: BalanceOperationExecutor!
+    var exchangeBalance = CurrencyExchange(sell: Balance(amount: 200, currency: "EUR"), receive: Balance(amount: 220, currency: "USD"))
+    var balances = EntityFactory().createList(type: .balance) as! [Balance]
+    var commissionCalculator = ComissionCalculator(commissionOptions: ComissionDependency.shared, policies: [FirstFiveConversionComissionPolicy(commissionOptions: ComissionDependency.shared), EveryTenthComissionPolicy(commissionOptions: ComissionDependency.shared), UpToTwoHundredPolicy(commissionOptions: ComissionDependency.shared)])
+    
+    override func setUp() {
+        operationExecutor = BalanceOperationExecutor(operation: BalanceCheckOperation())
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    
+    override func tearDown() {
+        operationExecutor = nil
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    
+    func testDependencies() {
+        XCTAssertNotNil(operationExecutor)
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    
+    func test_executeBalance_checkOperation_withTrue() {
+        let result = operationExecutor.executeCheck(exchangeBalance: exchangeBalance, balances: balances, commission: commissionCalculator.calculateCommissionAmount(conversionSerial: 15, conversionAmount: (exchangeBalance.sell?.amount).unwrappedValue))
+                                     
+        XCTAssertNotNil(result)
+        XCTAssertEqual(result, true)
     }
-
+    
+    func test_executeBalance_checkOperation_withFalse() {
+        exchangeBalance.sell = Balance(amount: 12000, currency: "EUR")
+        let result = operationExecutor.executeCheck(exchangeBalance: exchangeBalance, balances: balances, commission: commissionCalculator.calculateCommissionAmount(conversionSerial: 15, conversionAmount: (exchangeBalance.sell?.amount).unwrappedValue))
+                                     
+        XCTAssertNotNil(result)
+        XCTAssertEqual(result, false)
+    }
 }
