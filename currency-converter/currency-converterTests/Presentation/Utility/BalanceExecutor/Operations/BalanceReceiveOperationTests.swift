@@ -29,24 +29,28 @@ class BalanceReceiveOperationTests: XCTestCase {
     func testBalanceReceiveWithSucess() {
         let result = operation.execute(exchangeBalance: exchangeBalance, balances: balances, commission: commissionCalculator.calculateCommissionAmount(conversionSerial: 15, conversionAmount: (exchangeBalance.sell?.amount).unwrappedValue))
                             
-        let previousToBalance = (balances.first(where: {$0.currency.unwrappedValue.elementsEqual((exchangeBalance.receive?.currency).unwrappedValue)})).unwrappedValue
-        let finalToBalance = (result.first(where: {$0.currency.unwrappedValue.elementsEqual((exchangeBalance.receive?.currency).unwrappedValue)})).unwrappedValue
+        let receiveBalance = exchangeBalance.receive ?? Balance()
+        
+        let previousToBalance = (balances.first(where: {$0.currency.unwrappedValue.elementsEqual(receiveBalance.currency.unwrappedValue)})).unwrappedValue
+        let finalToBalance = (result.first(where: {$0.currency.unwrappedValue.elementsEqual(receiveBalance.currency.unwrappedValue)})).unwrappedValue
         
         XCTAssertNotNil(result)
         XCTAssertEqual(result.count, balances.count)
         XCTAssertNotEqual(finalToBalance.amount.unwrappedValue, previousToBalance.amount.unwrappedValue)
-        XCTAssertEqual(finalToBalance.amount.unwrappedValue, previousToBalance.amount.unwrappedValue + (exchangeBalance.receive?.amount).unwrappedValue)
+        XCTAssertEqual(finalToBalance.amount.unwrappedValue, previousToBalance.amount.unwrappedValue + receiveBalance.amount.unwrappedValue)
     }
     
     func testBalanceReceiveWithFailed() {
         let result = operation.execute(exchangeBalance: exchangeBalance, balances: balances, commission: commissionCalculator.calculateCommissionAmount(conversionSerial: 15, conversionAmount: (exchangeBalance.sell?.amount).unwrappedValue))
-                            
-        let previousToBalance = (balances.first(where: {$0.currency.unwrappedValue.elementsEqual((exchangeBalance.receive?.currency).unwrappedValue)})).unwrappedValue
-        let finalToBalance = (result.first(where: {$0.currency.unwrappedValue.elementsEqual((exchangeBalance.receive?.currency).unwrappedValue)})).unwrappedValue
+                        
+        let receiveBalance = exchangeBalance.receive ?? Balance()
+        
+        let previousToBalance = (balances.first(where: {$0.currency.unwrappedValue.elementsEqual(receiveBalance.currency.unwrappedValue)})).unwrappedValue
+        let finalToBalance = (result.first(where: {$0.currency.unwrappedValue.elementsEqual(receiveBalance.currency.unwrappedValue)})).unwrappedValue
         
         XCTAssertNotNil(result)
         XCTAssertEqual(result.count, balances.count)
         XCTAssertNotEqual(finalToBalance.amount.unwrappedValue, previousToBalance.amount.unwrappedValue)
-        XCTAssertEqual(finalToBalance.amount.unwrappedValue, previousToBalance.amount.unwrappedValue + (exchangeBalance.receive?.amount).unwrappedValue)
+        XCTAssertEqual(finalToBalance.amount.unwrappedValue, previousToBalance.amount.unwrappedValue + receiveBalance.amount.unwrappedValue)
     }
 }
