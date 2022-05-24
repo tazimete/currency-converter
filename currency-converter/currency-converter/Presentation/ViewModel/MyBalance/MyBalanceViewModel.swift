@@ -73,7 +73,7 @@ class MyBalanceViewModel: AbstractMyBalanceViewModel {
             
             // check enough balance before proceed
             guard weakSelf.hasEnoughBalance() == true else {
-                validationError.accept(ValidationError.notEnoughBalance(code: 101, message: "You dont have enough balance to exchange include 0.7% comission"))
+                validationError.accept(ValidationError.notEnoughBalance(code: 101, message: "You dont have enough balance to exchange include \(weakSelf.commissionCalculator.commissionOptions.comissionAmountInPercent)% comission"))
                 return Observable.just(CurrencyApiRequest.ItemType())
             }
             

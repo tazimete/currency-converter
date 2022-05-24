@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import UIKit
 
 class EntityFactory {
     enum ModelType{
@@ -16,11 +16,13 @@ class EntityFactory {
     
     func createList(type: ModelType) -> [AbstractDataModel] {
         var result = [AbstractDataModel] ()
+        let dependency = BalanceDependency.shared
         
         if type == .balance {
-            result =  [Balance(amount: 1000.00, currency: "USD"), Balance(amount: 100, currency: "EUR"), Balance(amount: 100, currency: "JPY")]
+            result =  [Balance(amount: dependency.totalEuro, currency: "EUR"), Balance(amount: dependency.totalUSD, currency: "USD"), Balance(amount: dependency.totalJPY, currency: "JPY")]
         }
         
         return result
     }
 }
+

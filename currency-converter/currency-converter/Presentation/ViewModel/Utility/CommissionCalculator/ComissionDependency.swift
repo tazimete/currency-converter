@@ -8,7 +8,6 @@
 import Foundation
 import UIKit
 
-
 class ComissionDependency {
     static let shared = ComissionDependency(comissionAmountInPercent: 0.7)
     

@@ -69,7 +69,7 @@ class MyBalanceViewController: BaseViewController {
     private lazy var currencyExchangeSellView: CurrencyExcangeView = {
         let view = CurrencyExcangeView(frame: .zero)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.currencies = self.myBalanceViewModel.balanceListRelay.value.map({ return $0.currency ?? ""})
+        view.currencies = self.myBalanceViewModel.balanceListRelay.value.map({ return $0.currency.unwrappedValue})
         view.amountText = "0.00"
         return view
     }()
@@ -82,7 +82,7 @@ class MyBalanceViewController: BaseViewController {
         view.amountTextColor = .systemGreen
         view.amountText = "+ 0.00"
         view.isAmountFieldEditable = false
-        view.currencies = self.myBalanceViewModel.balanceListRelay.value.map({ return $0.currency ?? ""})
+        view.currencies = self.myBalanceViewModel.balanceListRelay.value.map({ return $0.currency.unwrappedValue})
         return view
     }()
 

@@ -11,6 +11,9 @@
 		C165EDCEDF187E76A1594B4B /* Pods_currency_converterTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72271F9BB5D2808B1709C605 /* Pods_currency_converterTests.framework */; };
 		F722BF911E7F3A66EFC232A7 /* Pods_currency_converter_currency_converterUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 177CD4595E55F0E4C62A2A65 /* Pods_currency_converter_currency_converterUITests.framework */; };
 		FA1187D0282C89810000870E /* DatabaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1187CF282C89810000870E /* DatabaseClient.swift */; };
+		FA1F3165283CF46E00D87768 /* BalanceOperationExecutorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1F3164283CF46E00D87768 /* BalanceOperationExecutorTests.swift */; };
+		FA1F3168283CF4F700D87768 /* BalanceCheckOperationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1F3167283CF4F700D87768 /* BalanceCheckOperationsTests.swift */; };
+		FA1F316A283CFE0600D87768 /* BalanceDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1F3169283CFE0600D87768 /* BalanceDependency.swift */; };
 		FA1FA2BA283B8B2900B2C865 /* CurrencyApiRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1FA2B9283B8B2900B2C865 /* CurrencyApiRequestTests.swift */; };
 		FA1FA2BC283BA70600B2C865 /* CurrencyConvertParametersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1FA2BB283BA70600B2C865 /* CurrencyConvertParametersTests.swift */; };
 		FA387B712826638800B83C23 /* KVLocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA387B702826638800B83C23 /* KVLocalStorage.swift */; };
@@ -148,6 +151,9 @@
 		D40E45D29F7C8E351A8F0ABE /* Pods-currency-converterTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-currency-converterTests.debug.xcconfig"; path = "Target Support Files/Pods-currency-converterTests/Pods-currency-converterTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F7B44F45BC65A91A9C0F84E7 /* Pods-currency-converter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-currency-converter.debug.xcconfig"; path = "Target Support Files/Pods-currency-converter/Pods-currency-converter.debug.xcconfig"; sourceTree = "<group>"; };
 		FA1187CF282C89810000870E /* DatabaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseClient.swift; sourceTree = "<group>"; };
+		FA1F3164283CF46E00D87768 /* BalanceOperationExecutorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceOperationExecutorTests.swift; sourceTree = "<group>"; };
+		FA1F3167283CF4F700D87768 /* BalanceCheckOperationsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceCheckOperationsTests.swift; sourceTree = "<group>"; };
+		FA1F3169283CFE0600D87768 /* BalanceDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceDependency.swift; sourceTree = "<group>"; };
 		FA1FA2B9283B8B2900B2C865 /* CurrencyApiRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyApiRequestTests.swift; sourceTree = "<group>"; };
 		FA1FA2BB283BA70600B2C865 /* CurrencyConvertParametersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConvertParametersTests.swift; sourceTree = "<group>"; };
 		FA387B702826638800B83C23 /* KVLocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KVLocalStorage.swift; sourceTree = "<group>"; };
@@ -310,6 +316,40 @@
 				72271F9BB5D2808B1709C605 /* Pods_currency_converterTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FA1F3161283CF3B400D87768 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				FA6E9BC52836EA010046B405 /* BalanceExecutor */,
+				FAB2A498282A5D7800F1F075 /* CommissionCalculator */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		FA1F3162283CF3FE00D87768 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				FA1F3163283CF41600D87768 /* BalanceExecutor */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		FA1F3163283CF41600D87768 /* BalanceExecutor */ = {
+			isa = PBXGroup;
+			children = (
+				FA1F3166283CF4BE00D87768 /* Operations */,
+				FA1F3164283CF46E00D87768 /* BalanceOperationExecutorTests.swift */,
+			);
+			path = BalanceExecutor;
+			sourceTree = "<group>";
+		};
+		FA1F3166283CF4BE00D87768 /* Operations */ = {
+			isa = PBXGroup;
+			children = (
+				FA1F3167283CF4F700D87768 /* BalanceCheckOperationsTests.swift */,
+			);
+			path = Operations;
 			sourceTree = "<group>";
 		};
 		FA387B7428267C8D00B83C23 /* Abstraction */ = {
@@ -513,6 +553,7 @@
 		FA918A21283B019500BEDF56 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				FA1F3162283CF3FE00D87768 /* Utility */,
 				FA918A22283B019E00BEDF56 /* ViewModel */,
 			);
 			path = Presentation;
@@ -897,6 +938,7 @@
 				FAF98FC028390F5C005FB093 /* EntityFactory.swift */,
 				FA880E15283451AF00388BE6 /* CurrencyExchange.swift */,
 				FAE7E719282181B50019BCC2 /* Balance.swift */,
+				FA1F3169283CFE0600D87768 /* BalanceDependency.swift */,
 			);
 			name = MyBalance;
 			path = ../../Data/Entity/MyBalance;
@@ -940,6 +982,7 @@
 		FAE7E72A282181B60019BCC2 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				FA1F3161283CF3B400D87768 /* Utility */,
 				FAE7E72B282181B60019BCC2 /* Abstraction */,
 				FAE7E733282181B60019BCC2 /* MyBalance */,
 			);
@@ -966,8 +1009,6 @@
 		FAE7E733282181B60019BCC2 /* MyBalance */ = {
 			isa = PBXGroup;
 			children = (
-				FA6E9BC52836EA010046B405 /* BalanceExecutor */,
-				FAB2A498282A5D7800F1F075 /* CommissionCalculator */,
 				FAE7E734282181B60019BCC2 /* MyBalanceViewModel.swift */,
 			);
 			path = MyBalance;
@@ -1439,6 +1480,7 @@
 				FAE7E7D3282181B80019BCC2 /* BaseViewController.swift in Sources */,
 				FA55085128385E7A00E3AE4F /* BalanceSellOperation.swift in Sources */,
 				FAE7E7D8282181B80019BCC2 /* SearchCellViewModel.swift in Sources */,
+				FA1F316A283CFE0600D87768 /* BalanceDependency.swift in Sources */,
 				FAE7E7D0282181B80019BCC2 /* MyBalanceViewModel.swift in Sources */,
 				FAE7E7A5282181B70019BCC2 /* AbstractURLSession.swift in Sources */,
 				FA9CC8C9282E3CAA00E4B791 /* AbstractionRemoteDataSource.swift in Sources */,
@@ -1465,8 +1507,10 @@
 				FA1FA2BC283BA70600B2C865 /* CurrencyConvertParametersTests.swift in Sources */,
 				FA918A27283B047A00BEDF56 /* MockSessionChangable.swift in Sources */,
 				FA918A24283B01C600BEDF56 /* MyBalanceViewModelTests.swift in Sources */,
+				FA1F3168283CF4F700D87768 /* BalanceCheckOperationsTests.swift in Sources */,
 				FAB726CA2820F85F0061A22E /* currency_converterTests.swift in Sources */,
 				FAF98FD52839B393005FB093 /* ApiClientTests.swift in Sources */,
+				FA1F3165283CF46E00D87768 /* BalanceOperationExecutorTests.swift in Sources */,
 				FA918A1E283AFDB100BEDF56 /* MockCurrencyUsecase.swift in Sources */,
 				FA918A0C283AE0ED00BEDF56 /* MockCurrencyRepository.swift in Sources */,
 				FAF98FD22839AEC7005FB093 /* MockAPIClient.swift in Sources */,

@@ -27,13 +27,14 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
-      codeCoverageEnabled = "YES">
+      codeCoverageEnabled = "YES"
+      onlyGenerateCoverageForSpecifiedTargets = "YES">
       <CodeCoverageTargets>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "FAB726C42820F85F0061A22E"
-            BuildableName = "currency-converterTests.xctest"
-            BlueprintName = "currency-converterTests"
+            BlueprintIdentifier = "FAB726AE2820F85C0061A22E"
+            BuildableName = "currency-converter.app"
+            BlueprintName = "currency-converter"
             ReferencedContainer = "container:currency-converter.xcodeproj">
          </BuildableReference>
       </CodeCoverageTargets>

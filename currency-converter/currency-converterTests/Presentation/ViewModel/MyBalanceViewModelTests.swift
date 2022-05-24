@@ -129,7 +129,7 @@ class MyBalanceViewModelTests: XCTestCase {
     func test_balanceExchange_with_errorResponse() {
         let expectation = self.expectation(description: "Wait for my balance viewmodel -> test_balanceExchange_with_errorResponse() to load.")
         let fromAmount = "100"
-        let fromCurrency = "USD"
+        let fromCurrency = "EUR"
         let toCurrency = "EUR"
         var networkError: NetworkError?
         
@@ -192,7 +192,7 @@ class MyBalanceViewModelTests: XCTestCase {
     
     func test_hasEnoughBalance_with_true() {
         let fromAmount = "100"
-        let fromCurrency = "USD"
+        let fromCurrency = "EUR"
         var result: Bool?
         
         myBalanceViewModel.currencyExchange.sell = Balance(amount: Double(fromAmount).unwrappedValue, currency: fromCurrency)
@@ -207,7 +207,7 @@ class MyBalanceViewModelTests: XCTestCase {
     
     func test_hasEnoughBalance_with_false() {
         let fromAmount = "25000"
-        let fromCurrency = "USD"
+        let fromCurrency = "EUR"
         var result: Bool?
         
         myBalanceViewModel.currencyExchange.sell = Balance(amount: Double(fromAmount).unwrappedValue, currency: fromCurrency)
@@ -222,7 +222,7 @@ class MyBalanceViewModelTests: XCTestCase {
     
     func test_calculateCommission_withConversionCount_lessThanFive_amount_100() {
         let fromAmount = "100"
-        let fromCurrency = "USD"
+        let fromCurrency = "EUR"
         var result: Double?
         
         myBalanceViewModel.currencyExchange.sell = Balance(amount: Double(fromAmount).unwrappedValue, currency: fromCurrency)
@@ -238,7 +238,7 @@ class MyBalanceViewModelTests: XCTestCase {
     
     func test_calculateCommission_withConversionCoutn_greaterThanFive_amount_100() {
         let fromAmount = "100"
-        let fromCurrency = "USD"
+        let fromCurrency = "EUR"
         var result: Double?
         
         myBalanceViewModel.currencyExchange.sell = Balance(amount: Double(fromAmount).unwrappedValue, currency: fromCurrency)
@@ -254,7 +254,7 @@ class MyBalanceViewModelTests: XCTestCase {
     
     func test_calculateCommission_withConversionCount_greaterThanFive_amount_250() {
         let fromAmount = "250"
-        let fromCurrency = "USD"
+        let fromCurrency = "EUR"
         var result: Double?
         
         myBalanceViewModel.currencyExchange.sell = Balance(amount: Double(fromAmount).unwrappedValue, currency: fromCurrency)
@@ -271,7 +271,7 @@ class MyBalanceViewModelTests: XCTestCase {
     
     func test_calculateCommission_withConversionCount_lessThanFive_amount_250() {
         let fromAmount = "250"
-        let fromCurrency = "USD"
+        let fromCurrency = "EUR"
         var result: Double?
         
         myBalanceViewModel.currencyExchange.sell = Balance(amount: Double(fromAmount).unwrappedValue, currency: fromCurrency)
@@ -288,7 +288,7 @@ class MyBalanceViewModelTests: XCTestCase {
     
     func test_calculateCommission_withConversionCount_greaterThanFive_amount_100() {
         let fromAmount = "100"
-        let fromCurrency = "USD"
+        let fromCurrency = "EUR"
         var result: Double?
         
         myBalanceViewModel.currencyExchange.sell = Balance(amount: Double(fromAmount).unwrappedValue, currency: fromCurrency)
@@ -305,7 +305,7 @@ class MyBalanceViewModelTests: XCTestCase {
     
     func test_calculateCommission_withConversionCount_everyTenth_amount_250() {
         let fromAmount = "250"
-        let fromCurrency = "USD"
+        let fromCurrency = "EUR"
         var result: Double?
         
         myBalanceViewModel.currencyExchange.sell = Balance(amount: Double(fromAmount).unwrappedValue, currency: fromCurrency)
@@ -323,8 +323,8 @@ class MyBalanceViewModelTests: XCTestCase {
     func test_convetCurrency_withSuccessResponse() {
         let expectation = self.expectation(description: "Wait for my balance viewmodel -> test_convetCurrency_withSuccessResponse() to load.")
         let fromAmount = "100"
-        let fromCurrency = "USD"
-        let toCurrency = "EUR"
+        let fromCurrency = "EUR"
+        let toCurrency = "USD"
         var result: Currency!
         var networkError: NetworkError!
         
@@ -357,8 +357,8 @@ class MyBalanceViewModelTests: XCTestCase {
     func test_convetCurrency_withFailedResponse() {
         let expectation = self.expectation(description: "Wait for my balance viewmodel -> test_convetCurrency_withFailedResponse() to load.")
         let fromAmount = "100"
-        let fromCurrency = "USD"
-        let toCurrency = "EUR"
+        let fromCurrency = "EUR"
+        let toCurrency = "USD"
         var result: Currency!
         var networkError: NetworkError!
         
@@ -389,11 +389,11 @@ class MyBalanceViewModelTests: XCTestCase {
     }
     
     func test_calculateFinalBalance_withSellAmount_250_usd() {
-        let fromAmount = 250.00
-        let fromCurrency = "USD"
-        let toAmount = 233.53
-        let toCurrency = "EUR"
         let balances: [Balance] = EntityFactory().createList(type: .balance) as! [Balance]
+        let fromAmount = 233.53
+        let fromCurrency = "EUR"
+        let toAmount = 250.00
+        let toCurrency = "USD"
         var result: [Balance]?
         
         let fromBalanceIndex = balances.firstIndex(where: {($0.currency?.elementsEqual(fromCurrency)).unwrappedValue}).unwrappedValue
@@ -410,7 +410,7 @@ class MyBalanceViewModelTests: XCTestCase {
         result = myBalanceViewModel.calculatFinalBalances()
         
         let fromBalanceNow = (fromAmountPrevious-fromAmount-myBalanceViewModel.calculateCommission())
-        let toBalanceNow = (100+toAmount)
+        let toBalanceNow = (toAmountPrevious+toAmount)
         
         //assertions
         XCTAssertNotNil(result)
