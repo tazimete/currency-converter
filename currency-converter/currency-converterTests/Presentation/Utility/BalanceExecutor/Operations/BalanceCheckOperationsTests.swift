@@ -32,4 +32,12 @@ class BalanceCheckOperationsTests: XCTestCase {
         XCTAssertNotNil(result)
         XCTAssertEqual(result, true) 
     }
+    
+    func testCheckBalanceWithFalse() {
+        exchangeBalance.sell = Balance(amount: 12000, currency: "EUR")
+        let result = operation.check(exchangeBalance: exchangeBalance, balances: balances, commission: commissionCalculator.calculateCommissionAmount(conversionSerial: 15, conversionAmount: (exchangeBalance.sell?.amount).unwrappedValue))
+                                     
+        XCTAssertNotNil(result)
+        XCTAssertEqual(result, false)
+    }
 }
