@@ -111,7 +111,7 @@
 		FAE7E7E3282182F30019BCC2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAE7E7E2282182F30019BCC2 /* Assets.xcassets */; };
 		FAE7E8AB28219E120019BCC2 /* AbstractCurrencyUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E8AA28219E120019BCC2 /* AbstractCurrencyUsecase.swift */; };
 		FAE7E8AD2821C4CE0019BCC2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAE7E8AC2821C4CE0019BCC2 /* Main.storyboard */; };
-		FAF98FC128390F5C005FB093 /* BalanceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF98FC028390F5C005FB093 /* BalanceFactory.swift */; };
+		FAF98FC128390F5C005FB093 /* EntityFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF98FC028390F5C005FB093 /* EntityFactory.swift */; };
 		FAF98FC328394C48005FB093 /* Optional+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF98FC228394C48005FB093 /* Optional+Extensions.swift */; };
 		FAF98FCB2839A2FA005FB093 /* StubResponseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF98FCA2839A2FA005FB093 /* StubResponseProvider.swift */; };
 		FAF98FCD2839A3B2005FB093 /* StubbedResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF98FCC2839A3B2005FB093 /* StubbedResponse.swift */; };
@@ -252,7 +252,7 @@
 		FAE7E7E2282182F30019BCC2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FAE7E8AA28219E120019BCC2 /* AbstractCurrencyUsecase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractCurrencyUsecase.swift; sourceTree = "<group>"; };
 		FAE7E8AC2821C4CE0019BCC2 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		FAF98FC028390F5C005FB093 /* BalanceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceFactory.swift; sourceTree = "<group>"; };
+		FAF98FC028390F5C005FB093 /* EntityFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityFactory.swift; sourceTree = "<group>"; };
 		FAF98FC228394C48005FB093 /* Optional+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Extensions.swift"; sourceTree = "<group>"; };
 		FAF98FCA2839A2FA005FB093 /* StubResponseProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubResponseProvider.swift; sourceTree = "<group>"; };
 		FAF98FCC2839A3B2005FB093 /* StubbedResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubbedResponse.swift; sourceTree = "<group>"; };
@@ -894,7 +894,7 @@
 		FAE7E718282181B50019BCC2 /* MyBalance */ = {
 			isa = PBXGroup;
 			children = (
-				FAF98FC028390F5C005FB093 /* BalanceFactory.swift */,
+				FAF98FC028390F5C005FB093 /* EntityFactory.swift */,
 				FA880E15283451AF00388BE6 /* CurrencyExchange.swift */,
 				FAE7E719282181B50019BCC2 /* Balance.swift */,
 			);
@@ -1378,7 +1378,7 @@
 				FAE7E7A9282181B70019BCC2 /* NetworkOperation.swift in Sources */,
 				FA9CC8CF282E4A7F00E4B791 /* AbstractCurrencyRemoteDataSource.swift in Sources */,
 				FA6C62C9282BCB4D00D42413 /* AbstractDatabaseClient.swift in Sources */,
-				FAF98FC128390F5C005FB093 /* BalanceFactory.swift in Sources */,
+				FAF98FC128390F5C005FB093 /* EntityFactory.swift in Sources */,
 				FAE7E7BA282181B70019BCC2 /* CurrencyConverterParams.swift in Sources */,
 				FAE7E78E282181B70019BCC2 /* CGFloat+Extension.swift in Sources */,
 				FA880E1828345C8C00388BE6 /* Currency.swift in Sources */,

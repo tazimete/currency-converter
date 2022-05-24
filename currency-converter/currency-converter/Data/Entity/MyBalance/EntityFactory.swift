@@ -8,7 +8,7 @@
 import Foundation
 
 
-class ModelFactory {
+class EntityFactory {
     enum ModelType{
         case balance
         case currencyExchange
@@ -18,7 +18,7 @@ class ModelFactory {
         var result = [AbstractDataModel] ()
         
         if type == .balance {
-            result =  [Balance(amount: 1000.00, currency: "USD"), Balance(amount: 100, currency: "EUR"), Balance(amount: 100, currency: "JPY"), Balance(amount: 100, currency: "BDT")]
+            result =  [Balance(amount: 1000.00, currency: "USD"), Balance(amount: 100, currency: "EUR"), Balance(amount: 100, currency: "JPY")]
         }
         
         return result

@@ -51,7 +51,7 @@ class MyBalanceViewModelTests: XCTestCase {
         XCTAssertNotNil(myBalanceViewModel.usecase.repository.remoteDataSource.apiClient.session)
     }
     
-    func testBalanceExchangeWithSuccessResponse() {
+    func test_balanceExchange_withSuccess_response() {
         let expectation = self.expectation(description: "Wait for my balance viewmodel -> testBalanceExchangeWithSuccessResponse() to load.")
         let fromAmount = "100"
         let fromCurrency = "USD"
@@ -88,7 +88,7 @@ class MyBalanceViewModelTests: XCTestCase {
         XCTAssertEqual(try XCTUnwrap(result.currency, "Empty currency"), try XCTUnwrap(stubbedResposne.currency, "Empty currency"))
     }
     
-    func testBalanceExchangeWithValidationError() {
+    func test_balanceExchange_with_validationError() {
         let expectation = self.expectation(description: "Wait for my balance viewmodel -> testBalanceExchangeWithValidationErrorResponse() to load.")
         let fromAmount = "122200"
         let fromCurrency = "USD"
@@ -126,7 +126,7 @@ class MyBalanceViewModelTests: XCTestCase {
         XCTAssertEqual((validationError?.errorMessage).unwrappedValue, stubbedResposne.errorMessage)
     }
     
-    func testBalanceExchangeWithErrorResponse() {
+    func test_balanceExchange_with_errorResponse() {
         let expectation = self.expectation(description: "Wait for my balance viewmodel -> testBalanceExchangeWithServerErrorResponse() to load.")
         let fromAmount = "100"
         let fromCurrency = "USD"
@@ -164,7 +164,7 @@ class MyBalanceViewModelTests: XCTestCase {
         XCTAssertEqual((networkError?.errorMessage).unwrappedValue, stubbedResposne.errorMessage)
     }
     
-    func testBalanceList() {
+    func test_balanceList() {
         let expectation = self.expectation(description: "Wait for my balance viewmodel -> testBalanceList() to load.")
         var balanceList: [Balance]!
         
@@ -180,7 +180,7 @@ class MyBalanceViewModelTests: XCTestCase {
         wait(for: [expectation], timeout: 5)
         
         //stubbed response to check data which are received through non-mock components
-        let stubbedData: [Balance] = ModelFactory().createList(type: .balance) as! [Balance]
+        let stubbedData: [Balance] = EntityFactory().createList(type: .balance) as! [Balance]
         
         //assertions
         XCTAssertNotNil(balanceList)
@@ -188,6 +188,169 @@ class MyBalanceViewModelTests: XCTestCase {
         XCTAssertEqual(balanceList.first?.currency, stubbedData.first?.currency)
         XCTAssertEqual((balanceList.first?.currency).unwrappedValue, (stubbedData.first?.currency).unwrappedValue)
         XCTAssertNotEqual((balanceList.first?.currency).unwrappedValue, (stubbedData.last?.currency).unwrappedValue)
+    }
+    
+    func test_hasEnoughBalance_with_true() {
+        let fromAmount = "100"
+        let fromCurrency = "USD"
+        var result: Bool?
+        
+        myBalanceViewModel.currencyExchange.sell = Balance(amount: Double(fromAmount).unwrappedValue, currency: fromCurrency)
+        
+        result = myBalanceViewModel.hasEnoughBalance()
+        
+        //assertions
+        XCTAssertNotNil(result)
+        XCTAssertEqual(result.unwrappedValue, true)
+        XCTAssertNotEqual(result.unwrappedValue, false)
+    }
+    
+    func test_hasEnoughBalance_with_false() {
+        let fromAmount = "25000"
+        let fromCurrency = "USD"
+        var result: Bool?
+        
+        myBalanceViewModel.currencyExchange.sell = Balance(amount: Double(fromAmount).unwrappedValue, currency: fromCurrency)
+        
+        result = myBalanceViewModel.hasEnoughBalance()
+        
+        //assertions
+        XCTAssertNotNil(result)
+        XCTAssertEqual(result.unwrappedValue, false)
+        XCTAssertNotEqual(result.unwrappedValue, true)
+    }
+    
+    func test_calculateCommission_withConversionCount_lessThanFive_amount_100() {
+        let fromAmount = "100"
+        let fromCurrency = "USD"
+        var result: Double?
+        
+        myBalanceViewModel.currencyExchange.sell = Balance(amount: Double(fromAmount).unwrappedValue, currency: fromCurrency)
+        UserSessionDataClient.shared.setConversionCount(count: 1)
+        
+        result = myBalanceViewModel.calculateCommission()
+        
+        //assertions
+        XCTAssertNotNil(result)
+        XCTAssertEqual(result.unwrappedValue, 0.0)
+        XCTAssertNotEqual(result.unwrappedValue, 1.40)
+    }
+    
+    func test_calculateCommission_withConversionCoutn_greaterThanFive_amount_100() {
+        let fromAmount = "100"
+        let fromCurrency = "USD"
+        var result: Double?
+        
+        myBalanceViewModel.currencyExchange.sell = Balance(amount: Double(fromAmount).unwrappedValue, currency: fromCurrency)
+        UserSessionDataClient.shared.setConversionCount(count: 6)
+        
+        result = myBalanceViewModel.calculateCommission()
+        
+        //assertions
+        XCTAssertNotNil(result)
+        XCTAssertEqual(result.unwrappedValue, 0.0)
+        XCTAssertNotEqual(result.unwrappedValue, 1.40)
+    }
+    
+    func test_calculateCommission_withConversionCount_greaterThanFive_amount_250() {
+        let fromAmount = "250"
+        let fromCurrency = "USD"
+        var result: Double?
+        
+        myBalanceViewModel.currencyExchange.sell = Balance(amount: Double(fromAmount).unwrappedValue, currency: fromCurrency)
+        UserSessionDataClient.shared.setConversionCount(count: 6)
+        
+        result = myBalanceViewModel.calculateCommission()
+        
+        //assertions
+        XCTAssertNotNil(result)
+        XCTAssertEqual(result.unwrappedValue, 1.75)
+        XCTAssertNotEqual(result.unwrappedValue, 0.0)
+        XCTAssertNotEqual(result.unwrappedValue, 2.00)
+    }
+    
+    func test_calculateCommission_withConversionCount_lessThanFive_amount_250() {
+        let fromAmount = "250"
+        let fromCurrency = "USD"
+        var result: Double?
+        
+        myBalanceViewModel.currencyExchange.sell = Balance(amount: Double(fromAmount).unwrappedValue, currency: fromCurrency)
+        UserSessionDataClient.shared.setConversionCount(count: 1)
+        
+        result = myBalanceViewModel.calculateCommission()
+        
+        //assertions
+        XCTAssertNotNil(result)
+        XCTAssertEqual(result.unwrappedValue, 0.00)
+        XCTAssertNotEqual(result.unwrappedValue, 1.75)
+        XCTAssertNotEqual(result.unwrappedValue, 2.00)
+    }
+    
+    func test_calculateCommission_withConversionCount_greaterThanFive_amount_100() {
+        let fromAmount = "100"
+        let fromCurrency = "USD"
+        var result: Double?
+        
+        myBalanceViewModel.currencyExchange.sell = Balance(amount: Double(fromAmount).unwrappedValue, currency: fromCurrency)
+        UserSessionDataClient.shared.setConversionCount(count: 15)
+        
+        result = myBalanceViewModel.calculateCommission()
+        
+        //assertions
+        XCTAssertNotNil(result)
+        XCTAssertEqual(result.unwrappedValue, 0.00)
+        XCTAssertNotEqual(result.unwrappedValue, 1.75)
+        XCTAssertNotEqual(result.unwrappedValue, 2.00)
+    }
+    
+    func test_calculateCommission_withConversionCount_everyTenth_amount_250() {
+        let fromAmount = "250"
+        let fromCurrency = "USD"
+        var result: Double?
+        
+        myBalanceViewModel.currencyExchange.sell = Balance(amount: Double(fromAmount).unwrappedValue, currency: fromCurrency)
+        UserSessionDataClient.shared.setConversionCount(count: 50)
+        
+        result = myBalanceViewModel.calculateCommission()
+        
+        //assertions
+        XCTAssertNotNil(result)
+        XCTAssertEqual(result.unwrappedValue, 0.00)
+        XCTAssertNotEqual(result.unwrappedValue, 1.75)
+        XCTAssertNotEqual(result.unwrappedValue, 2.00)
+    }
+    
+    func test_calculateFinalBalance_withSellAmount_250_usd() {
+        let fromAmount = 250.00
+        let fromCurrency = "USD"
+        let toAmount = 233.53
+        let toCurrency = "EUR"
+        let balances: [Balance] = EntityFactory().createList(type: .balance) as! [Balance]
+        var result: [Balance]?
+        
+        let fromBalanceIndex = balances.firstIndex(where: {($0.currency?.elementsEqual(fromCurrency)).unwrappedValue}).unwrappedValue
+        let toBalanceIndex = balances.firstIndex(where: {($0.currency?.elementsEqual(toCurrency)).unwrappedValue}).unwrappedValue
+        
+        let fromAmountPrevious = balances[fromBalanceIndex].amount.unwrappedValue
+        let toAmountPrevious = balances[toBalanceIndex].amount.unwrappedValue
+        
+        myBalanceViewModel.currencyExchange.sell = Balance(amount: fromAmount, currency: fromCurrency)
+        myBalanceViewModel.currencyExchange.receive = Balance(amount: toAmount, currency: toCurrency)
+        
+        UserSessionDataClient.shared.setConversionCount(count: 35)
+        
+        result = myBalanceViewModel.calculatFinalBalances()
+        
+        let fromBalanceNow = (fromAmountPrevious-fromAmount-myBalanceViewModel.calculateCommission())
+        let toBalanceNow = (100+toAmount)
+        
+        //assertions
+        XCTAssertNotNil(result)
+        XCTAssertEqual((result?.count).unwrappedValue, 3)
+        XCTAssertEqual((result?[fromBalanceIndex].amount).unwrappedValue, fromBalanceNow)
+        XCTAssertEqual((result?[fromBalanceIndex].currency).unwrappedValue, fromCurrency)
+        XCTAssertEqual((result?[toBalanceIndex].amount).unwrappedValue, toBalanceNow)
+        XCTAssertEqual((result?[toBalanceIndex].currency).unwrappedValue, toCurrency)
     }
 }
 
