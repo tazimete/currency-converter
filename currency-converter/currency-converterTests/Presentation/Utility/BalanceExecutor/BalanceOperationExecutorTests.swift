@@ -41,8 +41,9 @@ class BalanceOperationExecutorTests: XCTestCase {
         XCTAssertEqual(result, false)
     }
     
-    func test_executeBalance_sellOperation_withFailed() {
+    func test_executeBalance_sellOperation_withSucess() {
         operationExecutor.update(operation: BalanceSellOperation())
+        
         let result = operationExecutor.executeBalance(exchangeBalance: exchangeBalance, balances: balances, commission: commissionCalculator.calculateCommissionAmount(conversionSerial: 15, conversionAmount: (exchangeBalance.sell?.amount).unwrappedValue))
                             
         let sellBalance = exchangeBalance.sell ?? Balance()
@@ -58,9 +59,10 @@ class BalanceOperationExecutorTests: XCTestCase {
         XCTAssertEqual(finalToBalance.amount.unwrappedValue, previousToBalance.amount.unwrappedValue)
     }
     
-    func test_executeBalance_sellOperation_withSuccess() {
+    func test_executeBalance_sellOperation_withFailed() {
         operationExecutor.update(operation: BalanceSellOperation())
         exchangeBalance.sell = Balance(amount: 25000, currency: "EUR")
+        
         let result = operationExecutor.executeBalance(exchangeBalance: exchangeBalance, balances: balances, commission: commissionCalculator.calculateCommissionAmount(conversionSerial: 15, conversionAmount: (exchangeBalance.sell?.amount).unwrappedValue))
                            
         let sellBalance = exchangeBalance.sell ?? Balance()
