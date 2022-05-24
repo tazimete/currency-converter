@@ -52,7 +52,7 @@ class MyBalanceViewModelTests: XCTestCase {
     }
     
     func test_balanceExchange_withSuccess_response() {
-        let expectation = self.expectation(description: "Wait for my balance viewmodel -> testBalanceExchangeWithSuccessResponse() to load.")
+        let expectation = self.expectation(description: "Wait for my balance viewmodel -> test_balanceExchange_withSuccess_response() to load.")
         let fromAmount = "100"
         let fromCurrency = "USD"
         let toCurrency = "EUR"
@@ -89,7 +89,7 @@ class MyBalanceViewModelTests: XCTestCase {
     }
     
     func test_balanceExchange_with_validationError() {
-        let expectation = self.expectation(description: "Wait for my balance viewmodel -> testBalanceExchangeWithValidationErrorResponse() to load.")
+        let expectation = self.expectation(description: "Wait for my balance viewmodel -> test_balanceExchange_with_validationError() to load.")
         let fromAmount = "122200"
         let fromCurrency = "USD"
         let toCurrency = "EUR"
@@ -127,7 +127,7 @@ class MyBalanceViewModelTests: XCTestCase {
     }
     
     func test_balanceExchange_with_errorResponse() {
-        let expectation = self.expectation(description: "Wait for my balance viewmodel -> testBalanceExchangeWithServerErrorResponse() to load.")
+        let expectation = self.expectation(description: "Wait for my balance viewmodel -> test_balanceExchange_with_errorResponse() to load.")
         let fromAmount = "100"
         let fromCurrency = "USD"
         let toCurrency = "EUR"
@@ -318,6 +318,74 @@ class MyBalanceViewModelTests: XCTestCase {
         XCTAssertEqual(result.unwrappedValue, 0.00)
         XCTAssertNotEqual(result.unwrappedValue, 1.75)
         XCTAssertNotEqual(result.unwrappedValue, 2.00)
+    }
+    
+    func test_convetCurrency_withSuccessResponse() {
+        let expectation = self.expectation(description: "Wait for my balance viewmodel -> test_convetCurrency_withSuccessResponse() to load.")
+        let fromAmount = "100"
+        let fromCurrency = "USD"
+        let toCurrency = "EUR"
+        var result: Currency!
+        var networkError: NetworkError!
+        
+        myBalanceViewModel.convert(fromAmount: fromAmount, fromCurrency: fromCurrency, toCurrency: toCurrency)
+            .observe(on: ConcurrentDispatchQueueScheduler.init(qos: .utility))
+            .subscribe(on: MainScheduler.asyncInstance)
+            .subscribe(onNext: { currency in
+                result = currency
+                expectation.fulfill()
+            }, onError: { error in
+                networkError = error as! NetworkError
+                expectation.fulfill()
+            }).disposed(by: disposeBag)
+        
+        wait(for: [expectation], timeout: 5)
+        
+        //stubbed response to check data which are received through non-mock components
+        let stubbedResposne = StubResponseProvider.getResponse(type: CurrencyApiRequest.ItemType.self)
+        
+        //assertions
+        XCTAssertNotNil(result)
+        XCTAssertNil(networkError)
+        XCTAssertEqual(result.amount, stubbedResposne.amount)
+        XCTAssertEqual(result.title, stubbedResposne.title)
+        XCTAssertTrue((result.amount.unwrappedValue == stubbedResposne.amount.unwrappedValue))
+        XCTAssertTrue((result.title?.elementsEqual(stubbedResposne.title.unwrappedValue)).unwrappedValue)
+        XCTAssertEqual(try XCTUnwrap(result.title, "Empty currency"), try XCTUnwrap(stubbedResposne.title, "Empty currency"))
+    }
+    
+    func test_convetCurrency_withFailedResponse() {
+        let expectation = self.expectation(description: "Wait for my balance viewmodel -> test_convetCurrency_withFailedResponse() to load.")
+        let fromAmount = "100"
+        let fromCurrency = "USD"
+        let toCurrency = "EUR"
+        var result: Currency!
+        var networkError: NetworkError!
+        
+        (myBalanceViewModel.usecase.repository.remoteDataSource.apiClient as! MockAPIClient).changeMockSession(session: MockURLSessionFailed())
+        
+        myBalanceViewModel.convert(fromAmount: fromAmount, fromCurrency: fromCurrency, toCurrency: toCurrency)
+            .observe(on: ConcurrentDispatchQueueScheduler.init(qos: .utility))
+            .subscribe(on: MainScheduler.asyncInstance)
+            .subscribe(onNext: { currency in
+                result = currency
+                expectation.fulfill()
+            }, onError: { error in
+                networkError = error as! NetworkError
+                expectation.fulfill()
+            }).disposed(by: disposeBag)
+        
+        wait(for: [expectation], timeout: 5)
+        
+        //stubbed response to check data which are received through non-mock components
+        let stubbedResposne = StubResponseProvider.getErrorResponse(type: NetworkError.self)
+        
+        //assertions
+        XCTAssertNil(result)
+        XCTAssertNotNil(networkError)
+        XCTAssertEqual((networkError?.errorCode).unwrappedValue, stubbedResposne.errorCode)
+        XCTAssertEqual(networkError?.errorMessage, stubbedResposne.errorMessage)
+        XCTAssertEqual((networkError?.errorMessage).unwrappedValue, stubbedResposne.errorMessage)
     }
     
     func test_calculateFinalBalance_withSellAmount_250_usd() {
