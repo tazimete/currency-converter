@@ -10,7 +10,7 @@ import UIKit
 
 extension UILabel {
     
-    func addTrailing(image: UIImage, text:String?) {
+    func addTrailing(image: UIImage, text:String? = nil) {
         let attachment = NSTextAttachment()
         attachment.image = image
 
@@ -21,7 +21,7 @@ extension UILabel {
         self.attributedText = string
     }
     
-    func addLeading(image: UIImage, text:String?) {
+    func addLeading(image: UIImage, text:String? = nil) {
         let attachment = NSTextAttachment()
         attachment.image = image
 

@@ -71,6 +71,7 @@ class MyBalanceViewController: BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.currencies = self.myBalanceViewModel.balanceListRelay.value.map({ return $0.currency.unwrappedValue})
         view.amountText = "0.00"
+        view.selectedCurrencyIndex = 0
         return view
     }()
     
@@ -83,6 +84,7 @@ class MyBalanceViewController: BaseViewController {
         view.amountText = "+ 0.00"
         view.isAmountFieldEditable = false
         view.currencies = self.myBalanceViewModel.balanceListRelay.value.map({ return $0.currency.unwrappedValue})
+        view.selectedCurrencyIndex = 1
         return view
     }()
 

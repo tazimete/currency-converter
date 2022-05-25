@@ -82,6 +82,22 @@ class CurrencyExcangeView: UIView {
         }
     }
     
+    public var selectedCurrencyIndex: Int {
+        set(newValue) {
+            if self.currencyDropdown.dataSource.count > newValue {
+                self.currencyDropdown.selectRow(at: newValue)
+                self.currencyLabel.addTrailing(image: UIImage(named: "ic_dropdown")!, text: self.currencyDropdown.dataSource[newValue])
+                //observe default value
+                self.observeCurrencyValue(amount: "0.00", currency: currencyDropdown.dataSource[newValue] )
+            }
+        }
+        
+        get{
+            return self.currencyDropdown.indexForSelectedRow.unwrappedValue
+        }
+    }
+    
+    
     public var containerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -134,7 +150,7 @@ class CurrencyExcangeView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.isUserInteractionEnabled = true
-        label.addTrailing(image: UIImage(named: "ic_dropdown")!, text: "EUR")
+        label.addTrailing(image: UIImage(named: "ic_dropdown")!)
         label.textColor = .black
         label.font = UIFont.systemFont(ofSize: 19, weight: .regular)
         label.textAlignment = .right
@@ -249,7 +265,7 @@ class CurrencyExcangeView: UIView {
     
     override func didMoveToSuperview() {
         //observe default value
-        observeCurrencyValue(amount: "0.00", currency: currencyDropdown.dataSource[currencyDropdown.indexForSelectedRow ?? 0] )
+//        observeCurrencyValue(amount: "0.00", currency: currencyDropdown.dataSource[currencyDropdown.indexForSelectedRow ?? 0] )
     }
     
     private func observeCurrencyValue(amount: String, currency: String) {
