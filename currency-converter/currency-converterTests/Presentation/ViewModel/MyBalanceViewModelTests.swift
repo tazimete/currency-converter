@@ -180,7 +180,7 @@ class MyBalanceViewModelTests: XCTestCase {
         wait(for: [expectation], timeout: 5)
         
         //stubbed response to check data which are received through non-mock components
-        let stubbedData: [Balance] = EntityFactory().createList(type: .balance) as! [Balance]
+        let stubbedData: [Balance] = MockEntityFactory().createList(type: .balance) as! [Balance]
         
         //assertions
         XCTAssertNotNil(balanceList)
@@ -389,7 +389,7 @@ class MyBalanceViewModelTests: XCTestCase {
     }
     
     func test_calculateFinalBalance_withSellAmount_250_usd() {
-        let balances: [Balance] = EntityFactory().createList(type: .balance) as! [Balance]
+        let balances: [Balance] = MockEntityFactory().createList(type: .balance) as! [Balance]
         let fromAmount = 233.53
         let fromCurrency = "EUR"
         let toAmount = 250.00

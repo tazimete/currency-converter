@@ -11,7 +11,7 @@ import XCTest
 class BalanceCheckOperationsTests: XCTestCase {
     var operation: BalanceCheckOperation!
     var exchangeBalance = CurrencyExchange(sell: Balance(amount: 200, currency: "EUR"), receive: nil)
-    var balances = EntityFactory().createList(type: .balance) as! [Balance]
+    var balances = MockEntityFactory().createList(type: .balance) as! [Balance]
     var commissionCalculator = ComissionCalculator(commissionOptions: ComissionDependency.shared, policies: [FirstFiveConversionComissionPolicy(commissionOptions: ComissionDependency.shared), EveryTenthComissionPolicy(commissionOptions: ComissionDependency.shared), UpToTwoHundredPolicy(commissionOptions: ComissionDependency.shared)])
 
     override func setUp() {

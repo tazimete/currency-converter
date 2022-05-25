@@ -8,7 +8,13 @@
 import Foundation
 import UIKit
 
-class EntityFactory {
+protocol AbstractEntityFactory {
+    associatedtype ModelType
+    
+    func createList(type: ModelType) -> [AbstractDataModel]
+}
+
+class EntityFactory: AbstractEntityFactory {
     enum ModelType{
         case balance
         case currencyExchange

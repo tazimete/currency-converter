@@ -66,6 +66,7 @@
 		FAB726CA2820F85F0061A22E /* currency_converterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB726C92820F85F0061A22E /* currency_converterTests.swift */; };
 		FAB726D42820F85F0061A22E /* currency_converterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB726D32820F85F0061A22E /* currency_converterUITests.swift */; };
 		FAB726D62820F85F0061A22E /* currency_converterUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB726D52820F85F0061A22E /* currency_converterUITestsLaunchTests.swift */; };
+		FACDBDBA283E3DF900FD9F06 /* MockEntityFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACDBDB9283E3DF900FD9F06 /* MockEntityFactory.swift */; };
 		FAE7D4802830673600F80C20 /* BalanceItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7D47F2830673600F80C20 /* BalanceItemCell.swift */; };
 		FAE7E75A282181B70019BCC2 /* AppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E67F282181B30019BCC2 /* AppLogger.swift */; };
 		FAE7E78A282181B70019BCC2 /* GenericCellComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE7E6BE282181B30019BCC2 /* GenericCellComponents.swift */; };
@@ -217,6 +218,7 @@
 		FAB726CF2820F85F0061A22E /* currency-converterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "currency-converterUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAB726D32820F85F0061A22E /* currency_converterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = currency_converterUITests.swift; sourceTree = "<group>"; };
 		FAB726D52820F85F0061A22E /* currency_converterUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = currency_converterUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		FACDBDB9283E3DF900FD9F06 /* MockEntityFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEntityFactory.swift; sourceTree = "<group>"; };
 		FAE7D47F2830673600F80C20 /* BalanceItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceItemCell.swift; sourceTree = "<group>"; };
 		FAE7E67F282181B30019BCC2 /* AppLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppLogger.swift; sourceTree = "<group>"; };
 		FAE7E6BE282181B30019BCC2 /* GenericCellComponents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericCellComponents.swift; sourceTree = "<group>"; };
@@ -391,6 +393,7 @@
 		FA1F317A283DC20300D87768 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				FACDBDB8283E3DEB00FD9F06 /* Mock */,
 				FA1F317B283DC20900D87768 /* Entity */,
 			);
 			path = Domain;
@@ -744,6 +747,14 @@
 				FAB726D52820F85F0061A22E /* currency_converterUITestsLaunchTests.swift */,
 			);
 			path = "currency-converterUITests";
+			sourceTree = "<group>";
+		};
+		FACDBDB8283E3DEB00FD9F06 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				FACDBDB9283E3DF900FD9F06 /* MockEntityFactory.swift */,
+			);
+			path = Mock;
 			sourceTree = "<group>";
 		};
 		FAE7E675282181B30019BCC2 /* Components */ = {
@@ -1567,6 +1578,7 @@
 				FA918A0E283AE11700BEDF56 /* CurrencyRepositoryTests.swift in Sources */,
 				FA1F3174283DACD200D87768 /* EveryTenthCommissionPolicyTests.swift in Sources */,
 				FA918A20283AFE4F00BEDF56 /* CurrencyUsecaseTests.swift in Sources */,
+				FACDBDBA283E3DF900FD9F06 /* MockEntityFactory.swift in Sources */,
 				FA1F317E283DC22400D87768 /* BalanceTests.swift in Sources */,
 				FAF98FCD2839A3B2005FB093 /* StubbedResponse.swift in Sources */,
 				FA918A17283AED8A00BEDF56 /* CurrencyRemoteDataSourceTests.swift in Sources */,
