@@ -1,5 +1,5 @@
 //
-//  FirstFiveCommissionPolicyTests.swift
+//  EveryTenthCommissionPolicyTests.swift
 //  currency-converterTests
 //
 //  Created by AGM Tazim on 5/25/22.
@@ -8,11 +8,11 @@
 import XCTest
 @testable import currency_converter
 
-class FirstFiveCommissionPolicyTests: XCTestCase {
-    var commissionPolicy: FirstFiveConversionComissionPolicy!
+class EveryTenthCommissionPolicyTests: XCTestCase {
+    var commissionPolicy: EveryTenthComissionPolicy!
     
     override func setUp() {
-        commissionPolicy = FirstFiveConversionComissionPolicy(commissionOptions: ComissionDependency.shared)
+        commissionPolicy = EveryTenthComissionPolicy(commissionOptions: ComissionDependency.shared)
     }
     
     override func tearDown() {
@@ -31,13 +31,13 @@ class FirstFiveCommissionPolicyTests: XCTestCase {
     }
     
     func test_hasCommission_withFalse() {
-        let result = commissionPolicy.hasComission(conversionSerial: 3, conversionAmount: 250)
+        let result = commissionPolicy.hasComission(conversionSerial: 40, conversionAmount: 250)
         
         XCTAssertFalse(result)
     }
     
     func test_getComissionAmount_withSerial_10() {
-        let result = commissionPolicy.getComissionAmount(conversionSerial: 3, conversionAmount: 250)
+        let result = commissionPolicy.getComissionAmount(conversionSerial: 10, conversionAmount: 250)
         
         XCTAssertEqual(result, 0.00)
     }
@@ -49,7 +49,7 @@ class FirstFiveCommissionPolicyTests: XCTestCase {
     }
     
     func test_getComissionPercentage_withSerial_tenth() {
-        let result = commissionPolicy.getComissionPercent(conversionSerial: 3, conversionAmount: 250)
+        let result = commissionPolicy.getComissionPercent(conversionSerial: 10, conversionAmount: 250)
         
         XCTAssertEqual(result, 0.00)
         XCTAssertNotEqual(result, commissionPolicy.commissionOptions.comissionAmountInPercent)
