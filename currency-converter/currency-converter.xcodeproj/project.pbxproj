@@ -18,6 +18,7 @@
 		FA1F316E283D515600D87768 /* BalanceReceiveOperationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1F316D283D515600D87768 /* BalanceReceiveOperationTests.swift */; };
 		FA1F3172283DA64A00D87768 /* FirstFiveCommissionPolicyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1F3171283DA64A00D87768 /* FirstFiveCommissionPolicyTests.swift */; };
 		FA1F3174283DACD200D87768 /* EveryTenthCommissionPolicyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1F3173283DACD200D87768 /* EveryTenthCommissionPolicyTests.swift */; };
+		FA1F3176283DB5F300D87768 /* UpToTwoHundredPolicyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1F3175283DB5F300D87768 /* UpToTwoHundredPolicyTests.swift */; };
 		FA1FA2BA283B8B2900B2C865 /* CurrencyApiRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1FA2B9283B8B2900B2C865 /* CurrencyApiRequestTests.swift */; };
 		FA1FA2BC283BA70600B2C865 /* CurrencyConvertParametersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1FA2BB283BA70600B2C865 /* CurrencyConvertParametersTests.swift */; };
 		FA387B712826638800B83C23 /* KVLocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA387B702826638800B83C23 /* KVLocalStorage.swift */; };
@@ -162,6 +163,7 @@
 		FA1F316D283D515600D87768 /* BalanceReceiveOperationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceReceiveOperationTests.swift; sourceTree = "<group>"; };
 		FA1F3171283DA64A00D87768 /* FirstFiveCommissionPolicyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstFiveCommissionPolicyTests.swift; sourceTree = "<group>"; };
 		FA1F3173283DACD200D87768 /* EveryTenthCommissionPolicyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EveryTenthCommissionPolicyTests.swift; sourceTree = "<group>"; };
+		FA1F3175283DB5F300D87768 /* UpToTwoHundredPolicyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpToTwoHundredPolicyTests.swift; sourceTree = "<group>"; };
 		FA1FA2B9283B8B2900B2C865 /* CurrencyApiRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyApiRequestTests.swift; sourceTree = "<group>"; };
 		FA1FA2BB283BA70600B2C865 /* CurrencyConvertParametersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConvertParametersTests.swift; sourceTree = "<group>"; };
 		FA387B702826638800B83C23 /* KVLocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KVLocalStorage.swift; sourceTree = "<group>"; };
@@ -376,6 +378,7 @@
 			children = (
 				FA1F3171283DA64A00D87768 /* FirstFiveCommissionPolicyTests.swift */,
 				FA1F3173283DACD200D87768 /* EveryTenthCommissionPolicyTests.swift */,
+				FA1F3175283DB5F300D87768 /* UpToTwoHundredPolicyTests.swift */,
 			);
 			path = Policy;
 			sourceTree = "<group>";
@@ -1541,6 +1544,7 @@
 				FA918A24283B01C600BEDF56 /* MyBalanceViewModelTests.swift in Sources */,
 				FA1F3168283CF4F700D87768 /* BalanceCheckOperationsTests.swift in Sources */,
 				FAB726CA2820F85F0061A22E /* currency_converterTests.swift in Sources */,
+				FA1F3176283DB5F300D87768 /* UpToTwoHundredPolicyTests.swift in Sources */,
 				FAF98FD52839B393005FB093 /* ApiClientTests.swift in Sources */,
 				FA1F3165283CF46E00D87768 /* BalanceOperationExecutorTests.swift in Sources */,
 				FA918A1E283AFDB100BEDF56 /* MockCurrencyUsecase.swift in Sources */,
