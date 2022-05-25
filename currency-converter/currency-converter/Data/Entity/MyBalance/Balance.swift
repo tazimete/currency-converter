@@ -8,7 +8,7 @@
 import Foundation
 
 /* Balance entity of presentation/application layer */
-struct Balance: AbstractDataModel, Codable {
+struct Balance: AbstractDataModel, Codable, Equatable {
     public var id: Int?
     public var amount: Double?
     public var currency: String?
@@ -35,6 +35,10 @@ struct Balance: AbstractDataModel, Codable {
         }
         
         return viewModel 
+    }
+    
+    static func ==(lhs: Balance, rhs: Balance) -> Bool {
+        return lhs.currency.unwrappedValue == rhs.currency.unwrappedValue && lhs.amount.unwrappedValue == rhs.amount.unwrappedValue
     }
 }
 

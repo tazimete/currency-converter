@@ -9,7 +9,7 @@ import Foundation
 
 
 /* Currency entity of api response */
-struct Currency: Codable {
+struct Currency: Codable, Equatable {
     public let amount: String?
     public let title: String?
     
@@ -21,6 +21,10 @@ struct Currency: Codable {
     enum CodingKeys: String, CodingKey {
         case amount = "amount"
         case title = "currency"
+    }
+    
+    static func ==(lhs: Currency, rhs: Currency) -> Bool {
+        return lhs.amount.unwrappedValue == rhs.amount.unwrappedValue && lhs.title.unwrappedValue == rhs.title.unwrappedValue
     }
 }
 
