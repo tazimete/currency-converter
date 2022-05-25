@@ -20,6 +20,7 @@
 		FA1F3174283DACD200D87768 /* EveryTenthCommissionPolicyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1F3173283DACD200D87768 /* EveryTenthCommissionPolicyTests.swift */; };
 		FA1F3176283DB5F300D87768 /* UpToTwoHundredPolicyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1F3175283DB5F300D87768 /* UpToTwoHundredPolicyTests.swift */; };
 		FA1F3178283DB9A400D87768 /* CommissionCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1F3177283DB9A400D87768 /* CommissionCalculatorTests.swift */; };
+		FA1F317E283DC22400D87768 /* BalanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1F317D283DC22400D87768 /* BalanceTests.swift */; };
 		FA1FA2BA283B8B2900B2C865 /* CurrencyApiRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1FA2B9283B8B2900B2C865 /* CurrencyApiRequestTests.swift */; };
 		FA1FA2BC283BA70600B2C865 /* CurrencyConvertParametersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1FA2BB283BA70600B2C865 /* CurrencyConvertParametersTests.swift */; };
 		FA387B712826638800B83C23 /* KVLocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA387B702826638800B83C23 /* KVLocalStorage.swift */; };
@@ -166,6 +167,7 @@
 		FA1F3173283DACD200D87768 /* EveryTenthCommissionPolicyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EveryTenthCommissionPolicyTests.swift; sourceTree = "<group>"; };
 		FA1F3175283DB5F300D87768 /* UpToTwoHundredPolicyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpToTwoHundredPolicyTests.swift; sourceTree = "<group>"; };
 		FA1F3177283DB9A400D87768 /* CommissionCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommissionCalculatorTests.swift; sourceTree = "<group>"; };
+		FA1F317D283DC22400D87768 /* BalanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceTests.swift; sourceTree = "<group>"; };
 		FA1FA2B9283B8B2900B2C865 /* CurrencyApiRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyApiRequestTests.swift; sourceTree = "<group>"; };
 		FA1FA2BB283BA70600B2C865 /* CurrencyConvertParametersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConvertParametersTests.swift; sourceTree = "<group>"; };
 		FA387B702826638800B83C23 /* KVLocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KVLocalStorage.swift; sourceTree = "<group>"; };
@@ -384,6 +386,30 @@
 				FA1F3175283DB5F300D87768 /* UpToTwoHundredPolicyTests.swift */,
 			);
 			path = Policy;
+			sourceTree = "<group>";
+		};
+		FA1F317A283DC20300D87768 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				FA1F317B283DC20900D87768 /* Entity */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		FA1F317B283DC20900D87768 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				FA1F317C283DC21000D87768 /* MyBalance */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		FA1F317C283DC21000D87768 /* MyBalance */ = {
+			isa = PBXGroup;
+			children = (
+				FA1F317D283DC22400D87768 /* BalanceTests.swift */,
+			);
+			path = MyBalance;
 			sourceTree = "<group>";
 		};
 		FA387B7428267C8D00B83C23 /* Abstraction */ = {
@@ -702,6 +728,7 @@
 		FAB726C82820F85F0061A22E /* currency-converterTests */ = {
 			isa = PBXGroup;
 			children = (
+				FA1F317A283DC20300D87768 /* Domain */,
 				FAF98FC62839A2B7005FB093 /* Client */,
 				FA918A04283ADC2000BEDF56 /* Data */,
 				FA918A21283B019500BEDF56 /* Presentation */,
@@ -1540,6 +1567,7 @@
 				FA918A0E283AE11700BEDF56 /* CurrencyRepositoryTests.swift in Sources */,
 				FA1F3174283DACD200D87768 /* EveryTenthCommissionPolicyTests.swift in Sources */,
 				FA918A20283AFE4F00BEDF56 /* CurrencyUsecaseTests.swift in Sources */,
+				FA1F317E283DC22400D87768 /* BalanceTests.swift in Sources */,
 				FAF98FCD2839A3B2005FB093 /* StubbedResponse.swift in Sources */,
 				FA918A17283AED8A00BEDF56 /* CurrencyRemoteDataSourceTests.swift in Sources */,
 				FA9189FF283AB8B200BEDF56 /* UserSessionDataClientTests.swift in Sources */,
